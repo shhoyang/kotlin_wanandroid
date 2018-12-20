@@ -32,7 +32,6 @@
             android:inputType="text"
             android:maxLength="16"
             android:singleLine="true"
-            android:text="haoshi"
             android:textColor="@color/white" />
     </android.support.design.widget.TextInputLayout>
 

@@ -31,7 +31,7 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            outputFileName = "MVVM-${defaultConfig.versionName}.apk"
+            outputFileName = "wanandroid-${defaultConfig.versionName}.apk"
         }
     }
 
