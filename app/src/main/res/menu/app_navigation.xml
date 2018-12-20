@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_wechat"
+        android:icon="@drawable/app_ic_letter_w"
+        android:title="Wechat" />
+    <item
+        android:id="@+id/tab_android"
+        android:icon="@drawable/app_ic_letter_a"
+        android:title="Android" />
+    <item
+        android:id="@+id/tab_kotlin"
+        android:icon="@drawable/app_ic_letter_k"
+        android:title="Kotlin" />
+    <item
+        android:id="@+id/tab_flutter"
+        android:icon="@drawable/app_ic_letter_f"
+        android:title="Flutter" />
+</menu>

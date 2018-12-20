@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="baseRefreshLayout" type="id" />
+    <item name="baseRecyclerView" type="id" />
+    <item name="baseEmptyView" type="id" />
+    <item name="baseWebView" type="id" />
+    <item name="baseToolbar" type="id" />
+</resources>

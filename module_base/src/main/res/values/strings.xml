@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">mvvm_base</string>
+    <string name="digits">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
+</resources>

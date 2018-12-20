@@ -1,0 +1,27 @@
+
+buildscript {
+    apply from: "config.gradle"
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://www.jitpack.io' }
+        maven { url "http://lib.gcssloop.com/repository/gcssloop-central/" }
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

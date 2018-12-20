@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ToolbarLayout">
+        <attr name="title" format="string" />
+        <attr name="showBack" format="boolean" />
+        <attr name="showLine" format="boolean" />
+        <attr name="iconTint" format="color" />
+        <attr name="textColor" format="color" />
+    </declare-styleable>
+</resources>

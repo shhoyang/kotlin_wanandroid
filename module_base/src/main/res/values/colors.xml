@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <!--<color name="colorPrimaryDark">#00574B</color>-->
+    <!--<color name="colorAccent">#D81B60</color>-->
+    <color name="colorPrimaryDark">@color/window_bg</color>
+    <color name="colorAccent">@color/colorPrimary</color>
+    <color name="ic_launcher_background">#FAFAFA</color>
+
+    <color name="window_bg">#FAFAFA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="blue">#409CFA</color>
+    <color name="red">#FF4444</color>
+
+    <color name="text_black">#333333</color>
+    <color name="tran">#00000000</color>
+
+    <color name="line">@color/light_gray</color>
+
+    <color name="light_gray">#CDCDCD</color>
+    <color name="dark_gray">#686868</color>
+
+</resources>

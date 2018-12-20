@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="48dp"
+    android:paddingEnd="48dp">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputUsername"
+        style="@style/FillWidth"
+        android:theme="@style/TextInputLayoutLineColor"
+        app:errorTextAppearance="@style/ErrorAppearance"
+        app:hintTextAppearance="@style/HintAppearance"
+        app:layout_constraintTop_toBottomOf="@id/guideline">
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/digits"
+            android:drawableStart="@drawable/user_ic_person"
+            android:drawablePadding="6dp"
+            android:hint="username"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="@color/white" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputPassword"
+        style="@style/FillWidth"
+        android:theme="@style/TextInputLayoutLineColor"
+        app:errorTextAppearance="@style/ErrorAppearance"
+        app:hintTextAppearance="@style/HintAppearance"
+        app:layout_constraintTop_toBottomOf="@id/textInputUsername">
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/digits"
+            android:drawableStart="@drawable/user_ic_password"
+            android:drawablePadding="6dp"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:singleLine="true"
+            android:textColor="@color/white" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputConfirmPassword"
+        style="@style/FillWidth"
+        android:theme="@style/TextInputLayoutLineColor"
+        app:errorTextAppearance="@style/ErrorAppearance"
+        app:hintTextAppearance="@style/HintAppearance"
+        app:layout_constraintTop_toBottomOf="@id/textInputPassword">
+
+        <EditText
+            android:id="@+id/editTextConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="@string/digits"
+            android:drawableStart="@drawable/user_ic_password"
+            android:drawablePadding="6dp"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:singleLine="true"
+            android:textColor="@color/white" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonRegister"
+        style="@style/FillWidth"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/user_login_button"
+        android:gravity="center"
+        android:text="注册"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/textInputConfirmPassword" />
+
+    <TextView
+        android:id="@+id/textLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="已有账号,去登录"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonRegister" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,19 @@
+package com.hao.easy.wechat.viewmodel
+
+import com.hao.easy.base.extensions.main
+import com.hao.easy.base.extensions.subscribeBy
+import com.hao.easy.wechat.model.Article
+import com.hao.easy.wechat.repository.Api
+
+class WechatArticleViewModel : BaseArticleViewModel() {
+
+    var authorId: Int = 409
+
+    override fun loadData(page: Int, onResponse: (ArrayList<Article>?) -> Unit) {
+        Api.getWechatArticles(authorId, page).main().subscribeBy({
+            onResponse(it?.datas)
+        }, {
+            onResponse(null)
+        }).add()
+    }
+}

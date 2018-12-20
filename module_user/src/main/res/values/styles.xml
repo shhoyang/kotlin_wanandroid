@@ -1,0 +1,31 @@
+<resources>
+
+    <style name="WelcomeTheme" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@mipmap/user_welcome_bg</item>
+    </style>
+
+    <style name="LoginTheme" parent="StatusBarTransparentTheme">
+        <item name="android:windowBackground">@mipmap/user_login_bg</item>
+    </style>
+
+    <style name="TextInputLayoutLineColor" parent="Theme.AppCompat.Light">
+        <item name="android:textColorHint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+    </style>
+
+    <!--浮动标签-->
+    <style name="HintAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--错误提示信息-->
+    <style name="ErrorAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
+    </style>
+
+</resources>
