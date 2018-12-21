@@ -82,8 +82,8 @@ dependencies {
     if (isModule) {
         implementation project(':module_user')
         implementation project(':module_wechat')
-        implementation project(':module_android')
-        implementation project(':module_flutter')
-        implementation project(':module_kotlin')
+//        implementation project(':module_android')
+//        implementation project(':module_flutter')
+//        implementation project(':module_kotlin')
     }
 }
