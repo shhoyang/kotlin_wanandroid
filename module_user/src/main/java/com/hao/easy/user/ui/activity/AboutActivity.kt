@@ -69,7 +69,7 @@ class AboutActivity : BaseActivity() {
     private fun copy(text: String) {
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         clipboardManager.primaryClip = ClipData.newPlainText(null, text)
-        recyclerView.snack("已複製到剪切板")
+        recyclerView.snack("已複製到剪粘板")
     }
 
     private fun getVersionName(): String {

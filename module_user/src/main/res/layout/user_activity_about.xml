@@ -44,7 +44,7 @@
                 android:layout_marginTop="32dp"
                 android:id="@+id/tip_"
                 android:textStyle="bold"
-                android:text="提示: 長按鏈接複製到剪切板"
+                android:text="提示: 長按鏈接複製到剪粘板"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toTopOf="@id/recyclerView"
                 android:textColor="@color/black"
