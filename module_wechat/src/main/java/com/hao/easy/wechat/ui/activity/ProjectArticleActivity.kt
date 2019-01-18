@@ -44,7 +44,7 @@ class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel
 
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
-            R.id.ivLink, R.id.tvLink -> {
+            R.id.tvLink -> {
                 WebActivity.start(this, item.title, item.projectLink)
             }
             R.id.ivFav -> {

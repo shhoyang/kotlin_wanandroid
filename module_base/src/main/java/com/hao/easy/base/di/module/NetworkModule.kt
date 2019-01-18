@@ -22,7 +22,7 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    private fun getBaseUrl() = "http://wanandroid.com"
+    private fun getBaseUrl() = "https://haoshi.co:8443"
 
     @Provides
     @Singleton

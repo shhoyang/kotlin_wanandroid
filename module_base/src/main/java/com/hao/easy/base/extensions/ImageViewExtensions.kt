@@ -13,6 +13,13 @@ fun ImageView.load(url: Any) {
     Glide.with(this).load(url).into(this)
 }
 
+fun ImageView.load(url: Any, holder: Int) {
+    var options = RequestOptions()
+        .placeholder(holder)
+        .error(holder)
+    Glide.with(this).load(url).apply(options).into(this)
+}
+
 fun ImageView.loadCircle(url: Any) {
     Glide.with(this).load(url).apply(RequestOptions.circleCropTransform()).into(this)
 }

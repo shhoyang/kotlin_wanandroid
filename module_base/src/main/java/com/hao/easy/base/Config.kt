@@ -23,6 +23,9 @@ object Config {
             return field && null != user
         }
 
+    //刷新列表
+    var refresh = 0
+
     fun init() {
         var username: String? = null
         var token: String? = null
@@ -54,6 +57,7 @@ object Config {
     fun logged(user: User) {
         this.user = user
         isLogin = true
+        refresh()
         thread { UserDb.instance().userDao().insert(user) }
     }
 
@@ -63,10 +67,15 @@ object Config {
         }
         user = null
         isLogin = false
+        refresh()
         App.instance.appComponent.apply {
             okHttpClient().dispatcher().cancelAll()
             persistentCookieJar().clear()
         }
+    }
+
+    fun refresh() {
+        refresh++
     }
 }
 

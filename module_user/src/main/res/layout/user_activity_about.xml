@@ -15,129 +15,48 @@
             android:padding="32dp">
 
         <ImageView
-                android:id="@+id/ivQR"
-                style="@style/CenterHorizontal"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:src="@mipmap/user_qr"
-                app:layout_constraintBottom_toTopOf="@+id/tvVersion"
+                android:id="@+id/ivAndroidQR"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintWidth_percent="0.35"
+                app:layout_constraintDimensionRatio="1:1"
+                tools:src="@mipmap/user_qr"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ivWechatQR"
+                app:layout_constraintBottom_toTopOf="@+id/tip_"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed"/>
 
-        <TextView
-                android:id="@+id/tvVersion"
-                style="@style/CenterHorizontal"
-                android:layout_marginTop="4dp"
-                android:text="1.0"
-                android:textColor="@color/text_black"
-                app:layout_constraintBottom_toTopOf="@+id/tv_"
-                app:layout_constraintTop_toBottomOf="@id/ivQR"
-                app:layout_constraintVertical_chainStyle="packed"/>
+        <ImageView
+                android:id="@+id/ivWechatQR"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                tools:src="@mipmap/user_qr_wechat"
+                app:layout_constraintWidth_percent="0.35"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toEndOf="@id/ivAndroidQR"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivAndroidQR"/>
+
 
         <TextView
-                android:id="@+id/tv_"
+                app:layout_constraintTop_toBottomOf="@id/ivAndroidQR"
+                android:layout_marginTop="32dp"
+                android:id="@+id/tip_"
+                android:textStyle="bold"
+                android:text="提示: 長按鏈接複製到剪切板"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/recyclerView"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:text="個人首頁"
-                android:textColor="@color/text_black"
-                app:layout_constraintBottom_toTopOf="@+id/tvUserHome"
-                app:layout_constraintTop_toBottomOf="@id/tvVersion"
-                app:layout_constraintVertical_chainStyle="packed"/>
+                android:layout_height="wrap_content"/>
 
-        <TextView
-                android:id="@+id/tvUserHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_profile"
-                android:textColor="@color/blue"
-                app:layout_constraintBottom_toTopOf="@+id/tv_1"
-                app:layout_constraintTop_toBottomOf="@id/tv_"
-                app:layout_constraintVertical_chainStyle="packed"/>
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                style="@style/FillWidth"
+                app:layout_constraintTop_toBottomOf="@id/tip_"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
-                android:id="@+id/tv_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="下載地址"
-                android:textColor="@color/text_black"
-                app:layout_constraintBottom_toTopOf="@+id/tvDownloadLink"
-                app:layout_constraintTop_toBottomOf="@id/tvUserHome"
-                app:layout_constraintVertical_chainStyle="packed"/>
-
-        <TextView
-                android:id="@+id/tvDownloadLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_download_link"
-                android:textColor="@color/blue"
-                app:layout_constraintBottom_toTopOf="@+id/tv_2"
-                app:layout_constraintTop_toBottomOf="@id/tv_1"
-                app:layout_constraintVertical_chainStyle="packed"/>
-
-        <TextView
-                android:id="@+id/tv_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="項目鏈接"
-                android:textColor="@color/text_black"
-                app:layout_constraintBottom_toTopOf="@+id/tvProjectLink"
-                app:layout_constraintTop_toBottomOf="@id/tvDownloadLink"
-                app:layout_constraintVertical_chainStyle="packed"/>
-
-        <TextView
-                android:id="@+id/tvProjectLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_project_link"
-                android:textColor="@color/blue"
-                app:layout_constraintBottom_toTopOf="@+id/tv_3"
-                app:layout_constraintTop_toBottomOf="@id/tv_2"
-                app:layout_constraintVertical_chainStyle="packed"/>
-
-        <TextView
-                android:id="@+id/tv_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="聯繫方式"
-                android:textColor="@color/text_black"
-                app:layout_constraintBottom_toTopOf="@+id/tvEmail"
-                app:layout_constraintTop_toBottomOf="@id/tvProjectLink"
-                app:layout_constraintVertical_chainStyle="packed"/>
-
-        <TextView
-                android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_email"
-                android:textColor="@color/blue"
-                app:layout_constraintBottom_toTopOf="@id/tv_4"
-                app:layout_constraintTop_toBottomOf="@id/tv_3"
-                app:layout_constraintVertical_chainStyle="packed"/>
-
-        <TextView
-                android:id="@+id/tv_4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Thanks"
-                android:textColor="@color/text_black"
-                app:layout_constraintBottom_toTopOf="@+id/tvThanks"
-                app:layout_constraintTop_toBottomOf="@id/tvEmail"
-                app:layout_constraintVertical_chainStyle="packed"/>
-
-        <TextView
-                android:id="@+id/tvThanks"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_thanks"
-                android:textColor="@color/blue"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_4"
-                app:layout_constraintVertical_chainStyle="packed"/>
 
     </android.support.constraint.ConstraintLayout>
 

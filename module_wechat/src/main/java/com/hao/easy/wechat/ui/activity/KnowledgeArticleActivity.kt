@@ -8,7 +8,7 @@ import com.hao.easy.wechat.R
 import com.hao.easy.wechat.di.component
 import com.hao.easy.wechat.model.Article
 import com.hao.easy.wechat.model.Knowledge
-import com.hao.easy.wechat.ui.adapter.KnowledgeArticleAdapter
+import com.hao.easy.wechat.ui.adapter.CommonArticleAdapter
 import com.hao.easy.wechat.viewmodel.KnowledgeArticleViewModel
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewModel>() {
 
     @Inject
-    lateinit var adapter: KnowledgeArticleAdapter
+    lateinit var adapter: CommonArticleAdapter
 
     companion object {
         private const val TYPE = "TYPE"
@@ -41,14 +41,22 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
     }
 
     override fun itemClicked(view: View, item: Article, position: Int) {
-        if (view.id == R.id.ivFav) {
-            if (item.collect) {
-                viewModel.cancelCollect(item, position)
-            } else {
-                viewModel.collect(item, position)
+        when (view.id) {
+            R.id.tvLink -> {
+                var title = item.title.replace(Regex("<[^>]+>"), "")
+                WebActivity.start(this, title, item.projectLink)
             }
-        } else {
-            WebActivity.start(this, item.title, item.link)
+            R.id.ivFav -> {
+                if (item.collect) {
+                    viewModel.cancelCollect(item, position)
+                } else {
+                    viewModel.collect(item, position)
+                }
+            }
+            else -> {
+                var title = item.title.replace(Regex("<[^>]+>"), "")
+                WebActivity.start(this, title, item.link)
+            }
         }
     }
 }

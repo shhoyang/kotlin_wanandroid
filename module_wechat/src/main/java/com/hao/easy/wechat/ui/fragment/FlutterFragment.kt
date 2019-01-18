@@ -6,7 +6,7 @@ import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wechat.R
 import com.hao.easy.wechat.di.component
 import com.hao.easy.wechat.model.Article
-import com.hao.easy.wechat.ui.adapter.KotlinArticleAdapter
+import com.hao.easy.wechat.ui.adapter.CommonArticleAdapter
 import com.hao.easy.wechat.viewmodel.FlutterViewModel
 import javax.inject.Inject
 
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class FlutterFragment : BaseListFragment<Article, FlutterViewModel>() {
 
     @Inject
-    lateinit var adapter: KotlinArticleAdapter
+    lateinit var adapter: CommonArticleAdapter
 
     companion object {
         private const val TAG = "KotlinFragment"
@@ -39,16 +39,25 @@ class FlutterFragment : BaseListFragment<Article, FlutterViewModel>() {
     }
 
     override fun itemClicked(view: View, item: Article, position: Int) {
-        if (view.id == R.id.ivFav) {
-            if (item.collect) {
-                viewModel.cancelCollect(item, position)
-            } else {
-                viewModel.collect(item, position)
+        when (view.id) {
+            R.id.tvLink -> {
+                context?.apply {
+                    var title = item.title.replace(Regex("<[^>]+>"), "")
+                    WebActivity.start(this, title, item.projectLink)
+                }
             }
-        } else {
-            context?.apply {
-                var title = item.title.replace(Regex("<[^>]+>"), "")
-                WebActivity.start(this, title, item.link)
+            R.id.ivFav -> {
+                if (item.collect) {
+                    viewModel.cancelCollect(item, position)
+                } else {
+                    viewModel.collect(item, position)
+                }
+            }
+            else -> {
+                context?.apply {
+                    var title = item.title.replace(Regex("<[^>]+>"), "")
+                    WebActivity.start(this, title, item.link)
+                }
             }
         }
     }

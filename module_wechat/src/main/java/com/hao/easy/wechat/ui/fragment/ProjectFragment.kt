@@ -21,7 +21,6 @@ import com.hao.easy.wechat.ui.adapter.ProjectArticleAdapter
 import com.hao.easy.wechat.ui.adapter.ProjectTypeAdapter
 import com.hao.easy.wechat.viewmodel.ProjectViewModel
 import kotlinx.android.synthetic.main.wechat_fragment_project.*
-import org.jetbrains.anko.find
 import org.jetbrains.anko.support.v4.dip
 import javax.inject.Inject
 
@@ -110,7 +109,7 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
         viewModel.typeLiveData.observe(this, Observer {
             typeAdapter.setData(it!!)
             line.visible()
-            createPoints(it?.size)
+            createPoints(it.size)
         })
         lifecycle.addObserver(viewModel)
     }
@@ -119,7 +118,7 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
 
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
-            R.id.ivLink, R.id.tvLink -> {
+            R.id.tvLink -> {
                 context?.apply {
                     WebActivity.start(this, item.title, item.projectLink)
                 }

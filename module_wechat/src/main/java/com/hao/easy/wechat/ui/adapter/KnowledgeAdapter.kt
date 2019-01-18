@@ -34,7 +34,6 @@ class FlowAdapter(data: ArrayList<Knowledge>) : BaseNormalAdapter<Knowledge>(R.l
                 .setImageResource(R.id.ivIcon, Icon.icons[Random.nextInt(Icon.icons.size)])
                 .itemView.setOnClickListener {
             KnowledgeArticleActivity.start(context, item)
-
         }
     }
 }

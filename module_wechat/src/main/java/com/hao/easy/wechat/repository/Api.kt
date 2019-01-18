@@ -44,6 +44,10 @@ interface Service {
     fun cancelCollect(@Path("id") id: Int): Observable<HttpResult<Void>>
 
     @FormUrlEncoded
+    @POST("lg/uncollect/{id}/json")
+    fun cancelCollectFromFav(@Path("id") id: Int, @Field("originId") originId: Int): Observable<HttpResult<Void>>
+
+    @FormUrlEncoded
     @POST("article/query/{page}/json")
     fun search(@Path("page") page: Int, @Field("k") k: String): Observable<HttpResult<ListPaged<Article>>>
 

@@ -1,13 +1,27 @@
 package com.hao.easy.wechat.viewmodel
 
+import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.wechat.model.Article
 import com.hao.easy.wechat.repository.Api
+import kotlin.properties.Delegates
 
 class FlutterViewModel : BaseArticleViewModel() {
 
     private var key = "flutter"
+
+    private var refresh by Delegates.observable(Config.refresh) { _, old, new ->
+        if (old != new) {
+            invalidate()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refresh = Config.refresh
+    }
+
 
     override fun pageSize() = 10
 

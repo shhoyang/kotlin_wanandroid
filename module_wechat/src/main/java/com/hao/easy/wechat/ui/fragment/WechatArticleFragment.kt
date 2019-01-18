@@ -8,7 +8,7 @@ import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wechat.R
 import com.hao.easy.wechat.di.component
 import com.hao.easy.wechat.model.Article
-import com.hao.easy.wechat.ui.adapter.WechatArticleAdapter
+import com.hao.easy.wechat.ui.adapter.CommonArticleAdapter
 import com.hao.easy.wechat.viewmodel.WechatArticleViewModel
 import javax.inject.Inject
 
@@ -30,7 +30,7 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
     }
 
     @Inject
-    lateinit var adapter: WechatArticleAdapter
+    lateinit var adapter: CommonArticleAdapter
 
     override fun getLayoutId() = R.layout.wechat_fragment_wechat_article
 
@@ -39,6 +39,11 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
     }
 
     override fun isLazy() = true
+
+    override fun initView() {
+        adapter.showAuthor = false
+        super.initView()
+    }
 
     override fun initData() {
         arguments?.apply {
@@ -51,15 +56,25 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
     override fun adapter() = adapter
 
     override fun itemClicked(view: View, item: Article, position: Int) {
-        if (view.id == R.id.ivFav) {
-            if (item.collect) {
-                viewModel.cancelCollect(item, position)
-            } else {
-                viewModel.collect(item, position)
+        when (view.id) {
+            R.id.tvLink -> {
+                context?.apply {
+                    var title = item.title.replace(Regex("<[^>]+>"), "")
+                    WebActivity.start(this, title, item.projectLink)
+                }
             }
-        } else {
-            context?.apply {
-                WebActivity.start(this, item.title, item.link)
+            R.id.ivFav -> {
+                if (item.collect) {
+                    viewModel.cancelCollect(item, position)
+                } else {
+                    viewModel.collect(item, position)
+                }
+            }
+            else -> {
+                context?.apply {
+                    var title = item.title.replace(Regex("<[^>]+>"), "")
+                    WebActivity.start(this, title, item.link)
+                }
             }
         }
     }

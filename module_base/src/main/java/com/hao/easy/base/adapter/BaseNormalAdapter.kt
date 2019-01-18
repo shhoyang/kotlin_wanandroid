@@ -10,6 +10,7 @@ abstract class BaseNormalAdapter<T>(private val layoutId: Int, var list: ArrayLi
     lateinit var context: Context
 
     var itemClickListener: ((View, T, Int) -> Unit)? = null
+    var itemLongClickListener: ((View, T, Int) -> Boolean)? = null
 
     override fun getItemCount() = list.size
 

@@ -17,7 +17,7 @@ import com.hao.easy.base.extensions.load
 import com.hao.easy.base.extensions.visible
 
 class ViewHolder(val context: Context, parent: ViewGroup, @LayoutRes layoutId: Int) :
-        RecyclerView.ViewHolder(LayoutInflater.from(context).inflate(layoutId, parent, false)) {
+    RecyclerView.ViewHolder(LayoutInflater.from(context).inflate(layoutId, parent, false)) {
 
     private val views = SparseArray<View>()
 
@@ -64,8 +64,18 @@ class ViewHolder(val context: Context, parent: ViewGroup, @LayoutRes layoutId: I
         return this
     }
 
+    fun gone(view: View): ViewHolder {
+        view.gone()
+        return this
+    }
+
     fun visible(@IdRes viewId: Int): ViewHolder {
         var view: View = getView(viewId)
+        view.visible()
+        return this
+    }
+
+    fun visible(view: View): ViewHolder {
         view.visible()
         return this
     }
@@ -81,6 +91,15 @@ class ViewHolder(val context: Context, parent: ViewGroup, @LayoutRes layoutId: I
         viewIds.forEach {
             getView<View>(it).apply {
                 setOnClickListener { f(this) }
+            }
+        }
+        return this
+    }
+
+    fun setLongClickListener(@IdRes viewId: Int, f: (View) -> Boolean): ViewHolder {
+        getView<View>(viewId).apply {
+            setOnLongClickListener {
+                f(this)
             }
         }
         return this

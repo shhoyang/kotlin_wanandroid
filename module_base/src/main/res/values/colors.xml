@@ -12,6 +12,7 @@
     <color name="black">#000000</color>
     <color name="blue">#409CFA</color>
     <color name="red">#FF4444</color>
+    <color name="link">#586C94</color>
 
     <color name="text_black">#333333</color>
     <color name="tran">#00000000</color>

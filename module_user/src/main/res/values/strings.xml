@@ -1,8 +1,3 @@
 <resources>
     <string name="app_name">User</string>
-    <string name="user_profile"><u>https://haoshi.co</u></string>
-    <string name="user_download_link"><u>https://haoshi.co/wanandroid.apk</u></string>
-    <string name="user_project_link"><u>https://github.com/haoshiy/kotlin_wanandroid</u></string>
-    <string name="user_email"><u>haoyshi@163.com</u></string>
-    <string name="user_thanks"><u>鸿洋-玩Android开发Api</u></string>
 </resources>
