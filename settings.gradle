@@ -1,7 +1,4 @@
 include ':app'
 include ':module_base'
 include ':module_user'
-include ':module_wechat'
-include ':module_android'
-include ':module_kotlin'
-include ':module_flutter'
+include ':module_wan'

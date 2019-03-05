@@ -10,10 +10,10 @@ import com.hao.easy.R
 import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.user.ui.fragment.UserFragment
-import com.hao.easy.wechat.ui.fragment.FlutterFragment
-import com.hao.easy.wechat.ui.fragment.KotlinFragment
-import com.hao.easy.wechat.ui.fragment.ProjectFragment
-import com.hao.easy.wechat.ui.fragment.WechatFragment
+import com.hao.easy.wan.ui.fragment.FlutterFragment
+import com.hao.easy.wan.ui.fragment.KotlinFragment
+import com.hao.easy.wan.ui.fragment.ProjectFragment
+import com.hao.easy.wan.ui.fragment.WechatFragment
 import kotlinx.android.synthetic.main.app_activity_main.*
 import kotlin.properties.Delegates
 
