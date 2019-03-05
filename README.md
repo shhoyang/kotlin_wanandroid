@@ -104,7 +104,7 @@ var imageView: ImageView = ...
 imageView.load(url)
 ```
 
-//以前使用工具类必须要传一个类型为ImageView的参数，现在直接用ImageView调用扩展方法是不是简单了很多
+以前使用工具类必须要传一个类型为ImageView的参数，现在直接用ImageView调用扩展方法是不是简单了很多
 
 **空判断**
 
