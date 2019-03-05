@@ -25,7 +25,9 @@
 app，App的壳
 module_base，公共库
 module_user、module_wan，业务模块
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-f212f3574b2fc83f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 既然是组件化开发，那各个业务模块肯定可以单独运行
 ```
 //根据变量isModule判断是作为依赖library还是单独的application
@@ -69,10 +71,14 @@ dependencies {
 ```
 ###module_base
 作为公共库，存放base和公用代码，其它的module都要依赖它
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-94f4b61d6793d549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ###module_wan
 主要的业务
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-1fd4d92155442e3e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ###module_user
 用户相关的登录注册等功能
 >Kotlin的一些特性在项目中的运用
