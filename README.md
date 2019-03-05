@@ -83,7 +83,7 @@ dependencies {
 
 ![](https://upload-images.jianshu.io/upload_images/12337722-1fd4d92155442e3e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-**module_user
+**module_user**
 
 用户相关的登录注册等功能
 >Kotlin的一些特性在项目中的运用
