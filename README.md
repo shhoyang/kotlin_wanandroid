@@ -55,7 +55,7 @@ sourceSets {
   }
 }
 ```
-###app
+**app**
 
 它是app的壳，里面只有一个MainActivity，它负责整合所需要的业务模块
 ![](https://upload-images.jianshu.io/upload_images/12337722-12cfd686a8aa63fb.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -71,22 +71,24 @@ dependencies {
   }
 }
 ```
-###module_base
+**module_base
+
 作为公共库，存放base和公用代码，其它的module都要依赖它
 
 ![](https://upload-images.jianshu.io/upload_images/12337722-94f4b61d6793d549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###module_wan
+**module_wan
+
 主要的业务
 
 ![](https://upload-images.jianshu.io/upload_images/12337722-1fd4d92155442e3e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###module_user
+**module_user
 
 用户相关的登录注册等功能
 >Kotlin的一些特性在项目中的运用
 
-###扩展函数
+**扩展函数
 
 ```
 //给ImageView添加一个扩展函数，就当做ImageView有了一个load方法
@@ -104,7 +106,7 @@ imageView.load(url)
 
 //以前使用工具类必须要传一个类型为ImageView的参数，现在直接用ImageView调用扩展方法是不是简单了很多
 
-###空判断
+**空判断
 
 ```
 override fun setTitle(title: CharSequence?) {  //这个？表示该变量可以为null
@@ -114,7 +116,7 @@ override fun setTitle(title: CharSequence?) {  //这个？表示该变量可以�
 ```
 想想以前代码里面到处都是 if(... !=  null) 都阵痛
 
-###函数默认参数
+**函数默认参数
 
 ```
 fun <VH : RecyclerView.ViewHolder, A : Adapter<VH>> RecyclerView.init(adapter: A, 
@@ -141,7 +143,7 @@ fun test(a: Int, b: Int = 2, c: Int = 3, d: Int = 4) {
   ...
 }
 ```
-###函数式编程
+**函数式编程
 
 一个函数作为另一个函数的参数传递
 ```
