@@ -27,13 +27,23 @@ class KnowledgeAdapter @Inject constructor() : BasePagedAdapter<Knowledge>(R.lay
     }
 }
 
-class FlowAdapter(data: ArrayList<Knowledge>) : BaseNormalAdapter<Knowledge>(R.layout.wechat_item_knowledge_child, data) {
+class FlowAdapter(data: ArrayList<Knowledge>) :
+    BaseNormalAdapter<Knowledge>(R.layout.wechat_item_knowledge_child, data) {
 
     override fun bindViewHolder(holder: ViewHolder, item: Knowledge, position: Int) {
         holder.setText(R.id.tvChildName, item.name)
-                .setImageResource(R.id.ivIcon, Icon.icons[Random.nextInt(Icon.icons.size)])
-                .itemView.setOnClickListener {
+            .setImageResource(R.id.ivIcon, Icon.icons[Random.nextInt(Icon.icons.size)])
+            .itemView.setOnClickListener {
             KnowledgeArticleActivity.start(context, item)
         }
     }
 }
+
+fun main() {
+    test(1, c = 10)
+}
+
+fun test(a: Int, b: Int = 2, c: Int = 3, d: Int = 4) {
+
+}
+

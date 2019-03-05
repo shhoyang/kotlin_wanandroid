@@ -5,8 +5,15 @@
 的追捧，许多大厂已经使用纯Kotlin进行Android开发。大势所趋吧，不得不开启Kotlin学习之旅
 
 >项目使用到的开源库
-- 
-- 
+- [网络请求okhttp](https://github.com/square/okhttp)
+- [网络请求Retrofit](https://github.com/square/retrofit)
+- [异步框架Rxjava2](https://github.com/ReactiveX/RxJava)
+- [可翻页的RecyclerView](https://github.com/GcsSloop/pager-layoutmanager)
+- [侧滑删除SwipeDelMenuLayout](https://github.com/mcxtzhang/SwipeDelMenuLayout)
+- [流式布局FlowLayout](https://github.com/xiangcman/LayoutManager-FlowLayout)
+- [阿里路由框架ARouter](https://github.com/alibaba/ARouter)
+- [依赖注入Dagger2](https://github.com/google/dagger)
+- [日志打印KLog](https://github.com/ZhaoKaiQiang/KLog)
 
 
 
