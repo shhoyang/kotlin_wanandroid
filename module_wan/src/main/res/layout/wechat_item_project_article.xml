@@ -15,6 +15,7 @@
         android:id="@+id/tvTitle"
         style="@style/FillWidth"
         android:maxLines="2"
+        app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/text_black"
         android:textSize="16sp"
         tools:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题" />
