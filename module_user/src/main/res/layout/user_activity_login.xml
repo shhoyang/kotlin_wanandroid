@@ -9,9 +9,9 @@
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
-    <com.hao.easy.view.ToolbarLayout
+    <com.hao.easy.base.view.ToolbarLayout
         android:id="@id/baseToolbar"
         style="@style/Toolbar"
         android:layout_marginTop="@dimen/status_bar_height"

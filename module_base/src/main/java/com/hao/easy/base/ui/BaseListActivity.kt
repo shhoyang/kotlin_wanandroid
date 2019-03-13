@@ -10,8 +10,8 @@ import com.hao.easy.base.adapter.BasePagedAdapter
 import com.hao.easy.base.common.RefreshResult
 import com.hao.easy.base.extensions.init
 import com.hao.easy.base.extensions.snack
+import com.hao.easy.base.view.EmptyView
 import com.hao.easy.base.viewmodel.BaseListViewModel
-import com.hao.easy.view.EmptyView
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -25,7 +25,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
     }
 
     val viewModel: VM by lazy {
-        var parameterizedType = javaClass.genericSuperclass as ParameterizedType
+        val parameterizedType = javaClass.genericSuperclass as ParameterizedType
         val cla = parameterizedType.actualTypeArguments[1] as Class<VM>
         ViewModelProviders.of(this).get(cla)
     }
@@ -33,7 +33,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
     private var refreshLayout: SwipeRefreshLayout? = null
     private var emptyView: EmptyView? = null
 
-    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     override fun getLayoutId() = R.layout.activity_base_list
 
@@ -41,7 +41,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
         refreshLayout = f(R.id.baseRefreshLayout)
         recyclerView = f(R.id.baseRecyclerView)!!
         emptyView = f(R.id.baseEmptyView)
-        var adapter = adapter()
+        val adapter = adapter()
         adapter.itemClickListener = { view, item, position ->
             itemClicked(view, item, position)
         }
@@ -84,7 +84,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
         }
     }
 
-    fun loadMoreFinished(result: RefreshResult) {
+    private fun loadMoreFinished(result: RefreshResult) {
         when (result) {
             RefreshResult.SUCCEED -> {
             }

@@ -31,9 +31,9 @@ class WelcomeActivity : BaseActivity() {
 
     override fun initData() {
         thread {
-            var l = System.currentTimeMillis()
+            val l = System.currentTimeMillis()
             Config.init()
-            var delayTime = DURATION + l - System.currentTimeMillis()
+            val delayTime = DURATION + l - System.currentTimeMillis()
             if (delayTime <= 0) {
                 start()
             } else {
@@ -48,7 +48,7 @@ class WelcomeActivity : BaseActivity() {
         if (Build.VERSION.SDK_INT in 12..18) {
             window.decorView.gone()
         } else if (Build.VERSION.SDK_INT >= 19) {
-            var uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+            val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
                     View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
                     View.SYSTEM_UI_FLAG_FULLSCREEN
             window.decorView.systemUiVisibility = uiOptions

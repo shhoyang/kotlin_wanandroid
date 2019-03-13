@@ -42,7 +42,7 @@ open class KotlinFragment : BaseListFragment<Article, KotlinViewModel>() {
         when (view.id) {
             R.id.tvLink -> {
                 context?.apply {
-                    var title = item.title.replace(Regex("<[^>]+>"), "")
+                    val title = item.title.replace(Regex("<[^>]+>"), "")
                     WebActivity.start(this, title, item.projectLink)
                 }
             }
@@ -55,7 +55,7 @@ open class KotlinFragment : BaseListFragment<Article, KotlinViewModel>() {
             }
             else -> {
                 context?.apply {
-                    var title = item.title.replace(Regex("<[^>]+>"), "")
+                    val title = item.title.replace(Regex("<[^>]+>"), "")
                     WebActivity.start(this, title, item.link)
                 }
             }

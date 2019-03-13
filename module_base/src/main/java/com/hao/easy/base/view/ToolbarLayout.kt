@@ -1,4 +1,4 @@
-package com.hao.easy.view
+package com.hao.easy.base.view
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -67,8 +67,10 @@ class ToolbarLayout : FrameLayout {
                 title = getString(R.styleable.ToolbarLayout_title)
                 showBack = getBoolean(R.styleable.ToolbarLayout_showBack, true)
                 showLine = getBoolean(R.styleable.ToolbarLayout_showLine, true)
-                textColor = getColor(R.styleable.ToolbarLayout_textColor, ContextCompat.getColor(context, R.color.text_black))
-                iconTintColor = getColor(R.styleable.ToolbarLayout_iconTint, ContextCompat.getColor(context, R.color.text_black))
+                textColor =
+                    getColor(R.styleable.ToolbarLayout_textColor, ContextCompat.getColor(context, R.color.text_black))
+                iconTintColor =
+                    getColor(R.styleable.ToolbarLayout_iconTint, ContextCompat.getColor(context, R.color.text_black))
                 recycle()
             }
         }

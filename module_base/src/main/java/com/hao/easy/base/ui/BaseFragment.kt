@@ -59,7 +59,7 @@ abstract class BaseFragment : Fragment() {
     }
 
     fun <T : View> f(id: Int): T? {
-        return fragmentRootView?.findViewById(id)
+        return fragmentRootView.findViewById(id)
     }
 
     @LayoutRes

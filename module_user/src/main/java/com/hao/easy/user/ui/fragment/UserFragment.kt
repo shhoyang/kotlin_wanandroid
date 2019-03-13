@@ -8,7 +8,6 @@ import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.loadCircle
 import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseFragment
-import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.base.user.User
 import com.hao.easy.user.R
 import com.hao.easy.user.Router
@@ -26,7 +25,7 @@ import org.jetbrains.anko.support.v4.startActivity
  */
 class UserFragment : BaseFragment() {
 
-    lateinit var viewModel: UserViewModel
+    private lateinit var viewModel: UserViewModel
 
     private lateinit var tvUsername: TextView
 

@@ -3,7 +3,7 @@ package com.hao.easy.base.datasource
 import android.arch.lifecycle.MutableLiveData
 import android.arch.paging.DataSource
 
-class DataSourceFactory<T>(var dataLoader: PagedDataLoader<T>) : DataSource.Factory<Int, T>() {
+class DataSourceFactory<T>(private var dataLoader: PagedDataLoader<T>) : DataSource.Factory<Int, T>() {
 
     val sourceLiveData = MutableLiveData<PagedDataSource<T>>()
 

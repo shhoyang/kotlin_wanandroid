@@ -10,7 +10,7 @@ import io.reactivex.disposables.Disposable
 
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
-    private var TAG = "BaseViewModel--${javaClass.simpleName}"
+    private var TAG = "BaseViewModel_${javaClass.simpleName}"
 
     private val compositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
 

@@ -2,24 +2,12 @@ package com.hao.easy.base.ui
 
 import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
-import android.os.Build
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewCompat
 import android.support.v4.widget.NestedScrollView
 import android.text.TextUtils
-import android.transition.ChangeBounds
-import android.transition.ChangeTransform
-import android.transition.Fade
-import android.transition.TransitionSet
-import android.widget.ImageView
 import com.hao.easy.base.R
-import com.hao.easy.base.R.id.*
 import com.hao.easy.base.extensions.gone
 import com.hao.easy.base.extensions.load
 import com.hao.easy.base.extensions.visible
@@ -38,8 +26,8 @@ class WebWithImageActivity : WebActivity() {
         }
     }
 
-    var maxOffset = 0
-    var percent = .0F
+    private var maxOffset = 0
+    private var percent = .0F
 
     override fun showToolbar() = false
 
@@ -47,34 +35,31 @@ class WebWithImageActivity : WebActivity() {
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initView() {
-        var image = intent.getStringExtra(IMAGE)
+        val image = intent.getStringExtra(IMAGE)
         imageView.load(image)
         val s = intent.getStringExtra(TITLE)
         title = if (TextUtils.isEmpty(s)) "详情" else s
         baseWebView.progressBar = progressBar
         baseWebView.loadUrl(intent.getStringExtra(URL))
-        scrollView.setOnScrollChangeListener(object : NestedScrollView.OnScrollChangeListener {
-            override fun onScrollChange(p0: NestedScrollView?, p1: Int, p2: Int, p3: Int, p4: Int) {
-                maxOffset = imageView.bottom - baseToolbar.bottom
-                if (maxOffset <= 0) {
-                    imageView.alpha = 1.0F
-                    setToolbarColor(0.0F)
-                } else {
-                    percent = p2 * 1.0F / maxOffset
-                    if (percent > 1.0F) {
-                        percent = 1.0F
-                    }
-                    setToolbarColor(percent)
-                    imageView.alpha = 1.0F - percent
+        scrollView.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, p2, _, _ ->
+            maxOffset = imageView.bottom - baseToolbar.bottom
+            if (maxOffset <= 0) {
+                imageView.alpha = 1.0F
+                setToolbarColor(0.0F)
+            } else {
+                percent = p2 * 1.0F / maxOffset
+                if (percent > 1.0F) {
+                    percent = 1.0F
                 }
-                if (p2 >= maxOffset) {
-                    toolbarBg.visible()
-                    baseToolbar.showLine = true
-                } else {
-                    toolbarBg.gone()
-                    baseToolbar.showLine = false
-                }
-
+                setToolbarColor(percent)
+                imageView.alpha = 1.0F - percent
+            }
+            if (p2 >= maxOffset) {
+                toolbarBg.visible()
+                baseToolbar.showLine = true
+            } else {
+                toolbarBg.gone()
+                baseToolbar.showLine = false
             }
         })
     }

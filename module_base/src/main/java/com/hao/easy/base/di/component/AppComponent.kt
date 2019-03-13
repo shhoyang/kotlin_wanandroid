@@ -1,7 +1,7 @@
 package com.hao.easy.base.di.component
 
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
-import com.hao.easy.inject.module.AppModule
+import com.hao.easy.base.di.module.AppModule
 import dagger.Component
 import okhttp3.Cookie
 import okhttp3.OkHttpClient
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AppModule::class])
-interface AppComponent  {
+interface AppComponent {
 
     fun retrofit(): Retrofit
 

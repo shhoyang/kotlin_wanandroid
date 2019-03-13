@@ -20,7 +20,7 @@ class WechatViewModel : BaseViewModel() {
         }.add()
 
         Api.getAuthors().io_main().subscribeBy {
-            var fragments = it?.map { author ->
+            val fragments = it?.map { author ->
                 Pair<String, FragmentCreator>(author.name, object : FragmentCreator {
                     override fun create() = WechatArticleFragment.instance(author.id)
                 })

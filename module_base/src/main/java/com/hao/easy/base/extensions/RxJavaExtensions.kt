@@ -14,7 +14,7 @@ fun <D, T : HttpResult<D>> Observable<T>.io_main() =
                 .observeOn(AndroidSchedulers.mainThread())
 
 fun <D, T : HttpResult<D>> Observable<T>.subscribeBy(onResponse: (D?) -> Unit) =
-        this!!.subscribe({
+        this.subscribe({
             if (it.errorCode == 0) {
                 onResponse(it.data)
             }

@@ -28,7 +28,7 @@
             android:background="@color/light_gray"
             app:layout_constraintBottom_toTopOf="@id/bottomNavigationView" />
 
-        <com.hao.easy.view.NoScrollViewPager
+        <com.hao.easy.base.view.NoScrollViewPager
             android:id="@+id/viewPager"
             style="@style/Fill"
             app:layout_constraintBottom_toTopOf="@id/line_" />

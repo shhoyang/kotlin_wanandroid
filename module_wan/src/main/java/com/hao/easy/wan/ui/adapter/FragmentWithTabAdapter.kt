@@ -10,7 +10,7 @@ import com.hao.easy.base.common.FragmentCreator
  * @author Yang Shihao
  * @date 2018/11/21
  */
-class FragmentWithTabAdapter(fm: FragmentManager, var data: List<Pair<String, FragmentCreator>>) : FragmentPagerAdapter(fm) {
+class FragmentWithTabAdapter(fm: FragmentManager, private var data: List<Pair<String, FragmentCreator>>) : FragmentPagerAdapter(fm) {
 
     var currentFragment: Fragment? = null
 

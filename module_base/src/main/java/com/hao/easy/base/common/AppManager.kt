@@ -10,7 +10,7 @@ class AppManager private constructor() {
         private var instance: AppManager? = null
 
         @Synchronized
-        public fun instance(): AppManager {
+        fun instance(): AppManager {
             if (instance == null) {
                 instance = AppManager()
             }
@@ -40,9 +40,9 @@ class AppManager private constructor() {
         if (list.isEmpty()) {
             return
         }
-        var iterator = list.iterator()
+        val iterator = list.iterator()
         while (iterator.hasNext()) {
-            var next = iterator.next()
+            val next = iterator.next()
             if (b(next)) {
                 if (!next.isFinishing) {
                     next.finish()

@@ -39,8 +39,8 @@ class AboutActivity : BaseActivity() {
     }
 
     override fun initView() {
-        title = "關於項目"
-        var list = ArrayList<Menu>()
+        title = "關於項目${getVersionName()}"
+        val list = ArrayList<Menu>()
         list.add(Menu("個人主頁", HOME, "個人主頁", HOME))
         list.add(Menu("Android項目鏈接", ANDROID_PROJECT_LINK, "玩Android", ANDROID_PROJECT_LINK))
         list.add(Menu("小程序項目鏈接", WECHAT_PROJECT_LINK, "玩Android", WECHAT_PROJECT_LINK))
@@ -75,7 +75,7 @@ class AboutActivity : BaseActivity() {
     private fun getVersionName(): String {
         return try {
             val packageInfo = packageManager.getPackageInfo(packageName, 0)
-            "V${packageInfo.versionName}"
+            packageInfo.versionName
         } catch (e: PackageManager.NameNotFoundException) {
             ""
         }

@@ -21,8 +21,8 @@ class KnowledgeAdapter @Inject constructor() : BasePagedAdapter<Knowledge>(R.lay
 
     override fun bindViewHolder(holder: ViewHolder, item: Knowledge, position: Int) {
         holder.setText(R.id.tvGroupName, item.name)
-        var flowAdapter = FlowAdapter(item.children)
-        var flowLayout = holder.getView<NestedRecyclerView>(R.id.flowLayout)
+        val flowAdapter = FlowAdapter(item.children)
+        val flowLayout = holder.getView<NestedRecyclerView>(R.id.flowLayout)
         flowLayout.init(flowAdapter, FlowLayoutManager())
     }
 }

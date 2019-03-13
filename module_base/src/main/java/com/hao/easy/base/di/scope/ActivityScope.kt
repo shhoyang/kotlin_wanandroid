@@ -1,4 +1,4 @@
-package com.hao.easy.inject
+package com.hao.easy.base.di.scope
 
 import javax.inject.Scope
 

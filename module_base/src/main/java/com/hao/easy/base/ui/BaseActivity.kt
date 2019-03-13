@@ -2,12 +2,11 @@ package com.hao.easy.base.ui
 
 import android.os.Bundle
 import android.support.annotation.LayoutRes
-import android.support.transition.Fade
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.hao.easy.base.R
 import com.hao.easy.base.common.AppManager
-import com.hao.easy.view.ToolbarLayout
+import com.hao.easy.base.view.ToolbarLayout
 import kotlinx.android.synthetic.main.activity_base.*
 
 /**

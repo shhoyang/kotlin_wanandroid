@@ -2,8 +2,8 @@
 <android.support.design.widget.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/leftNavigationView"
-    app:headerLayout="@layout/user_navigation_header"
-    app:menu="@menu/user_navigation"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:headerLayout="@layout/user_navigation_header"
     app:insetForeground="@color/tran"
-    android:layout_height="match_parent" />
+    app:menu="@menu/user_navigation" />

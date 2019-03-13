@@ -38,13 +38,13 @@ abstract class BaseNormalAdapter<T>(private val layoutId: Int, var list: ArrayLi
             return
         }
 
-        var size = list.size
+        val size = list.size
         list.addAll(data)
         notifyItemRangeInserted(size, data.size)
     }
 
     fun addItem(data: T) {
-        var size = list.size
+        val size = list.size
         list.add(data)
         notifyItemInserted(size)
     }

@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.user_fragment_register.*
  */
 class RegisterFragment : BaseFragment() {
 
-    lateinit var viewModel: RegisterViewModel
+    private lateinit var viewModel: RegisterViewModel
 
     override fun getLayoutId() = R.layout.user_fragment_register
 
@@ -28,9 +28,9 @@ class RegisterFragment : BaseFragment() {
         editTextPassword.addTextChangedListener(textInputPassword)
         editTextConfirmPassword.addTextChangedListener(textInputConfirmPassword)
         buttonRegister.setOnClickListener {
-            var username = editTextUsername.text.toString().trim()
-            var password = editTextPassword.text.toString().trim()
-            var confirmPassword = editTextConfirmPassword.text.toString().trim()
+            val username = editTextUsername.text.toString().trim()
+            val password = editTextPassword.text.toString().trim()
+            val confirmPassword = editTextConfirmPassword.text.toString().trim()
             if (username.length < 6) {
                 textInputUsername.showError("用户名6-16数字、字母")
                 return@setOnClickListener

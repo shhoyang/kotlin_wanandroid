@@ -32,7 +32,7 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
     }
 
     override fun initData() {
-        var type = intent.getParcelableExtra<Knowledge>(TYPE)
+        val type = intent.getParcelableExtra<Knowledge>(TYPE)
         type?.apply {
             title = name
             viewModel.typeId = id
@@ -43,7 +43,7 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
             R.id.tvLink -> {
-                var title = item.title.replace(Regex("<[^>]+>"), "")
+                val title = item.title.replace(Regex("<[^>]+>"), "")
                 WebActivity.start(this, title, item.projectLink)
             }
             R.id.ivFav -> {
@@ -54,7 +54,7 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
                 }
             }
             else -> {
-                var title = item.title.replace(Regex("<[^>]+>"), "")
+                val title = item.title.replace(Regex("<[^>]+>"), "")
                 WebActivity.start(this, title, item.link)
             }
         }

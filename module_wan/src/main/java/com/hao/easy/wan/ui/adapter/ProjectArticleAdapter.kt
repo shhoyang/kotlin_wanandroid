@@ -11,15 +11,15 @@ class ProjectArticleAdapter @Inject constructor() : BasePagedAdapter<Article>(R.
 
     override fun bindViewHolder(holder: ViewHolder, item: Article, position: Int) {
 
-        var click: (View) -> Unit = {
+        val click: (View) -> Unit = {
             itemClickListener?.apply {
                 this(it, item, position)
             }
         }
         holder.setText(R.id.tvTitle, item.title)
                 .setText(R.id.tvDesc, item.desc)
-                .setText(R.id.tvAuthor, "${item.author}")
-                .setText(R.id.tvTime, "${item.niceDate}")
+                .setText(R.id.tvAuthor, item.author)
+                .setText(R.id.tvTime, item.niceDate)
                 .setImageResource(R.id.ivFav, if (item.collect) R.drawable.ic_fav_1 else R.drawable.ic_fav_0)
                 .setImage(R.id.ivThumbnail, item.envelopePic)
                 .setClickListener(arrayOf(R.id.tvLink, R.id.ivFav), click)

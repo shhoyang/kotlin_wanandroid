@@ -10,7 +10,7 @@
     </style>
 
     <style name="StatusBarTransparentTheme" parent="AppTheme">
-
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="FillWidth">

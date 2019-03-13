@@ -25,10 +25,6 @@ abstract class BaseListViewModel<T> : BaseViewModel(), PagedDataLoader<T> {
         private const val TAG = "BaseListViewModel"
     }
 
-    enum class Result {
-        SUCCEED, FAILED, NO_DATA, NO_MORE
-    }
-
     private val dataSourceFactory: DataSourceFactory<T> by lazy {
         DataSourceFactory(this)
     }
@@ -47,10 +43,12 @@ abstract class BaseListViewModel<T> : BaseViewModel(), PagedDataLoader<T> {
         dataSourceFactory.sourceLiveData.value?.invalidate()
     }
 
-    fun observeDataObserver(@NonNull owner: LifecycleOwner,
-                            data: (PagedList<T>) -> Unit,
-                            refreshResult: (RefreshResult) -> Unit,
-                            loadMoreResult: (RefreshResult) -> Unit) {
+    fun observeDataObserver(
+        @NonNull owner: LifecycleOwner,
+        data: (PagedList<T>) -> Unit,
+        refreshResult: (RefreshResult) -> Unit,
+        loadMoreResult: (RefreshResult) -> Unit
+    ) {
         loadLiveData.observe(owner, Observer {
             it?.apply(data)
         })
@@ -64,9 +62,11 @@ abstract class BaseListViewModel<T> : BaseViewModel(), PagedDataLoader<T> {
         })
     }
 
-    fun observeAdapterObserver(@NonNull owner: LifecycleOwner,
-                               notifyItem: (Int, Any?) -> Unit,
-                               removeItem: (Int) -> Unit) {
+    fun observeAdapterObserver(
+        @NonNull owner: LifecycleOwner,
+        notifyItem: (Int, Any?) -> Unit,
+        removeItem: (Int) -> Unit
+    ) {
         notifyItemLiveData.observe(owner, Observer {
             it?.apply { notifyItem(first, second) }
         })
@@ -76,7 +76,10 @@ abstract class BaseListViewModel<T> : BaseViewModel(), PagedDataLoader<T> {
         })
     }
 
-    final override fun loadInitial(params: PageKeyedDataSource.LoadInitialParams<Int>, callback: PageKeyedDataSource.LoadInitialCallback<Int, T>) {
+    final override fun loadInitial(
+        params: PageKeyedDataSource.LoadInitialParams<Int>,
+        callback: PageKeyedDataSource.LoadInitialCallback<Int, T>
+    ) {
         refresh()
         KLog.d(TAG, "loadInitial")
         data.clear()
@@ -99,7 +102,10 @@ abstract class BaseListViewModel<T> : BaseViewModel(), PagedDataLoader<T> {
         }
     }
 
-    final override fun loadAfter(params: PageKeyedDataSource.LoadParams<Int>, callback: PageKeyedDataSource.LoadCallback<Int, T>) {
+    final override fun loadAfter(
+        params: PageKeyedDataSource.LoadParams<Int>,
+        callback: PageKeyedDataSource.LoadCallback<Int, T>
+    ) {
         loadMore()
         KLog.d(TAG, "loadAfter--${params.key}")
         loadData(params.key) {

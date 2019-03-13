@@ -55,10 +55,10 @@ class WechatFragment : BaseFragment() {
                     startY = ev.y
                 }
                 MotionEvent.ACTION_MOVE -> {
-                    var endX = ev.x
-                    var endY = ev.y
-                    var distanceX = Math.abs(startX - endX)
-                    var distanceY = Math.abs(startY - endY)
+                    val endX = ev.x
+                    val endY = ev.y
+                    val distanceX = Math.abs(startX - endX)
+                    val distanceY = Math.abs(startY - endY)
                     if (distanceX > distanceY) {
                         baseRefreshLayout.isEnabled = false
                     }
@@ -71,8 +71,9 @@ class WechatFragment : BaseFragment() {
         }
 
         baseRefreshLayout.setOnRefreshListener {
-            var currentFragment = adapter?.currentFragment
+            val currentFragment = adapter?.currentFragment
             if (currentFragment == null) {
+                viewModel.initData()
                 baseRefreshLayout.isRefreshing = false
 
             } else if (currentFragment is WechatArticleFragment) {

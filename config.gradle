@@ -7,12 +7,12 @@ ext {
             minSdk     : 19,
             targetSdk  : 28,
 
-            versionCode: 3,
-            versionName: "1.0.3",
+            versionCode: 4,
+            versionName: "1.0.4",
 
             support    : '28.0.0',
             constraint : '1.1.3',
-            kotlin     : '1.3.10',
+            kotlin     : '1.3.21',
             paging     : '1.0.0',
             room       : '1.1.0',
             lifecycle  : '1.1.1',

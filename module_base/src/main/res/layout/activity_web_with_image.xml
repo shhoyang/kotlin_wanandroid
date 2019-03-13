@@ -26,7 +26,7 @@
                 app:layout_constraintDimensionRatio="2:1"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.hao.easy.view.ProgressWebView
+            <com.hao.easy.base.view.ProgressWebView
                 android:id="@+id/baseWebView"
                 style="@style/FillWidth"
                 android:nestedScrollingEnabled="false"
@@ -44,7 +44,7 @@
         android:background="@color/white"
         android:visibility="gone" />
 
-    <com.hao.easy.view.ToolbarLayout
+    <com.hao.easy.base.view.ToolbarLayout
         android:id="@+id/baseToolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"

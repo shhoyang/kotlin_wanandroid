@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hao.easy.base.view.OverScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:scrollbars="none"
-        tools:context=".ui.activity.AboutActivity">
+<com.hao.easy.base.view.OverScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    tools:context=".ui.activity.AboutActivity">
 
     <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="32dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="32dp">
 
         <ImageView
-                android:id="@+id/ivAndroidQR"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintWidth_percent="0.35"
-                app:layout_constraintDimensionRatio="1:1"
-                tools:src="@mipmap/user_qr"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/ivWechatQR"
-                app:layout_constraintBottom_toTopOf="@+id/tip_"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"/>
+            android:id="@+id/ivAndroidQR"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/tip_"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/ivWechatQR"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintWidth_percent="0.35"
+            tools:src="@mipmap/user_qr" />
 
         <ImageView
-                android:id="@+id/ivWechatQR"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                tools:src="@mipmap/user_qr_wechat"
-                app:layout_constraintWidth_percent="0.35"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintStart_toEndOf="@id/ivAndroidQR"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/ivAndroidQR"/>
+            android:id="@+id/ivWechatQR"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivAndroidQR"
+            app:layout_constraintTop_toTopOf="@id/ivAndroidQR"
+            app:layout_constraintWidth_percent="0.35"
+            tools:src="@mipmap/user_qr_wechat" />
 
 
         <TextView
-                app:layout_constraintTop_toBottomOf="@id/ivAndroidQR"
-                android:layout_marginTop="32dp"
-                android:id="@+id/tip_"
-                android:textStyle="bold"
-                android:text="提示: 長按鏈接複製到剪粘板"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/recyclerView"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            android:id="@+id/tip_"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="提示: 長按鏈接複製到剪粘板"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivAndroidQR" />
 
         <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                style="@style/FillWidth"
-                app:layout_constraintTop_toBottomOf="@id/tip_"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+            android:id="@+id/recyclerView"
+            style="@style/FillWidth"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tip_" />
 
 
     </android.support.constraint.ConstraintLayout>

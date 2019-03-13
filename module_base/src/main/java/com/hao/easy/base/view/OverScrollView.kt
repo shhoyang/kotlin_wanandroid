@@ -47,7 +47,7 @@ class OverScrollView :ScrollView{
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)
-        contentView?.apply {
+        contentView.apply {
             contentViewPosition.set(left, top, right, bottom)
         }
     }
@@ -87,13 +87,13 @@ class OverScrollView :ScrollView{
                     return super.dispatchTouchEvent(ev)
                 }
 
-                var lastY = ev.y
-                var distance = lastY - startY
+                val lastY = ev.y
+                val distance = lastY - startY
 
-                var b = (canPullUP && canPullDown) || (canPullUP && distance < 0) || (canPullDown && distance > 0)
+                val b = (canPullUP && canPullDown) || (canPullUP && distance < 0) || (canPullDown && distance > 0)
 
                 if (b) {
-                    var offset = (distance * MOVE_FACTOR).toInt()
+                    val offset = (distance * MOVE_FACTOR).toInt()
                     contentViewPosition.apply {
                         contentView.layout(left, top + offset, right, bottom + offset)
                     }

@@ -4,8 +4,8 @@ import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
 import com.hao.easy.base.di.component.AppComponent
 import com.hao.easy.base.di.component.DaggerAppComponent
+import com.hao.easy.base.di.module.AppModule
 import com.hao.easy.base.extensions.notNullSingleValue
-import com.hao.easy.inject.module.AppModule
 import com.socks.library.KLog
 import com.tencent.smtt.sdk.QbSdk
 

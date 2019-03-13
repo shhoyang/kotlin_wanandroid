@@ -1,10 +1,9 @@
-package com.hao.easy.paging.db
+package com.hao.easy.base.user
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import com.hao.easy.base.user.User
 
 /**
  * @author Yang Shihao
@@ -19,6 +18,6 @@ interface UserDao {
     @Query("SELECT * FROM User WHERE username in (:username)")
     fun queryUser(username: String): User?
 
-    @Delete()
+    @Delete
     fun delete(user: User)
 }

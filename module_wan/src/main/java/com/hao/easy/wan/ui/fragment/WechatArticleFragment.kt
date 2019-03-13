@@ -59,7 +59,7 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
         when (view.id) {
             R.id.tvLink -> {
                 context?.apply {
-                    var title = item.title.replace(Regex("<[^>]+>"), "")
+                    val title = item.title.replace(Regex("<[^>]+>"), "")
                     WebActivity.start(this, title, item.projectLink)
                 }
             }
@@ -72,7 +72,7 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
             }
             else -> {
                 context?.apply {
-                    var title = item.title.replace(Regex("<[^>]+>"), "")
+                    val title = item.title.replace(Regex("<[^>]+>"), "")
                     WebActivity.start(this, title, item.link)
                 }
             }
@@ -81,7 +81,7 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
 
     override fun refreshFinished(result: RefreshResult) {
         super.refreshFinished(result)
-        var weChatFragment = parentFragment as WechatFragment
+        val weChatFragment = parentFragment as WechatFragment
         weChatFragment.refreshFinished()
     }
 

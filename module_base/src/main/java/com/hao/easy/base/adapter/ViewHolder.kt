@@ -35,31 +35,31 @@ class ViewHolder(val context: Context, parent: ViewGroup, @LayoutRes layoutId: I
     }
 
     fun setText(@IdRes viewId: Int, text: CharSequence): ViewHolder {
-        var textView: TextView = getView(viewId)
+        val textView: TextView = getView(viewId)
         textView.text = text
         return this
     }
 
     fun setText(@IdRes viewId: Int, @StringRes resId: Int): ViewHolder {
-        var textView: TextView = getView(viewId)
+        val textView: TextView = getView(viewId)
         textView.text = context.getString(resId)
         return this
     }
 
     fun setImageResource(@IdRes viewId: Int, @DrawableRes resId: Int): ViewHolder {
-        var imageView: ImageView = getView(viewId)
+        val imageView: ImageView = getView(viewId)
         imageView.setImageResource(resId)
         return this
     }
 
     fun setImage(@IdRes viewId: Int, url: String): ViewHolder {
-        var imageView: ImageView = getView(viewId)
+        val imageView: ImageView = getView(viewId)
         imageView.load(url)
         return this
     }
 
     fun gone(@IdRes viewId: Int): ViewHolder {
-        var view: View = getView(viewId)
+        val view: View = getView(viewId)
         view.gone()
         return this
     }
@@ -70,7 +70,7 @@ class ViewHolder(val context: Context, parent: ViewGroup, @LayoutRes layoutId: I
     }
 
     fun visible(@IdRes viewId: Int): ViewHolder {
-        var view: View = getView(viewId)
+        val view: View = getView(viewId)
         view.visible()
         return this
     }

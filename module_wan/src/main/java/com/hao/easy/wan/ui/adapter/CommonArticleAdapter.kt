@@ -15,19 +15,19 @@ class CommonArticleAdapter @Inject constructor() : BasePagedAdapter<Article>(R.l
 
     override fun bindViewHolder(holder: ViewHolder, item: Article, position: Int) {
 
-        var click: (View) -> Unit = {
+        val click: (View) -> Unit = {
             itemClickListener?.apply {
                 this(it, item, position)
             }
         }
 
-        var title = item.title.replace(Regex("<[^>]+>"), "")
+        val title = item.title.replace(Regex("<[^>]+>"), "")
         holder.setText(R.id.tvTitle, title)
-            .setText(R.id.tvTime, "${item.niceDate}")
-            .setImageResource(R.id.ivFav, if (item.collect) R.drawable.ic_fav_1 else R.drawable.ic_fav_0)
-            .setClickListener(R.id.ivFav, click)
+                .setText(R.id.tvTime, item.niceDate)
+                .setImageResource(R.id.ivFav, if (item.collect) R.drawable.ic_fav_1 else R.drawable.ic_fav_0)
+                .setClickListener(R.id.ivFav, click)
 
-        var tvAuthor = holder.getView<TextView>(R.id.tvAuthor)
+        val tvAuthor = holder.getView<TextView>(R.id.tvAuthor)
         if (showAuthor && !TextUtils.isEmpty(item.author)) {
             holder.visible(tvAuthor)
             tvAuthor.text = item.author
@@ -36,14 +36,14 @@ class CommonArticleAdapter @Inject constructor() : BasePagedAdapter<Article>(R.l
             holder.gone(tvAuthor)
         }
 
-        var tvLink = holder.getView<TextView>(R.id.tvLink)
+        val tvLink = holder.getView<TextView>(R.id.tvLink)
         if (TextUtils.isEmpty(item.projectLink)) {
             holder.gone(tvLink)
             tvLink.setOnClickListener(null)
 
         } else {
             holder.visible(tvLink)
-                .setClickListener(R.id.tvLink, click)
+                    .setClickListener(R.id.tvLink, click)
         }
     }
 

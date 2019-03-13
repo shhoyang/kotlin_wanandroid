@@ -14,7 +14,7 @@ data class ProjectType(var id: Int) : Parcelable {
             return if (null == field || "" == field) {
                 ""
             } else {
-                field!!.replace("amp;", "")
+                field.replace("amp;", "")
             }
         }
 

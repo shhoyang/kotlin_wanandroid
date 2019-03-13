@@ -1,10 +1,9 @@
-package com.hao.easy.paging.db
+package com.hao.easy.base.user
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import com.hao.easy.base.App
-import com.hao.easy.base.user.User
 
 /**
  * @author Yang Shihao

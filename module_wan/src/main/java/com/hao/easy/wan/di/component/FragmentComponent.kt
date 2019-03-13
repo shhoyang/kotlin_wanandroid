@@ -1,7 +1,7 @@
 package com.hao.easy.wan.di.component
 
 import com.hao.easy.base.di.component.AppComponent
-import com.hao.easy.inject.FragmentScope
+import com.hao.easy.base.di.scope.FragmentScope
 import com.hao.easy.wan.ui.fragment.FlutterFragment
 import com.hao.easy.wan.ui.fragment.KotlinFragment
 import com.hao.easy.wan.ui.fragment.ProjectFragment

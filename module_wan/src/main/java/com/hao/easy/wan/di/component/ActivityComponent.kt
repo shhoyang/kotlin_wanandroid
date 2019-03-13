@@ -1,7 +1,7 @@
 package com.hao.easy.wan.di.component
 
 import com.hao.easy.base.di.component.AppComponent
-import com.hao.easy.inject.ActivityScope
+import com.hao.easy.base.di.scope.ActivityScope
 import com.hao.easy.wan.ui.activity.FavActivity
 import com.hao.easy.wan.ui.activity.KnowledgeActivity
 import com.hao.easy.wan.ui.activity.KnowledgeArticleActivity

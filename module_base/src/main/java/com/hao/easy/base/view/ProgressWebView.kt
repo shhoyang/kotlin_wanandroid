@@ -1,4 +1,4 @@
-package com.hao.easy.view
+package com.hao.easy.base.view
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -71,8 +71,8 @@ class ProgressWebView : WebView {
         val animator = ObjectAnimator.ofFloat(progressBar, "alpha", 1.0F, .0F)
         animator.duration = DURATION
         animator.addUpdateListener {
-            var fraction = it.animatedFraction
-            var offset = 100 - progress
+            val fraction = it.animatedFraction
+            val offset = 100 - progress
             setProgress((progress + offset * fraction).toInt())
         }
         animator.addListener(object : AnimatorListenerAdapter() {

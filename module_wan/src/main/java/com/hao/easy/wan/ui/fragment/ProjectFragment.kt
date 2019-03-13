@@ -57,10 +57,10 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
                     startY = ev.y
                 }
                 MotionEvent.ACTION_MOVE -> {
-                    var endX = ev.x
-                    var endY = ev.y
-                    var distanceX = Math.abs(startX - endX)
-                    var distanceY = Math.abs(startY - endY)
+                    val endX = ev.x
+                    val endY = ev.y
+                    val distanceX = Math.abs(startX - endX)
+                    val distanceY = Math.abs(startY - endY)
                     if (distanceX > distanceY) {
                         baseRefreshLayout.isEnabled = false
                     }
@@ -149,7 +149,7 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
         points.clear()
         llPoint.removeAllViews()
         currentPager = 0
-        var layoutParams = LinearLayout.LayoutParams(dip(8), dip(8))
+        val layoutParams = LinearLayout.LayoutParams(dip(8), dip(8))
         layoutParams.leftMargin = dip(4)
         layoutParams.rightMargin = dip(4)
         for (i in 0 until count) {

@@ -24,7 +24,7 @@ class LoginFragment : BaseFragment() {
         private const val TAG = "LoginFragment"
     }
 
-    lateinit var viewModel: LoginViewModel
+    private lateinit var viewModel: LoginViewModel
 
     override fun getLayoutId() = R.layout.user_fragment_login
 
@@ -32,8 +32,8 @@ class LoginFragment : BaseFragment() {
         editTextUsername.addTextChangedListener(textInputUsername)
         editTextPassword.addTextChangedListener(textInputPassword)
         buttonLogin.setOnClickListener {
-            var username = editTextUsername.text.toString().trim()
-            var password = editTextPassword.text.toString().trim()
+            val username = editTextUsername.text.toString().trim()
+            val password = editTextPassword.text.toString().trim()
             if (TextUtils.isEmpty(username)) {
                 textInputUsername.showError("用户名不能为空")
                 return@setOnClickListener

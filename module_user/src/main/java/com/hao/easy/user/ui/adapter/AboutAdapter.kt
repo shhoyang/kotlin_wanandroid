@@ -15,8 +15,8 @@ class AboutAdapter @Inject constructor() : BaseNormalAdapter<Menu>(R.layout.user
         holder.setText(R.id.tvTitle, item.title)
             .setText(R.id.tvDesc, item.desc)
 
-        var textView = holder.getView<TextView>(R.id.tvDesc)
-        var desc = SpannableString(item.desc)
+        val textView = holder.getView<TextView>(R.id.tvDesc)
+        val desc = SpannableString(item.desc)
         desc.setSpan(UnderlineSpan(), 0, item.desc.length, 0)
         textView.text = desc
 

@@ -31,9 +31,9 @@ class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel
     }
 
     override fun initData() {
-        var type = intent.getParcelableExtra<ProjectType>(TYPE)
+        val type = intent.getParcelableExtra<ProjectType>(TYPE)
         type?.apply {
-            title = name?.replace("amp;", "")
+            title = name.replace("amp;", "")
             viewModel.typeId = id
         }
 

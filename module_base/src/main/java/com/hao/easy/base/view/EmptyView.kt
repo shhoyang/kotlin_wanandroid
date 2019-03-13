@@ -1,4 +1,4 @@
-package com.hao.easy.view
+package com.hao.easy.base.view
 
 import android.content.Context
 import android.util.AttributeSet

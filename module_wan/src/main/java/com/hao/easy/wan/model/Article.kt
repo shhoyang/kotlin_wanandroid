@@ -14,7 +14,7 @@ class Article(var author: String,
             return if (null == field || "" == field) {
                 ""
             } else {
-                field!!.replace("amp;", "")
+                field.replace("amp;", "")
             }
         }
 
@@ -23,7 +23,7 @@ class Article(var author: String,
             return if (null == field || "" == field) {
                 ""
             } else {
-                field!!.replace("amp;", "")
+                field.replace("amp;", "")
             }
         }
 }

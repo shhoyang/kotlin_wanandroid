@@ -1,4 +1,4 @@
-package com.hao.easy.inject.module
+package com.hao.easy.base.di.module
 
 import android.app.Application
 import dagger.Module

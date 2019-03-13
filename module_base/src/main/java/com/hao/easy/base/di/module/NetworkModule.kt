@@ -1,4 +1,4 @@
-package com.hao.easy.inject.module
+package com.hao.easy.base.di.module
 
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
@@ -22,7 +22,7 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    private fun getBaseUrl() = "https://haoshi.co:8443"
+    private fun getBaseUrl() = "https://www.wanandroid.com"
 
     @Provides
     @Singleton

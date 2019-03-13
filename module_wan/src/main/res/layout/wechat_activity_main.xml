@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
     <android.support.design.widget.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
-            style="@style/FillWidth"
-            app:itemBackground="@null"
-            app:itemHorizontalTranslationEnabled="false"
-            app:labelVisibilityMode="selected"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/wechat_navigation"/>
+        android:id="@+id/bottomNavigationView"
+        style="@style/FillWidth"
+        app:itemBackground="@null"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="selected"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/wechat_navigation" />
 
     <View
-            android:id="@+id/line_"
-            style="@style/FillWidth"
-            android:layout_height="1px"
-            android:background="@color/light_gray"
-            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"/>
+        android:id="@+id/line_"
+        style="@style/FillWidth"
+        android:layout_height="1px"
+        android:background="@color/light_gray"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView" />
 
-    <com.hao.easy.view.NoScrollViewPager
-            android:id="@+id/viewPager"
-            style="@style/Fill"
-            app:layout_constraintBottom_toTopOf="@id/line_"/>
+    <com.hao.easy.base.view.NoScrollViewPager
+        android:id="@+id/viewPager"
+        style="@style/Fill"
+        app:layout_constraintBottom_toTopOf="@id/line_" />
 
 
 </android.support.constraint.ConstraintLayout>

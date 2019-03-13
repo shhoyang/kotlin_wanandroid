@@ -31,7 +31,7 @@ private class NotNullSingleValue<T> : ReadWriteProperty<Any?, T> {
 fun <T> notNullSingleValue(): ReadWriteProperty<Any?, T> = NotNullSingleValue()
 
 fun Activity.hideSoftInput() {
-    var imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(window.decorView.windowToken, 0)
 }
 

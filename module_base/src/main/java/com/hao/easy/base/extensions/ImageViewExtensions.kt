@@ -14,7 +14,7 @@ fun ImageView.load(url: Any) {
 }
 
 fun ImageView.load(url: Any, holder: Int) {
-    var options = RequestOptions()
+    val options = RequestOptions()
         .placeholder(holder)
         .error(holder)
     Glide.with(this).load(url).apply(options).into(this)

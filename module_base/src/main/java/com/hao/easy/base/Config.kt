@@ -1,7 +1,7 @@
 package com.hao.easy.base
 
 import com.hao.easy.base.user.User
-import com.hao.easy.paging.db.UserDb
+import com.hao.easy.base.user.UserDb
 import kotlin.concurrent.thread
 
 object Config {
@@ -29,16 +29,16 @@ object Config {
     fun init() {
         var username: String? = null
         var token: String? = null
-        var cookies = App.instance.appComponent.cookies()
+        val cookies = App.instance.appComponent.cookies()
         cookies.forEach {
             if (it.name() == KEY_USERNAME) {
-                var value = it.value()
+                val value = it.value()
                 if ("\"\"" != value) {
                     username = value
                 }
 
             } else if (it.name() == KEY_TOKEN) {
-                var value = it.value()
+                val value = it.value()
                 if ("\"\"" != value) {
                     token = value
                 }
@@ -46,7 +46,7 @@ object Config {
         }
 
         if ((null != username) and (null != token)) {
-            var user = UserDb.instance().userDao().queryUser(username!!)
+            val user = UserDb.instance().userDao().queryUser(username!!)
             if (null != user) {
                 this.user = user
                 isLogin = true
