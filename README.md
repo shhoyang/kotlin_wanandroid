@@ -31,7 +31,7 @@
 
 >项目架构解析
 
-###项目分为四个module
+### 项目分为四个module
 app，App的壳
 module_base，公共库
 module_user、module_wan，业务模块
@@ -62,7 +62,7 @@ sourceSets {
   }
 }
 ```
-###app
+### app
 它是app的壳，里面只有一个MainActivity，它负责整合所需要的业务模块
 ![](https://upload-images.jianshu.io/upload_images/12337722-12cfd686a8aa63fb.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ```
@@ -77,14 +77,14 @@ dependencies {
   }
 }
 ```
-###module_base
+### module_base
 作为公共库，存放base和公用代码，其它的module都要依赖它
 ![](https://upload-images.jianshu.io/upload_images/12337722-94f4b61d6793d549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-###module_wan和module_user
+### module_wan和module_user
 主要的业务
 ![](https://upload-images.jianshu.io/upload_images/12337722-1fd4d92155442e3e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 >Kotlin的一些特性在项目中的运用
-###扩展函数
+### 扩展函数
 ```
 //给ImageView添加一个扩展函数，就当做ImageView有了一个load方法
 //ImageView作为接受者类型，只有ImageView和其子类能调用该方法
@@ -107,7 +107,7 @@ override fun setTitle(title: CharSequence?) {  //这个？表示该变量可以�
 ```
 想想以前代码里面到处都是 if(... !=  null)类似的模板代码都阵痛
 
-###函数默认参数
+### 函数默认参数
 ```
 fun <VH : RecyclerView.ViewHolder, A : Adapter<VH>> RecyclerView.init(adapter: A, 
     //layoutManager有一个默认值LinearLayoutManager(context)
@@ -133,7 +133,7 @@ fun test(a: Int, b: Int = 2, c: Int = 3, d: Int = 4) {
   ...
 }
 ```
-###函数式编程
+### 函数式编程
 一个函数作为另一个函数的参数传递
 ```
 fun <D, T : HttpResult<D>> Observable<T>.subscribeBy(onResponse: (D?) -> Unit, onFailure: (String) -> Unit) =
@@ -170,7 +170,7 @@ Api.getKnowledgeArticle(page - 1, typeId).io_main().subscribeBy(
 2. 多看几个star很多的Kotlin开源项目，最好完全敲一遍，里面还会很有很多你在官网上可能没看到的东西
 大神们的代码也会让你有很多意想不到的收获，起码告诉你，你的代码Low爆了，会让你有种从此回家带孩子吧的冲动
 
-**项目中使用到了很多开源库，在此向所有对开源做出过贡献的各位大神表示感谢，正是有你们的开源共享，我们这些菜鸟的技术才能有所提升，也是你们用最美的语言，推动了科技的进步**
+**项目中使用到了鸿洋的玩Android开放Api和很多开源库，在此向所有对开源做出过贡献的各位大神表示感谢，正是有你们的开源共享，我们这些菜鸟的技术才能有所提升，也是你们用最美的语言，推动了科技的进步**
 
 **Apk玩Android下载地址** [https://haoshi.co/wanandroid.apk](https://haoshi.co/wanandroid.apk)
 
