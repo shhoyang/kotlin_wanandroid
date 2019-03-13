@@ -9,6 +9,7 @@
 >项目简介
 
 **上图**，把四张拼一起了
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-b9f7977f8d43c68a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - 基于Jetpack(包含livedata、lifecycle、paging、room)组件采用 MVVM架构，Jetpack组件的使用方法在这里不做说明
