@@ -35,7 +35,9 @@
 app，App的壳
 module_base，公共库
 module_user、module_wan，业务模块
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-f212f3574b2fc83f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 既然是组件化开发，那各个业务模块肯定可以单独运行
 ```
 //根据变量isModule判断是作为依赖library还是单独的application
