@@ -26,7 +26,7 @@ class AboutActivity : BaseActivity() {
         const val ANDROID_PROJECT_LINK = "https://github.com/haoshiy/kotlin_wanandroid"
         const val WECHAT_PROJECT_LINK = "https://github.com/haoshiy/wechat_wanandroid"
         const val DOWNLOAD_LINK = "https://haoshi.co/wanandroid.apk"
-        const val THANKS = "http://wanandroid.com/blog/show/2"
+        const val THANKS = "https://wanandroid.com/blog/show/2"
     }
 
     @Inject

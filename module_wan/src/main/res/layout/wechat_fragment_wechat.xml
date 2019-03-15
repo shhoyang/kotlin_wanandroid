@@ -26,7 +26,6 @@
                 <com.youth.banner.Banner
                         android:id="@+id/banner"
                         style="@style/Fill"
-                        android:src="@mipmap/motto"
                         app:banner_default_image="@mipmap/motto"
                         app:delay_time="5000"
                         app:image_scale_type="center_crop"

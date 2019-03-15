@@ -63,20 +63,20 @@ class MainActivity : BaseActivity() {
 
     private fun initLeftNavigation() {
         supportFragmentManager.beginTransaction()
-                .add(R.id.leftNavigationView, UserFragment())
-                .commit()
+            .add(R.id.leftNavigationView, UserFragment())
+            .commit()
     }
 
     private fun initBottomNavigation() {
         bottomNavigationView.itemIconTintList = null
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             viewPager.currentItem =
-                    when (item.itemId) {
-                        R.id.tab_wechat -> 0
-                        R.id.tab_android -> 1
-                        R.id.tab_kotlin -> 2
-                        else -> 3
-                    }
+                when (item.itemId) {
+                    R.id.tab_wechat -> 0
+                    R.id.tab_android -> 1
+                    R.id.tab_kotlin -> 2
+                    else -> 3
+                }
             true
         }
     }

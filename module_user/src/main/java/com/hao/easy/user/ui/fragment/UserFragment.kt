@@ -34,7 +34,8 @@ class UserFragment : BaseFragment() {
     override fun initView() {
 
         tvUsername = leftNavigationView.getHeaderView(0).find(R.id.tvUsername)
-        leftNavigationView.getHeaderView(0).find<ImageView>(R.id.ivAvatar).loadCircle(R.mipmap.ic_launcher_round)
+        leftNavigationView.getHeaderView(0).find<ImageView>(R.id.ivAvatar)
+            .loadCircle(R.mipmap.ic_launcher_round)
         leftNavigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_knowledge -> Router.startKnowledgeActivity()

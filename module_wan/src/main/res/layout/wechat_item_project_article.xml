@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintWidth_percent="0.4"
-        tools:src="@mipmap/motto" />
+        tools:src="@mipmap/scenery" />
 
     <TextView
         android:id="@+id/tvDesc"
