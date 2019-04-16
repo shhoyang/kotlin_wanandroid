@@ -39,6 +39,7 @@ app，App的壳
 module_base，公共库
 module_user、module_wan，业务模块
 ![](https://upload-images.jianshu.io/upload_images/12337722-f212f3574b2fc83f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 既然是组件化开发，那各个业务模块肯定可以单独运行
 
 ```
@@ -71,6 +72,7 @@ sourceSets {
 
 它是app的壳，里面只有一个MainActivity，它负责整合所需要的业务模块
 ![](https://upload-images.jianshu.io/upload_images/12337722-12cfd686a8aa63fb.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ```
 dependencies {
   implementation fileTree(include: ['*.jar'], dir: 'libs')
