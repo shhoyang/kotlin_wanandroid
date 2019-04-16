@@ -90,7 +90,9 @@ dependencies {
 
 作为公共库，存放base和公用代码，其它的module都要依赖它
 ![](https://upload-images.jianshu.io/upload_images/12337722-94f4b61d6793d549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-###module_wan和module_user
+
+## module_wan和module_user
+
 主要的业务
 ![](https://upload-images.jianshu.io/upload_images/12337722-1fd4d92155442e3e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
