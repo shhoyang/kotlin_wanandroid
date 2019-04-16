@@ -9,6 +9,7 @@
 # 项目简介
 
 **上图**，把四张拼一起了
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-b9f7977f8d43c68a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - 基于Jetpack(包含livedata、lifecycle、paging、room)组件采用 MVVM架构，Jetpack组件的使用方法在这里不做说明
@@ -38,6 +39,7 @@
 app，App的壳
 module_base，公共库
 module_user、module_wan，业务模块
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-f212f3574b2fc83f.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 既然是组件化开发，那各个业务模块肯定可以单独运行
@@ -71,6 +73,7 @@ sourceSets {
 ## app
 
 它是app的壳，里面只有一个MainActivity，它负责整合所需要的业务模块
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-12cfd686a8aa63fb.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ```
@@ -89,11 +92,13 @@ dependencies {
 ## module_base
 
 作为公共库，存放base和公用代码，其它的module都要依赖它
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-94f4b61d6793d549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## module_wan和module_user
 
 主要的业务
+
 ![](https://upload-images.jianshu.io/upload_images/12337722-1fd4d92155442e3e.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 # Kotlin的一些特性在项目中的运用
