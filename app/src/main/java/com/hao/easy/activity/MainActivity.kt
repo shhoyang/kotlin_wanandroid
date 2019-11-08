@@ -1,10 +1,12 @@
 package com.hao.easy.activity
 
+import android.os.Build
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.widget.DrawerLayout
 import android.view.View
+import android.view.WindowManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.hao.easy.R
 import com.hao.easy.base.extensions.snack
@@ -34,11 +36,18 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    override fun showToolbar() = false
+    override fun transparentStatusBar() = true
 
     override fun getLayoutId() = R.layout.app_activity_main
 
     override fun initView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val lp = window.attributes
+            // 使用刘海区域
+            lp.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            window.attributes = lp
+        }
         initDrawerLayout()
         initLeftNavigation()
         initBottomNavigation()

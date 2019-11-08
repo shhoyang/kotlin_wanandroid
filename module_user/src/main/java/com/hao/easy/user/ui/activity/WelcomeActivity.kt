@@ -26,7 +26,14 @@ class WelcomeActivity : BaseActivity() {
 
     override fun initView() {
         super.initView()
-        hideSystemNavigationBar()
+//        hideSystemNavigationBar()
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+//            val lp = window.attributes
+//            // 使用刘海区域
+//            lp.layoutInDisplayCutoutMode =
+//                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+//            window.attributes = lp
+//        }
     }
 
     override fun initData() {
@@ -60,8 +67,8 @@ class WelcomeActivity : BaseActivity() {
         finish()
     }
 
-    override fun finish() {
-        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
-        super.finish()
-    }
+//    override fun finish() {
+//        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
+//        super.finish()
+//    }
 }

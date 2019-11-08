@@ -9,7 +9,7 @@
             android:networkSecurityConfig="@xml/network_security_config"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/WanAppTheme">
         <provider
                 android:name="android.support.v4.content.FileProvider"
                 android:authorities="${applicationId}.provider"
@@ -22,7 +22,7 @@
         <activity
                 android:name=".activity.MainActivity"
                 android:screenOrientation="portrait"
-                android:theme="@style/StatusBarTransparentTheme"/>
+                android:theme="@style/WanStatusBarTransparentTheme"/>
 
     </application>
 </manifest>

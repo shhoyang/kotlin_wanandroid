@@ -14,7 +14,6 @@
     <com.hao.easy.base.view.ToolbarLayout
         android:id="@id/baseToolbar"
         style="@style/Toolbar"
-        android:layout_marginTop="@dimen/status_bar_height"
         app:iconTint="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:showLine="false"

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hao.easy.base.view.RefreshLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hao.easy.base.view.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@id/baseRefreshLayout"
         android:layout_width="match_parent"
@@ -29,7 +28,7 @@
                         app:banner_default_image="@mipmap/motto"
                         app:delay_time="5000"
                         app:image_scale_type="center_crop"
-                        app:layout_constraintDimensionRatio="16:9"/>
+                        app:layout_constraintDimensionRatio="16:9" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.design.widget.TabLayout
@@ -40,7 +39,7 @@
                     app:tabInlineLabel="true"
                     app:tabMode="scrollable"
                     app:tabSelectedTextColor="@color/colorPrimary"
-                    app:tabTextColor="@color/dark_gray"/>
+                    app:tabTextColor="@color/dark_gray" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -50,7 +49,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:overScrollMode="never"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.design.widget.CoordinatorLayout>
 </com.hao.easy.base.view.RefreshLayout>

@@ -1,14 +1,12 @@
 <resources>
 
-    <style name="WelcomeTheme" parent="AppTheme">
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowFullscreen">true</item>
+    <style name="WelcomeTheme" parent="WanStatusBarTransparentTheme">
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowBackground">@mipmap/user_welcome_bg</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
-    <style name="LoginTheme" parent="StatusBarTransparentTheme">
+    <style name="LoginTheme" parent="WanStatusBarTransparentTheme">
+        <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowBackground">@mipmap/user_login_bg</item>
     </style>
 

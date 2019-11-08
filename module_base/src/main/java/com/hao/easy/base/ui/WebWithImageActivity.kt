@@ -29,7 +29,7 @@ class WebWithImageActivity : WebActivity() {
     private var maxOffset = 0
     private var percent = .0F
 
-    override fun showToolbar() = false
+    override fun transparentStatusBar() = true
 
     override fun getLayoutId() = R.layout.activity_web_with_image
 

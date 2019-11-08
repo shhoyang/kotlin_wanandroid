@@ -16,7 +16,7 @@
         <activity
             android:name=".ui.WebWithImageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/StatusBarTransparentTheme" />
+            android:theme="@style/WanStatusBarTransparentTheme" />
     </application>
 
 </manifest>
