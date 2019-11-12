@@ -206,7 +206,7 @@ Api.getKnowledgeArticle(page - 1, typeId).io_main().subscribeBy(
 
 **项目中使用到了鸿洋的玩Android开放Api和很多开源库，在此向所有对开源做出过贡献的各位大神表示感谢，正是有你们的开源共享，我们这些菜鸟的技术才能有所提升，也是你们用最美的语言，推动了科技的进步**
 
-**Apk玩Android下载地址** [https://haoshi.co/wanandroid.apk](https://haoshi.co/wanandroid.apk)
+**Apk玩Android下载地址** [https://fir.im/wanAndroid](https://fir.im/wanAndroid)
 
 ![扫码下载](https://upload-images.jianshu.io/upload_images/12337722-ac489d01613e3fa2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
