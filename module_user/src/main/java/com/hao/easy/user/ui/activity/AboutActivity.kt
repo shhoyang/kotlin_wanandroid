@@ -22,10 +22,10 @@ class AboutActivity : BaseActivity() {
 
     companion object {
 
-        const val HOME = "https://haoshi.co"
+        const val HOME = "https://haoshiy.github.io"
         const val ANDROID_PROJECT_LINK = "https://github.com/haoshiy/kotlin_wanandroid"
         const val WECHAT_PROJECT_LINK = "https://github.com/haoshiy/wechat_wanandroid"
-        const val DOWNLOAD_LINK = "https://haoshi.co/wanandroid.apk"
+        const val DOWNLOAD_LINK = "https://fir.im/wanAndroid"
         const val THANKS = "https://wanandroid.com/blog/show/2"
     }
 
@@ -61,8 +61,8 @@ class AboutActivity : BaseActivity() {
             true
         }
         recyclerView.init(adapter)
-        ivAndroidQR.load("https://haoshi.co/images/qr.png", R.mipmap.user_qr)
-        ivWechatQR.load("https://haoshi.co/images/qr_wechat.jpg", R.mipmap.user_qr_wechat)
+        ivAndroidQR.load("https://github.com/haoshiy/kotlin_wanandroid/blob/master/qr.png?raw=true", R.mipmap.user_qr)
+        ivWechatQR.load("https://github.com/haoshiy/kotlin_wanandroid/blob/master/qr_wechat.jpg?raw=true", R.mipmap.user_qr_wechat)
 
     }
 
