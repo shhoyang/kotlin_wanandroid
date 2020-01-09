@@ -15,6 +15,14 @@ abstract class BaseArticleViewModel : BaseListViewModel<Article>() {
             Router.startLogin()
             return
         }
+        if (item.collect) {
+            doCancelCollect(item, position)
+        } else {
+            doCollect(item, position)
+        }
+    }
+
+    private fun doCollect(item: Article, position: Int) {
         Api.collect(item.id).io_main().subscribeBy({
             item.collect = true
             notifyItem(position, "fav")
@@ -23,11 +31,7 @@ abstract class BaseArticleViewModel : BaseListViewModel<Article>() {
         }).add()
     }
 
-    open fun cancelCollect(item: Article, position: Int) {
-        if (!Config.isLogin) {
-            Router.startLogin()
-            return
-        }
+    open fun doCancelCollect(item: Article, position: Int) {
         Api.cancelCollect(item.id).io_main().subscribeBy({
             item.collect = false
             notifyItem(position, "fav")

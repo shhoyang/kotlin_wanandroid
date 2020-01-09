@@ -1,10 +1,10 @@
 package com.hao.easy.base.adapter
 
-import android.arch.paging.PagedListAdapter
 import android.content.Context
-import android.support.v7.util.DiffUtil
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 
 abstract class BasePagedAdapter<T : BaseItem>(private val layoutId: Int) : PagedListAdapter<T, ViewHolder>(Diff<T>()) {
 
@@ -33,13 +33,13 @@ abstract class BasePagedAdapter<T : BaseItem>(private val layoutId: Int) : Paged
     abstract fun bindViewHolder(holder: ViewHolder, item: T, position: Int)
 
     fun changeItem(position: Int) {
-        if (position in 0..(itemCount - 1)) {
+        if (position in 0 until itemCount) {
             notifyItemChanged(position)
         }
     }
 
     fun changeItem(position: Int, payload: Any?) {
-        if (position in 0..(itemCount - 1)) {
+        if (position in 0 until itemCount) {
             notifyItemChanged(position, payload)
         }
     }
@@ -47,6 +47,6 @@ abstract class BasePagedAdapter<T : BaseItem>(private val layoutId: Int) : Paged
     class Diff<T : BaseItem> : DiffUtil.ItemCallback<T>() {
         override fun areItemsTheSame(item: T, item1: T) = item.id == item1.id
 
-        override fun areContentsTheSame(item: T, item1: T) = item == item1
+        override fun areContentsTheSame(item: T, item1: T) = item.equals(item1)
     }
 }

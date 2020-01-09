@@ -5,7 +5,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.pm.PackageManager
 import com.hao.easy.base.extensions.init
-import com.hao.easy.base.extensions.load
 import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.base.ui.WebActivity
@@ -39,7 +38,8 @@ class AboutActivity : BaseActivity() {
     }
 
     override fun initView() {
-        title = "關於項目${getVersionName()}"
+        title = "關於項目"
+        tvVersion.text = "V" + getVersionName()
         val list = ArrayList<Menu>()
         list.add(Menu("個人主頁", HOME, "個人主頁", HOME))
         list.add(Menu("Android項目鏈接", ANDROID_PROJECT_LINK, "玩Android", ANDROID_PROJECT_LINK))
@@ -61,14 +61,11 @@ class AboutActivity : BaseActivity() {
             true
         }
         recyclerView.init(adapter)
-        ivAndroidQR.load("https://github.com/haoshiy/kotlin_wanandroid/blob/master/qr.png?raw=true", R.mipmap.user_qr)
-        ivWechatQR.load("https://github.com/haoshiy/kotlin_wanandroid/blob/master/qr_wechat.jpg?raw=true", R.mipmap.user_qr_wechat)
-
     }
 
     private fun copy(text: String) {
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        clipboardManager.primaryClip = ClipData.newPlainText(null, text)
+        clipboardManager.setPrimaryClip(ClipData.newPlainText(null, text))
         recyclerView.snack("已複製到剪粘板")
     }
 

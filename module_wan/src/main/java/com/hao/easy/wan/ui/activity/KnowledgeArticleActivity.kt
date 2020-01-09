@@ -46,13 +46,7 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
                 val title = item.title.replace(Regex("<[^>]+>"), "")
                 WebActivity.start(this, title, item.projectLink)
             }
-            R.id.ivFav -> {
-                if (item.collect) {
-                    viewModel.cancelCollect(item, position)
-                } else {
-                    viewModel.collect(item, position)
-                }
-            }
+            R.id.ivFav -> viewModel.collect(item, position)
             else -> {
                 val title = item.title.replace(Regex("<[^>]+>"), "")
                 WebActivity.start(this, title, item.link)

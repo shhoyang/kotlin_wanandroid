@@ -1,6 +1,6 @@
 package com.hao.easy.user.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.subscribeBy

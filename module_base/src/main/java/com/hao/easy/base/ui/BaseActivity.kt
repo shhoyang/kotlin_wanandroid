@@ -2,9 +2,9 @@ package com.hao.easy.base.ui
 
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import com.hao.easy.base.R
 import com.hao.easy.base.common.AppManager
 import com.hao.easy.base.view.ToolbarLayout
@@ -55,7 +55,6 @@ abstract class BaseActivity : AppCompatActivity() {
                 onBackPressed()
             }
         }
-        onInit()
         initInject()
         initView()
         initData()
@@ -113,9 +112,6 @@ abstract class BaseActivity : AppCompatActivity() {
      * 是否透明状态栏，布局从状态栏开始
      */
     open fun transparentStatusBar(): Boolean = false
-
-    open fun onInit() {
-    }
 
     open fun showToolbar() = true
 

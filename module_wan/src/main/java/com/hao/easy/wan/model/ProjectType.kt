@@ -19,7 +19,7 @@ data class ProjectType(var id: Int) : Parcelable {
         }
 
     constructor(parcel: Parcel) : this(parcel.readInt()) {
-        this.name = parcel.readString()
+        this.name = parcel.readString() ?: ""
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

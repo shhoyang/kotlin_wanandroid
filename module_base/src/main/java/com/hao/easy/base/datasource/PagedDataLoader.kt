@@ -1,6 +1,6 @@
 package com.hao.easy.base.datasource
 
-import android.arch.paging.PageKeyedDataSource
+import androidx.paging.PageKeyedDataSource
 
 interface PagedDataLoader<T> {
 

@@ -1,18 +1,17 @@
 package com.hao.easy.wan.ui.fragment
 
-import android.arch.lifecycle.Observer
-import android.support.design.widget.AppBarLayout
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.lifecycle.Observer
 import com.gcssloop.widget.PagerGridLayoutManager
 import com.gcssloop.widget.PagerGridSnapHelper
+import com.google.android.material.appbar.AppBarLayout
 import com.hao.easy.base.extensions.gone
 import com.hao.easy.base.extensions.visible
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
-import com.hao.easy.base.ui.WebWithImageActivity
 import com.hao.easy.wan.R
 import com.hao.easy.wan.di.component
 import com.hao.easy.wan.model.Article
@@ -23,6 +22,7 @@ import com.hao.easy.wan.viewmodel.ProjectViewModel
 import kotlinx.android.synthetic.main.wechat_fragment_project.*
 import org.jetbrains.anko.support.v4.dip
 import javax.inject.Inject
+import kotlin.math.abs
 
 /**
  * @author Yang Shihao
@@ -59,8 +59,8 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
                 MotionEvent.ACTION_MOVE -> {
                     val endX = ev.x
                     val endY = ev.y
-                    val distanceX = Math.abs(startX - endX)
-                    val distanceY = Math.abs(startY - endY)
+                    val distanceX = abs(startX - endX)
+                    val distanceY = abs(startY - endY)
                     if (distanceX > distanceY) {
                         baseRefreshLayout.isEnabled = false
                     }
@@ -123,15 +123,10 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
                     WebActivity.start(this, item.title, item.projectLink)
                 }
             }
-            R.id.ivFav -> {
-                if (item.collect) {
-                    viewModel.cancelCollect(item, position)
-                } else {
-                    viewModel.collect(item, position)
-                }
-            }
+            R.id.ivFav -> viewModel.collect(item, position)
             else -> context?.apply {
-                WebWithImageActivity.start(this, item.title, item.link, item.envelopePic)
+                //                WebWithImageActivity.start(this, item.title, item.link, item.envelopePic)
+                WebActivity.start(this, item.title, item.link)
             }
         }
     }

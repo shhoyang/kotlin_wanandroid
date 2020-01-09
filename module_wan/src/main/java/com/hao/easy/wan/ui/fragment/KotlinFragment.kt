@@ -19,13 +19,7 @@ open class KotlinFragment : BaseListFragment<Article, KotlinViewModel>() {
     @Inject
     lateinit var adapter: CommonArticleAdapter
 
-    companion object {
-        private const val TAG = "KotlinFragment"
-    }
-
     override fun getLayoutId() = R.layout.wechat_fragment_kotlin
-
-    override fun isLazy() = true
 
     override fun adapter() = adapter
 
@@ -46,13 +40,7 @@ open class KotlinFragment : BaseListFragment<Article, KotlinViewModel>() {
                     WebActivity.start(this, title, item.projectLink)
                 }
             }
-            R.id.ivFav -> {
-                if (item.collect) {
-                    viewModel.cancelCollect(item, position)
-                } else {
-                    viewModel.collect(item, position)
-                }
-            }
+            R.id.ivFav -> viewModel.collect(item, position)
             else -> {
                 context?.apply {
                     val title = item.title.replace(Regex("<[^>]+>"), "")

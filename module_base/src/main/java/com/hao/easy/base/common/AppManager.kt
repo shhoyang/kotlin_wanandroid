@@ -1,6 +1,7 @@
 package com.hao.easy.base.common
 
 import android.app.Activity
+import kotlin.system.exitProcess
 
 class AppManager private constructor() {
 
@@ -33,7 +34,7 @@ class AppManager private constructor() {
     fun exit() {
         process { true }
         android.os.Process.killProcess(android.os.Process.myPid())
-        System.exit(0)
+        exitProcess(0)
     }
 
     private fun process(b: (Activity) -> Boolean) {

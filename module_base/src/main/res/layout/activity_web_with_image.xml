@@ -6,36 +6,41 @@
         android:layout_height="match_parent"
         tools:context=".ui.WebWithImageActivity">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never">
+            android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             <ImageView
                     android:id="@+id/imageView"
-                    style="@style/FillWidth"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
                     android:src="@mipmap/scenery"
-                    app:layout_constraintBottom_toTopOf="@id/baseWebView"
                     app:layout_constraintDimensionRatio="2:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             <com.hao.easy.base.view.ProgressWebView
                     android:id="@+id/baseWebView"
-                    style="@style/FillWidth"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imageView" />
-        </android.support.constraint.ConstraintLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
     <View
             android:id="@+id/toolbarBg"

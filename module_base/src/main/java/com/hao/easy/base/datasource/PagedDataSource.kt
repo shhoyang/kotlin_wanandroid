@@ -1,6 +1,6 @@
 package com.hao.easy.base.datasource
 
-import android.arch.paging.PageKeyedDataSource
+import androidx.paging.PageKeyedDataSource
 
 class PagedDataSource<T>(private var dataLoader: PagedDataLoader<T>?) : PageKeyedDataSource<Int, T>() {
 

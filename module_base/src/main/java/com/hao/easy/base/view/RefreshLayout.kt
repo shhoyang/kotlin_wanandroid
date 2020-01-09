@@ -1,10 +1,11 @@
 package com.hao.easy.base.view
 
 import android.content.Context
-import android.support.v4.widget.SwipeRefreshLayout
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.ViewConfiguration
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import kotlin.math.abs
 
 class RefreshLayout : SwipeRefreshLayout {
 
@@ -34,8 +35,8 @@ class RefreshLayout : SwipeRefreshLayout {
                 }
                 val endX = ev.x
                 val endY = ev.y
-                val distanceX = Math.abs(startX - endX)
-                val distanceY = Math.abs(startY - endY)
+                val distanceX = abs(startX - endX)
+                val distanceY = abs(startY - endY)
                 if (distanceX > touchSlop && distanceX > distanceY) {
                     isViewPager = true
                     return false

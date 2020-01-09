@@ -1,8 +1,8 @@
 package com.hao.easy.user.ui.fragment
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.text.TextUtils
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.hao.easy.base.extensions.addTextChangedListener
 import com.hao.easy.base.extensions.hideSoftInput
 import com.hao.easy.base.extensions.showError

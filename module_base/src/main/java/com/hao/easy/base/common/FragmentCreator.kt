@@ -1,6 +1,6 @@
 package com.hao.easy.base.common
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 
 /**
  * @author Yang Shihao

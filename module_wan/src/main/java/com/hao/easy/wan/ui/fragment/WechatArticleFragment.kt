@@ -20,6 +20,7 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
 
     companion object {
         private const val AUTHOR_ID = "AUTHOR_ID"
+
         fun instance(authorId: Int): WechatArticleFragment {
             val fragment = WechatArticleFragment()
             val bundle = Bundle()
@@ -32,13 +33,11 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
     @Inject
     lateinit var adapter: CommonArticleAdapter
 
-    override fun getLayoutId() = R.layout.wechat_fragment_wechat_article
+    override fun getLayoutId() = R.layout.activity_base_list
 
     override fun initInject() {
         component().inject(this)
     }
-
-    override fun isLazy() = true
 
     override fun initView() {
         adapter.showAuthor = false
@@ -63,13 +62,7 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
                     WebActivity.start(this, title, item.projectLink)
                 }
             }
-            R.id.ivFav -> {
-                if (item.collect) {
-                    viewModel.cancelCollect(item, position)
-                } else {
-                    viewModel.collect(item, position)
-                }
-            }
+            R.id.ivFav -> viewModel.collect(item, position)
             else -> {
                 context?.apply {
                     val title = item.title.replace(Regex("<[^>]+>"), "")

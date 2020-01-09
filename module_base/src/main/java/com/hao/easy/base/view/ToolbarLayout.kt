@@ -2,12 +2,12 @@ package com.hao.easy.base.view
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.hao.easy.base.R
 import com.hao.easy.base.extensions.visibility
 import kotlinx.android.synthetic.main.toolbar.view.*

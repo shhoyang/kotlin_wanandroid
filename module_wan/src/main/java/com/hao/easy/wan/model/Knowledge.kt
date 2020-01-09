@@ -4,10 +4,12 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.hao.easy.base.adapter.BaseItem
 
-data class Knowledge(var name: String,
-                     var children: ArrayList<Knowledge>) : BaseItem(), Parcelable {
+data class Knowledge(
+    var name: String,
+    var children: ArrayList<Knowledge>
+) : BaseItem(), Parcelable {
 
-    constructor(parcel: Parcel) : this(parcel.readString(), ArrayList()) {
+    constructor(parcel: Parcel) : this(parcel.readString() ?: "", ArrayList()) {
         id = parcel.readInt()
     }
 

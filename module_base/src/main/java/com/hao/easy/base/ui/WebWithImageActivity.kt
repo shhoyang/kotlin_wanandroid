@@ -4,9 +4,9 @@ import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
-import android.support.v4.content.ContextCompat
-import android.support.v4.widget.NestedScrollView
 import android.text.TextUtils
+import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import com.hao.easy.base.R
 import com.hao.easy.base.extensions.gone
 import com.hao.easy.base.extensions.load
@@ -22,7 +22,11 @@ class WebWithImageActivity : WebActivity() {
         private const val URL = "URL"
         private const val IMAGE = "IMAGE"
         fun start(context: Context, title: String, url: String, imagePath: String) {
-            context.startActivity<WebWithImageActivity>(Pair(TITLE, title), Pair(URL, url), Pair(IMAGE, imagePath))
+            context.startActivity<WebWithImageActivity>(
+                Pair(TITLE, title),
+                Pair(URL, url),
+                Pair(IMAGE, imagePath)
+            )
         }
     }
 
@@ -67,7 +71,11 @@ class WebWithImageActivity : WebActivity() {
     private val evaluator: ArgbEvaluator by lazy { ArgbEvaluator() }
 
     private fun setToolbarColor(positionOffset: Float) {
-        val evaluate = evaluator.evaluate(positionOffset, Color.WHITE, ContextCompat.getColor(this, R.color.text_black))
+        val evaluate = evaluator.evaluate(
+            positionOffset,
+            Color.WHITE,
+            ContextCompat.getColor(this, R.color.text_black)
+        )
         baseToolbar.textColor = evaluate as Int
         baseToolbar.iconTintColor = evaluate
     }

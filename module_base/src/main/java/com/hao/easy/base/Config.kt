@@ -6,8 +6,6 @@ import kotlin.concurrent.thread
 
 object Config {
 
-    private const val TAG = "Config"
-
     private const val KEY_USERNAME = "loginUserName"
     private const val KEY_TOKEN = "token_pass"
 

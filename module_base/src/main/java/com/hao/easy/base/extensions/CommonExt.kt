@@ -2,8 +2,8 @@ package com.hao.easy.base.extensions
 
 import android.app.Activity
 import android.content.Context
-import android.support.v4.app.Fragment
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

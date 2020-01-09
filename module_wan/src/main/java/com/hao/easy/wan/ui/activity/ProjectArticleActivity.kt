@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.View
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
-import com.hao.easy.base.ui.WebWithImageActivity
 import com.hao.easy.wan.R
 import com.hao.easy.wan.di.component
 import com.hao.easy.wan.model.Article
@@ -47,14 +46,9 @@ class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel
             R.id.tvLink -> {
                 WebActivity.start(this, item.title, item.projectLink)
             }
-            R.id.ivFav -> {
-                if (item.collect) {
-                    viewModel.cancelCollect(item, position)
-                } else {
-                    viewModel.collect(item, position)
-                }
-            }
-            else -> WebWithImageActivity.start(this, item.title, item.link, item.envelopePic)
+            R.id.ivFav -> viewModel.collect(item, position)
+//            else -> WebWithImageActivity.start(this, item.title, item.link, item.envelopePic)
+            else -> WebActivity.start(this, item.title, item.link)
         }
     }
 }

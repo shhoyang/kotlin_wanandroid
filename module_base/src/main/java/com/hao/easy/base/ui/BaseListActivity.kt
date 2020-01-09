@@ -1,9 +1,9 @@
 package com.hao.easy.base.ui
 
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hao.easy.base.R
 import com.hao.easy.base.adapter.BaseItem
 import com.hao.easy.base.adapter.BasePagedAdapter
@@ -19,10 +19,6 @@ import java.lang.reflect.ParameterizedType
  * @date 2018/11/18
  */
 abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseActivity() {
-
-    companion object {
-        private const val TAG = "BaseListFragment"
-    }
 
     val viewModel: VM by lazy {
         val parameterizedType = javaClass.genericSuperclass as ParameterizedType

@@ -1,9 +1,9 @@
 package com.hao.easy.base.viewmodel
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ViewModel
 import com.socks.library.KLog
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -48,6 +48,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         KLog.d(TAG, "onDestroy")
 
     }
+
     override fun onCleared() {
         super.onCleared()
         KLog.d(TAG, "onCleared")

@@ -1,13 +1,12 @@
 package com.hao.easy.base.viewmodel
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
-import android.arch.paging.LivePagedListBuilder
-import android.arch.paging.PageKeyedDataSource
-import android.arch.paging.PagedList
-import android.nfc.tech.MifareUltralight.PAGE_SIZE
-import android.support.annotation.NonNull
+import androidx.annotation.NonNull
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PageKeyedDataSource
+import androidx.paging.PagedList
 import com.hao.easy.base.common.RefreshResult
 import com.hao.easy.base.datasource.DataSourceFactory
 import com.hao.easy.base.datasource.PagedDataLoader
@@ -87,7 +86,7 @@ abstract class BaseListViewModel<T> : BaseViewModel(), PagedDataLoader<T> {
             when {
                 it == null -> refreshLiveData.value = RefreshResult.FAILED
                 it.isEmpty() -> refreshLiveData.value = RefreshResult.NO_DATA
-                it.size < PAGE_SIZE -> {
+                it.size < pageSize() -> {
                     data.addAll(it)
                     callback.onResult(it, null, null)
                     refreshLiveData.value = RefreshResult.NO_MORE

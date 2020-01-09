@@ -1,20 +1,24 @@
 package com.hao.easy.wan.ui.fragment
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.support.design.widget.AppBarLayout
 import android.view.MotionEvent
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import com.hao.easy.base.adapter.FragmentAdapter
 import com.hao.easy.base.extensions.load
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.wan.R
-import com.hao.easy.wan.ui.adapter.FragmentWithTabAdapter
 import com.hao.easy.wan.viewmodel.WechatViewModel
 import com.youth.banner.BannerConfig
 import com.youth.banner.loader.ImageLoader
 import kotlinx.android.synthetic.main.wechat_fragment_wechat.*
 import org.jetbrains.anko.support.v4.dimen
+import kotlin.math.abs
 
 /**
  * @author Yang Shihao
@@ -26,28 +30,26 @@ class WechatFragment : BaseFragment() {
         ViewModelProviders.of(this@WechatFragment).get(WechatViewModel::class.java)
     }
 
-    private var adapter: FragmentWithTabAdapter? = null
-
     private var startX = .0F
     private var startY = .0F
     private var enableRefresh = true
     private var bannerInit = false
     private var bannerHeight = 0
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (bannerInit) {
-            if (isVisibleToUser) {
-                banner.startAutoPlay()
-            } else {
-                banner.stopAutoPlay()
-            }
-        }
-    }
+    private val titles = ArrayList<String>()
+    private val fragments = ArrayList<Fragment>()
+    private var fragmentCount = 0
+    private var currentIndex = -1
 
     override fun getLayoutId() = R.layout.wechat_fragment_wechat
 
     override fun initView() {
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                currentIndex = position
+            }
+        })
         viewPager.setOnTouchListener { _, ev ->
             when (ev.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -57,8 +59,8 @@ class WechatFragment : BaseFragment() {
                 MotionEvent.ACTION_MOVE -> {
                     val endX = ev.x
                     val endY = ev.y
-                    val distanceX = Math.abs(startX - endX)
-                    val distanceY = Math.abs(startY - endY)
+                    val distanceX = abs(startX - endX)
+                    val distanceY = abs(startY - endY)
                     if (distanceX > distanceY) {
                         baseRefreshLayout.isEnabled = false
                     }
@@ -71,17 +73,17 @@ class WechatFragment : BaseFragment() {
         }
 
         baseRefreshLayout.setOnRefreshListener {
-            val currentFragment = adapter?.currentFragment
-            if (currentFragment == null) {
-                viewModel.initData()
-                baseRefreshLayout.isRefreshing = false
-
-            } else if (currentFragment is WechatArticleFragment) {
-                currentFragment.refresh()
+            if (currentIndex in 0 until fragmentCount) {
+                val currentFragment = fragments[currentIndex]
+                if (currentFragment != null && currentFragment.isAdded && currentFragment is WechatArticleFragment) {
+                    currentFragment.refresh()
+                    return@setOnRefreshListener
+                }
             }
+
+            viewModel.initData()
+            baseRefreshLayout.isRefreshing = false
         }
-
-
 
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
             baseRefreshLayout.isEnabled = verticalOffset == 0 && enableRefresh
@@ -93,21 +95,34 @@ class WechatFragment : BaseFragment() {
             }
         })
 
-        tabLayout.setupWithViewPager(viewPager)
         banner.setBannerStyle(BannerConfig.NOT_INDICATOR)
-                .setImageLoader(object : ImageLoader() {
-                    override fun displayImage(context: Context?, path: Any, imageView: ImageView) {
-                        imageView.load(path)
-                    }
-                })
-                .start()
+            .setImageLoader(object : ImageLoader() {
+                override fun displayImage(context: Context?, path: Any, imageView: ImageView) {
+                    imageView.load(path)
+                }
+            })
+            .start()
         bannerInit = true
     }
 
     override fun initData() {
         viewModel.authorsLiveData.observe(this, Observer {
-            adapter = FragmentWithTabAdapter(childFragmentManager, it!!)
-            viewPager.adapter = adapter
+            if (it.isNotEmpty()) {
+                titles.clear()
+                fragments.clear()
+                it.forEach { author ->
+                    titles.add(author.name)
+                    fragments.add(WechatArticleFragment.instance(author.id))
+                }
+                fragmentCount = fragments.size
+                val adapter = FragmentAdapter(childFragmentManager, lifecycle, fragments)
+                viewPager.adapter = adapter
+                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                    if (position in 0 until fragmentCount) {
+                        tab.text = titles[position]
+                    }
+                }.attach()
+            }
         })
 
         viewModel.adLiveData.observe(this, Observer {

@@ -208,7 +208,4 @@ Api.getKnowledgeArticle(page - 1, typeId).io_main().subscribeBy(
 
 **Apk玩Android下载地址** [https://fir.im/wanAndroid](https://fir.im/wanAndroid)
 
-![扫码下载](https://upload-images.jianshu.io/upload_images/12337722-ac489d01613e3fa2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-
 **End**

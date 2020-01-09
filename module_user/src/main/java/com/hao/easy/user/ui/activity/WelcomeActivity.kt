@@ -1,12 +1,8 @@
 package com.hao.easy.user.ui.activity
 
-import android.os.Build
 import android.os.Handler
 import android.os.Looper
-import android.view.View
-import android.view.WindowManager
 import com.hao.easy.base.Config
-import com.hao.easy.base.extensions.gone
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.user.R
 import com.hao.easy.user.Router
@@ -24,18 +20,6 @@ class WelcomeActivity : BaseActivity() {
         return R.layout.user_activity_welcome
     }
 
-    override fun initView() {
-        super.initView()
-//        hideSystemNavigationBar()
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-//            val lp = window.attributes
-//            // 使用刘海区域
-//            lp.layoutInDisplayCutoutMode =
-//                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-//            window.attributes = lp
-//        }
-    }
-
     override fun initData() {
         thread {
             val l = System.currentTimeMillis()
@@ -51,24 +35,8 @@ class WelcomeActivity : BaseActivity() {
         }
     }
 
-    private fun hideSystemNavigationBar() {
-        if (Build.VERSION.SDK_INT in 12..18) {
-            window.decorView.gone()
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                    View.SYSTEM_UI_FLAG_FULLSCREEN
-            window.decorView.systemUiVisibility = uiOptions
-        }
-    }
-
     private fun start() {
         Router.startMainActivity()
         finish()
     }
-
-//    override fun finish() {
-//        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN)
-//        super.finish()
-//    }
 }

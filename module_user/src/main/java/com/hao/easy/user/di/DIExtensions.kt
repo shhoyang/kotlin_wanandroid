@@ -1,7 +1,7 @@
 package com.hao.easy.user.di
 
 import android.app.Activity
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.hao.easy.base.App
 import com.hao.easy.user.di.component.ActivityComponent
 import com.hao.easy.user.di.component.DaggerActivityComponent

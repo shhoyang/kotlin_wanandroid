@@ -1,18 +1,17 @@
 package com.hao.easy.wan.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
-import com.hao.easy.base.common.FragmentCreator
+import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.base.viewmodel.BaseViewModel
+import com.hao.easy.wan.model.Author
 import com.hao.easy.wan.repository.Api
-import com.hao.easy.wan.ui.fragment.WechatArticleFragment
 
 class WechatViewModel : BaseViewModel() {
 
     var adLiveData = MutableLiveData<List<String>>()
 
-    val authorsLiveData: MutableLiveData<List<Pair<String, FragmentCreator>>> = MutableLiveData()
+    val authorsLiveData: MutableLiveData<List<Author>> = MutableLiveData()
 
     fun initData() {
         Api.getAd().io_main().subscribeBy {
@@ -20,12 +19,10 @@ class WechatViewModel : BaseViewModel() {
         }.add()
 
         Api.getAuthors().io_main().subscribeBy {
-            val fragments = it?.map { author ->
-                Pair<String, FragmentCreator>(author.name, object : FragmentCreator {
-                    override fun create() = WechatArticleFragment.instance(author.id)
-                })
+
+            if (it != null && it.isNotEmpty()) {
+                authorsLiveData.value = it
             }
-            authorsLiveData.value = fragments
         }.add()
     }
 }

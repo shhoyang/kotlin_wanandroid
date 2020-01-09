@@ -1,9 +1,9 @@
 package com.hao.easy.user.ui.fragment
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.loadCircle
 import com.hao.easy.base.extensions.snack

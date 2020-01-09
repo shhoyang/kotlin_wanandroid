@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.hao.easy">
+        package="com.hao.easy">
 
     <application
             android:name=".base.App"
@@ -11,18 +11,18 @@
             android:supportsRtl="true"
             android:theme="@style/WanAppTheme">
         <provider
-                android:name="android.support.v4.content.FileProvider"
+                android:name="androidx.core.content.FileProvider"
                 android:authorities="${applicationId}.provider"
                 android:exported="false"
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/file_paths"/>
+                    android:resource="@xml/file_paths" />
         </provider>
         <activity
                 android:name=".activity.MainActivity"
                 android:screenOrientation="portrait"
-                android:theme="@style/WanStatusBarTransparentTheme"/>
+                android:theme="@style/WanStatusBarTransparentTheme" />
 
     </application>
 </manifest>

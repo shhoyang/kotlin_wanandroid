@@ -1,14 +1,12 @@
 package com.hao.easy.activity
 
 import android.os.Build
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentStatePagerAdapter
-import android.support.v4.widget.DrawerLayout
 import android.view.View
 import android.view.WindowManager
+import androidx.drawerlayout.widget.DrawerLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.hao.easy.R
+import com.hao.easy.base.adapter.FragmentAdapter
 import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.user.ui.fragment.UserFragment
@@ -22,12 +20,7 @@ import kotlin.properties.Delegates
 @Route(path = "/app/MainActivity")
 class MainActivity : BaseActivity() {
 
-    companion object {
-        private const val TAG = "MainActivity"
-    }
-
     private var drawerOpened: Boolean = false
-
     private var backPressedTime by Delegates.observable(0L) { _, old, new ->
         if (new - old < 2000) {
             finish()
@@ -37,9 +30,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun transparentStatusBar() = true
-
     override fun getLayoutId() = R.layout.app_activity_main
-
     override fun initView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             val lp = window.attributes
@@ -51,9 +42,17 @@ class MainActivity : BaseActivity() {
         initDrawerLayout()
         initLeftNavigation()
         initBottomNavigation()
+
+        val fragments = listOf(
+            WechatFragment(),
+            ProjectFragment(),
+            KotlinFragment(),
+            FlutterFragment()
+        )
         viewPager.apply {
+            isUserInputEnabled = false
             offscreenPageLimit = 3
-            adapter = MainViewPagerAdapter(supportFragmentManager)
+            adapter = FragmentAdapter(supportFragmentManager, lifecycle, fragments)
         }
     }
 
@@ -79,13 +78,13 @@ class MainActivity : BaseActivity() {
     private fun initBottomNavigation() {
         bottomNavigationView.itemIconTintList = null
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            viewPager.currentItem =
-                when (item.itemId) {
-                    R.id.tab_wechat -> 0
-                    R.id.tab_android -> 1
-                    R.id.tab_kotlin -> 2
-                    else -> 3
-                }
+            viewPager.setCurrentItem( when (item.itemId) {
+                R.id.tab_wechat -> 0
+                R.id.tab_android -> 1
+                R.id.tab_kotlin -> 2
+                else -> 3
+            },false)
+
             true
         }
     }
@@ -96,18 +95,5 @@ class MainActivity : BaseActivity() {
         } else {
             backPressedTime = System.currentTimeMillis()
         }
-    }
-
-    inner class MainViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
-        override fun getItem(p0: Int): Fragment {
-            return when (p0) {
-                0 -> WechatFragment()
-                1 -> ProjectFragment()
-                2 -> KotlinFragment()
-                else -> FlutterFragment()
-            }
-        }
-
-        override fun getCount() = 4
     }
 }

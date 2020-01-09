@@ -3,22 +3,21 @@ ext {
     isModule = true
 
     versions = [
-            compileSdk : 28,
+            compileSdk : 29,
+            buildTools : '29.0.2',
             minSdk     : 23,
-            targetSdk  : 28,
+            targetSdk  : 29,
 
-            versionCode: 7,
-            versionName: "1.0.7",
+            versionCode: 8,
+            versionName: '1.0.8',
 
-            support    : '28.0.0',
-            constraint : '1.1.3',
-            kotlin     : '1.3.21',
-            paging     : '1.0.0',
-            room       : '1.1.0',
-            lifecycle  : '1.1.1',
+            kotlin     : '1.3.61',
+            paging     : '2.1.0',
+            room       : '2.1.0',
+            lifecycle  : '2.1.0',
 
             butterknife: '8.8.1',
-            glide      : '4.8.0',
+            glide      : '4.10.0',
             okhttp     : '3.11.0',
             retrofit   : '2.4.0',
             anko       : '0.10.8',
@@ -26,66 +25,70 @@ ext {
     ]
 
     supports = [
-            "appcompat"        : "com.android.support:appcompat-v7:${versions.support}",
-            "cardview"         : "com.android.support:cardview-v7:${versions.support}",
-            "design"           : "com.android.support:design:${versions.support}",
-            "recyclerview"     : "com.android.support:recyclerview-v7:${versions.support}",
-            "annotations"      : "com.android.support:support-annotations:${versions.support}",
-            "constraint-layout": "com.android.support.constraint:constraint-layout:${versions.constraint}",
+            appcompat        : 'androidx.appcompat:appcompat:1.1.0',
+            annotation       : 'androidx.annotation:annotation:1.1.0',
+            cardview         : 'androidx.cardview:cardview:1.0.0',
+            cconstraintlayout: 'androidx.constraintlayout:constraintlayout:1.1.3',
+            recyclerview     : 'androidx.recyclerview:recyclerview:1.1.0-beta04',
+            viewpager2       : 'androidx.viewpager2:viewpager2:1.0.0-beta04',
+            material         : 'com.google.android.material:material:1.1.0-alpha08'
     ]
 
     implementations = [
-            "retrofit-adapter"  : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
-            "retrofit-converter": "com.squareup.retrofit2:converter-gson:$versions.retrofit",
-            "rxandroid"         : 'io.reactivex.rxjava2:rxandroid:2.1.0',
-            "rxkotlin"          : "io.reactivex.rxjava2:rxkotlin:2.3.0",
-            "okhttp-logging"    : "com.squareup.okhttp3:logging-interceptor:$versions.okhttp",
-            "cookie"            : 'com.github.franmontiel:PersistentCookieJar:v1.0.1',
+            'adapter-rxjava2'          : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+            'converter-gson'           : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+            rxandroid                  : 'io.reactivex.rxjava2:rxandroid:2.1.0',
+            rxkotlin                   : "io.reactivex.rxjava2:rxkotlin:2.3.0",
+            'logging-interceptor'      : "com.squareup.okhttp3:logging-interceptor:$versions.okhttp",
+            PersistentCookieJar        : 'com.github.franmontiel:PersistentCookieJar:v1.0.1',
 
-            "KLog"              : 'com.github.zhaokaiqiang.klog:library:1.6.0',
-            "glide"             : "com.github.bumptech.glide:glide:$versions.glide",
-            "butterknife"       : "com.jakewharton:butterknife:$versions.butterknife",
-            "arouter"           : 'com.alibaba:arouter-api:1.4.1',
+            klog                       : 'com.github.zhaokaiqiang.klog:library:1.6.0',
+            glide                      : "com.github.bumptech.glide:glide:$versions.glide",
+            butterknife                : "com.jakewharton:butterknife:$versions.butterknife",
+            arouter                    : 'com.alibaba:arouter-api:1.4.1',
 
-            "kotlin-stdlib"     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
+            kotlin                     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin",
 
-            "room-runtime"      : "android.arch.persistence.room:runtime:$versions.room",
-            "room-rxjava2"      : "android.arch.persistence.room:rxjava2:$versions.room",
+            'room-runtime'             : "androidx.room:room-runtime:$versions.room",
+            'room-rxjava2'             : "androidx.room:room-rxjava2:$versions.room",
 
-            "paging"            : "android.arch.paging:runtime:$versions.paging",
-            "paging-rxjava2"    : "android.arch.paging:rxjava2:1.0.0-rc1",
-            "lifecycle"         : "android.arch.lifecycle:extensions:$versions.lifecycle",
-//            "lifecycle"         : "android.arch.lifecycle:viewmodel:$versions.lifecycle",
-//            "lifecycle"         : "android.arch.lifecycle:livedata:$versions.lifecycle",
-//            "lifecycle"         : "android.arch.lifecycle:runtime:$versions.lifecycle",
-//            "lifecycle"         : "android.arch.lifecycle:compiler:$versions.lifecycle",
-//            "lifecycle"         : "android.arch.lifecycle:common-java8:$versions.lifecycle",
-//            "lifecycle"         : "android.arch.lifecycle:reactivestreams:$versions.lifecycle",
+            'paging-runtime'           : "androidx.paging:paging-runtime:$versions.paging",
+            'paging:paging-rxjava2'    : "androidx.paging:paging-rxjava2:$versions.paging",
 
-//            "anko"              : "org.jetbrains.anko:anko:$anko_version"
-            "anko-commons"      : "org.jetbrains.anko:anko-commons:$versions.anko",
-            "anko-coroutines"   : "org.jetbrains.anko:anko-coroutines:$versions.anko",
-            "anko-sdk25"        : "org.jetbrains.anko:anko-sdk25:$versions.anko",
-            "anko-appcompat-v7" : "org.jetbrains.anko:anko-appcompat-v7:$versions.anko",
+            'lifecycle-extensions'     : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle",
+            'lifecycle-viewmodel'      : "androidx.lifecycle:lifecycle-viewmodel:$versions.lifecycle",
+            'lifecycle-livedata'       : "androidx.lifecycle:lifecycle-livedata:$versions.lifecycle",
+            'lifecycle-runtime'        : "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle",
 
-            "dagger"            : "com.google.dagger:dagger:$versions.dagger",
+            'lifecycle-common-java8'   : "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle",
+            'lifecycle-reactivestreams': "androidx.lifecycle:lifecycle-reactivestreams:$versions.lifecycle",
 
-            "banner"            : 'com.youth.banner:banner:1.4.10',
-            "pagerlayoutmanager": 'com.gcssloop.recyclerview:pagerlayoutmanager:2.3.8',
-            "SwipeDelMenuLayout": 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0',
-            "FlowLayout"        : 'com.github.1002326270xc:LayoutManager-FlowLayout:v1.7',
-            "rxpermissions"     : 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+//            anko              : "org.jetbrains.anko:anko:$anko",
+            'anko-commons'             : "org.jetbrains.anko:anko-commons:$versions.anko",
+            'anko-coroutines'          : "org.jetbrains.anko:anko-coroutines:$versions.anko",
+            'anko-sdk25'               : "org.jetbrains.anko:anko-sdk25:$versions.anko",
+            'anko-appcompat-v7'        : "org.jetbrains.anko:anko-appcompat-v7:$versions.anko",
+
+            dagger                     : "com.google.dagger:dagger:$versions.dagger",
+
+            banner                     : 'com.youth.banner:banner:1.4.10',
+            pagerlayoutmanager         : 'com.gcssloop.recyclerview:pagerlayoutmanager:2.3.8',
+            SwipeDelMenuLayout         : 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0',
+            FlowLayout                 : 'com.github.1002326270xc:LayoutManager-FlowLayout:v1.7',
+            rxpermissions              : 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     ]
 
     annotationProcessors = [
-            "glide"      : "com.github.bumptech.glide:compiler:$versions.glide",
-            "butterknife": "com.jakewharton:butterknife-compiler:$versions.butterknife"
+            'lifecycle-compiler'  : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
+            'glide-compiler'      : "com.github.bumptech.glide:compiler:$versions.glide",
+            'butterknife-compiler': "com.jakewharton:butterknife-compiler:$versions.butterknife"
     ]
 
     kapts = [
-            "dagger-compiler": "com.google.dagger:dagger-compiler:$versions.dagger",
-            "room-compiler"  : "android.arch.persistence.room:compiler:$versions.room",
-            "arouter"        : 'com.alibaba:arouter-compiler:1.2.2'
+
+            'dagger-compiler' : "com.google.dagger:dagger-compiler:$versions.dagger",
+            'room-compiler'   : "android.arch.persistence.room:compiler:$versions.room",
+            'arouter-compiler': 'com.alibaba:arouter-compiler:1.2.2'
     ]
 
     supportLibs = supports.values()

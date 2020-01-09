@@ -1,6 +1,6 @@
 package com.hao.easy.wan.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.main
@@ -37,7 +37,7 @@ class ProjectViewModel : BaseArticleViewModel() {
 
     override fun refresh() {
         Api.getProjectType().io_main().subscribeBy({
-            if (it != null && !it.isEmpty()) {
+            if (it != null && it.isNotEmpty()) {
                 typeLiveData.value = it
             }
         }, {
