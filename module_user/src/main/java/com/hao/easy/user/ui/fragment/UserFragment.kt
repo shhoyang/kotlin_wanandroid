@@ -1,5 +1,6 @@
 package com.hao.easy.user.ui.fragment
 
+import android.content.Intent
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -15,8 +16,6 @@ import com.hao.easy.user.ui.activity.AboutActivity
 import com.hao.easy.user.ui.activity.LoginActivity
 import com.hao.easy.user.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.user_fragment_user.*
-import org.jetbrains.anko.find
-import org.jetbrains.anko.support.v4.startActivity
 
 
 /**
@@ -33,8 +32,8 @@ class UserFragment : BaseFragment() {
 
     override fun initView() {
 
-        tvUsername = leftNavigationView.getHeaderView(0).find(R.id.tvUsername)
-        leftNavigationView.getHeaderView(0).find<ImageView>(R.id.ivAvatar)
+        tvUsername = leftNavigationView.getHeaderView(0).findViewById(R.id.tvUsername)
+        leftNavigationView.getHeaderView(0).findViewById<ImageView>(R.id.ivAvatar)
             .loadCircle(R.mipmap.ic_launcher_round)
         leftNavigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -43,11 +42,11 @@ class UserFragment : BaseFragment() {
                     if (Config.isLogin) {
                         Router.startFavActivity()
                     } else {
-                        startActivity<LoginActivity>()
+                        startLogin()
                     }
                 }
                 R.id.menu_clear -> leftNavigationView.snack("清理完成")
-                R.id.menu_about -> startActivity<AboutActivity>()
+                R.id.menu_about -> startActivity(Intent(context, AboutActivity::class.java))
                 R.id.menu_logout -> {
                     Config.logout()
                     viewModel.logout()
@@ -65,7 +64,7 @@ class UserFragment : BaseFragment() {
         })
         viewModel.logoutLiveData.observe(this, Observer {
             if (it == null) {
-                startActivity<LoginActivity>()
+                startLogin()
             }
         })
     }
@@ -74,7 +73,7 @@ class UserFragment : BaseFragment() {
         if (user == null) {
             tvUsername.text = "未登录"
             tvUsername.setOnClickListener {
-                startActivity<LoginActivity>()
+                startLogin()
             }
             leftNavigationView.menu.findItem(R.id.menu_logout).isVisible = false
 
@@ -83,5 +82,9 @@ class UserFragment : BaseFragment() {
             tvUsername.setOnClickListener(null)
             leftNavigationView.menu.findItem(R.id.menu_logout).isVisible = true
         }
+    }
+
+    private fun startLogin() {
+        context?.apply { LoginActivity.start(this) }
     }
 }

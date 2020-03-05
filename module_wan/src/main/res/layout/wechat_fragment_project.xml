@@ -29,8 +29,8 @@
                     android:background="@null"
                     app:elevation="0dp">
 
-                <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvType"
+                <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vpType"
                         android:layout_width="match_parent"
                         android:layout_height="160dp"
                         android:layout_marginTop="4dp"
@@ -38,14 +38,14 @@
                         android:overScrollMode="never"
                         app:layout_scrollFlags="scroll" />
 
-                <LinearLayout
-                        android:id="@+id/llPoint"
+                <me.relex.circleindicator.CircleIndicator3
+                        android:id="@+id/indicator"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal"
+                        android:layout_height="32dp"
                         android:visibility="gone"
+                        app:ci_drawable="@drawable/wechat_indicator_1"
+                        app:ci_drawable_unselected="@drawable/wechat_indicator_0"
+                        app:ci_gravity="center"
                         app:layout_scrollFlags="scroll" />
 
                 <View

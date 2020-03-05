@@ -1,5 +1,7 @@
 package com.hao.easy.user.ui.activity
 
+import android.content.Context
+import android.content.Intent
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.user.R
@@ -8,6 +10,12 @@ import com.hao.easy.user.ui.fragment.RegisterFragment
 
 @Route(path = "/user/LoginActivity")
 class LoginActivity : BaseActivity() {
+
+    companion object{
+        fun start(context: Context){
+            context.startActivity(Intent(context,LoginActivity::class.java))
+        }
+    }
 
     private val loginFragment: LoginFragment by lazy { LoginFragment() }
 

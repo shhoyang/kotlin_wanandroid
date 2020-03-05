@@ -6,7 +6,11 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 
-abstract class BasePagedAdapter<T : BaseItem>(private val layoutId: Int) : PagedListAdapter<T, ViewHolder>(Diff<T>()) {
+abstract class BasePagedAdapter<T : BaseItem>(
+    private val layoutId: Int,
+    diff: DiffUtil.ItemCallback<T> = Diff()
+) :
+    PagedListAdapter<T, ViewHolder>(diff) {
 
     lateinit var context: Context
 
@@ -22,11 +26,24 @@ abstract class BasePagedAdapter<T : BaseItem>(private val layoutId: Int) : Paged
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
-        itemClickListener?.apply { holder.itemView.setOnClickListener { this(holder.itemView, getItem(position)!!, position) } }
+        itemClickListener?.apply {
+            holder.itemView.setOnClickListener {
+                this(
+                    holder.itemView,
+                    getItem(position)!!,
+                    position
+                )
+            }
+        }
         bindViewHolder(holder, getItem(position)!!, position, payloads)
     }
 
-    open fun bindViewHolder(holder: ViewHolder, item: T, position: Int, payloads: MutableList<Any>) {
+    open fun bindViewHolder(
+        holder: ViewHolder,
+        item: T,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
         bindViewHolder(holder, item, position)
     }
 
@@ -42,11 +59,5 @@ abstract class BasePagedAdapter<T : BaseItem>(private val layoutId: Int) : Paged
         if (position in 0 until itemCount) {
             notifyItemChanged(position, payload)
         }
-    }
-
-    class Diff<T : BaseItem> : DiffUtil.ItemCallback<T>() {
-        override fun areItemsTheSame(item: T, item1: T) = item.id == item1.id
-
-        override fun areContentsTheSame(item: T, item1: T) = item.equals(item1)
     }
 }

@@ -1,8 +1,5 @@
 package com.hao.easy.wan.ui.fragment
 
-import android.content.Context
-import android.view.MotionEvent
-import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -10,15 +7,13 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hao.easy.base.adapter.FragmentAdapter
-import com.hao.easy.base.extensions.load
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.wan.R
+import com.hao.easy.wan.di.component
+import com.hao.easy.wan.ui.adapter.BannerAdapter
 import com.hao.easy.wan.viewmodel.WechatViewModel
-import com.youth.banner.BannerConfig
-import com.youth.banner.loader.ImageLoader
 import kotlinx.android.synthetic.main.wechat_fragment_wechat.*
-import org.jetbrains.anko.support.v4.dimen
-import kotlin.math.abs
+import javax.inject.Inject
 
 /**
  * @author Yang Shihao
@@ -30,16 +25,20 @@ class WechatFragment : BaseFragment() {
         ViewModelProviders.of(this@WechatFragment).get(WechatViewModel::class.java)
     }
 
-    private var startX = .0F
-    private var startY = .0F
     private var enableRefresh = true
-    private var bannerInit = false
     private var bannerHeight = 0
 
     private val titles = ArrayList<String>()
     private val fragments = ArrayList<Fragment>()
     private var fragmentCount = 0
     private var currentIndex = -1
+
+    @Inject
+    lateinit var bannerAdapter: BannerAdapter
+
+    override fun initInject() {
+        component().inject(this)
+    }
 
     override fun getLayoutId() = R.layout.wechat_fragment_wechat
 
@@ -50,27 +49,6 @@ class WechatFragment : BaseFragment() {
                 currentIndex = position
             }
         })
-        viewPager.setOnTouchListener { _, ev ->
-            when (ev.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    startX = ev.x
-                    startY = ev.y
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    val endX = ev.x
-                    val endY = ev.y
-                    val distanceX = abs(startX - endX)
-                    val distanceY = abs(startY - endY)
-                    if (distanceX > distanceY) {
-                        baseRefreshLayout.isEnabled = false
-                    }
-                }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    enableRefresh = true
-                }
-            }
-            false
-        }
 
         baseRefreshLayout.setOnRefreshListener {
             if (currentIndex in 0 until fragmentCount) {
@@ -88,21 +66,18 @@ class WechatFragment : BaseFragment() {
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
             baseRefreshLayout.isEnabled = verticalOffset == 0 && enableRefresh
             if (bannerHeight <= 0) {
-                bannerHeight = banner.measuredHeight - dimen(R.dimen.status_bar_height)
+                bannerHeight =
+                    banner.measuredHeight - resources.getDimensionPixelSize(R.dimen.status_bar_height)
             }
             if (bannerHeight > 0) {
                 banner.alpha = (bannerHeight + verticalOffset) * 1.0F / bannerHeight
             }
         })
 
-        banner.setBannerStyle(BannerConfig.NOT_INDICATOR)
-            .setImageLoader(object : ImageLoader() {
-                override fun displayImage(context: Context?, path: Any, imageView: ImageView) {
-                    imageView.load(path)
-                }
-            })
-            .start()
-        bannerInit = true
+
+        banner.adapter = bannerAdapter
+        indicator.setViewPager(banner)
+        bannerAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
     }
 
     override fun initData() {
@@ -126,7 +101,7 @@ class WechatFragment : BaseFragment() {
         })
 
         viewModel.adLiveData.observe(this, Observer {
-            banner.update(it)
+            bannerAdapter.setData(it)
         })
 
         viewModel.initData()

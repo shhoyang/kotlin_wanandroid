@@ -36,9 +36,9 @@ kapt {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api supportLibs
-    kapt kaptLibs
-    implementations.each { k, v ->
+    api androidxDependencies
+    kapt compilerDependencies
+    commonDependencies.each { k, v ->
         api(v) {
             //去除第三方的重复support库
             exclude group: 'com.android.support'

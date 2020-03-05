@@ -1,25 +1,26 @@
-
 buildscript {
     apply from: "config.gradle"
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         google()
         jcenter()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-        classpath 'com.android.tools.build:gradle:3.5.3'
-//        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
+        classpath 'com.android.tools.build:gradle:3.6.1'
     }
 }
 
 allprojects {
     repositories {
-        google()
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://www.jitpack.io' }
         maven { url "http://lib.gcssloop.com/repository/gcssloop-central/" }
         mavenCentral()
+        google()
         jcenter()
-
     }
 }
 

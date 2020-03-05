@@ -4,18 +4,21 @@ import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.base.viewmodel.BaseViewModel
+import com.hao.easy.wan.model.Ad
 import com.hao.easy.wan.model.Author
 import com.hao.easy.wan.repository.Api
 
 class WechatViewModel : BaseViewModel() {
 
-    var adLiveData = MutableLiveData<List<String>>()
+    var adLiveData = MutableLiveData<ArrayList<Ad>>()
 
     val authorsLiveData: MutableLiveData<List<Author>> = MutableLiveData()
 
     fun initData() {
         Api.getAd().io_main().subscribeBy {
-            adLiveData.value = it?.map { ad -> ad.imagePath }
+            if (it != null) {
+                adLiveData.value = it
+            }
         }.add()
 
         Api.getAuthors().io_main().subscribeBy {

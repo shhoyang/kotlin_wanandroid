@@ -2,10 +2,7 @@ package com.hao.easy.wan.di.component
 
 import com.hao.easy.base.di.component.AppComponent
 import com.hao.easy.base.di.scope.FragmentScope
-import com.hao.easy.wan.ui.fragment.FlutterFragment
-import com.hao.easy.wan.ui.fragment.KotlinFragment
-import com.hao.easy.wan.ui.fragment.ProjectFragment
-import com.hao.easy.wan.ui.fragment.WechatArticleFragment
+import com.hao.easy.wan.ui.fragment.*
 import dagger.Component
 
 
@@ -17,6 +14,8 @@ import dagger.Component
 @FragmentScope
 @Component(dependencies = [AppComponent::class])
 interface FragmentComponent {
+
+    fun inject(WechatFragment: WechatFragment)
 
     fun inject(wechatArticleFragment: WechatArticleFragment)
 

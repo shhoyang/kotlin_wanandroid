@@ -3,7 +3,9 @@ package com.hao.easy.user.ui.activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import com.hao.easy.base.extensions.init
 import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseActivity
@@ -13,7 +15,6 @@ import com.hao.easy.user.di.component
 import com.hao.easy.user.model.Menu
 import com.hao.easy.user.ui.adapter.AboutAdapter
 import kotlinx.android.synthetic.main.user_activity_about.*
-import org.jetbrains.anko.browse
 import javax.inject.Inject
 
 
@@ -50,8 +51,10 @@ class AboutActivity : BaseActivity() {
         adapter.setData(list)
         adapter.itemClickListener = { _, item, _ ->
             if (item.link == DOWNLOAD_LINK) {
-
-                browse(DOWNLOAD_LINK)
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(DOWNLOAD_LINK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             } else {
                 WebActivity.start(this, item.webTitle, item.link)
             }

@@ -26,7 +26,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
         ViewModelProviders.of(this).get(cla)
     }
 
-    private var refreshLayout: SwipeRefreshLayout? = null
+    var refreshLayout: SwipeRefreshLayout? = null
     private var emptyView: EmptyView? = null
 
     private lateinit var recyclerView: RecyclerView
@@ -49,16 +49,16 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
 
     override fun initData() {
         viewModel.observeDataObserver(this,
-                { adapter().submitList(it) },
-                { refreshFinished(it) },
-                { loadMoreFinished(it) })
+            { adapter().submitList(it) },
+            { refreshFinished(it) },
+            { loadMoreFinished(it) })
 
         viewModel.observeAdapterObserver(this,
-                { position, payload ->
-                    adapter().notifyItemChanged(position, payload)
-                },
-                {
-                })
+            { position, payload ->
+                adapter().notifyItemChanged(position, payload)
+            },
+            {
+            })
     }
 
     open fun itemClicked(view: View, item: T, position: Int) {

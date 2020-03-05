@@ -95,13 +95,4 @@ class ViewHolder(val context: Context, parent: ViewGroup, @LayoutRes layoutId: I
         }
         return this
     }
-
-    fun setLongClickListener(@IdRes viewId: Int, f: (View) -> Boolean): ViewHolder {
-        getView<View>(viewId).apply {
-            setOnLongClickListener {
-                f(this)
-            }
-        }
-        return this
-    }
 }

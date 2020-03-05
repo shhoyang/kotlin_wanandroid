@@ -11,7 +11,6 @@ import androidx.core.graphics.drawable.DrawableCompat
 import com.hao.easy.base.R
 import com.hao.easy.base.extensions.visibility
 import kotlinx.android.synthetic.main.toolbar.view.*
-import org.jetbrains.anko.textColor
 
 
 /**
@@ -29,7 +28,7 @@ class ToolbarLayout : FrameLayout {
     var textColor = 0x333333
         set(value) {
             field = value
-            toolbarTitle?.textColor = value
+            toolbarTitle?.setTextColor(value)
         }
 
     var iconTintColor: Int = 0x333333
@@ -68,9 +67,15 @@ class ToolbarLayout : FrameLayout {
                 showBack = getBoolean(R.styleable.ToolbarLayout_showBack, true)
                 showLine = getBoolean(R.styleable.ToolbarLayout_showLine, true)
                 textColor =
-                    getColor(R.styleable.ToolbarLayout_textColor, ContextCompat.getColor(context, R.color.text_black))
+                    getColor(
+                        R.styleable.ToolbarLayout_textColor,
+                        ContextCompat.getColor(context, R.color.text_black)
+                    )
                 iconTintColor =
-                    getColor(R.styleable.ToolbarLayout_iconTint, ContextCompat.getColor(context, R.color.text_black))
+                    getColor(
+                        R.styleable.ToolbarLayout_iconTint,
+                        ContextCompat.getColor(context, R.color.text_black)
+                    )
                 recycle()
             }
         }

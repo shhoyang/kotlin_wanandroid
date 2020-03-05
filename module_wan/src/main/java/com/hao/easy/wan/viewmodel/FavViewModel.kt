@@ -1,5 +1,6 @@
 package com.hao.easy.wan.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.main
@@ -15,6 +16,8 @@ import com.hao.easy.wan.repository.Api
  */
 class FavViewModel : BaseListViewModel<Article>() {
 
+    var deleteResult = MutableLiveData<Boolean>()
+
     override fun loadData(page: Int, onResponse: (ArrayList<Article>?) -> Unit) {
         Api.getMyFav(page - 1).main().subscribeBy({
             onResponse(it?.datas)
@@ -29,6 +32,7 @@ class FavViewModel : BaseListViewModel<Article>() {
             return
         }
         Api.cancelCollectFromFav(item.id, item.originId).io_main().subscribeBy({
+            deleteResult.value = true
             invalidate()
             Config.refresh()
         }, {

@@ -206,6 +206,6 @@ Api.getKnowledgeArticle(page - 1, typeId).io_main().subscribeBy(
 
 **项目中使用到了鸿洋的玩Android开放Api和很多开源库，在此向所有对开源做出过贡献的各位大神表示感谢，正是有你们的开源共享，我们这些菜鸟的技术才能有所提升，也是你们用最美的语言，推动了科技的进步**
 
-**Apk玩Android下载地址** [https://fir.im/wanAndroid](https://fir.im/wanAndroid)
+**Apk玩Android下载地址** [https://www.betaqr.com/wanAndroid](https://www.betaqr.com/wanAndroid)
 
 **End**

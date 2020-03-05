@@ -3,6 +3,7 @@ package com.hao.easy.base.ui
 import android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.text.TextUtils
 import androidx.core.content.ContextCompat
@@ -13,7 +14,6 @@ import com.hao.easy.base.extensions.load
 import com.hao.easy.base.extensions.visible
 import kotlinx.android.synthetic.main.activity_web_with_image.*
 import kotlinx.android.synthetic.main.include_web_progress_bar.*
-import org.jetbrains.anko.startActivity
 
 class WebWithImageActivity : WebActivity() {
 
@@ -22,11 +22,11 @@ class WebWithImageActivity : WebActivity() {
         private const val URL = "URL"
         private const val IMAGE = "IMAGE"
         fun start(context: Context, title: String, url: String, imagePath: String) {
-            context.startActivity<WebWithImageActivity>(
-                Pair(TITLE, title),
-                Pair(URL, url),
-                Pair(IMAGE, imagePath)
-            )
+            val intent = Intent(context, WebWithImageActivity::class.java)
+            intent.putExtra(TITLE, title)
+            intent.putExtra(URL, url)
+            intent.putExtra(IMAGE, imagePath)
+            context.startActivity(intent)
         }
     }
 

@@ -12,16 +12,14 @@ import kotlin.properties.Delegates
 
 class ProjectViewModel : BaseArticleViewModel() {
 
-    override fun pageSize() = 6
-
-    val typeLiveData = MutableLiveData<ArrayList<ProjectType>>()
-
+    val typeLiveData = MutableLiveData<ArrayList<ArrayList<ProjectType>>>()
     private var refresh by Delegates.observable(Config.refresh) { _, old, new ->
         if (old != new) {
             invalidate()
         }
     }
 
+    override fun pageSize() = 6
     override fun onResume() {
         super.onResume()
         refresh = Config.refresh
@@ -38,7 +36,27 @@ class ProjectViewModel : BaseArticleViewModel() {
     override fun refresh() {
         Api.getProjectType().io_main().subscribeBy({
             if (it != null && it.isNotEmpty()) {
-                typeLiveData.value = it
+                val list = ArrayList<ArrayList<ProjectType>>()
+                val size = it.size
+                if (size <= 8) {
+                    list.add(it)
+                    typeLiveData.value = list
+                } else {
+                    var start = 0
+                    var end = 0
+                    while (start < size) {
+                        if (start + 8 < size) {
+                            end += 8
+                        } else {
+                            end = size
+                        }
+                        val temp = ArrayList<ProjectType>()
+                        temp.addAll(it.subList(start, end))
+                        list.add(temp)
+                        start += 8
+                    }
+                    typeLiveData.value = list
+                }
             }
         }, {
 

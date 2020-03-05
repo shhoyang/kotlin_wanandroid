@@ -1,6 +1,7 @@
 package com.hao.easy.wan.ui.activity
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
@@ -10,7 +11,6 @@ import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.model.ProjectType
 import com.hao.easy.wan.ui.adapter.ProjectArticleAdapter
 import com.hao.easy.wan.viewmodel.ProjectArticleViewModel
-import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel>() {
@@ -21,7 +21,9 @@ class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel
     companion object {
         private const val TYPE = "TYPE"
         fun start(context: Context, projectType: ProjectType) {
-            context.startActivity<ProjectArticleActivity>(Pair(TYPE, projectType))
+            val intent = Intent(context, ProjectArticleActivity::class.java)
+            intent.putExtra(TYPE, projectType)
+            context.startActivity(intent)
         }
     }
 

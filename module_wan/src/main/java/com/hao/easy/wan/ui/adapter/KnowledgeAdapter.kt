@@ -38,12 +38,3 @@ class FlowAdapter(data: ArrayList<Knowledge>) :
         }
     }
 }
-
-fun main() {
-    test(1, c = 10)
-}
-
-fun test(a: Int, b: Int = 2, c: Int = 3, d: Int = 4) {
-
-}
-

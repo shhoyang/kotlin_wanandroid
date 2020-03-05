@@ -64,5 +64,5 @@ kapt {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':module_base')
-    kapt kaptLibs
+    kapt compilerDependencies
 }

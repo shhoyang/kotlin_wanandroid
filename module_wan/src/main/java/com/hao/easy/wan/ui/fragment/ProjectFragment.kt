@@ -1,28 +1,23 @@
 package com.hao.easy.wan.ui.fragment
 
-import android.view.MotionEvent
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.lifecycle.Observer
-import com.gcssloop.widget.PagerGridLayoutManager
-import com.gcssloop.widget.PagerGridSnapHelper
 import com.google.android.material.appbar.AppBarLayout
-import com.hao.easy.base.extensions.gone
+import com.hao.easy.base.extensions.visibility
 import com.hao.easy.base.extensions.visible
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
 import com.hao.easy.wan.di.component
 import com.hao.easy.wan.model.Article
-import com.hao.easy.wan.ui.activity.ProjectArticleActivity
 import com.hao.easy.wan.ui.adapter.ProjectArticleAdapter
-import com.hao.easy.wan.ui.adapter.ProjectTypeAdapter
+import com.hao.easy.wan.ui.adapter.ProjectTypePageAdapter
 import com.hao.easy.wan.viewmodel.ProjectViewModel
 import kotlinx.android.synthetic.main.wechat_fragment_project.*
-import org.jetbrains.anko.support.v4.dip
+import kotlinx.android.synthetic.main.wechat_fragment_project.appBarLayout
+import kotlinx.android.synthetic.main.wechat_fragment_project.baseRefreshLayout
+import kotlinx.android.synthetic.main.wechat_fragment_project.indicator
 import javax.inject.Inject
-import kotlin.math.abs
 
 /**
  * @author Yang Shihao
@@ -32,12 +27,9 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
 
     @Inject
     lateinit var adapter: ProjectArticleAdapter
-
     @Inject
-    lateinit var typeAdapter: ProjectTypeAdapter
+    lateinit var typeAdapter: ProjectTypePageAdapter
 
-    private var startX = .0F
-    private var startY = .0F
     private var enableRefresh = true
     private var appBarOffset = 0
 
@@ -50,54 +42,10 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
     override fun initView() {
         super.initView()
 
-        rvType.setOnTouchListener { _, ev ->
-            when (ev.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    startX = ev.x
-                    startY = ev.y
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    val endX = ev.x
-                    val endY = ev.y
-                    val distanceX = abs(startX - endX)
-                    val distanceY = abs(startY - endY)
-                    if (distanceX > distanceY) {
-                        baseRefreshLayout.isEnabled = false
-                    }
-                }
-                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    enableRefresh = true
-                    baseRefreshLayout.isEnabled = appBarOffset == 0 && enableRefresh
-                }
-            }
-            false
-        }
+        vpType.adapter = typeAdapter
+        indicator.setViewPager(vpType)
+        typeAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
 
-        typeAdapter.itemClickListener = { _, item, _ ->
-            this@ProjectFragment.context?.apply {
-                ProjectArticleActivity.start(this, item)
-            }
-        }
-
-        val pagerGridLayoutManager = PagerGridLayoutManager(2, 4, PagerGridLayoutManager.HORIZONTAL)
-        pagerGridLayoutManager.setPageListener(object : PagerGridLayoutManager.PageListener {
-            override fun onPageSelect(pageIndex: Int) {
-                if (pageIndex != currentPager && pageIndex < points.size) {
-                    points[pageIndex].setImageResource(R.drawable.wechat_indicator_1)
-                    points[currentPager].setImageResource(R.drawable.wechat_indicator_0)
-                    currentPager = pageIndex
-                }
-            }
-
-            override fun onPageSizeChanged(pageSize: Int) {
-            }
-        })
-
-        rvType.apply {
-            layoutManager = pagerGridLayoutManager
-            PagerGridSnapHelper().attachToRecyclerView(this)
-            adapter = typeAdapter
-        }
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
             appBarOffset = verticalOffset
             baseRefreshLayout.isEnabled = appBarOffset == 0 && enableRefresh
@@ -109,7 +57,7 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
         viewModel.typeLiveData.observe(this, Observer {
             typeAdapter.setData(it!!)
             line.visible()
-            createPoints(it.size)
+            indicator.visibility(it.size > 1)
         })
         lifecycle.addObserver(viewModel)
     }
@@ -125,39 +73,9 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
             }
             R.id.ivFav -> viewModel.collect(item, position)
             else -> context?.apply {
-                //                WebWithImageActivity.start(this, item.title, item.link, item.envelopePic)
+//                WebWithImageActivity.start(this, item.title, item.link, item.envelopePic)
                 WebActivity.start(this, item.title, item.link)
             }
         }
-    }
-
-    private val points = ArrayList<ImageView>()
-
-    private var currentPager = 0
-
-    private fun createPoints(itemSize: Int) {
-        if (itemSize < 9) {
-            llPoint.gone()
-            return
-        }
-        val count = if (itemSize % 8 == 0) itemSize / 8 else itemSize / 8 + 1
-        points.clear()
-        llPoint.removeAllViews()
-        currentPager = 0
-        val layoutParams = LinearLayout.LayoutParams(dip(8), dip(8))
-        layoutParams.leftMargin = dip(4)
-        layoutParams.rightMargin = dip(4)
-        for (i in 0 until count) {
-            val imageView = ImageView(this@ProjectFragment.context)
-            imageView.layoutParams = layoutParams
-            if (i == 0) {
-                imageView.setImageResource(R.drawable.wechat_indicator_1)
-            } else {
-                imageView.setImageResource(R.drawable.wechat_indicator_0)
-            }
-            points.add(imageView)
-            llPoint.addView(imageView)
-        }
-        llPoint.visible()
     }
 }
