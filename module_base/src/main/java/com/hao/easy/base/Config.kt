@@ -29,21 +29,21 @@ object Config {
         var token: String? = null
         val cookies = App.instance.appComponent.cookies()
         cookies.forEach {
-            if (it.name() == KEY_USERNAME) {
-                val value = it.value()
+            if (it.name == KEY_USERNAME) {
+                val value = it.value
                 if ("\"\"" != value) {
                     username = value
                 }
 
-            } else if (it.name() == KEY_TOKEN) {
-                val value = it.value()
+            } else if (it.name == KEY_TOKEN) {
+                val value = it.value
                 if ("\"\"" != value) {
                     token = value
                 }
             }
         }
 
-        if ((null != username) and (null != token)) {
+        if (null != username && null != token) {
             val user = UserDb.instance().userDao().queryUser(username!!)
             if (null != user) {
                 this.user = user
@@ -67,7 +67,7 @@ object Config {
         isLogin = false
         refresh()
         App.instance.appComponent.apply {
-            okHttpClient().dispatcher().cancelAll()
+            okHttpClient().dispatcher.cancelAll()
             persistentCookieJar().clear()
         }
     }

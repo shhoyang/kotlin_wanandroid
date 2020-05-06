@@ -1,7 +1,7 @@
 package com.hao.easy.base.ui
 
 import android.view.View
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hao.easy.base.R
@@ -23,7 +23,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
     val viewModel: VM by lazy {
         val parameterizedType = javaClass.genericSuperclass as ParameterizedType
         val cla = parameterizedType.actualTypeArguments[1] as Class<VM>
-        ViewModelProviders.of(this).get(cla)
+        ViewModelProvider(this).get(cla)
     }
 
     var refreshLayout: SwipeRefreshLayout? = null

@@ -2,7 +2,7 @@ package com.hao.easy.user.ui.fragment
 
 import android.text.TextUtils
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.hao.easy.base.extensions.addTextChangedListener
 import com.hao.easy.base.extensions.hideSoftInput
 import com.hao.easy.base.extensions.showError
@@ -50,7 +50,7 @@ class LoginFragment : BaseFragment() {
     }
 
     override fun initData() {
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         viewModel.loginLiveData.observe(this, Observer {
             if (it == null) {
                 Router.startMainActivity()

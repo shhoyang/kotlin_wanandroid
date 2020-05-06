@@ -4,7 +4,7 @@ import android.content.Intent
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.loadCircle
 import com.hao.easy.base.extensions.snack
@@ -57,7 +57,7 @@ class UserFragment : BaseFragment() {
     }
 
     override fun initData() {
-        viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         lifecycle.addObserver(viewModel)
         viewModel.loginLiveData.observe(this, Observer {
             setLogin(it)

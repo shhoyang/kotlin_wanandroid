@@ -27,29 +27,42 @@ class NetworkModule {
     @Provides
     @Singleton
     internal fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
-            Retrofit.Builder()
-                    .baseUrl(getBaseUrl())
-                    .client(okHttpClient)
-                    .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()))
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build()
+        Retrofit.Builder()
+            .baseUrl(getBaseUrl())
+            .client(okHttpClient)
+            .addConverterFactory(
+                GsonConverterFactory.create(
+                    GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
+                )
+            )
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
 
 
     @Provides
     @Singleton
-    internal fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor,
-                                     persistentCookieJar: PersistentCookieJar): OkHttpClient =
-            OkHttpClient.Builder()
-                    .cookieJar(persistentCookieJar)
-                    .addInterceptor(httpLoggingInterceptor)
-                    .build()
+    internal fun provideOkHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        persistentCookieJar: PersistentCookieJar
+    ): OkHttpClient =
+        OkHttpClient.Builder()
+            .cookieJar(persistentCookieJar)
+            .addInterceptor(httpLoggingInterceptor)
+            .build()
 
     @Provides
     @Singleton
-    internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
-            HttpLoggingInterceptor {
-                KLog.json("json____", it)
-            }.setLevel(HttpLoggingInterceptor.Level.BODY)
+    internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
+        val httpLoggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+            override fun log(message: String) {
+                KLog.json("json__", message)
+            }
+
+        })
+
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        return httpLoggingInterceptor
+    }
 
     @Provides
     @Singleton
@@ -61,10 +74,10 @@ class NetworkModule {
     @Provides
     @Singleton
     internal fun provideSharedPrefsCookiePersistor(): SharedPrefsCookiePersistor =
-            SharedPrefsCookiePersistor(App.instance)
+        SharedPrefsCookiePersistor(App.instance)
 
     @Provides
     @Singleton
     internal fun provideCookies(sharedPrefsCookiePersistor: SharedPrefsCookiePersistor) =
-            sharedPrefsCookiePersistor.loadAll()
+        sharedPrefsCookiePersistor.loadAll()
 }

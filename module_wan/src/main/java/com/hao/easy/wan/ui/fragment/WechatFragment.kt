@@ -2,7 +2,7 @@ package com.hao.easy.wan.ui.fragment
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -22,7 +22,7 @@ import javax.inject.Inject
 class WechatFragment : BaseFragment() {
 
     private val viewModel: WechatViewModel by lazy {
-        ViewModelProviders.of(this@WechatFragment).get(WechatViewModel::class.java)
+        ViewModelProvider(this).get(WechatViewModel::class.java)
     }
 
     private var enableRefresh = true

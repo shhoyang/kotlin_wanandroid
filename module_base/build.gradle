@@ -36,12 +36,40 @@ kapt {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api androidxDependencies
-    kapt compilerDependencies
-    commonDependencies.each { k, v ->
-        api(v) {
-            //去除第三方的重复support库
-            exclude group: 'com.android.support'
-        }
-    }
+
+    api 'androidx.appcompat:appcompat:1.1.0'
+    api 'androidx.annotation:annotation:1.1.0'
+    api 'androidx.cardview:cardview:1.0.0'
+    api 'androidx.viewpager2:viewpager2:1.0.0'
+    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+    api 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha03'
+    api 'com.google.android.material:material:1.2.0-alpha06'
+    api "androidx.room:room-runtime:$versions.room"
+    api "androidx.room:room-rxjava2:$versions.room"
+    api "androidx.paging:paging-runtime:$versions.paging"
+    api "androidx.paging:paging-rxjava2:$versions.paging"
+    api "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+    api "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+    api "androidx.lifecycle:lifecycle-reactivestreams:$versions.lifecycle"
+
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    api "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    api "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+    api 'com.squareup.okhttp3:logging-interceptor:4.6.0'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    api 'com.github.zhaokaiqiang.klog:library:1.6.0'
+    api "com.github.bumptech.glide:glide:$versions.glide"
+    api 'com.alibaba:arouter-api:1.5.0'
+    api "com.google.dagger:dagger:$versions.dagger"
+    api 'me.relex:circleindicator:2.1.4'
+    api 'com.github.1002326270xc:LayoutManager-FlowLayout:v1.7'
+
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
+    kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    kapt "android.arch.persistence.room:compiler:$versions.room"
+    kapt 'com.alibaba:arouter-compiler:1.2.2'
 }
