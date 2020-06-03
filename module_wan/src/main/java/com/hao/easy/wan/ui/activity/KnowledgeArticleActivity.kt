@@ -7,6 +7,7 @@ import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
 import com.hao.easy.wan.di.component
+import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.model.Knowledge
 import com.hao.easy.wan.ui.adapter.CommonArticleAdapter
@@ -45,12 +46,12 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
             R.id.tvLink -> {
-                val title = item.title.replace(Regex("<[^>]+>"), "")
+                val title = item.title.removeHtml()
                 WebActivity.start(this, title, item.projectLink)
             }
             R.id.ivFav -> viewModel.collect(item, position)
             else -> {
-                val title = item.title.replace(Regex("<[^>]+>"), "")
+                val title = item.title.removeHtml()
                 WebActivity.start(this, title, item.link)
             }
         }

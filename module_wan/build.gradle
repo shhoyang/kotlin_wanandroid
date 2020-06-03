@@ -58,10 +58,5 @@ kapt {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':module_base')
-
-    kapt "com.github.bumptech.glide:compiler:$versions.glide"
-    kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
-    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
-    kapt "android.arch.persistence.room:compiler:$versions.room"
-    kapt 'com.alibaba:arouter-compiler:1.2.2'
+    kapt compilerDependencies
 }

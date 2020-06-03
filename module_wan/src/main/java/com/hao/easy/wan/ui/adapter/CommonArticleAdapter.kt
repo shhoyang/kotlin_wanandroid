@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.hao.easy.base.adapter.BasePagedAdapter
 import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.wan.R
+import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
 import javax.inject.Inject
 
@@ -23,7 +24,7 @@ class CommonArticleAdapter @Inject constructor() :
             }
         }
 
-        val title = item.title.replace(Regex("<[^>]+>"), "")
+        val title = item.title.removeHtml()
         holder.setText(R.id.tvTitle, title)
             .setText(R.id.tvTime, item.niceDate)
             .setImageResource(

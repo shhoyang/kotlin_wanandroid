@@ -5,7 +5,9 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.ProgressBar
+import com.socks.library.KLog
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebSettings
 import com.tencent.smtt.sdk.WebView
@@ -31,11 +33,25 @@ class ProgressWebView : WebView {
     private fun init() {
         webViewClient = client
         webChromeClient = chromeClient
-        settings.allowFileAccess = true
-        settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+
         settings.setSupportZoom(true)
         settings.setSupportMultipleWindows(true)
         settings.setAppCacheEnabled(true)
+        settings.setGeolocationEnabled(true)
+        settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        settings.allowFileAccess = true
+        settings.javaScriptEnabled = true
+        settings.allowContentAccess = true
+        settings.databaseEnabled = true
+        settings.domStorageEnabled = true
+        settings.savePassword = true
+        settings.saveFormData = true
+        settings.useWideViewPort = true
+        settings.loadWithOverviewMode = true
+        settings.builtInZoomControls = true
+        settings.loadsImagesAutomatically = true
+        settings.displayZoomControls = false
+        settings.defaultTextEncodingName = "utf-8"
     }
 
     private val client = object : WebViewClient() {
