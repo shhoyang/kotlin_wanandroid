@@ -1,5 +1,7 @@
 package com.hao.easy.base.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +28,6 @@ abstract class BaseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initInject()
         initView()
         initData()
     }
@@ -39,15 +40,17 @@ abstract class BaseFragment : Fragment() {
     @LayoutRes
     abstract fun getLayoutId(): Int
 
-    open fun initInject() {
-
-    }
-
     open fun initView() {
 
     }
 
     open fun initData() {
 
+    }
+
+    fun startActivity(cla: Class<out Activity>) {
+        if (null != activity) {
+            startActivity(Intent(activity, cla))
+        }
     }
 }

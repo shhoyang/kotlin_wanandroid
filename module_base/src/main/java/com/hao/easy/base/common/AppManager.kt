@@ -31,6 +31,14 @@ class AppManager private constructor() {
         process { it.javaClass == cls }
     }
 
+    fun getLastActivity() :Activity?{
+        return if(list.isEmpty()){
+            null
+        }else {
+            list.last()
+        }
+    }
+
     fun exit() {
         process { true }
         android.os.Process.killProcess(android.os.Process.myPid())

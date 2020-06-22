@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">玩Android</string>
+    <string name="link_github"><u>项目链接</u></string>
 </resources>

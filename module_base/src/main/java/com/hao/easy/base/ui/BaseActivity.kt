@@ -1,5 +1,7 @@
 package com.hao.easy.base.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -41,7 +43,7 @@ abstract class BaseActivity : AppCompatActivity() {
         when {
             getLayoutId() == 0 -> setContentView()
 
-            !showToolbar()-> setContentView(getLayoutId())
+            !showToolbar() -> setContentView(getLayoutId())
             transparentStatusBar() -> setContentView(getLayoutId())
 
             else -> {
@@ -55,7 +57,6 @@ abstract class BaseActivity : AppCompatActivity() {
                 onBackPressed()
             }
         }
-        initInject()
         initView()
         initData()
     }
@@ -121,9 +122,6 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun setContentView() {
     }
 
-    open fun initInject() {
-    }
-
     open fun initView() {
     }
 
@@ -136,5 +134,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun <T : View> f(id: Int): T? {
         return findViewById(id)
+    }
+
+    fun startActivity(cla: Class<out Activity>) {
+        startActivity(Intent(this, cla))
     }
 }

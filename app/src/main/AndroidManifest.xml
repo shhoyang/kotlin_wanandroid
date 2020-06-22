@@ -2,7 +2,7 @@
         package="com.hao.easy">
 
     <application
-            android:name=".base.App"
+            android:name=".App"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -20,9 +20,39 @@
                     android:resource="@xml/file_paths" />
         </provider>
         <activity
-                android:name=".activity.MainActivity"
+                android:name=".ui.activity.MainActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/WanStatusBarTransparentTheme" />
+
+        <activity
+                android:name=".ui.activity.ProjectArticleActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.activity.FavActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.activity.KnowledgeActivity"
+                android:screenOrientation="portrait" />
+        <activity
+                android:name=".ui.activity.KnowledgeArticleActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.activity.WelcomeActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/WelcomeTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".ui.activity.LoginActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/LoginTheme"/>
+        <activity android:name=".ui.activity.AboutActivity"
+                android:screenOrientation="portrait"/>
 
     </application>
 </manifest>
