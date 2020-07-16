@@ -1,5 +1,6 @@
 package com.hao.easy.ui.adapter
 
+import androidx.recyclerview.widget.RecyclerView
 import com.hao.easy.base.adapter.BaseNormalAdapter
 import com.hao.easy.base.adapter.BasePagedAdapter
 import com.hao.easy.base.adapter.ViewHolder
@@ -19,10 +20,13 @@ import kotlin.random.Random
  */
 class KnowledgeAdapter @Inject constructor() : BasePagedAdapter<Knowledge>(R.layout.wechat_item_knowledge_group) {
 
+    private val recycledViewPool = RecyclerView.RecycledViewPool()
+
     override fun bindViewHolder(holder: ViewHolder, item: Knowledge, position: Int) {
         holder.setText(R.id.tvGroupName, item.name)
         val flowAdapter = FlowAdapter(item.children)
         val flowLayout = holder.getView<NestedRecyclerView>(R.id.flowLayout)
+        flowLayout.setRecycledViewPool(recycledViewPool)
         flowLayout.init(flowAdapter, FlowLayoutManager())
     }
 }

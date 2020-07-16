@@ -1,6 +1,5 @@
 package com.hao.easy.ui.activity
 
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.model.Knowledge
 import com.hao.easy.ui.adapter.KnowledgeAdapter
