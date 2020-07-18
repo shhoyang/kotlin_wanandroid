@@ -18,7 +18,9 @@ import kotlinx.android.synthetic.main.user_fragment_register.*
  */
 class RegisterFragment : BaseFragment() {
 
-    private lateinit var viewModel: RegisterViewModel
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(RegisterViewModel::class.java)
+    }
 
     override fun getLayoutId() = R.layout.user_fragment_register
 
@@ -56,7 +58,6 @@ class RegisterFragment : BaseFragment() {
     }
 
     override fun initData() {
-        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
         viewModel.registerLiveData.observe(this, Observer {
             if (it == null) {
                 fragmentManager?.popBackStack()

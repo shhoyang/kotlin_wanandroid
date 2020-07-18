@@ -4,7 +4,7 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.GsonBuilder
-import com.hao.easy.base.App
+import com.hao.easy.base.BaseApplication
 import com.socks.library.KLog
 import dagger.Module
 import dagger.Provides
@@ -74,7 +74,7 @@ class NetworkModule {
     @Provides
     @Singleton
     internal fun provideSharedPrefsCookiePersistor(): SharedPrefsCookiePersistor =
-        SharedPrefsCookiePersistor(App.instance)
+        SharedPrefsCookiePersistor(BaseApplication.instance)
 
     @Provides
     @Singleton

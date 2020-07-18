@@ -1,6 +1,6 @@
 package com.hao.easy.user.repository
 
-import com.hao.easy.base.App
+import com.hao.easy.base.BaseApplication
 import com.hao.easy.base.model.HttpResult
 import com.hao.easy.base.user.User
 import io.reactivex.Observable
@@ -14,7 +14,7 @@ import retrofit2.http.POST
  * @date 2018/11/19
  */
 
-object Api : Service by App.instance.appComponent.retrofit().create(Service::class.java)
+object Api : Service by BaseApplication.instance.appComponent.retrofit().create(Service::class.java)
 
 interface Service {
 

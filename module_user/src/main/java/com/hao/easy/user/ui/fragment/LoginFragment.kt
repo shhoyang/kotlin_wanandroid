@@ -20,7 +20,9 @@ import kotlinx.android.synthetic.main.user_fragment_login.*
  */
 class LoginFragment : BaseFragment() {
 
-    private lateinit var viewModel: LoginViewModel
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(LoginViewModel::class.java)
+    }
 
     override fun getLayoutId() = R.layout.user_fragment_login
 
@@ -50,7 +52,6 @@ class LoginFragment : BaseFragment() {
     }
 
     override fun initData() {
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         viewModel.loginLiveData.observe(this, Observer {
             if (it == null) {
                 Router.startMainActivity()

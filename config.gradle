@@ -18,7 +18,7 @@ ext {
 
             retrofit   : '2.9.0',
             glide      : '4.11.0',
-            dagger     : '2.28'
+            dagger     : '2.28.3'
     ]
 
     compiler = [

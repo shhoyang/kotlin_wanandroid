@@ -2,7 +2,9 @@ package com.hao.easy.base
 
 import com.hao.easy.base.user.User
 import com.hao.easy.base.user.UserDb
-import kotlin.concurrent.thread
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 object Config {
 
@@ -27,7 +29,7 @@ object Config {
     fun init() {
         var username: String? = null
         var token: String? = null
-        val cookies = App.instance.appComponent.cookies()
+        val cookies = BaseApplication.instance.appComponent.cookies()
         cookies.forEach {
             if (it.name == KEY_USERNAME) {
                 val value = it.value
@@ -56,17 +58,17 @@ object Config {
         this.user = user
         isLogin = true
         refresh()
-        thread { UserDb.instance().userDao().insert(user) }
+        GlobalScope.launch(Dispatchers.IO) { UserDb.instance().userDao().insert(user) }
     }
 
     fun logout() {
         user?.apply {
-            thread { UserDb.instance().userDao().delete(this) }
+            GlobalScope.launch(Dispatchers.IO) { UserDb.instance().userDao().delete(this@apply) }
         }
         user = null
         isLogin = false
         refresh()
-        App.instance.appComponent.apply {
+        BaseApplication.instance.appComponent.apply {
             okHttpClient().dispatcher.cancelAll()
             persistentCookieJar().clear()
         }
