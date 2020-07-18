@@ -9,9 +9,8 @@ import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.wan.R
 import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
-import javax.inject.Inject
 
-class CommonArticleAdapter @Inject constructor() :
+class CommonArticleAdapter :
     BasePagedAdapter<Article>(R.layout.wechat_item_common_article, ArticleDiff()) {
 
     var showAuthor = true

@@ -8,13 +8,12 @@ import com.hao.easy.base.extensions.init
 import com.hao.easy.wan.R
 import com.hao.easy.wan.model.ProjectType
 import com.hao.easy.wan.ui.activity.ProjectArticleActivity
-import javax.inject.Inject
 
 /**
  * @author Yang Shihao
  * @date 2018/12/2
  */
-class ProjectTypePageAdapter @Inject constructor() :
+class ProjectTypePageAdapter :
     BaseNormalAdapter<ArrayList<ProjectType>>(R.layout.wechat_item_project_type_page) {
 
     override fun bindViewHolder(holder: ViewHolder, item: ArrayList<ProjectType>, position: Int) {

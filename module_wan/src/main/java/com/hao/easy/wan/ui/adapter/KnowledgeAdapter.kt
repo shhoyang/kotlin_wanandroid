@@ -10,14 +10,13 @@ import com.hao.easy.wan.model.Knowledge
 import com.hao.easy.wan.ui.activity.KnowledgeArticleActivity
 import com.library.flowlayout.FlowLayoutManager
 import com.library.flowlayout.NestedRecyclerView
-import javax.inject.Inject
 import kotlin.random.Random
 
 /**
  * @author Yang Shihao
  * @date 2018/12/3
  */
-class KnowledgeAdapter @Inject constructor() : BasePagedAdapter<Knowledge>(R.layout.wechat_item_knowledge_group) {
+class KnowledgeAdapter : BasePagedAdapter<Knowledge>(R.layout.wechat_item_knowledge_group) {
 
     override fun bindViewHolder(holder: ViewHolder, item: Knowledge, position: Int) {
         holder.setText(R.id.tvGroupName, item.name)
@@ -34,7 +33,7 @@ class FlowAdapter(data: ArrayList<Knowledge>) :
         holder.setText(R.id.tvChildName, item.name)
             .setImageResource(R.id.ivIcon, Icon.icons[Random.nextInt(Icon.icons.size)])
             .itemView.setOnClickListener {
-            KnowledgeArticleActivity.start(context, item)
-        }
+                KnowledgeArticleActivity.start(context, item)
+            }
     }
 }

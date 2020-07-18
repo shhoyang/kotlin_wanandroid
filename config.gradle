@@ -24,7 +24,6 @@ ext {
     compiler = [
             'glideCompiler'    : "com.github.bumptech.glide:compiler:$versions.glide",
             'lifecycleCompiler': "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
-            'daggerCompiler'   : "com.google.dagger:dagger-compiler:$versions.dagger",
             'roomCompiler'     : "android.arch.persistence.room:compiler:$versions.room",
             'arouterCompiler'  : 'com.alibaba:arouter-compiler:1.2.2'
     ]

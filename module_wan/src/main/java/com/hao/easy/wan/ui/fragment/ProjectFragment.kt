@@ -8,7 +8,6 @@ import com.hao.easy.base.extensions.visible
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.ui.adapter.ProjectArticleAdapter
 import com.hao.easy.wan.ui.adapter.ProjectTypePageAdapter
@@ -17,7 +16,6 @@ import kotlinx.android.synthetic.main.wechat_fragment_project.*
 import kotlinx.android.synthetic.main.wechat_fragment_project.appBarLayout
 import kotlinx.android.synthetic.main.wechat_fragment_project.baseRefreshLayout
 import kotlinx.android.synthetic.main.wechat_fragment_project.indicator
-import javax.inject.Inject
 
 /**
  * @author Yang Shihao
@@ -25,23 +23,16 @@ import javax.inject.Inject
  */
 class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
 
-    @Inject
-    lateinit var adapter: ProjectArticleAdapter
-    @Inject
-    lateinit var typeAdapter: ProjectTypePageAdapter
+    private lateinit var typeAdapter: ProjectTypePageAdapter
 
     private var enableRefresh = true
     private var appBarOffset = 0
 
     override fun getLayoutId() = R.layout.wechat_fragment_project
 
-    override fun initInject() {
-        component().inject(this)
-    }
-
     override fun initView() {
         super.initView()
-
+        typeAdapter = ProjectTypePageAdapter()
         vpType.adapter = typeAdapter
         indicator.setViewPager(vpType)
         typeAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
@@ -62,7 +53,7 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
         lifecycle.addObserver(viewModel)
     }
 
-    override fun adapter() = adapter
+    override fun adapter() = ProjectArticleAdapter()
 
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {

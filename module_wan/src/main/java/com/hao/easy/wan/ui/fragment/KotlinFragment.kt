@@ -4,12 +4,10 @@ import android.view.View
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.ui.adapter.CommonArticleAdapter
 import com.hao.easy.wan.viewmodel.KotlinViewModel
-import javax.inject.Inject
 
 /**
  * @author Yang Shihao
@@ -17,16 +15,9 @@ import javax.inject.Inject
  */
 open class KotlinFragment : BaseListFragment<Article, KotlinViewModel>() {
 
-    @Inject
-    lateinit var adapter: CommonArticleAdapter
-
     override fun getLayoutId() = R.layout.wechat_fragment_kotlin
 
-    override fun adapter() = adapter
-
-    override fun initInject() {
-        component().inject(this)
-    }
+    override fun adapter() = CommonArticleAdapter()
 
     override fun initData() {
         super.initData()

@@ -17,14 +17,15 @@ import com.hao.easy.user.ui.activity.LoginActivity
 import com.hao.easy.user.viewmodel.UserViewModel
 import kotlinx.android.synthetic.main.user_fragment_user.*
 
-
 /**
  * @author Yang Shihao
  * @date 2018/11/28
  */
 class UserFragment : BaseFragment() {
 
-    private lateinit var viewModel: UserViewModel
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(UserViewModel::class.java)
+    }
 
     private lateinit var tvUsername: TextView
 
@@ -57,7 +58,6 @@ class UserFragment : BaseFragment() {
     }
 
     override fun initData() {
-        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         lifecycle.addObserver(viewModel)
         viewModel.loginLiveData.observe(this, Observer {
             setLogin(it)

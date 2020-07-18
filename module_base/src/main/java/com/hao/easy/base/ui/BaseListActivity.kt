@@ -31,13 +31,15 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
 
     private lateinit var recyclerView: RecyclerView
 
+    private lateinit var adapter: BasePagedAdapter<T>
+
     override fun getLayoutId() = R.layout.activity_base_list
 
     override fun initView() {
         refreshLayout = f(R.id.baseRefreshLayout)
         recyclerView = f(R.id.baseRecyclerView)!!
         emptyView = f(R.id.baseEmptyView)
-        val adapter = adapter()
+        adapter = adapter()
         adapter.itemClickListener = { view, item, position ->
             itemClicked(view, item, position)
         }
@@ -49,13 +51,13 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
 
     override fun initData() {
         viewModel.observeDataObserver(this,
-            { adapter().submitList(it) },
+            { adapter.submitList(it) },
             { refreshFinished(it) },
             { loadMoreFinished(it) })
 
         viewModel.observeAdapterObserver(this,
             { position, payload ->
-                adapter().notifyItemChanged(position, payload)
+                adapter.notifyItemChanged(position, payload)
             },
             {
             })

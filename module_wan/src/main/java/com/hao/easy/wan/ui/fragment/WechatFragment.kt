@@ -9,11 +9,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.hao.easy.base.adapter.FragmentAdapter
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.ui.adapter.BannerAdapter
 import com.hao.easy.wan.viewmodel.WechatViewModel
 import kotlinx.android.synthetic.main.wechat_fragment_wechat.*
-import javax.inject.Inject
 
 /**
  * @author Yang Shihao
@@ -33,12 +31,7 @@ class WechatFragment : BaseFragment() {
     private var fragmentCount = 0
     private var currentIndex = -1
 
-    @Inject
-    lateinit var bannerAdapter: BannerAdapter
-
-    override fun initInject() {
-        component().inject(this)
-    }
+    private lateinit var bannerAdapter: BannerAdapter
 
     override fun getLayoutId() = R.layout.wechat_fragment_wechat
 
@@ -74,7 +67,7 @@ class WechatFragment : BaseFragment() {
             }
         })
 
-
+        bannerAdapter = BannerAdapter()
         banner.adapter = bannerAdapter
         indicator.setViewPager(banner)
         bannerAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)

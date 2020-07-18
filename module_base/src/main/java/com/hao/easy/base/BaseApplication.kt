@@ -1,0 +1,21 @@
+package com.hao.easy.base
+
+import android.app.Application
+import com.hao.easy.base.extensions.notNullSingleValue
+
+/**
+ * @author Yang Shihao
+ * @date 2018/11/18
+ */
+
+open class BaseApplication : Application() {
+
+    companion object {
+        var instance by notNullSingleValue<BaseApplication>()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+    }
+}

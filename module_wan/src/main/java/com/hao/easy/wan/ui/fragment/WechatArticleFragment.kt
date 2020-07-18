@@ -6,12 +6,10 @@ import com.hao.easy.base.common.RefreshResult
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.ui.adapter.CommonArticleAdapter
 import com.hao.easy.wan.viewmodel.WechatArticleViewModel
-import javax.inject.Inject
 
 /**
  * @author Yang Shihao
@@ -31,19 +29,7 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
         }
     }
 
-    @Inject
-    lateinit var adapter: CommonArticleAdapter
-
     override fun getLayoutId() = R.layout.activity_base_list
-
-    override fun initInject() {
-        component().inject(this)
-    }
-
-    override fun initView() {
-        adapter.showAuthor = false
-        super.initView()
-    }
 
     override fun initData() {
         arguments?.apply {
@@ -53,7 +39,11 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
         lifecycle.addObserver(viewModel)
     }
 
-    override fun adapter() = adapter
+    override fun adapter(): CommonArticleAdapter {
+        val adapter = CommonArticleAdapter()
+        adapter.showAuthor = false
+        return adapter
+    }
 
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {

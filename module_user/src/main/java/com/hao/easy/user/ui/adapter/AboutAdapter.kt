@@ -7,9 +7,9 @@ import com.hao.easy.base.adapter.BaseNormalAdapter
 import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.user.R
 import com.hao.easy.user.model.Menu
-import javax.inject.Inject
 
-class AboutAdapter @Inject constructor() : BaseNormalAdapter<Menu>(R.layout.user_item_about) {
+class AboutAdapter constructor(data: ArrayList<Menu>) :
+    BaseNormalAdapter<Menu>(R.layout.user_item_about, data) {
 
     override fun bindViewHolder(holder: ViewHolder, item: Menu, position: Int) {
         holder.setText(R.id.tvTitle, item.title)
