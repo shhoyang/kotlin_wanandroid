@@ -2,7 +2,9 @@ package com.hao.easy
 
 import com.hao.easy.user.User
 import com.hao.easy.user.UserDb
-import kotlin.concurrent.thread
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 object Config {
 
@@ -56,12 +58,16 @@ object Config {
         this.user = user
         isLogin = true
         refresh()
-        thread { UserDb.instance().userDao().insert(user) }
+        GlobalScope.launch(Dispatchers.IO) {
+            UserDb.instance().userDao().insert(user)
+        }
     }
 
     fun logout() {
         user?.apply {
-            thread { UserDb.instance().userDao().delete(this) }
+            GlobalScope.launch(Dispatchers.IO) {
+                UserDb.instance().userDao().delete(this@apply)
+            }
         }
         user = null
         isLogin = false
