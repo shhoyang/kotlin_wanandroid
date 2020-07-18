@@ -14,10 +14,12 @@ import com.hao.easy.wan.ui.fragment.FlutterFragment
 import com.hao.easy.wan.ui.fragment.KotlinFragment
 import com.hao.easy.wan.ui.fragment.ProjectFragment
 import com.hao.easy.wan.ui.fragment.WechatFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.app_activity_main.*
 import kotlin.properties.Delegates
 
 @Route(path = "/app/MainActivity")
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
     private var drawerOpened: Boolean = false

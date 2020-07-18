@@ -6,13 +6,14 @@ import android.view.View
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.model.ProjectType
 import com.hao.easy.wan.ui.adapter.ProjectArticleAdapter
 import com.hao.easy.wan.viewmodel.ProjectArticleViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel>() {
 
     @Inject
@@ -25,10 +26,6 @@ class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel
             intent.putExtra(TYPE, projectType)
             context.startActivity(intent)
         }
-    }
-
-    override fun initInject() {
-        component().inject(this)
     }
 
     override fun initData() {

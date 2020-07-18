@@ -4,17 +4,18 @@ import android.view.View
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.ui.adapter.CommonArticleAdapter
 import com.hao.easy.wan.viewmodel.FlutterViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 /**
  * @author Yang Shihao
  * @date 2018/11/18
  */
+@AndroidEntryPoint
 class FlutterFragment : BaseListFragment<Article, FlutterViewModel>() {
 
     @Inject
@@ -23,10 +24,6 @@ class FlutterFragment : BaseListFragment<Article, FlutterViewModel>() {
     override fun getLayoutId() = R.layout.wechat_fragment_flutter
 
     override fun adapter() = adapter
-
-    override fun initInject() {
-        component().inject(this)
-    }
 
     override fun initData() {
         super.initData()

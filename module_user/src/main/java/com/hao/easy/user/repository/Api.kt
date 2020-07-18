@@ -14,7 +14,7 @@ import retrofit2.http.POST
  * @date 2018/11/19
  */
 
-object Api : Service by BaseApplication.instance.appComponent.retrofit().create(Service::class.java)
+object Api : Service by BaseApplication.instance.httpManager.retrofit.create(Service::class.java)
 
 interface Service {
 

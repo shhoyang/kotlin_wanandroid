@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.hujiang.android-aspectjx'
 
 android {
     compileSdkVersion versions.compileSdk
@@ -54,6 +56,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -83,10 +89,7 @@ dependencies {
         implementation project(':module_user')
         implementation project(':module_wan')
     }
+    implementation "com.google.dagger:hilt-android:$versions.hilt"
 
-    kapt "com.github.bumptech.glide:compiler:$versions.glide"
-    kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
-    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
-    kapt "android.arch.persistence.room:compiler:$versions.room"
-    kapt 'com.alibaba:arouter-compiler:1.2.2'
+    kapt compilerDependencies
 }

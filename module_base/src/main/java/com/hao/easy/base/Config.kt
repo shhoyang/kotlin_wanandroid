@@ -29,7 +29,7 @@ object Config {
     fun init() {
         var username: String? = null
         var token: String? = null
-        val cookies = BaseApplication.instance.appComponent.cookies()
+        val cookies = BaseApplication.instance.httpManager.getCookies()
         cookies.forEach {
             if (it.name == KEY_USERNAME) {
                 val value = it.value
@@ -68,10 +68,7 @@ object Config {
         user = null
         isLogin = false
         refresh()
-        BaseApplication.instance.appComponent.apply {
-            okHttpClient().dispatcher.cancelAll()
-            persistentCookieJar().clear()
-        }
+        BaseApplication.instance.httpManager.cancelAllRequest()
     }
 
     fun refresh() {

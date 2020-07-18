@@ -6,7 +6,6 @@ import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.base.viewmodel.BaseListViewModel
-import com.hao.easy.wan.Router
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.repository.Api
 
@@ -27,10 +26,6 @@ class FavViewModel : BaseListViewModel<Article>() {
     }
 
     fun cancelCollect(item: Article, position: Int) {
-        if (!Config.isLogin) {
-            Router.startLogin()
-            return
-        }
         Api.cancelCollectFromFav(item.id, item.originId).io_main().subscribeBy({
             deleteResult.value = true
             invalidate()

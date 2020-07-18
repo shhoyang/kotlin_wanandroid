@@ -2,12 +2,13 @@ package com.hao.easy.wan.ui.activity
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.hao.easy.base.ui.BaseListActivity
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.model.Knowledge
 import com.hao.easy.wan.ui.adapter.KnowledgeAdapter
 import com.hao.easy.wan.viewmodel.KnowledgeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 @Route(path = "/wechat/KnowledgeActivity")
 class KnowledgeActivity : BaseListActivity<Knowledge,KnowledgeViewModel>() {
 
@@ -19,9 +20,5 @@ class KnowledgeActivity : BaseListActivity<Knowledge,KnowledgeViewModel>() {
     override fun initView() {
         title = "知识体系"
         super.initView()
-    }
-
-    override fun initInject() {
-        component().inject(this)
     }
 }

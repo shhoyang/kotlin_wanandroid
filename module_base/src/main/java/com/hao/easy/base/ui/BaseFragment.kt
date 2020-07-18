@@ -26,7 +26,6 @@ abstract class BaseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initInject()
         initView()
         initData()
     }
@@ -38,10 +37,6 @@ abstract class BaseFragment : Fragment() {
 
     @LayoutRes
     abstract fun getLayoutId(): Int
-
-    open fun initInject() {
-
-    }
 
     open fun initView() {
 

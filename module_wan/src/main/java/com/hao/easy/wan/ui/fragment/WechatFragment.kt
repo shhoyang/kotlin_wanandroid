@@ -9,9 +9,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.hao.easy.base.adapter.FragmentAdapter
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.ui.adapter.BannerAdapter
 import com.hao.easy.wan.viewmodel.WechatViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.wechat_fragment_wechat.*
 import javax.inject.Inject
 
@@ -19,6 +19,7 @@ import javax.inject.Inject
  * @author Yang Shihao
  * @date 2018/11/18
  */
+@AndroidEntryPoint
 class WechatFragment : BaseFragment() {
 
     private val viewModel: WechatViewModel by lazy {
@@ -35,10 +36,6 @@ class WechatFragment : BaseFragment() {
 
     @Inject
     lateinit var bannerAdapter: BannerAdapter
-
-    override fun initInject() {
-        component().inject(this)
-    }
 
     override fun getLayoutId() = R.layout.wechat_fragment_wechat
 

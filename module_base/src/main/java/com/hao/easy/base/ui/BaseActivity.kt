@@ -55,7 +55,6 @@ abstract class BaseActivity : AppCompatActivity() {
                 onBackPressed()
             }
         }
-        initInject()
         initView()
         initData()
     }
@@ -119,9 +118,6 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun getLayoutId(): Int
 
     open fun setContentView() {
-    }
-
-    open fun initInject() {
     }
 
     open fun initView() {

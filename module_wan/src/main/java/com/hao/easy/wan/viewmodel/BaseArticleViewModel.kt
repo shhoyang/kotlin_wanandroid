@@ -1,20 +1,16 @@
 package com.hao.easy.wan.viewmodel
 
-import com.hao.easy.base.Config
+import com.hao.easy.base.aop.CheckLogin
 import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.base.viewmodel.BaseListViewModel
-import com.hao.easy.wan.Router
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.repository.Api
 
 abstract class BaseArticleViewModel : BaseListViewModel<Article>() {
 
+    @CheckLogin
     fun collect(item: Article, position: Int) {
-        if (!Config.isLogin) {
-            Router.startLogin()
-            return
-        }
         if (item.collect) {
             doCancelCollect(item, position)
         } else {

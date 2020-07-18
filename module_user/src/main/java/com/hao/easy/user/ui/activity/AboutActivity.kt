@@ -11,13 +11,13 @@ import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.user.R
-import com.hao.easy.user.di.component
 import com.hao.easy.user.model.Menu
 import com.hao.easy.user.ui.adapter.AboutAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.user_activity_about.*
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class AboutActivity : BaseActivity() {
 
     companion object {
@@ -25,7 +25,7 @@ class AboutActivity : BaseActivity() {
         const val HOME = "https://haoshiy.github.io"
         const val ANDROID_PROJECT_LINK = "https://github.com/haoshiy/kotlin_wanandroid"
         const val WECHAT_PROJECT_LINK = "https://github.com/haoshiy/wechat_wanandroid"
-        const val DOWNLOAD_LINK = "https://fir.im/wanAndroid"
+        const val DOWNLOAD_LINK = "http://fir.highstreet.top/kandroid"
         const val THANKS = "https://wanandroid.com/blog/show/2"
     }
 
@@ -33,10 +33,6 @@ class AboutActivity : BaseActivity() {
     lateinit var adapter: AboutAdapter
 
     override fun getLayoutId() = R.layout.user_activity_about
-
-    override fun initInject() {
-        component().inject(this)
-    }
 
     override fun initView() {
         title = "關於項目"

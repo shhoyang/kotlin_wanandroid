@@ -6,17 +6,18 @@ import com.hao.easy.base.common.RefreshResult
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.ui.adapter.CommonArticleAdapter
 import com.hao.easy.wan.viewmodel.WechatArticleViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 /**
  * @author Yang Shihao
  * @date 2018/11/18
  */
+@AndroidEntryPoint
 class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>() {
 
     companion object {
@@ -35,10 +36,6 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
     lateinit var adapter: CommonArticleAdapter
 
     override fun getLayoutId() = R.layout.activity_base_list
-
-    override fun initInject() {
-        component().inject(this)
-    }
 
     override fun initView() {
         adapter.showAuthor = false

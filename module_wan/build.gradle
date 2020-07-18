@@ -6,6 +6,8 @@ if (isModule) {
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'com.hujiang.android-aspectjx'
 
 android {
 
@@ -58,5 +60,6 @@ kapt {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':module_base')
+    implementation "com.google.dagger:hilt-android:$versions.hilt"
     kapt compilerDependencies
 }

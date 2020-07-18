@@ -8,11 +8,11 @@ import com.hao.easy.base.extensions.visible
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.ui.adapter.ProjectArticleAdapter
 import com.hao.easy.wan.ui.adapter.ProjectTypePageAdapter
 import com.hao.easy.wan.viewmodel.ProjectViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.wechat_fragment_project.*
 import kotlinx.android.synthetic.main.wechat_fragment_project.appBarLayout
 import kotlinx.android.synthetic.main.wechat_fragment_project.baseRefreshLayout
@@ -23,6 +23,7 @@ import javax.inject.Inject
  * @author Yang Shihao
  * @date 2018/11/18
  */
+@AndroidEntryPoint
 class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
 
     @Inject
@@ -34,10 +35,6 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
     private var appBarOffset = 0
 
     override fun getLayoutId() = R.layout.wechat_fragment_project
-
-    override fun initInject() {
-        component().inject(this)
-    }
 
     override fun initView() {
         super.initView()

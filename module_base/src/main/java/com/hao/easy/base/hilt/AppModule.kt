@@ -1,13 +1,16 @@
-package com.hao.easy.base.di.module
+package com.hao.easy.base.hilt
 
+import android.content.Context
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.GsonBuilder
-import com.hao.easy.base.BaseApplication
 import com.socks.library.KLog
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -19,8 +22,9 @@ import javax.inject.Singleton
  * @author Yang Shihao
  * @date 2018/10/23
  */
+@InstallIn(ApplicationComponent::class)
 @Module
-class NetworkModule {
+class AppModule {
 
     private fun getBaseUrl() = "https://www.wanandroid.com"
 
@@ -70,14 +74,8 @@ class NetworkModule {
         return PersistentCookieJar(SetCookieCache(), sharedPrefsCookiePersistor)
     }
 
-
     @Provides
     @Singleton
-    internal fun provideSharedPrefsCookiePersistor(): SharedPrefsCookiePersistor =
-        SharedPrefsCookiePersistor(BaseApplication.instance)
-
-    @Provides
-    @Singleton
-    internal fun provideCookies(sharedPrefsCookiePersistor: SharedPrefsCookiePersistor) =
-        sharedPrefsCookiePersistor.loadAll()
+    internal fun provideSharedPrefsCookiePersistor(@ApplicationContext context: Context): SharedPrefsCookiePersistor =
+        SharedPrefsCookiePersistor(context)
 }

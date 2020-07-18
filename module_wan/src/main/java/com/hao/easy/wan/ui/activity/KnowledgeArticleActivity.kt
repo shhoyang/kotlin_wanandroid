@@ -6,14 +6,15 @@ import android.view.View
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.di.component
 import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.model.Knowledge
 import com.hao.easy.wan.ui.adapter.CommonArticleAdapter
 import com.hao.easy.wan.viewmodel.KnowledgeArticleViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewModel>() {
 
     @Inject
@@ -29,10 +30,6 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
     }
 
     override fun adapter() = adapter
-
-    override fun initInject() {
-        component().inject(this)
-    }
 
     override fun initData() {
         val type = intent.getParcelableExtra<Knowledge>(TYPE)
