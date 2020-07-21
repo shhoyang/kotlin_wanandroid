@@ -14,7 +14,6 @@
             android:orientation="vertical"
             android:padding="32dp">
 
-
         <ImageView
                 android:id="@+id/ivLogo"
                 android:layout_width="0dp"
@@ -24,7 +23,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.4" />
+                app:layout_constraintWidth_percent="0.4"
+                android:contentDescription="@null" />
 
         <TextView
                 android:id="@+id/tvVersion"
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="提示: 長按鏈接複製到剪粘板"
+                android:text="@string/user_copy_tip"
                 android:textColor="@color/text_black"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"

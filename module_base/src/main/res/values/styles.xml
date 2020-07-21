@@ -13,13 +13,6 @@
         <item name="android:statusBarColor">@color/transparent</item>
     </style>
 
-    <style name="TabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">?android:textColorSecondary</item>
-        <item name="textAllCaps">true</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
     <style name="Toolbar">
         <item name="android:id">@id/baseToolbar</item>
         <item name="android:layout_width">match_parent</item>

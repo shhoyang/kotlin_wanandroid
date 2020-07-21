@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_knowledge"
-        android:icon="@drawable/user_ic_knowledge"
-        android:title="知识体系" />
+            android:id="@+id/menu_fav"
+            android:icon="@drawable/user_ic_fav"
+            android:title="@string/user_menu_fav" />
     <item
-        android:id="@+id/menu_fav"
-        android:icon="@drawable/user_ic_fav"
-        android:title="我的收藏" />
+            android:id="@+id/menu_clear"
+            android:icon="@drawable/user_ic_clear"
+            android:title="@string/user_menu_clear_cache" />
     <item
-        android:id="@+id/menu_clear"
-        android:icon="@drawable/user_ic_clear"
-        android:title="清理緩存" />
+            android:id="@+id/menu_about"
+            android:icon="@drawable/user_ic_about"
+            android:title="@string/user_menu_about" />
     <item
-        android:id="@+id/menu_about"
-        android:icon="@drawable/user_ic_about"
-        android:title="關於項目" />
-    <item
-        android:id="@+id/menu_logout"
-        android:icon="@drawable/user_ic_exit"
-        android:title="退出登錄" />
+            android:id="@+id/menu_logout"
+            android:icon="@drawable/user_ic_exit"
+            android:title="@string/user_menu_logout" />
 </menu>

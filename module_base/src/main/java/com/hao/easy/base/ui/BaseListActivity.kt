@@ -3,14 +3,14 @@ package com.hao.easy.base.ui
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.hao.easy.base.R
 import com.hao.easy.base.adapter.BaseItem
 import com.hao.easy.base.adapter.BasePagedAdapter
+import com.hao.easy.base.adapter.OnItemClickListener
 import com.hao.easy.base.common.RefreshResult
 import com.hao.easy.base.extensions.init
-import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.view.EmptyView
+import com.hao.easy.base.view.RefreshLayout
 import com.hao.easy.base.viewmodel.BaseListViewModel
 import java.lang.reflect.ParameterizedType
 
@@ -18,7 +18,8 @@ import java.lang.reflect.ParameterizedType
  * @author Yang Shihao
  * @date 2018/11/18
  */
-abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseActivity() {
+abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseActivity(),
+    OnItemClickListener<T> {
 
     val viewModel: VM by lazy {
         val parameterizedType = javaClass.genericSuperclass as ParameterizedType
@@ -26,7 +27,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
         ViewModelProvider(this).get(cla)
     }
 
-    var refreshLayout: SwipeRefreshLayout? = null
+    private var refreshLayout: RefreshLayout? = null
     private var emptyView: EmptyView? = null
 
     private lateinit var recyclerView: RecyclerView
@@ -38,9 +39,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
         recyclerView = f(R.id.baseRecyclerView)!!
         emptyView = f(R.id.baseEmptyView)
         val adapter = adapter()
-        adapter.itemClickListener = { view, item, position ->
-            itemClicked(view, item, position)
-        }
+        adapter.itemClickListener = this
         recyclerView.init(adapter)
         refreshLayout?.setOnRefreshListener {
             viewModel.invalidate()
@@ -61,7 +60,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
             })
     }
 
-    open fun itemClicked(view: View, item: T, position: Int) {
+    override fun itemClicked(view: View, item: T, position: Int) {
 
     }
 
@@ -74,7 +73,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
                 RefreshResult.NO_DATA -> state = EmptyView.Status.NO_DATA
                 RefreshResult.NO_MORE -> {
                     state = EmptyView.Status.DISMISS
-                    refreshLayout?.snack("全部加載完成")
+                    toast(R.string.base_t_no_more)
                 }
             }
         }
@@ -86,9 +85,10 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
             }
             RefreshResult.FAILED -> {
             }
-            RefreshResult.NO_MORE -> refreshLayout?.snack("全部加載完成")
+            RefreshResult.NO_MORE -> toast(R.string.base_t_no_more)
         }
     }
 
     abstract fun adapter(): BasePagedAdapter<T>
+
 }

@@ -13,7 +13,7 @@ object Config {
 
 
     var user: User? = null
-    var username: String? = null
+    val username: String?
         get() {
             return user?.username
         }
@@ -46,7 +46,7 @@ object Config {
         }
 
         if (null != username && null != token) {
-            val user = UserDb.instance().userDao().queryUser(username!!)
+            val user = UserDb.instance().userDao().query(username!!)
             if (null != user) {
                 this.user = user
                 isLogin = true
@@ -71,7 +71,7 @@ object Config {
         BaseApplication.instance.httpManager.cancelAllRequest()
     }
 
-    fun refresh() {
+    inline fun refresh() {
         refresh++
     }
 }

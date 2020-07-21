@@ -2,7 +2,6 @@ package com.hao.easy.user.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.Config
-import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.base.user.User
 import com.hao.easy.base.viewmodel.BaseViewModel
@@ -16,16 +15,14 @@ class UserViewModel : BaseViewModel() {
 
     var loginLiveData = MutableLiveData<User>()
 
-    var logoutLiveData = MutableLiveData<String>()
+    var logoutLiveData = MutableLiveData<String?>()
 
     override fun onResume() {
         loginLiveData.value = Config.user
     }
 
     fun logout() {
-        Api.logout().io_main().subscribeBy({
-            logoutLiveData.value = null
-        }, {
+        Api.logout().subscribeBy({
             logoutLiveData.value = null
         }).add()
     }

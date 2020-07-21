@@ -10,7 +10,7 @@ import io.reactivex.disposables.Disposable
 
 abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
-    private var TAG = "BaseViewModel_${javaClass.simpleName}"
+    private var tag = "BaseViewModel_${javaClass.simpleName}"
 
     private val compositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
 
@@ -20,38 +20,38 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     protected open fun onCreate() {
-        KLog.d(TAG, "onCreate")
+        KLog.d(tag, "onCreate")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     protected open fun onStart() {
-        KLog.d(TAG, "onStart")
+        KLog.d(tag, "onStart")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     protected open fun onResume() {
-        KLog.d(TAG, "onResume")
+        KLog.d(tag, "onResume")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     protected open fun onPause() {
-        KLog.d(TAG, "onPause")
+        KLog.d(tag, "onPause")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     protected open fun onStop() {
-        KLog.d(TAG, "onStop")
+        KLog.d(tag, "onStop")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     protected open fun onDestroy() {
-        KLog.d(TAG, "onDestroy")
+        KLog.d(tag, "onDestroy")
 
     }
 
     override fun onCleared() {
         super.onCleared()
-        KLog.d(TAG, "onCleared")
+        KLog.d(tag, "onCleared")
         if (!compositeDisposable.isDisposed) {
             compositeDisposable.dispose()
         }

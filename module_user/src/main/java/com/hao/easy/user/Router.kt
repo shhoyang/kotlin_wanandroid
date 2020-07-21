@@ -10,8 +10,4 @@ object Router {
     fun startFavActivity() {
         ARouter.getInstance().build("/wechat/FavActivity").navigation()
     }
-
-    fun startKnowledgeActivity() {
-        ARouter.getInstance().build("/wechat/KnowledgeActivity").navigation()
-    }
 }

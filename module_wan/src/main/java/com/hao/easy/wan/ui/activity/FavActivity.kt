@@ -4,7 +4,6 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
@@ -33,9 +32,7 @@ class FavActivity : BaseListActivity<Article, FavViewModel>() {
     override fun initData() {
         super.initData()
         viewModel.deleteResult.observe(this, Observer {
-           if(true == it){
-               refreshLayout?.snack("刪除成功")
-           }
+            toast("刪除成功")
         })
     }
 
@@ -44,7 +41,7 @@ class FavActivity : BaseListActivity<Article, FavViewModel>() {
     override fun itemClicked(view: View, item: Article, position: Int) {
         if (view.id == R.id.ivFav) {
             val alertDialog = AlertDialog.Builder(this)
-            alertDialog.setTitle("是否刪除該條目？")
+            alertDialog.setTitle("是否刪除该条目？")
                 .setMessage(item.title)
                 .setPositiveButton(
                     "确定"

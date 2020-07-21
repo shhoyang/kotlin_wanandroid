@@ -24,7 +24,7 @@ abstract class UserDb : RoomDatabase() {
                 instance = Room.databaseBuilder(
                     BaseApplication.instance,
                     UserDb::class.java,
-                    "UserDatabase"
+                    "WanAndroid"
                 ).build()
             }
 

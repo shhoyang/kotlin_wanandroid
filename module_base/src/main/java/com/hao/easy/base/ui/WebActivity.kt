@@ -8,6 +8,7 @@ import android.view.WindowManager
 import com.hao.easy.base.R
 import kotlinx.android.synthetic.main.activity_web.*
 import kotlinx.android.synthetic.main.include_web_progress_bar.*
+import kotlin.system.exitProcess
 
 open class WebActivity : BaseActivity() {
 
@@ -28,6 +29,7 @@ open class WebActivity : BaseActivity() {
     override fun onDestroy() {
         baseWebView.destroy()
         super.onDestroy()
+//        exitProcess(0)
     }
 
     override fun onBackPressed() {

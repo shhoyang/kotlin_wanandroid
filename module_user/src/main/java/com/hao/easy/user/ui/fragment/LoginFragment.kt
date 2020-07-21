@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.hao.easy.base.extensions.addTextChangedListener
 import com.hao.easy.base.extensions.hideSoftInput
 import com.hao.easy.base.extensions.showError
-import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.user.R
 import com.hao.easy.user.Router
@@ -53,12 +52,8 @@ class LoginFragment : BaseFragment() {
 
     override fun initData() {
         viewModel.loginLiveData.observe(this, Observer {
-            if (it == null) {
-                Router.startMainActivity()
-                activity?.finish()
-            } else {
-                editTextUsername.snack(it)
-            }
+//            Router.startMainActivity()
+            activity?.finish()
         })
     }
 

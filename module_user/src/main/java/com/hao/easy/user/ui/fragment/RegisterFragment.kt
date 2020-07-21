@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.hao.easy.base.extensions.addTextChangedListener
 import com.hao.easy.base.extensions.hideSoftInput
 import com.hao.easy.base.extensions.showError
-import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.user.R
 import com.hao.easy.user.viewmodel.RegisterViewModel
@@ -53,17 +52,13 @@ class RegisterFragment : BaseFragment() {
             hideSoftInput()
         }
         textLogin.setOnClickListener {
-            fragmentManager?.popBackStack()
+            parentFragmentManager.popBackStack()
         }
     }
 
     override fun initData() {
         viewModel.registerLiveData.observe(this, Observer {
-            if (it == null) {
-                fragmentManager?.popBackStack()
-            } else {
-                editTextUsername.snack(it)
-            }
+            parentFragmentManager.popBackStack()
         })
     }
 }

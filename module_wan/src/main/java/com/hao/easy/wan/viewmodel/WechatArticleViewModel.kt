@@ -1,7 +1,6 @@
 package com.hao.easy.wan.viewmodel
 
 import com.hao.easy.base.Config
-import com.hao.easy.base.extensions.main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.repository.Api
@@ -23,7 +22,7 @@ class WechatArticleViewModel : BaseArticleViewModel() {
     }
 
     override fun loadData(page: Int, onResponse: (ArrayList<Article>?) -> Unit) {
-        Api.getWechatArticles(authorId, page).main().subscribeBy({
+        Api.getWechatArticles(authorId, page).subscribeBy({
             onResponse(it?.datas)
         }, {
             onResponse(null)

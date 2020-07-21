@@ -10,13 +10,13 @@ import javax.inject.Inject
  * @author Yang Shihao
  * @date 2018/12/3
  */
-class FavAdapter @Inject constructor() : BasePagedAdapter<Article>(R.layout.wechat_item_fav) {
+class FavAdapter @Inject constructor() : BasePagedAdapter<Article>(R.layout.wan_item_fav) {
 
     override fun bindViewHolder(holder: ViewHolder, item: Article, position: Int) {
         holder.setText(R.id.tvTitle, item.title)
             .setClickListener(R.id.ivFav) {
                 itemClickListener?.apply {
-                    this(it, item, position)
+                    itemClicked(it, item, position)
                 }
             }
     }

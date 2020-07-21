@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.loadCircle
-import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.base.user.User
 import com.hao.easy.user.R
@@ -38,7 +37,6 @@ class UserFragment : BaseFragment() {
             .loadCircle(R.mipmap.ic_launcher_round)
         leftNavigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.menu_knowledge -> Router.startKnowledgeActivity()
                 R.id.menu_fav -> {
                     if (Config.isLogin) {
                         Router.startFavActivity()
@@ -46,7 +44,7 @@ class UserFragment : BaseFragment() {
                         startLogin()
                     }
                 }
-                R.id.menu_clear -> leftNavigationView.snack("清理完成")
+                R.id.menu_clear -> toast("清理完成")
                 R.id.menu_about -> startActivity(Intent(context, AboutActivity::class.java))
                 R.id.menu_logout -> {
                     Config.logout()
@@ -63,9 +61,7 @@ class UserFragment : BaseFragment() {
             setLogin(it)
         })
         viewModel.logoutLiveData.observe(this, Observer {
-            if (it == null) {
-                startLogin()
-            }
+            startLogin()
         })
     }
 

@@ -1,7 +1,6 @@
 package com.hao.easy.user.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.base.viewmodel.BaseViewModel
 import com.hao.easy.user.repository.Api
@@ -12,13 +11,11 @@ import com.hao.easy.user.repository.Api
  */
 class RegisterViewModel : BaseViewModel() {
 
-    var registerLiveData = MutableLiveData<String>()
+    var registerLiveData = MutableLiveData<String?>()
 
     fun register(username: String, password: String) {
-        Api.register(username, password, password).io_main().subscribeBy({
+        Api.register(username, password, password).subscribeBy({
             registerLiveData.value = null
-        }, {
-            registerLiveData.value = it
         }).add()
     }
 }

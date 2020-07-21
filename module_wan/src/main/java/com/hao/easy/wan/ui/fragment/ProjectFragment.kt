@@ -7,16 +7,18 @@ import com.hao.easy.base.extensions.visibility
 import com.hao.easy.base.extensions.visible
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
+import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.wan.R
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.ui.adapter.ProjectArticleAdapter
 import com.hao.easy.wan.ui.adapter.ProjectTypePageAdapter
 import com.hao.easy.wan.viewmodel.ProjectViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.wechat_fragment_project.*
-import kotlinx.android.synthetic.main.wechat_fragment_project.appBarLayout
-import kotlinx.android.synthetic.main.wechat_fragment_project.baseRefreshLayout
-import kotlinx.android.synthetic.main.wechat_fragment_project.indicator
+import kotlinx.android.synthetic.main.status_bar_holder.*
+import kotlinx.android.synthetic.main.wan_fragment_project.*
+import kotlinx.android.synthetic.main.wan_fragment_project.appBarLayout
+import kotlinx.android.synthetic.main.wan_fragment_project.baseRefreshLayout
+import kotlinx.android.synthetic.main.wan_fragment_project.indicator
 import javax.inject.Inject
 
 /**
@@ -28,33 +30,32 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
 
     @Inject
     lateinit var adapter: ProjectArticleAdapter
+
     @Inject
     lateinit var typeAdapter: ProjectTypePageAdapter
 
-    private var enableRefresh = true
-    private var appBarOffset = 0
-
-    override fun getLayoutId() = R.layout.wechat_fragment_project
+    override fun getLayoutId() = R.layout.wan_fragment_project
 
     override fun initView() {
         super.initView()
-
+        val layoutParams = statusBarHolder.layoutParams
+        layoutParams.height = DisplayUtils.getStatusBarHeight(context!!)
+        statusBarHolder.layoutParams = layoutParams
         vpType.adapter = typeAdapter
         indicator.setViewPager(vpType)
         typeAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
 
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-            appBarOffset = verticalOffset
-            baseRefreshLayout.isEnabled = appBarOffset == 0 && enableRefresh
+            baseRefreshLayout.isEnabled = verticalOffset == 0
         })
     }
 
     override fun initData() {
         super.initData()
         viewModel.typeLiveData.observe(this, Observer {
-            typeAdapter.setData(it!!)
+            typeAdapter.resetData(it)
             line.visible()
-            indicator.visibility(it.size > 1)
+            indicator.visibility(it?.size ?: 0 > 1)
         })
         lifecycle.addObserver(viewModel)
     }

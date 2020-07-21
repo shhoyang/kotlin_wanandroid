@@ -1,7 +1,5 @@
 package com.hao.easy.base.adapter
 
-import android.content.Context
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -12,13 +10,10 @@ abstract class BasePagedAdapter<T : BaseItem>(
 ) :
     PagedListAdapter<T, ViewHolder>(diff) {
 
-    lateinit var context: Context
-
-    var itemClickListener: ((View, T, Int) -> Unit)? = null
+    var itemClickListener: OnItemClickListener<T>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        context = parent.context
-        return ViewHolder(context, parent, layoutId)
+        return ViewHolder(parent.context, parent, layoutId)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -28,11 +23,7 @@ abstract class BasePagedAdapter<T : BaseItem>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
         itemClickListener?.apply {
             holder.itemView.setOnClickListener {
-                this(
-                    holder.itemView,
-                    getItem(position)!!,
-                    position
-                )
+                itemClicked(it, getItem(position)!!, position)
             }
         }
         bindViewHolder(holder, getItem(position)!!, position, payloads)

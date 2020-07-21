@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import com.hao.easy.base.utils.T
 
 /**
  * @author Yang Shihao
@@ -44,5 +46,13 @@ abstract class BaseFragment : Fragment() {
 
     open fun initData() {
 
+    }
+
+    fun toast(msg: String?) {
+        T.short(context, msg)
+    }
+
+    fun toast(@StringRes resId: Int) {
+        T.short(context, resId)
     }
 }

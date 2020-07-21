@@ -4,12 +4,16 @@ import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.widget.TextView
 import com.hao.easy.base.adapter.BaseNormalAdapter
+import com.hao.easy.base.adapter.OnItemLongClickListener
 import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.user.R
 import com.hao.easy.user.model.Menu
 import javax.inject.Inject
 
-class AboutAdapter @Inject constructor() : BaseNormalAdapter<Menu>(R.layout.user_item_about) {
+class AboutAdapter @Inject constructor() :
+    BaseNormalAdapter<Menu>(R.layout.user_item_about) {
+
+    var itemLongClickListener: OnItemLongClickListener<Menu>? = null
 
     override fun bindViewHolder(holder: ViewHolder, item: Menu, position: Int) {
         holder.setText(R.id.tvTitle, item.title)
@@ -20,9 +24,10 @@ class AboutAdapter @Inject constructor() : BaseNormalAdapter<Menu>(R.layout.user
         desc.setSpan(UnderlineSpan(), 0, item.desc.length, 0)
         textView.text = desc
 
-        itemLongClickListener?.let {
-            holder.itemView.setOnLongClickListener { view ->
-                it(view, item, position)
+        itemLongClickListener?.apply {
+            holder.itemView.setOnLongClickListener {
+                itemLongClicked(it, item, position)
+                true
             }
         }
     }

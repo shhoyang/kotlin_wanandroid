@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         if (!isModule) {
-            applicationId "com.hao.easy.wechat"
+            applicationId "com.hao.easy.wan"
         }
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk

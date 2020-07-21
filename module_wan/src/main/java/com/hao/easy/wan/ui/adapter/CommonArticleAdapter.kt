@@ -12,7 +12,7 @@ import com.hao.easy.wan.model.Article
 import javax.inject.Inject
 
 class CommonArticleAdapter @Inject constructor() :
-    BasePagedAdapter<Article>(R.layout.wechat_item_common_article, ArticleDiff()) {
+    BasePagedAdapter<Article>(R.layout.wan_item_common_article, ArticleDiff()) {
 
     var showAuthor = true
 
@@ -20,7 +20,7 @@ class CommonArticleAdapter @Inject constructor() :
 
         val click: (View) -> Unit = {
             itemClickListener?.apply {
-                this(it, item, position)
+                itemClicked(it, item, position)
             }
         }
 

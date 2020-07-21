@@ -1,18 +1,19 @@
 package com.hao.easy.base.adapter
 
 import android.content.Context
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseNormalAdapter<T>(private val layoutId: Int, var list: ArrayList<T> = ArrayList()) : RecyclerView.Adapter<ViewHolder>() {
+abstract class BaseNormalAdapter<T>(
+    private val layoutId: Int,
+    var data: ArrayList<T> = ArrayList()
+) : RecyclerView.Adapter<ViewHolder>() {
 
     lateinit var context: Context
 
-    var itemClickListener: ((View, T, Int) -> Unit)? = null
-    var itemLongClickListener: ((View, T, Int) -> Boolean)? = null
+    var itemClickListener: OnItemClickListener<T>? = null
 
-    override fun getItemCount() = list.size
+    override fun getItemCount() = data.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
@@ -20,37 +21,40 @@ abstract class BaseNormalAdapter<T>(private val layoutId: Int, var list: ArrayLi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        itemClickListener?.let { holder.itemView.setOnClickListener { it(holder.itemView, list[position], position) } }
-        bindViewHolder(holder, list[position], position)
+        itemClickListener?.apply {
+            holder.itemView.setOnClickListener {
+                itemClicked(it, data[position], position)
+            }
+        }
+        bindViewHolder(holder, data[position], position)
     }
 
-    fun setData(data: ArrayList<T>) {
-        if (data.isEmpty()) {
-            return
+    fun resetData(data: ArrayList<T>?) {
+        this.data.clear()
+        if (data != null && data.isNotEmpty()) {
+            this.data.addAll(data)
         }
-
-        list = data
         notifyDataSetChanged()
     }
 
-    fun addData(data: ArrayList<T>) {
-        if (data.isEmpty()) {
+    fun addData(data: ArrayList<T>?) {
+        if (data == null || data.isEmpty()) {
             return
         }
 
-        val size = list.size
-        list.addAll(data)
+        val size = this.data.size
+        this.data.addAll(data)
         notifyItemRangeInserted(size, data.size)
     }
 
     fun addItem(data: T) {
-        val size = list.size
-        list.add(data)
+        val size = this.data.size
+        this.data.add(data)
         notifyItemInserted(size)
     }
 
     fun clear() {
-        list.clear()
+        this.data.clear()
     }
 
     abstract fun bindViewHolder(holder: ViewHolder, item: T, position: Int)

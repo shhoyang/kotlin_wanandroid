@@ -6,8 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.view.View
+import com.hao.easy.base.adapter.OnItemClickListener
+import com.hao.easy.base.adapter.OnItemLongClickListener
 import com.hao.easy.base.extensions.init
-import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.user.R
@@ -18,7 +20,7 @@ import kotlinx.android.synthetic.main.user_activity_about.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AboutActivity : BaseActivity() {
+class AboutActivity : BaseActivity(), OnItemClickListener<Menu>, OnItemLongClickListener<Menu> {
 
     companion object {
 
@@ -35,37 +37,26 @@ class AboutActivity : BaseActivity() {
     override fun getLayoutId() = R.layout.user_activity_about
 
     override fun initView() {
-        title = "關於項目"
-        tvVersion.text = "V" + getVersionName()
-        val list = ArrayList<Menu>()
-        list.add(Menu("個人主頁", HOME, "個人主頁", HOME))
-        list.add(Menu("Android項目鏈接", ANDROID_PROJECT_LINK, "玩Android", ANDROID_PROJECT_LINK))
-        list.add(Menu("小程序項目鏈接", WECHAT_PROJECT_LINK, "玩Android", WECHAT_PROJECT_LINK))
-        list.add(Menu("Apk下載地址", DOWNLOAD_LINK, "", DOWNLOAD_LINK))
-        list.add(Menu("Thanks", "鸿洋-玩Android开发Api", "鸿洋-玩Android开发Api", THANKS))
+        title = "关于项目"
+        tvVersion.text = "V${getVersionName()}"
 
-        adapter.setData(list)
-        adapter.itemClickListener = { _, item, _ ->
-            if (item.link == DOWNLOAD_LINK) {
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(DOWNLOAD_LINK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-            } else {
-                WebActivity.start(this, item.webTitle, item.link)
-            }
-        }
-        adapter.itemLongClickListener = { _, item, _ ->
-            copy(item.link)
-            true
-        }
+        adapter.itemClickListener = this
+        adapter.itemLongClickListener = this
         recyclerView.init(adapter)
+
+        val list = ArrayList<Menu>()
+        list.add(Menu("个人主页", HOME, "个人主页", HOME))
+        list.add(Menu("Android项目链接", ANDROID_PROJECT_LINK, "玩Android", ANDROID_PROJECT_LINK))
+        list.add(Menu("小程序项目链接", WECHAT_PROJECT_LINK, "玩Android", WECHAT_PROJECT_LINK))
+        list.add(Menu("Apk下载地址", DOWNLOAD_LINK, "", DOWNLOAD_LINK))
+        list.add(Menu("Thanks", "鸿洋-玩Android开发Api", "鸿洋-玩Android开发Api", THANKS))
+        adapter.resetData(list)
     }
 
     private fun copy(text: String) {
         val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         clipboardManager.setPrimaryClip(ClipData.newPlainText(null, text))
-        recyclerView.snack("已複製到剪粘板")
+        toast("已复制到剪粘板")
     }
 
     private fun getVersionName(): String {
@@ -75,5 +66,20 @@ class AboutActivity : BaseActivity() {
         } catch (e: PackageManager.NameNotFoundException) {
             ""
         }
+    }
+
+    override fun itemClicked(view: View, item: Menu, position: Int) {
+        if (item.link == DOWNLOAD_LINK) {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(DOWNLOAD_LINK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        } else {
+            WebActivity.start(this, item.webTitle, item.link)
+        }
+    }
+
+    override fun itemLongClicked(view: View, item: Menu, position: Int) {
+        copy(item.link)
     }
 }

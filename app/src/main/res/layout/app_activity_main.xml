@@ -18,7 +18,7 @@
                 android:background="@color/window_bg"
                 app:itemHorizontalTranslationEnabled="false"
                 app:itemTextColor="@color/app_nav_text"
-                app:labelVisibilityMode="selected"
+                app:labelVisibilityMode="labeled"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
                 android:id="@+id/line_"
                 android:layout_width="0dp"
                 android:layout_height="1px"
-                android:background="@color/light_gray"
+                android:background="@color/light_grey"
                 app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

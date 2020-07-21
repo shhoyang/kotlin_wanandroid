@@ -36,6 +36,7 @@ class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel
         }
 
         super.initData()
+        lifecycle.addObserver(viewModel)
     }
 
     override fun adapter() = adapter

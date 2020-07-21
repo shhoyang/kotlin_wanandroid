@@ -7,13 +7,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.hao.easy.R
 import com.hao.easy.base.adapter.FragmentAdapter
-import com.hao.easy.base.extensions.snack
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.user.ui.fragment.UserFragment
-import com.hao.easy.wan.ui.fragment.FlutterFragment
-import com.hao.easy.wan.ui.fragment.KotlinFragment
-import com.hao.easy.wan.ui.fragment.ProjectFragment
-import com.hao.easy.wan.ui.fragment.WechatFragment
+import com.hao.easy.wan.ui.fragment.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.app_activity_main.*
 import kotlin.properties.Delegates
@@ -27,7 +23,7 @@ class MainActivity : BaseActivity() {
         if (new - old < 2000) {
             finish()
         } else {
-            drawerLayout?.snack("再按返回鍵退出")
+            toast("再按返回键退出")
         }
     }
 
@@ -41,21 +37,21 @@ class MainActivity : BaseActivity() {
                 WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
             window.attributes = lp
         }
-        initDrawerLayout()
-        initLeftNavigation()
-        initBottomNavigation()
 
         val fragments = listOf(
             WechatFragment(),
             ProjectFragment(),
-            KotlinFragment(),
-            FlutterFragment()
+            KnowledgeFragment(),
+            SearchFragment()
         )
         viewPager.apply {
             isUserInputEnabled = false
             offscreenPageLimit = 3
             adapter = FragmentAdapter(supportFragmentManager, lifecycle, fragments)
         }
+        initDrawerLayout()
+        initLeftNavigation()
+        initBottomNavigation()
     }
 
     private fun initDrawerLayout() {
@@ -78,14 +74,16 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initBottomNavigation() {
-        bottomNavigationView.itemIconTintList = null
+//        bottomNavigationView.itemIconTintList = null
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            viewPager.setCurrentItem( when (item.itemId) {
-                R.id.tab_wechat -> 0
-                R.id.tab_android -> 1
-                R.id.tab_kotlin -> 2
-                else -> 3
-            },false)
+            viewPager.setCurrentItem(
+                when (item.itemId) {
+                    R.id.tab_hot -> 0
+                    R.id.tab_project -> 1
+                    R.id.tab_knowledge -> 2
+                    else -> 3
+                }, false
+            )
 
             true
         }

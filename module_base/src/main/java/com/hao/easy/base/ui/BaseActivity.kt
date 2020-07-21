@@ -4,9 +4,11 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.hao.easy.base.R
 import com.hao.easy.base.common.AppManager
+import com.hao.easy.base.utils.T
 import com.hao.easy.base.view.ToolbarLayout
 import kotlinx.android.synthetic.main.activity_base.*
 import kotlin.properties.Delegates
@@ -132,5 +134,13 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun <T : View> f(id: Int): T? {
         return findViewById(id)
+    }
+
+    fun toast(msg: String?) {
+        T.short(this, msg)
+    }
+
+    fun toast(@StringRes resId: Int) {
+        T.short(this, resId)
     }
 }

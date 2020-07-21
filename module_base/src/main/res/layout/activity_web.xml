@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.WebActivity">
 
-
     <com.hao.easy.base.view.ProgressWebView
         android:id="@+id/baseWebView"
         android:layout_width="match_parent"

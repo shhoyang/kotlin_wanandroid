@@ -24,7 +24,8 @@
                     app:layout_constraintDimensionRatio="2:1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@null" />
 
             <com.hao.easy.base.view.ProgressWebView
                     android:id="@+id/baseWebView"
@@ -57,7 +58,7 @@
             app:iconTint="@color/white"
             app:showLine="false"
             app:textColor="@color/white"
-            app:title="详情" />
+            app:title="@string/base_title_web" />
 
     <include layout="@layout/include_web_progress_bar" />
 

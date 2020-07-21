@@ -85,10 +85,8 @@ kapt {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':module_base')
-    if (isModule) {
-        implementation project(':module_user')
-        implementation project(':module_wan')
-    }
+    implementation project(':module_user')
+    implementation project(':module_wan')
     implementation "com.google.dagger:hilt-android:$versions.hilt"
 
     kapt compilerDependencies

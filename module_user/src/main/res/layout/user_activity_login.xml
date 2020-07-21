@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.LoginActivity">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.LoginActivity">
 
     <FrameLayout
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     <com.hao.easy.base.view.ToolbarLayout
-        android:id="@id/baseToolbar"
-        style="@style/Toolbar"
-        app:iconTint="@color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:showLine="false"
-        app:textColor="@color/white"
-        app:title="登录" />
+            android:id="@id/baseToolbar"
+            style="@style/Toolbar"
+            app:iconTint="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:showLine="false"
+            app:textColor="@color/white"
+            app:title="@string/user_login" />
 
 </merge>

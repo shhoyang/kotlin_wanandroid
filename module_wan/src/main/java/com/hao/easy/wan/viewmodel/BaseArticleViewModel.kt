@@ -1,7 +1,6 @@
 package com.hao.easy.wan.viewmodel
 
 import com.hao.easy.base.aop.CheckLogin
-import com.hao.easy.base.extensions.io_main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.base.viewmodel.BaseListViewModel
 import com.hao.easy.wan.model.Article
@@ -19,20 +18,16 @@ abstract class BaseArticleViewModel : BaseListViewModel<Article>() {
     }
 
     private fun doCollect(item: Article, position: Int) {
-        Api.collect(item.id).io_main().subscribeBy({
+        Api.collect(item.id).subscribeBy({
             item.collect = true
             notifyItem(position, "fav")
-        }, {
-
         }).add()
     }
 
     open fun doCancelCollect(item: Article, position: Int) {
-        Api.cancelCollect(item.id).io_main().subscribeBy({
+        Api.cancelCollect(item.id).subscribeBy({
             item.collect = false
             notifyItem(position, "fav")
-        }, {
-
         }).add()
     }
 }

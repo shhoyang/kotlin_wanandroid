@@ -22,7 +22,8 @@
         <activity
                 android:name=".activity.MainActivity"
                 android:screenOrientation="portrait"
-                android:theme="@style/WanStatusBarTransparentTheme" />
+                android:theme="@style/WanStatusBarTransparentTheme"
+                android:windowSoftInputMode="adjustPan" />
 
     </application>
 </manifest>

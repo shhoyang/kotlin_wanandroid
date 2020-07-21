@@ -56,4 +56,7 @@ interface Service {
 
     @GET("article/list/{page}/json")
     fun getKnowledgeArticle(@Path("page") page: Int, @Query("cid") id: Int): Observable<HttpResult<ListPaged<Article>>>
+
+    @GET("hotkey/json")
+    fun getHotWords(): Observable<HttpResult<ArrayList<HotWord>>>
 }

@@ -12,7 +12,7 @@ import javax.inject.Inject
  * @author Yang Shihao
  * @date 2018/12/3
  */
-class BannerAdapter @Inject constructor() : BaseNormalAdapter<Ad>(R.layout.wechat_item_banner) {
+class BannerAdapter @Inject constructor() : BaseNormalAdapter<Ad>(R.layout.wan_item_banner) {
 
     override fun bindViewHolder(holder: ViewHolder, item: Ad, position: Int) {
         (holder.itemView as ImageView).load(item.imagePath)

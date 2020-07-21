@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <include layout="@layout/status_bar_holder" />
+
+    <com.hao.easy.base.view.ToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
+            app:showBack="false"
+            app:title="@string/wan_title_search" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#EEEEEE"
+            android:gravity="center_vertical">
+
+        <EditText
+                android:id="@+id/etContent"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/wan_shape_search"
+                android:gravity="center_vertical"
+                android:hint="@string/hint_search"
+                android:inputType="text"
+                android:maxLength="8"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:singleLine="true"
+                android:textSize="12sp" />
+
+        <TextView
+                android:id="@+id/tvSearch"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/search"
+                android:textColor="@color/text_primary"
+                android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+            android:id="@+id/tvHotTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginLeft="@dimen/activity_padding"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/hot"
+            android:textColor="@color/text_title"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHotWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            android:visibility="gone" />
+
+    <RelativeLayout
+            android:id="@+id/rlHistoryTitle"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginLeft="@dimen/activity_padding"
+                android:gravity="center_vertical"
+                android:text="@string/search_history"
+                android:textColor="@color/text_title"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        <TextView
+                android:id="@+id/tvClearHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/activity_padding"
+                android:gravity="center_vertical"
+                android:text="@string/clear_history"
+                android:textColor="@color/text_red"
+                android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            android:visibility="gone" />
+
+</LinearLayout>

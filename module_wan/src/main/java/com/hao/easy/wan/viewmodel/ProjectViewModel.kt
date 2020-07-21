@@ -2,8 +2,6 @@ package com.hao.easy.wan.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.Config
-import com.hao.easy.base.extensions.io_main
-import com.hao.easy.base.extensions.main
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.model.ProjectType
@@ -12,7 +10,8 @@ import kotlin.properties.Delegates
 
 class ProjectViewModel : BaseArticleViewModel() {
 
-    val typeLiveData = MutableLiveData<ArrayList<ArrayList<ProjectType>>>()
+    val typeLiveData = MutableLiveData<ArrayList<ArrayList<ProjectType>>?>()
+
     private var refresh by Delegates.observable(Config.refresh) { _, old, new ->
         if (old != new) {
             invalidate()
@@ -20,13 +19,14 @@ class ProjectViewModel : BaseArticleViewModel() {
     }
 
     override fun pageSize() = 6
+
     override fun onResume() {
         super.onResume()
         refresh = Config.refresh
     }
 
     override fun loadData(page: Int, onResponse: (ArrayList<Article>?) -> Unit) {
-        Api.getNewProjectArticles(page - 1).main().subscribeBy({
+        Api.getNewProjectArticles(page - 1).subscribeBy({
             onResponse(it?.datas)
         }, {
             onResponse(null)
@@ -34,7 +34,7 @@ class ProjectViewModel : BaseArticleViewModel() {
     }
 
     override fun refresh() {
-        Api.getProjectType().io_main().subscribeBy({
+        Api.getProjectType().subscribeBy({
             if (it != null && it.isNotEmpty()) {
                 val list = ArrayList<ArrayList<ProjectType>>()
                 val size = it.size
@@ -59,7 +59,7 @@ class ProjectViewModel : BaseArticleViewModel() {
                 }
             }
         }, {
-
+            typeLiveData.value = null
         }).add()
     }
 }

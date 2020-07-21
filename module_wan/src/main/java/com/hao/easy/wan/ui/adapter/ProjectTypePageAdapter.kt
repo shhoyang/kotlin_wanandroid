@@ -15,7 +15,7 @@ import javax.inject.Inject
  * @date 2018/12/2
  */
 class ProjectTypePageAdapter @Inject constructor() :
-    BaseNormalAdapter<ArrayList<ProjectType>>(R.layout.wechat_item_project_type_page) {
+    BaseNormalAdapter<ArrayList<ProjectType>>(R.layout.wan_item_project_type_page) {
 
     override fun bindViewHolder(holder: ViewHolder, item: ArrayList<ProjectType>, position: Int) {
         val recyclerView = holder.itemView as RecyclerView
@@ -24,7 +24,7 @@ class ProjectTypePageAdapter @Inject constructor() :
 }
 
 class ProjectTypeItemAdapter(data: ArrayList<ProjectType>) :
-    BaseNormalAdapter<ProjectType>(R.layout.wechat_item_project_type, data) {
+    BaseNormalAdapter<ProjectType>(R.layout.wan_item_project_type, data) {
 
     override fun bindViewHolder(holder: ViewHolder, item: ProjectType, position: Int) {
         holder.setText(R.id.tvText, item.name)

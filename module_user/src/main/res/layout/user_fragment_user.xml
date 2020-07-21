@@ -5,5 +5,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:headerLayout="@layout/user_navigation_header"
-        app:insetForeground="@color/tran"
+        app:insetForeground="@color/transparent"
         app:menu="@menu/user_navigation" />

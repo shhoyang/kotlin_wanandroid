@@ -7,13 +7,13 @@ import com.hao.easy.wan.R
 import com.hao.easy.wan.model.Article
 import javax.inject.Inject
 
-class ProjectArticleAdapter @Inject constructor() : BasePagedAdapter<Article>(R.layout.wechat_item_project_article) {
+class ProjectArticleAdapter @Inject constructor() : BasePagedAdapter<Article>(R.layout.wan_item_project_article) {
 
     override fun bindViewHolder(holder: ViewHolder, item: Article, position: Int) {
 
         val click: (View) -> Unit = {
             itemClickListener?.apply {
-                this(it, item, position)
+                itemClicked(it, item, position)
             }
         }
         holder.setText(R.id.tvTitle, item.title)

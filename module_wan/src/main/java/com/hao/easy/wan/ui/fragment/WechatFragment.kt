@@ -8,11 +8,12 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hao.easy.base.adapter.FragmentAdapter
 import com.hao.easy.base.ui.BaseFragment
+import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.wan.R
 import com.hao.easy.wan.ui.adapter.BannerAdapter
 import com.hao.easy.wan.viewmodel.WechatViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.wechat_fragment_wechat.*
+import kotlinx.android.synthetic.main.wan_fragment_wechat.*
 import javax.inject.Inject
 
 /**
@@ -22,12 +23,12 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class WechatFragment : BaseFragment() {
 
-    private val viewModel: WechatViewModel by lazy {
+    private val viewModel by lazy {
         ViewModelProvider(this).get(WechatViewModel::class.java)
     }
 
-    private var enableRefresh = true
-    private var bannerHeight = 0
+    private var statusBarHeight = 0
+    private var maxScrollHeight = 0
 
     private val titles = ArrayList<String>()
     private val fragments = ArrayList<Fragment>()
@@ -37,9 +38,10 @@ class WechatFragment : BaseFragment() {
     @Inject
     lateinit var bannerAdapter: BannerAdapter
 
-    override fun getLayoutId() = R.layout.wechat_fragment_wechat
+    override fun getLayoutId() = R.layout.wan_fragment_wechat
 
     override fun initView() {
+        statusBarHeight = DisplayUtils.getStatusBarHeight(context!!)
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -61,13 +63,13 @@ class WechatFragment : BaseFragment() {
         }
 
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-            baseRefreshLayout.isEnabled = verticalOffset == 0 && enableRefresh
-            if (bannerHeight <= 0) {
-                bannerHeight =
-                    banner.measuredHeight - resources.getDimensionPixelSize(R.dimen.status_bar_height)
+            baseRefreshLayout.isEnabled = verticalOffset == 0
+            if (maxScrollHeight <= 0) {
+                maxScrollHeight =
+                    banner.measuredHeight - statusBarHeight
             }
-            if (bannerHeight > 0) {
-                banner.alpha = (bannerHeight + verticalOffset) * 1.0F / bannerHeight
+            if (maxScrollHeight > 0) {
+                clTop.alpha = (maxScrollHeight + verticalOffset) * 1.0F / maxScrollHeight
             }
         })
 
@@ -98,7 +100,7 @@ class WechatFragment : BaseFragment() {
         })
 
         viewModel.adLiveData.observe(this, Observer {
-            bannerAdapter.setData(it)
+            bannerAdapter.resetData(it)
         })
 
         viewModel.initData()

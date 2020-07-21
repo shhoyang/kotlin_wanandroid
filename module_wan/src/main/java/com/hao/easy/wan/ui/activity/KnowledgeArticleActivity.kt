@@ -38,6 +38,7 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
             viewModel.typeId = id
         }
         super.initData()
+        lifecycle.addObserver(viewModel)
     }
 
     override fun itemClicked(view: View, item: Article, position: Int) {
