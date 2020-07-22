@@ -11,7 +11,6 @@ import com.hao.easy.base.extensions.init
 import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.wan.R
 import com.hao.easy.wan.model.Knowledge
-import com.hao.easy.wan.ui.activity.KnowledgeArticleActivity
 import com.library.flowlayout.FlowLayoutManager
 import com.library.flowlayout.SpaceItemDecoration
 import javax.inject.Inject

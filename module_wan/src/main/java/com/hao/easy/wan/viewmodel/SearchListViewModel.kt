@@ -8,7 +8,7 @@ import kotlin.properties.Delegates
 
 class SearchListViewModel : BaseArticleViewModel() {
 
-    private var key = "flutter"
+    var hotWord = "面试"
 
     private var refresh by Delegates.observable(Config.refresh) { _, old, new ->
         if (old != new) {
@@ -24,7 +24,7 @@ class SearchListViewModel : BaseArticleViewModel() {
     override fun pageSize() = 10
 
     override fun loadData(page: Int, onResponse: (ArrayList<Article>?) -> Unit) {
-        Api.search(page - 1, key).subscribeBy({
+        Api.search(page - 1, hotWord).subscribeBy({
             onResponse(it?.datas)
         }, {
             onResponse(null)
