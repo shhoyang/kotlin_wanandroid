@@ -1,6 +1,6 @@
 package com.hao.easy
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import com.hao.easy.base.extensions.notNullSingleValue
 import com.hao.easy.repository.HttpManager
@@ -15,7 +15,7 @@ import javax.inject.Inject
  */
 
 @HiltAndroidApp
-class App : Application() {
+class App : MultiDexApplication() {
 
     @Inject
     lateinit var httpManager: HttpManager
@@ -34,3 +34,4 @@ class App : Application() {
         var instance by notNullSingleValue<App>()
     }
 }
+

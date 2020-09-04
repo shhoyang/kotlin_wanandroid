@@ -88,7 +88,8 @@ dependencies {
     implementation project(':module_base')
     implementation "com.google.dagger:hilt-android:$versions.hilt"
     // AOP
-    implementation 'org.aspectj:aspectjrt:1.9.5'
+    implementation 'org.aspectj:aspectjrt:1.9.6'
+    implementation 'com.android.support:multidex:1.0.3'
 
     kapt compilerDependencies
 }

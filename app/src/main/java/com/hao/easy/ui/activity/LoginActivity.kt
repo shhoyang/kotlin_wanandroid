@@ -2,7 +2,6 @@ package com.hao.easy.ui.activity
 
 import android.content.Context
 import android.content.Intent
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.R
 import com.hao.easy.ui.fragment.LoginFragment

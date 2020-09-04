@@ -10,7 +10,7 @@
 - 工具：调试GPU过度绘制、 GPU呈现模式分析
 
 ##### 1.2 内存优化
-- 内存泄漏，单例，静态变量，非静态内部类，IO，数据库的Cursor,未取消注册，动画，handle [参考](https://www.jianshu.com/p/72eef0f144a6)
+- 内存泄漏，单例，静态变量，非静态内部类，IO，数据库的Cursor，未取消注册，动画，handle [参考](https://www.jianshu.com/p/72eef0f144a6)
 - 内存溢出，图片色彩模式，压缩，bitmap回收
 - 扩大内存，largeHeap="true"
 - LeakCanary
@@ -69,6 +69,17 @@
 - let / apply / run / with
 - inline 内联函数
 
+
+### 2 启动流程
+
+类名                             方法名                                 调用方法
+LauncherActivity                onListItemClick                         Activity.startActivity
+                                                                        Activity.startActivityForResult
+Activity                        startActivityForResult                  mInstrumentation.execStartActivity
+Instrumentation                 execStartActivity                       ActivityTaskManager.getService().startActivity  
+ActivityTaskManagerService      startActivity->startActivityAsUser
+ActivityStarter                 execute->startActivityMayWait->startActivity->startActivityUnchecked
+RootActivityContainer           resumeFocusedStacksTopActivities
 
 
 
