@@ -10,9 +10,10 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application>
-<!--        android:process=":h5"-->
+
         <activity
                 android:name=".ui.WebActivity"
+                android:process=":h5"
                 android:screenOrientation="portrait" />
         <activity
                 android:name=".ui.WebWithImageActivity"

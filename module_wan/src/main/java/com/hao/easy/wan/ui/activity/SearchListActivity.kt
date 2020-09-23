@@ -33,9 +33,10 @@ class SearchListActivity : BaseListActivity<Article, SearchListViewModel>() {
     }
 
     override fun initData() {
-        val content = intent.getStringExtra(CONTENT)
-        title = content
-        viewModel.hotWord = content
+        intent.getStringExtra(CONTENT)?.let {
+            title = it
+            viewModel.hotWord = it
+        }
         super.initData()
         lifecycle.addObserver(viewModel)
     }

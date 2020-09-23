@@ -1,6 +1,6 @@
 package com.hao.easy.base.ui
 
-import android.animation.ArgbEvaluator
+import  android.animation.ArgbEvaluator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -33,14 +33,16 @@ class WebWithImageActivity : WebActivity() {
     private var maxOffset = 0
     private var percent = .0F
 
-    override fun transparentStatusBar() = true
+    override fun showToolbar() = false
 
     override fun getLayoutId() = R.layout.activity_web_with_image
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initView() {
-        val image = intent.getStringExtra(IMAGE)
-        imageView.load(image)
+        transparentStatusBar()
+        intent.getStringExtra(IMAGE)?.let {
+            imageView.load(it)
+        }
         val s = intent.getStringExtra(TITLE)
         title = if (TextUtils.isEmpty(s)) "详情" else s
         baseWebView.progressBar = progressBar

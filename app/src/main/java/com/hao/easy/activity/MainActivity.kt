@@ -1,20 +1,19 @@
 package com.hao.easy.activity
 
-import android.os.Build
 import android.view.View
-import android.view.WindowManager
 import androidx.drawerlayout.widget.DrawerLayout
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.hao.easy.R
 import com.hao.easy.base.adapter.FragmentAdapter
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.user.ui.fragment.UserFragment
-import com.hao.easy.wan.ui.fragment.*
+import com.hao.easy.wan.ui.fragment.KnowledgeFragment
+import com.hao.easy.wan.ui.fragment.ProjectFragment
+import com.hao.easy.wan.ui.fragment.SearchFragment
+import com.hao.easy.wan.ui.fragment.WechatFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.app_activity_main.*
 import kotlin.properties.Delegates
 
-@Route(path = "/app/MainActivity")
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
@@ -27,17 +26,12 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    override fun transparentStatusBar() = true
-    override fun getLayoutId() = R.layout.app_activity_main
-    override fun initView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            val lp = window.attributes
-            // 使用刘海区域
-            lp.layoutInDisplayCutoutMode =
-                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-            window.attributes = lp
-        }
+    override fun showToolbar() = false
 
+    override fun getLayoutId() = R.layout.app_activity_main
+
+    override fun initView() {
+        transparentStatusBar()
         val fragments = listOf(
             WechatFragment(),
             ProjectFragment(),
@@ -52,6 +46,7 @@ class MainActivity : BaseActivity() {
         initDrawerLayout()
         initLeftNavigation()
         initBottomNavigation()
+//        Debug.stopMethodTracing()
     }
 
     private fun initDrawerLayout() {
@@ -74,7 +69,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initBottomNavigation() {
-//        bottomNavigationView.itemIconTintList = null
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             viewPager.setCurrentItem(
                 when (item.itemId) {

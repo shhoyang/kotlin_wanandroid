@@ -13,9 +13,9 @@
 
     <com.hao.easy.base.view.ToolbarLayout
             android:id="@id/baseToolbar"
-            style="@style/Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_height"
             app:iconTint="@color/white"
-            app:layout_constraintTop_toTopOf="parent"
             app:showLine="false"
             app:textColor="@color/white"
             app:title="@string/user_login" />

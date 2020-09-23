@@ -4,16 +4,6 @@
 
     <application>
         <activity
-                android:name=".ui.activity.WelcomeActivity"
-                android:screenOrientation="portrait"
-                android:theme="@style/WelcomeTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
                 android:name=".ui.activity.LoginActivity"
                 android:screenOrientation="portrait"
                 android:theme="@style/LoginTheme"/>

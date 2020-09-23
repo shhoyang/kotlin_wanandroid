@@ -10,13 +10,8 @@
     </style>
 
     <style name="WanStatusBarTransparentTheme" parent="WanAppTheme">
-        <item name="android:statusBarColor">@color/transparent</item>
-    </style>
-
-    <style name="Toolbar">
-        <item name="android:id">@id/baseToolbar</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/title_height</item>
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 </resources>

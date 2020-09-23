@@ -11,7 +11,6 @@ import com.hao.easy.base.common.AppManager
 import com.hao.easy.base.utils.T
 import com.hao.easy.base.view.ToolbarLayout
 import kotlinx.android.synthetic.main.activity_base.*
-import kotlin.properties.Delegates
 
 /**
  * @author Yang Shihao
@@ -20,36 +19,20 @@ import kotlin.properties.Delegates
 abstract class BaseActivity : AppCompatActivity() {
 
     companion object {
-        private const val STATUS_BAR_NONE = -1
         private const val STATUS_BAR_DARK = 0
         private const val STATUS_BAR_LIGHT = 1
-    }
-
-    /**
-     * 状态栏模式变化
-     */
-    private var statusBarMode by Delegates.observable(STATUS_BAR_NONE) { _, old, new ->
-        if (old != new) {
-            statusBar(new)
-        }
     }
 
     private var toolbar: ToolbarLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStatusBarMode(true)
         AppManager.instance().pushActivity(this)
-        when {
-            getLayoutId() == 0 -> setContentView()
-
-            !showToolbar()-> setContentView(getLayoutId())
-            transparentStatusBar() -> setContentView(getLayoutId())
-
-            else -> {
-                setContentView(R.layout.activity_base)
-                View.inflate(this, getLayoutId(), activityRootView)
-            }
+        if (!showToolbar()) {
+            setContentView(getLayoutId())
+        } else {
+            setContentView(R.layout.activity_base)
+            View.inflate(this, getLayoutId(), activityRootView)
         }
         toolbar = findViewById(R.id.baseToolbar)
         toolbar?.apply {
@@ -69,58 +52,29 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 改变状态栏样式
      */
-    fun setStatusBarMode(light: Boolean) {
-        if (isFullScreen()) {
-            return
-        }
-        statusBarMode = if (light) {
-            STATUS_BAR_LIGHT
-        } else {
-            STATUS_BAR_DARK
-        }
-    }
-
-    /**
-     * 设置状态栏样式
-     */
-    private fun statusBar(mode: Int) {
+    fun setStatusBarMode(mode: Int, transparentStatusBar: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val systemUiVisibility = window.decorView.systemUiVisibility
-            if (transparentStatusBar()) {
-                window.decorView.systemUiVisibility = when (mode) {
-                    // 深色文字
-                    STATUS_BAR_LIGHT -> systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    STATUS_BAR_DARK -> systemUiVisibility and (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()) or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    else -> systemUiVisibility
-                }
-            } else {
-                window.decorView.systemUiVisibility = when (mode) {
-                    // 深色文字
-                    STATUS_BAR_LIGHT -> systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                    STATUS_BAR_DARK -> systemUiVisibility and (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv())
-                    else -> systemUiVisibility
-                }
+            var systemUiVisibility = window.decorView.systemUiVisibility
+
+            if (STATUS_BAR_LIGHT == mode) {
+                systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            } else if (STATUS_BAR_DARK == mode) {
+                systemUiVisibility =
+                    systemUiVisibility and (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv())
             }
+
+            if (transparentStatusBar) {
+                systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            }
+
+            window.decorView.systemUiVisibility = systemUiVisibility
         }
     }
-
-    /**
-     * 是否全屏
-     */
-    open fun isFullScreen(): Boolean = false
-
-    /**
-     * 是否透明状态栏，布局从状态栏开始
-     */
-    open fun transparentStatusBar(): Boolean = false
 
     open fun showToolbar() = true
 
     @LayoutRes
     abstract fun getLayoutId(): Int
-
-    open fun setContentView() {
-    }
 
     open fun initView() {
     }
@@ -132,8 +86,26 @@ abstract class BaseActivity : AppCompatActivity() {
         toolbar?.title = title
     }
 
-    fun <T : View> f(id: Int): T? {
-        return findViewById(id)
+    /**
+     * 设置透明状态栏，耗时5ms
+     * 只在主题设置，某些机型会是半透明的
+     *
+     * @param lightStatusBar true深色文字，false浅色文字
+     */
+    fun transparentStatusBar(lightStatusBar: Boolean = true) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (lightStatusBar) {
+                var systemUiVisibility = (window.decorView.systemUiVisibility
+                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+                window.decorView.systemUiVisibility = systemUiVisibility
+            } else {
+                var systemUiVisibility = (window.decorView.systemUiVisibility
+                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv())
+                window.decorView.systemUiVisibility = systemUiVisibility
+            }
+        }
     }
 
     fun toast(msg: String?) {

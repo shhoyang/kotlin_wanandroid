@@ -15,6 +15,13 @@ import com.hao.easy.base.utils.T
  */
 abstract class BaseFragment : Fragment() {
 
+
+    /**
+     * 懒加载标记
+     */
+    private var isLazy = false
+    private var isLoad = false
+
     private lateinit var fragmentRootView: View
 
     override fun onCreateView(
@@ -28,13 +35,32 @@ abstract class BaseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        prepare()
         initView()
-        initData()
+        if (!isLazy) {
+            initData()
+        }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (isLazy && !isLoad) {
+            initData()
+            isLoad = true
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        isLoad = false
+    }
 
     fun <T : View> f(id: Int): T? {
         return fragmentRootView.findViewById(id)
+    }
+
+    open fun prepare() {
+
     }
 
     @LayoutRes
@@ -46,6 +72,10 @@ abstract class BaseFragment : Fragment() {
 
     open fun initData() {
 
+    }
+
+    fun lazyLoad(b: Boolean = true) {
+        this.isLazy = b
     }
 
     fun toast(msg: String?) {

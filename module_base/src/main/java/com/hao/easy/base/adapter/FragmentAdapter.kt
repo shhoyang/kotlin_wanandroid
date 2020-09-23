@@ -19,3 +19,4 @@ class FragmentAdapter(
 
     override fun createFragment(position: Int) = data[position]
 }
+

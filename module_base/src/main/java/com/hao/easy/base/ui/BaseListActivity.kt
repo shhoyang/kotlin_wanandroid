@@ -35,9 +35,9 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
     override fun getLayoutId() = R.layout.activity_base_list
 
     override fun initView() {
-        refreshLayout = f(R.id.baseRefreshLayout)
-        recyclerView = f(R.id.baseRecyclerView)!!
-        emptyView = f(R.id.baseEmptyView)
+        refreshLayout = findViewById(R.id.baseRefreshLayout)
+        recyclerView = findViewById(R.id.baseRecyclerView)!!
+        emptyView = findViewById(R.id.baseEmptyView)
         val adapter = adapter()
         adapter.itemClickListener = this
         recyclerView.init(adapter)

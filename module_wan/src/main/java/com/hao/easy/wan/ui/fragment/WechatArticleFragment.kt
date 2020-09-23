@@ -35,7 +35,7 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
     @Inject
     lateinit var adapter: CommonArticleAdapter
 
-    override fun getLayoutId() = R.layout.activity_base_list
+    override fun getLayoutId() = R.layout.wan_fragment_wechat_article
 
     override fun initView() {
         adapter.showAuthor = false

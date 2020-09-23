@@ -38,17 +38,17 @@ fun <D, T : HttpResult<D>> Observable<T>.subscribeBy(
         })
 }
 
-private inline fun toast(msg: String?) {
+private fun toast(msg: String?) {
     if (!TextUtils.isEmpty(msg)) {
         T.short(BaseApplication.instance, msg)
     }
 }
 
-private inline fun errorHandle(
+private fun errorHandle(
     code: Int,
     msg: String,
     enableToast: Boolean,
-    noinline onFailure: ((Pair<Int, String>) -> Unit)?
+    onFailure: ((Pair<Int, String>) -> Unit)?
 ) {
     if (enableToast) {
         toast(msg)

@@ -29,7 +29,7 @@ open class WebActivity : BaseActivity() {
     override fun onDestroy() {
         baseWebView.destroy()
         super.onDestroy()
-//        exitProcess(0)
+        exitProcess(0)
     }
 
     override fun onBackPressed() {

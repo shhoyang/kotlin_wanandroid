@@ -1,3 +1,9 @@
 <resources>
 
+    <style name="WelcomeTheme" parent="WanStatusBarTransparentTheme">
+        <!--        <item name="android:windowFullscreen">true</item>-->
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">@mipmap/app_welcome_bg</item>
+    </style>
+
 </resources>

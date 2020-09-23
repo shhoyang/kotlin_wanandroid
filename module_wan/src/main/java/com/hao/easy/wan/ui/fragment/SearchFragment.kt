@@ -17,7 +17,6 @@ import com.hao.easy.wan.viewmodel.SearchViewModel
 import com.library.flowlayout.FlowLayoutManager
 import com.library.flowlayout.SpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.status_bar_holder.*
 import kotlinx.android.synthetic.main.wan_fragment_search.*
 import javax.inject.Inject
 
@@ -40,11 +39,12 @@ class SearchFragment : BaseFragment(), OnItemClickListener<HotWord> {
 
     override fun getLayoutId() = R.layout.wan_fragment_search
 
-    override fun initView() {
-        val layoutParams = statusBarHolder.layoutParams
-        layoutParams.height = DisplayUtils.getStatusBarHeight(context!!)
-        statusBarHolder.layoutParams = layoutParams
+    override fun prepare() {
+        lazyLoad()
+    }
 
+    override fun initView() {
+        DisplayUtils.setStatusBarHolder(baseToolbar)
         hotWordAdapter.itemClickListener = this
         historyAdapter.itemClickListener = this
 

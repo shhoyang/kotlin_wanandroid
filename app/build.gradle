@@ -15,6 +15,7 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode versions.versionCode
         versionName versions.versionName
+        multiDexEnabled true
 
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
@@ -88,6 +89,10 @@ dependencies {
     implementation project(':module_user')
     implementation project(':module_wan')
     implementation "com.google.dagger:hilt-android:$versions.hilt"
+    implementation 'org.greenrobot:eventbus:3.2.0'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     kapt compilerDependencies
 }

@@ -1,13 +1,8 @@
 <resources>
 
-    <style name="WelcomeTheme" parent="WanStatusBarTransparentTheme">
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowBackground">@mipmap/user_welcome_bg</item>
-    </style>
-
     <style name="LoginTheme" parent="WanStatusBarTransparentTheme">
-        <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowBackground">@mipmap/user_login_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="TextInputLayoutLineColor" parent="Theme.AppCompat.Light">

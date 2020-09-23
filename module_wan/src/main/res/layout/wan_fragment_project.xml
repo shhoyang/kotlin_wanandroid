@@ -5,9 +5,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <include layout="@layout/status_bar_holder" />
-
     <com.hao.easy.base.view.ToolbarLayout
+            android:id="@id/baseToolbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/title_height"
             app:showBack="false"

@@ -11,9 +11,9 @@ import com.hao.easy.user.ui.fragment.RegisterFragment
 @Route(path = "/user/LoginActivity")
 class LoginActivity : BaseActivity() {
 
-    companion object{
-        fun start(context: Context){
-            context.startActivity(Intent(context,LoginActivity::class.java))
+    companion object {
+        fun start(context: Context) {
+            context.startActivity(Intent(context, LoginActivity::class.java))
         }
     }
 
@@ -27,19 +27,19 @@ class LoginActivity : BaseActivity() {
 
     override fun initView() {
         supportFragmentManager
-                .beginTransaction().apply {
-                    add(R.id.frame, loginFragment, "Login")
-                    commit()
-                }
+            .beginTransaction().apply {
+                add(R.id.frame, loginFragment, "Login")
+                commit()
+            }
     }
 
     fun goRegister() {
         supportFragmentManager.beginTransaction().apply {
             setCustomAnimations(
-                    R.anim.user_fragment_right_in,
-                    R.anim.user_fragment_left_out,
-                    R.anim.user_fragment_left_in,
-                    R.anim.user_fragment_right_out
+                R.anim.user_fragment_right_in,
+                R.anim.user_fragment_left_out,
+                R.anim.user_fragment_left_in,
+                R.anim.user_fragment_right_out
             )
             hide(loginFragment)
             add(R.id.frame, registerFragment, "Register")

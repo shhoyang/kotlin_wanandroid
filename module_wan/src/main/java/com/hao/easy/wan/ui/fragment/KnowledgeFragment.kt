@@ -9,7 +9,7 @@ import com.hao.easy.wan.ui.activity.KnowledgeArticleActivity
 import com.hao.easy.wan.ui.adapter.KnowledgeAdapter
 import com.hao.easy.wan.viewmodel.KnowledgeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.status_bar_holder.*
+import kotlinx.android.synthetic.main.wan_fragment_knowledge.*
 import javax.inject.Inject
 
 /**
@@ -26,10 +26,12 @@ class KnowledgeFragment : BaseListFragment<Knowledge, KnowledgeViewModel>() {
 
     override fun adapter() = adapter
 
+    override fun prepare() {
+        lazyLoad()
+    }
+
     override fun initView() {
-        val layoutParams = statusBarHolder.layoutParams
-        layoutParams.height = DisplayUtils.getStatusBarHeight(context!!)
-        statusBarHolder.layoutParams = layoutParams
+        DisplayUtils.setStatusBarHolder(baseToolbar)
         super.initView()
     }
 

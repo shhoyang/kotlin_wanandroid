@@ -7,6 +7,7 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
+            android:id="@+id/coordinatorLayout"
             android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -17,11 +18,10 @@
                 android:orientation="vertical"
                 app:elevation="0dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.hao.easy.wan.view.MinimumHeightConstraintLayout
                     android:id="@+id/clTop"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/status_bar_height"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
                 <androidx.viewpager2.widget.ViewPager2
@@ -45,7 +45,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/banner"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.hao.easy.wan.view.MinimumHeightConstraintLayout>
 
             <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"

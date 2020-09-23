@@ -3,12 +3,20 @@ package com.hao.easy.base.utils
 import android.app.Activity
 import android.content.Context
 import android.graphics.Rect
+import android.os.Build
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.widget.FrameLayout
+import android.widget.LinearLayout
 
 /**
  * @author Yang Shihao
  * @Date 2020/7/20
  */
 object DisplayUtils {
+
+    private var statusBarHeight = 0
 
     /**
      * 获取屏幕宽度(像素)
@@ -60,22 +68,48 @@ object DisplayUtils {
      * 获取状态栏高度
      */
     fun getStatusBarHeight(context: Context): Int {
-        val resources = context.resources
-        val resourceId: Int = context.resources.getIdentifier("status_bar_height", "dimen", "android")
-        var height = resources.getDimensionPixelSize(resourceId)
-        if (height < 1) {
-            height = dp2px(context, 25)
+        if (statusBarHeight == 0) {
+            val resources = context.resources
+            val resourceId: Int =
+                context.resources.getIdentifier("status_bar_height", "dimen", "android")
+            var height = resources.getDimensionPixelSize(resourceId)
+            if (height < 1) {
+                height = dp2px(context, 25)
+            }
+            statusBarHeight = height
         }
-        return height
+
+        return statusBarHeight
     }
 
-    fun getDecorViewHeight(activity: Activity): Int {
+    fun setStatusBarHolder(view: View) {
+        val layoutParams = view.layoutParams
+        val statusBarHeight = getStatusBarHeight(view.context)
+        if (layoutParams is FrameLayout.LayoutParams) {
+            layoutParams.topMargin = statusBarHeight
+        } else if (layoutParams is LinearLayout.LayoutParams) {
+            layoutParams.topMargin = statusBarHeight
+        }
+        view.layoutParams = layoutParams
+    }
+
+    fun getDecorViewHeight(activity: Activity?): Int {
         return if (activity == null) {
             0
         } else {
             val rect = Rect()
             activity.window.decorView.getWindowVisibleDisplayFrame(rect)
             rect.height()
+        }
+    }
+
+    fun useShortEdges(window: Window) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val lp = window.attributes
+            // 使用刘海区域
+            lp.layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+            window.attributes = lp
         }
     }
 }

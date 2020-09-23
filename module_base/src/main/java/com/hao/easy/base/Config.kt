@@ -71,7 +71,7 @@ object Config {
         BaseApplication.instance.httpManager.cancelAllRequest()
     }
 
-    inline fun refresh() {
+    fun refresh() {
         refresh++
     }
 }

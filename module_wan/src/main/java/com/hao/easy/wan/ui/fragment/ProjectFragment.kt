@@ -14,11 +14,7 @@ import com.hao.easy.wan.ui.adapter.ProjectArticleAdapter
 import com.hao.easy.wan.ui.adapter.ProjectTypePageAdapter
 import com.hao.easy.wan.viewmodel.ProjectViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.status_bar_holder.*
 import kotlinx.android.synthetic.main.wan_fragment_project.*
-import kotlinx.android.synthetic.main.wan_fragment_project.appBarLayout
-import kotlinx.android.synthetic.main.wan_fragment_project.baseRefreshLayout
-import kotlinx.android.synthetic.main.wan_fragment_project.indicator
 import javax.inject.Inject
 
 /**
@@ -36,11 +32,13 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
 
     override fun getLayoutId() = R.layout.wan_fragment_project
 
+    override fun prepare() {
+        lazyLoad()
+    }
+
     override fun initView() {
         super.initView()
-        val layoutParams = statusBarHolder.layoutParams
-        layoutParams.height = DisplayUtils.getStatusBarHeight(context!!)
-        statusBarHolder.layoutParams = layoutParams
+        DisplayUtils.setStatusBarHolder(baseToolbar)
         vpType.adapter = typeAdapter
         indicator.setViewPager(vpType)
         typeAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
@@ -71,7 +69,6 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
             }
             R.id.ivFav -> viewModel.collect(item, position)
             else -> context?.apply {
-//                WebWithImageActivity.start(this, item.title, item.link, item.envelopePic)
                 WebActivity.start(this, item.title, item.link)
             }
         }

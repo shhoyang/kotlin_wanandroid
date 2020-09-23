@@ -8,7 +8,6 @@ import com.hao.easy.base.extensions.hideSoftInput
 import com.hao.easy.base.extensions.showError
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.user.R
-import com.hao.easy.user.Router
 import com.hao.easy.user.ui.activity.LoginActivity
 import com.hao.easy.user.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.user_fragment_login.*

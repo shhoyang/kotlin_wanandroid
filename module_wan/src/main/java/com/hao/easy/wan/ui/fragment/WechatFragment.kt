@@ -41,7 +41,6 @@ class WechatFragment : BaseFragment() {
     override fun getLayoutId() = R.layout.wan_fragment_wechat
 
     override fun initView() {
-        statusBarHeight = DisplayUtils.getStatusBarHeight(context!!)
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -62,7 +61,10 @@ class WechatFragment : BaseFragment() {
             baseRefreshLayout.isRefreshing = false
         }
 
+        statusBarHeight = DisplayUtils.getStatusBarHeight(context!!)
+
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+
             baseRefreshLayout.isEnabled = verticalOffset == 0
             if (maxScrollHeight <= 0) {
                 maxScrollHeight =
@@ -72,7 +74,6 @@ class WechatFragment : BaseFragment() {
                 clTop.alpha = (maxScrollHeight + verticalOffset) * 1.0F / maxScrollHeight
             }
         })
-
 
         banner.adapter = bannerAdapter
         indicator.setViewPager(banner)

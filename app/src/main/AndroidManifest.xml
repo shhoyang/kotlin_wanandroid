@@ -10,6 +10,16 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/WanAppTheme">
+
+        <meta-data
+                android:name="android.notch_support"
+                android:value="true" />
+
+        <service
+                android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+                android:label="dexopt"
+                android:process=":dexopt"></service>
+
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="${applicationId}.provider"
@@ -19,6 +29,20 @@
                     android:name="android.support.FILE_PROVIDER_PATHS"
                     android:resource="@xml/file_paths" />
         </provider>
+
+        <activity
+                android:name=".activity.WelcomeActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/WelcomeTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!--                android:maxAspectRatio="2.5"-->
+        <!--                android:resizeableActivity="false"-->
         <activity
                 android:name=".activity.MainActivity"
                 android:screenOrientation="portrait"
