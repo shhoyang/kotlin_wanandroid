@@ -1,7 +1,10 @@
 package com.hao.easy.wan
 
+import android.content.Intent
 import com.hao.easy.base.adapter.FragmentAdapter
+import com.hao.easy.base.adapter.FragmentCreator
 import com.hao.easy.base.ui.BaseActivity
+import com.hao.easy.base.ui.UIParams
 import com.hao.easy.wan.ui.fragment.KnowledgeFragment
 import com.hao.easy.wan.ui.fragment.ProjectFragment
 import com.hao.easy.wan.ui.fragment.SearchFragment
@@ -16,15 +19,26 @@ import kotlinx.android.synthetic.main.wan_activity_main.*
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
-    override fun transparentStatusBar() = true
+    override fun prepare(uiParams: UIParams, intent: Intent?) {
+        uiParams.showToolbar = false
+    }
+
     override fun getLayoutId() = R.layout.wan_activity_main
 
     override fun initView() {
         val fragments = listOf(
-            WechatFragment(),
-            ProjectFragment(),
-            KnowledgeFragment(),
-            SearchFragment()
+            object : FragmentCreator {
+                override fun createFragment() = WechatFragment()
+            },
+            object : FragmentCreator {
+                override fun createFragment() = ProjectFragment()
+            },
+            object : FragmentCreator {
+                override fun createFragment() = KnowledgeFragment()
+            },
+            object : FragmentCreator {
+                override fun createFragment() = SearchFragment()
+            }
         )
         viewPager.apply {
             isUserInputEnabled = false

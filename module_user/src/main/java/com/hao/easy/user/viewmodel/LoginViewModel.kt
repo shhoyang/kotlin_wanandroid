@@ -12,7 +12,7 @@ import com.hao.easy.user.repository.Api
  */
 class LoginViewModel : BaseViewModel() {
 
-    var loginLiveData = MutableLiveData<String?>()
+    val loginLiveData = MutableLiveData<String?>()
 
     fun login(username: String, password: String) {
         Api.login(username, password).subscribeBy({

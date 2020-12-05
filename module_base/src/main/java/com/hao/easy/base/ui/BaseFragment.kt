@@ -1,5 +1,6 @@
 package com.hao.easy.base.ui
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +8,6 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import com.hao.easy.base.utils.T
 
 /**
  * @author Yang Shihao
@@ -15,14 +15,14 @@ import com.hao.easy.base.utils.T
  */
 abstract class BaseFragment : Fragment() {
 
+    protected val uiParams = UIParams()
 
     /**
      * 懒加载标记
      */
-    private var isLazy = false
     private var isLoad = false
 
-    private lateinit var fragmentRootView: View
+    protected lateinit var fragmentRootView: View
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,16 +35,17 @@ abstract class BaseFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        prepare()
+        prepare(uiParams, arguments)
         initView()
-        if (!isLazy) {
+        isLoad = false
+        if (!uiParams.isLazy) {
             initData()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        if (isLazy && !isLoad) {
+        if (uiParams.isLazy && !isLoad) {
             initData()
             isLoad = true
         }
@@ -59,12 +60,9 @@ abstract class BaseFragment : Fragment() {
         return fragmentRootView.findViewById(id)
     }
 
-    open fun prepare() {
+    open fun prepare(uiParams: UIParams, bundle: Bundle?) {
 
     }
-
-    @LayoutRes
-    abstract fun getLayoutId(): Int
 
     open fun initView() {
 
@@ -74,15 +72,25 @@ abstract class BaseFragment : Fragment() {
 
     }
 
-    fun lazyLoad(b: Boolean = true) {
-        this.isLazy = b
+    fun act(block: (BaseActivity) -> Unit) {
+        val activity = activity
+        if (activity != null && activity is BaseActivity && !activity.isFinishing) {
+            block(activity)
+        }
     }
 
     fun toast(msg: String?) {
-        T.short(context, msg)
+        act { it.toast(msg) }
     }
 
     fun toast(@StringRes resId: Int) {
-        T.short(context, resId)
+        act { it.toast(resId) }
     }
+
+    fun to(cls: Class<out Activity>, isFinish: Boolean = false) {
+        act { it.to(cls, isFinish) }
+    }
+
+    @LayoutRes
+    abstract fun getLayoutId(): Int
 }

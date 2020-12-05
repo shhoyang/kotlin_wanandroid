@@ -11,14 +11,11 @@
 
     <application>
 
+<!--        android:process=":h5"-->
         <activity
                 android:name=".ui.WebActivity"
-                android:process=":h5"
+
                 android:screenOrientation="portrait" />
-        <activity
-                android:name=".ui.WebWithImageActivity"
-                android:screenOrientation="portrait"
-                android:theme="@style/WanStatusBarTransparentTheme" />
     </application>
 
 </manifest>

@@ -6,7 +6,6 @@ import android.view.View
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.ui.adapter.CommonArticleAdapter
 import com.hao.easy.wan.viewmodel.SearchListViewModel
@@ -23,14 +22,7 @@ class SearchListActivity : BaseListActivity<Article, SearchListViewModel>() {
     @Inject
     lateinit var adapter: CommonArticleAdapter
 
-    companion object {
-        private const val CONTENT = "CONTENT"
-        fun start(context: Context, content: String) {
-            val intent = Intent(context, SearchListActivity::class.java)
-            intent.putExtra(CONTENT, content)
-            context.startActivity(intent)
-        }
-    }
+    override fun adapter() = adapter
 
     override fun initData() {
         intent.getStringExtra(CONTENT)?.let {
@@ -41,19 +33,20 @@ class SearchListActivity : BaseListActivity<Article, SearchListViewModel>() {
         lifecycle.addObserver(viewModel)
     }
 
-    override fun adapter() = adapter
-
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
-            R.id.tvLink -> {
-                val title = item.title.removeHtml()
-                WebActivity.start(this, title, item.projectLink)
-            }
+            R.id.tvLink -> WebActivity.start(this, item.title, item.projectLink)
             R.id.ivFav -> viewModel.collect(item, position)
-            else -> {
-                val title = item.title.removeHtml()
-                WebActivity.start(this, title, item.link)
-            }
+            else -> WebActivity.start(this, item.title, item.link)
+        }
+    }
+
+    companion object {
+        private const val CONTENT = "CONTENT"
+        fun start(context: Context, content: String) {
+            val intent = Intent(context, SearchListActivity::class.java)
+            intent.putExtra(CONTENT, content)
+            context.startActivity(intent)
         }
     }
 }

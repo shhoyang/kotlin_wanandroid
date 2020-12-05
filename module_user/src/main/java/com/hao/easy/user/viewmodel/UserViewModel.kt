@@ -1,9 +1,7 @@
 package com.hao.easy.user.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.subscribeBy
-import com.hao.easy.base.user.User
 import com.hao.easy.base.viewmodel.BaseViewModel
 import com.hao.easy.user.repository.Api
 
@@ -13,13 +11,7 @@ import com.hao.easy.user.repository.Api
  */
 class UserViewModel : BaseViewModel() {
 
-    var loginLiveData = MutableLiveData<User>()
-
-    var logoutLiveData = MutableLiveData<String?>()
-
-    override fun onResume() {
-        loginLiveData.value = Config.user
-    }
+    val logoutLiveData = MutableLiveData<String?>()
 
     fun logout() {
         Api.logout().subscribeBy({

@@ -4,7 +4,6 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.view.View
 import com.hao.easy.base.adapter.OnItemClickListener
@@ -12,6 +11,7 @@ import com.hao.easy.base.adapter.OnItemLongClickListener
 import com.hao.easy.base.extensions.init
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.base.ui.WebActivity
+import com.hao.easy.base.utils.AppUtils
 import com.hao.easy.user.R
 import com.hao.easy.user.model.Menu
 import com.hao.easy.user.ui.adapter.AboutAdapter
@@ -22,15 +22,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class AboutActivity : BaseActivity(), OnItemClickListener<Menu>, OnItemLongClickListener<Menu> {
 
-    companion object {
-
-        const val HOME = "https://haoshiy.github.io"
-        const val ANDROID_PROJECT_LINK = "https://github.com/haoshiy/kotlin_wanandroid"
-        const val WECHAT_PROJECT_LINK = "https://github.com/haoshiy/wechat_wanandroid"
-        const val DOWNLOAD_LINK = "http://fir.highstreet.top/kandroid"
-        const val THANKS = "https://wanandroid.com/blog/show/2"
-    }
-
     @Inject
     lateinit var adapter: AboutAdapter
 
@@ -38,10 +29,10 @@ class AboutActivity : BaseActivity(), OnItemClickListener<Menu>, OnItemLongClick
 
     override fun initView() {
         title = "关于项目"
-        tvVersion.text = "V${getVersionName()}"
+        tvVersion.text = "V${AppUtils.getVersionName(this)}"
 
-        adapter.itemClickListener = this
-        adapter.itemLongClickListener = this
+        adapter.setOnItemClickListener(this)
+        adapter.setOnItemLongClickListener(this)
         recyclerView.init(adapter)
 
         val list = ArrayList<Menu>()
@@ -59,15 +50,6 @@ class AboutActivity : BaseActivity(), OnItemClickListener<Menu>, OnItemLongClick
         toast("已复制到剪粘板")
     }
 
-    private fun getVersionName(): String {
-        return try {
-            val packageInfo = packageManager.getPackageInfo(packageName, 0)
-            packageInfo.versionName
-        } catch (e: PackageManager.NameNotFoundException) {
-            ""
-        }
-    }
-
     override fun itemClicked(view: View, item: Menu, position: Int) {
         if (item.link == DOWNLOAD_LINK) {
             val intent = Intent(Intent.ACTION_VIEW)
@@ -81,5 +63,13 @@ class AboutActivity : BaseActivity(), OnItemClickListener<Menu>, OnItemLongClick
 
     override fun itemLongClicked(view: View, item: Menu, position: Int) {
         copy(item.link)
+    }
+
+    companion object {
+        const val HOME = "https://haoshiy.github.io"
+        const val ANDROID_PROJECT_LINK = "https://github.com/haoshiy/kotlin_wanandroid"
+        const val WECHAT_PROJECT_LINK = "https://github.com/haoshiy/wechat_wanandroid"
+        const val DOWNLOAD_LINK = "http://fir.highstreet.top/kandroid"
+        const val THANKS = "https://wanandroid.com/blog/show/2"
     }
 }

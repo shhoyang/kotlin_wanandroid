@@ -12,10 +12,13 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     private var tag = "BaseViewModel_${javaClass.simpleName}"
 
-    private val compositeDisposable: CompositeDisposable by lazy { CompositeDisposable() }
+    var compositeDisposable: CompositeDisposable? = null
 
     open fun Disposable.add() {
-        compositeDisposable.add(this)
+        if (compositeDisposable == null || compositeDisposable!!.isDisposed) {
+            compositeDisposable = CompositeDisposable()
+        }
+        compositeDisposable!!.add(this)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -46,14 +49,17 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     protected open fun onDestroy() {
         KLog.d(tag, "onDestroy")
-
     }
 
     override fun onCleared() {
         super.onCleared()
         KLog.d(tag, "onCleared")
-        if (!compositeDisposable.isDisposed) {
-            compositeDisposable.dispose()
+        if (compositeDisposable != null) {
+            if (!compositeDisposable!!.isDisposed) {
+                compositeDisposable!!.dispose()
+
+            }
+            compositeDisposable = null
         }
     }
 }

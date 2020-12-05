@@ -9,7 +9,7 @@ import com.hao.easy.wan.repository.Api
 
 class WechatViewModel : BaseViewModel() {
 
-    var adLiveData = MutableLiveData<ArrayList<Ad>>()
+    val adLiveData = MutableLiveData<ArrayList<Ad>>()
 
     val authorsLiveData: MutableLiveData<List<Author>> = MutableLiveData()
 

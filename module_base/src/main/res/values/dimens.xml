@@ -2,6 +2,5 @@
 
     <dimen name="activity_padding">16dp</dimen>
     <dimen name="title_height">48dp</dimen>
-    <dimen name="status_bar_height">26dp</dimen>
 
 </resources>

@@ -1,7 +1,7 @@
 package com.hao.easy.wan.model
 
 import com.hao.easy.base.adapter.BaseItem
-import com.hao.easy.wan.extensions.removeSymbol
+import com.hao.easy.base.extensions.removeSymbol
 
 class Article(var author: String,
               var niceDate: String,

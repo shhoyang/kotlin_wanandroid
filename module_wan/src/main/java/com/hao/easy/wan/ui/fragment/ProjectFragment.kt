@@ -1,11 +1,13 @@
 package com.hao.easy.wan.ui.fragment
 
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.google.android.material.appbar.AppBarLayout
 import com.hao.easy.base.extensions.visibility
 import com.hao.easy.base.extensions.visible
 import com.hao.easy.base.ui.BaseListFragment
+import com.hao.easy.base.ui.UIParams
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.wan.R
@@ -32,9 +34,11 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
 
     override fun getLayoutId() = R.layout.wan_fragment_project
 
-    override fun prepare() {
-        lazyLoad()
+    override fun prepare(uiParams: UIParams, bundle: Bundle?) {
+        uiParams.isLazy = true
     }
+
+    override fun adapter() = adapter
 
     override fun initView() {
         super.initView()
@@ -49,27 +53,23 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
     }
 
     override fun initData() {
-        super.initData()
         viewModel.typeLiveData.observe(this, Observer {
             typeAdapter.resetData(it)
             line.visible()
             indicator.visibility(it?.size ?: 0 > 1)
         })
+        super.initData()
         lifecycle.addObserver(viewModel)
     }
 
-    override fun adapter() = adapter
-
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
-            R.id.tvLink -> {
-                context?.apply {
-                    WebActivity.start(this, item.title, item.projectLink)
-                }
+            R.id.tvLink -> act {
+                WebActivity.start(it, item.title, item.projectLink)
             }
             R.id.ivFav -> viewModel.collect(item, position)
-            else -> context?.apply {
-                WebActivity.start(this, item.title, item.link)
+            else -> act {
+                WebActivity.start(it, item.title, item.link)
             }
         }
     }

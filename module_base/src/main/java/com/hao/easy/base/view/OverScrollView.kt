@@ -8,13 +8,7 @@ import android.view.View
 import android.view.animation.TranslateAnimation
 import android.widget.ScrollView
 
-class OverScrollView :ScrollView{
-
-    companion object {
-        private const val MOVE_FACTOR = 0.5
-
-        private const val ANIM_DURATION = 300L
-    }
+class OverScrollView : ScrollView {
 
     private lateinit var contentView: View
 
@@ -29,11 +23,15 @@ class OverScrollView :ScrollView{
 
     private var isMove = false
 
-    constructor(context: Context) : super(context) {init()}
+    constructor(context: Context) : super(context) {
+        init()
+    }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {init()}
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        init()
+    }
 
-    private fun init(){
+    private fun init() {
         overScrollMode = OVER_SCROLL_NEVER
         isVerticalFadingEdgeEnabled = false
     }
@@ -53,10 +51,6 @@ class OverScrollView :ScrollView{
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
-        if (contentView == null) {
-            return super.dispatchTouchEvent(ev)
-        }
-
         when (ev.action) {
             MotionEvent.ACTION_DOWN -> {
                 canPullUP = isCanPullUp()
@@ -65,7 +59,12 @@ class OverScrollView :ScrollView{
             }
             MotionEvent.ACTION_UP -> {
                 if (isMove) {
-                    val anim = TranslateAnimation(0F, 0F, contentView.top.toFloat(), contentViewPosition.top.toFloat())
+                    val anim = TranslateAnimation(
+                        0F,
+                        0F,
+                        contentView.top.toFloat(),
+                        contentViewPosition.top.toFloat()
+                    )
                     anim.duration = ANIM_DURATION
                     contentView.startAnimation(anim)
 
@@ -90,7 +89,8 @@ class OverScrollView :ScrollView{
                 val lastY = ev.y
                 val distance = lastY - startY
 
-                val b = (canPullUP && canPullDown) || (canPullUP && distance < 0) || (canPullDown && distance > 0)
+                val b =
+                    (canPullUP && canPullDown) || (canPullUP && distance < 0) || (canPullDown && distance > 0)
 
                 if (b) {
                     val offset = (distance * MOVE_FACTOR).toInt()
@@ -108,4 +108,9 @@ class OverScrollView :ScrollView{
     private fun isCanPullUp() = contentView.height <= height + scrollY
 
     private fun isCanPullDown() = scrollY == 0 || contentView.height < height + scrollY
+
+    companion object {
+        private const val MOVE_FACTOR = 0.5
+        private const val ANIM_DURATION = 300L
+    }
 }

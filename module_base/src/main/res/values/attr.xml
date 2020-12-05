@@ -7,4 +7,29 @@
         <attr name="iconTint" format="color" />
         <attr name="textColor" format="color" />
     </declare-styleable>
+
+    <attr name="radius" format="dimension" />
+    <attr name="borderWidth" format="dimension" />
+    <attr name="borderColor" format="color" />
+
+    <declare-styleable name="RoundButton">
+        <attr name="radius" />
+        <attr name="borderWidth" />
+        <attr name="borderColor" />
+        <attr name="normalColor" format="color" />
+        <attr name="pressedColor" format="color" />
+        <attr name="disableColor" format="color" />
+        <attr name="selectedColor" format="color" />
+        <attr name="normalTextColor" format="color" />
+        <attr name="pressedTextColor" format="color" />
+        <attr name="disableTextColor" format="color" />
+        <attr name="selectedTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundTextView">
+        <attr name="radius" />
+        <attr name="borderWidth" />
+        <attr name="borderColor" />
+        <attr name="bgColor" format="color" />
+    </declare-styleable>
 </resources>

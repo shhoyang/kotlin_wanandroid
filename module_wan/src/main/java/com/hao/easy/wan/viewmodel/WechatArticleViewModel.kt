@@ -8,11 +8,11 @@ import kotlin.properties.Delegates
 
 class WechatArticleViewModel : BaseArticleViewModel() {
 
-    var authorId: Int = 409
+    var authorId: Int = 408
 
     private var refresh by Delegates.observable(Config.refresh) { _, old, new ->
         if (old != new) {
-            invalidate()
+            refresh()
         }
     }
 

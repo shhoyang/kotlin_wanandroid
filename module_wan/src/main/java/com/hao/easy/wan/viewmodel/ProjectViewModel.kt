@@ -1,6 +1,7 @@
 package com.hao.easy.wan.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.PageKeyedDataSource
 import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.wan.model.Article
@@ -14,7 +15,7 @@ class ProjectViewModel : BaseArticleViewModel() {
 
     private var refresh by Delegates.observable(Config.refresh) { _, old, new ->
         if (old != new) {
-            invalidate()
+            refresh()
         }
     }
 
@@ -33,7 +34,8 @@ class ProjectViewModel : BaseArticleViewModel() {
         }).add()
     }
 
-    override fun refresh() {
+    override fun refresh(callback: PageKeyedDataSource.LoadInitialCallback<Int, Article>) {
+        super.refresh(callback)
         Api.getProjectType().subscribeBy({
             if (it != null && it.isNotEmpty()) {
                 val list = ArrayList<ArrayList<ProjectType>>()

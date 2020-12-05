@@ -1,5 +1,6 @@
 package com.hao.easy.wan.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -20,7 +21,7 @@ interface HistoryDao {
     fun query(name: String): HotWord?
 
     @Query("SELECT * FROM HotWord")
-    fun queryAll(): List<HotWord>
+    fun queryAll(): LiveData<List<HotWord>>
 
     @Delete
     fun delete(hotWord: HotWord)

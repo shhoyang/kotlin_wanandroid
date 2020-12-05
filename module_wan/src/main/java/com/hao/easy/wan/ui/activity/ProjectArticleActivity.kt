@@ -19,18 +19,10 @@ class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel
     @Inject
     lateinit var adapter: ProjectArticleAdapter
 
-    companion object {
-        private const val TYPE = "TYPE"
-        fun start(context: Context, projectType: ProjectType) {
-            val intent = Intent(context, ProjectArticleActivity::class.java)
-            intent.putExtra(TYPE, projectType)
-            context.startActivity(intent)
-        }
-    }
+    override fun adapter() = adapter
 
     override fun initData() {
-        val type = intent.getParcelableExtra<ProjectType>(TYPE)
-        type?.apply {
+        intent.getParcelableExtra<ProjectType>(TYPE)?.apply {
             title = name.replace("&amp;", "")
             viewModel.typeId = id
         }
@@ -39,16 +31,20 @@ class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel
         lifecycle.addObserver(viewModel)
     }
 
-    override fun adapter() = adapter
-
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
-            R.id.tvLink -> {
-                WebActivity.start(this, item.title, item.projectLink)
-            }
+            R.id.tvLink -> WebActivity.start(this, item.title, item.projectLink)
             R.id.ivFav -> viewModel.collect(item, position)
-//            else -> WebWithImageActivity.start(this, item.title, item.link, item.envelopePic)
             else -> WebActivity.start(this, item.title, item.link)
+        }
+    }
+
+    companion object {
+        private const val TYPE = "TYPE"
+        fun start(context: Context, projectType: ProjectType) {
+            val intent = Intent(context, ProjectArticleActivity::class.java)
+            intent.putExtra(TYPE, projectType)
+            context.startActivity(intent)
         }
     }
 }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.hao.easy.base.view.ToolbarLayout
-            android:id="@id/baseToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/title_height"
-            app:showBack="false"
-            app:title="@string/wan_title_knowledge" />
+        android:id="@id/baseToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        app:showBack="false"
+        app:title="@string/wan_title_knowledge" />
 
     <include layout="@layout/activity_base_list" />
 

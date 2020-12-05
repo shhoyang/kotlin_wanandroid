@@ -7,9 +7,12 @@ import com.hao.easy.base.R
 
 open class RefreshLayout : SwipeRefreshLayout {
 
-    constructor(context: Context) : this(context,null)
+    constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
         setColorSchemeResources(R.color.colorPrimary)
     }
 }

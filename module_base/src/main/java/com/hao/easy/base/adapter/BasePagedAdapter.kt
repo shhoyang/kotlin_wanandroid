@@ -10,7 +10,8 @@ abstract class BasePagedAdapter<T : BaseItem>(
 ) :
     PagedListAdapter<T, ViewHolder>(diff) {
 
-    var itemClickListener: OnItemClickListener<T>? = null
+    protected var itemClickListener: OnItemClickListener<T>? = null
+    protected var itemLongClickListener: OnItemLongClickListener<T>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(parent.context, parent, layoutId)
@@ -27,6 +28,14 @@ abstract class BasePagedAdapter<T : BaseItem>(
             }
         }
         bindViewHolder(holder, getItem(position)!!, position, payloads)
+    }
+
+    fun setOnItemClickListener(itemClickListener: OnItemClickListener<T>?) {
+        this.itemClickListener = itemClickListener
+    }
+
+    fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener<T>?) {
+        this.itemLongClickListener = itemLongClickListener
     }
 
     open fun bindViewHolder(

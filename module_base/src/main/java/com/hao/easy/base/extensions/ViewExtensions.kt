@@ -1,10 +1,12 @@
 package com.hao.easy.base.extensions
 
+import android.graphics.Paint
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,6 +46,20 @@ fun View.visibility(visible: Boolean) {
     } else {
         gone()
     }
+}
+
+/**
+ * 中划线
+ */
+fun TextView.strikeThru(){
+    paint.flags = Paint.STRIKE_THRU_TEXT_FLAG or Paint.ANTI_ALIAS_FLAG
+}
+
+/**
+ * 下划线
+ */
+fun TextView.underline(){
+    paint.flags = Paint.UNDERLINE_TEXT_FLAG
 }
 
 fun View.snack(msg: String?) {

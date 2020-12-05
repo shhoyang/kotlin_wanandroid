@@ -13,6 +13,8 @@ class RefreshLayout2 : RefreshLayout {
     private var isViewPager = false
     private var touchSlop: Int = 0
 
+    constructor(context: Context) : this(context,null)
+
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         touchSlop = ViewConfiguration.get(context).scaledTouchSlop
     }
@@ -43,4 +45,31 @@ class RefreshLayout2 : RefreshLayout {
         }
         return super.onInterceptTouchEvent(ev)
     }
+
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        switch (ev.getAction()) {
+//            case MotionEvent.ACTION_DOWN:
+//            startX = (int) ev.getX();
+//            startY = (int) ev.getY();
+//            getParent().requestDisallowInterceptTouchEvent(true);//告诉viewgroup不要去拦截我
+//            break;
+//            case MotionEvent.ACTION_MOVE:
+//            int endX = (int) ev.getX();
+//            int endY = (int) ev.getY();
+//            int disX = Math.abs(endX - startX);
+//            int disY = Math.abs(endY - startY);
+//            if (disX > disY) {
+//                getParent().requestDisallowInterceptTouchEvent(false);
+//            } else {
+//                getParent().requestDisallowInterceptTouchEvent(true);//下拉的时候是false
+//            }
+//            break;
+//            case MotionEvent.ACTION_UP:
+//            case MotionEvent.ACTION_CANCEL:
+//            getParent().requestDisallowInterceptTouchEvent(true);
+//            break;
+//        }
+//        return super.dispatchTouchEvent(ev);
+//    }
 }

@@ -3,12 +3,12 @@ package com.hao.easy.user.ui.fragment
 import android.text.TextUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.hao.easy.base.extensions.addTextChangedListener
 import com.hao.easy.base.extensions.hideSoftInput
 import com.hao.easy.base.extensions.showError
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.user.R
-import com.hao.easy.user.ui.activity.LoginActivity
 import com.hao.easy.user.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.user_fragment_login.*
 
@@ -25,6 +25,7 @@ class LoginFragment : BaseFragment() {
     override fun getLayoutId() = R.layout.user_fragment_login
 
     override fun initView() {
+        activity?.title = "登录"
         editTextUsername.addTextChangedListener(textInputUsername)
         editTextPassword.addTextChangedListener(textInputPassword)
         buttonLogin.setOnClickListener {
@@ -42,24 +43,13 @@ class LoginFragment : BaseFragment() {
             hideSoftInput()
         }
         textRegister.setOnClickListener {
-            activity?.let { act ->
-                val a = act as LoginActivity
-                a.goRegister()
-            }
+            Navigation.findNavController(fragmentRootView).navigate(R.id.toRegisterFragment)
         }
     }
 
     override fun initData() {
         viewModel.loginLiveData.observe(this, Observer {
-//            Router.startMainActivity()
             activity?.finish()
         })
-    }
-
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (!hidden) {
-            activity?.title = "登录"
-        }
     }
 }

@@ -1,4 +1,4 @@
-package com.hao.easy.base.extensions
+package com.hao.easy.base.common
 
 import io.reactivex.Observable
 import io.reactivex.functions.Function
@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit
 
 /**
  * @author Yang Shihao
- * @date 2019-06-18
  */
 class RetryWithDelay(private val maxRetryCount: Int, private val retryDelayMillis: Int) :
     Function<Observable<out Throwable>, Observable<*>> {

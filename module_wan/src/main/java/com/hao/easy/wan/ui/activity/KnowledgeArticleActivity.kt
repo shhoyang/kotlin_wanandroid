@@ -6,7 +6,6 @@ import android.view.View
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
-import com.hao.easy.wan.extensions.removeHtml
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.model.Knowledge
 import com.hao.easy.wan.ui.adapter.CommonArticleAdapter
@@ -20,20 +19,10 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
     @Inject
     lateinit var adapter: CommonArticleAdapter
 
-    companion object {
-        private const val TYPE = "TYPE"
-        fun start(context: Context, knowledge: Knowledge) {
-            val intent = Intent(context, KnowledgeArticleActivity::class.java)
-            intent.putExtra(TYPE, knowledge)
-            context.startActivity(intent)
-        }
-    }
-
     override fun adapter() = adapter
 
     override fun initData() {
-        val type = intent.getParcelableExtra<Knowledge>(TYPE)
-        type?.apply {
+        intent.getParcelableExtra<Knowledge>(TYPE)?.apply {
             title = name
             viewModel.typeId = id
         }
@@ -43,15 +32,18 @@ class KnowledgeArticleActivity : BaseListActivity<Article, KnowledgeArticleViewM
 
     override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
-            R.id.tvLink -> {
-                val title = item.title.removeHtml()
-                WebActivity.start(this, title, item.projectLink)
-            }
+            R.id.tvLink -> WebActivity.start(this, item.title, item.projectLink)
             R.id.ivFav -> viewModel.collect(item, position)
-            else -> {
-                val title = item.title.removeHtml()
-                WebActivity.start(this, title, item.link)
-            }
+            else -> WebActivity.start(this, item.title, item.link)
+        }
+    }
+
+    companion object {
+        private const val TYPE = "TYPE"
+        fun start(context: Context, knowledge: Knowledge) {
+            val intent = Intent(context, KnowledgeArticleActivity::class.java)
+            intent.putExtra(TYPE, knowledge)
+            context.startActivity(intent)
         }
     }
 }

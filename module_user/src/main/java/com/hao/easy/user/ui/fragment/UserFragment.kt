@@ -1,6 +1,5 @@
 package com.hao.easy.user.ui.fragment
 
-import android.content.Intent
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -31,10 +30,9 @@ class UserFragment : BaseFragment() {
     override fun getLayoutId() = R.layout.user_fragment_user
 
     override fun initView() {
-
         tvUsername = leftNavigationView.getHeaderView(0).findViewById(R.id.tvUsername)
         leftNavigationView.getHeaderView(0).findViewById<ImageView>(R.id.ivAvatar)
-            .loadCircle(R.mipmap.ic_launcher_round)
+            .loadCircle(R.mipmap.user_avatar)
         leftNavigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_fav -> {
@@ -45,7 +43,7 @@ class UserFragment : BaseFragment() {
                     }
                 }
                 R.id.menu_clear -> toast("清理完成")
-                R.id.menu_about -> startActivity(Intent(context, AboutActivity::class.java))
+                R.id.menu_about -> to(AboutActivity::class.java)
                 R.id.menu_logout -> {
                     Config.logout()
                     viewModel.logout()
@@ -55,17 +53,18 @@ class UserFragment : BaseFragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        setUser(Config.user)
+    }
+
     override fun initData() {
-        lifecycle.addObserver(viewModel)
-        viewModel.loginLiveData.observe(this, Observer {
-            setLogin(it)
-        })
         viewModel.logoutLiveData.observe(this, Observer {
             startLogin()
         })
     }
 
-    private fun setLogin(user: User?) {
+    private fun setUser(user: User?) {
         if (user == null) {
             tvUsername.text = "未登录"
             tvUsername.setOnClickListener {
@@ -81,6 +80,6 @@ class UserFragment : BaseFragment() {
     }
 
     private fun startLogin() {
-        context?.apply { LoginActivity.start(this) }
+        to(LoginActivity::class.java)
     }
 }

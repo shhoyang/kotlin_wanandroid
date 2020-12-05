@@ -10,8 +10,22 @@
     </style>
 
     <style name="WanStatusBarTransparentTheme" parent="WanAppTheme">
-<!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- dialog -->
+    <style name="Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+    <style name="Dialog2" parent="Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.hao.easy.base.ui
 
-import android.os.Build
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
@@ -18,27 +19,25 @@ import kotlinx.android.synthetic.main.activity_base.*
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    companion object {
-        private const val STATUS_BAR_DARK = 0
-        private const val STATUS_BAR_LIGHT = 1
-    }
-
+    protected val uiParams = UIParams()
     private var toolbar: ToolbarLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppManager.instance().pushActivity(this)
-        if (!showToolbar()) {
-            setContentView(getLayoutId())
-        } else {
+        prepare(uiParams, intent)
+        if (uiParams.showToolbar) {
             setContentView(R.layout.activity_base)
             View.inflate(this, getLayoutId(), activityRootView)
+        } else {
+            setContentView(getLayoutId())
         }
         toolbar = findViewById(R.id.baseToolbar)
-        toolbar?.apply {
-            setBackClickListener {
+        toolbar?.let {
+            it.setBackClickListener {
                 onBackPressed()
             }
+            processTitle(it)
         }
         initView()
         initData()
@@ -49,32 +48,9 @@ abstract class BaseActivity : AppCompatActivity() {
         AppManager.instance().popActivity(this)
     }
 
-    /**
-     * 改变状态栏样式
-     */
-    fun setStatusBarMode(mode: Int, transparentStatusBar: Boolean) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            var systemUiVisibility = window.decorView.systemUiVisibility
+    open fun prepare(uiParams: UIParams, intent: Intent?) {
 
-            if (STATUS_BAR_LIGHT == mode) {
-                systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            } else if (STATUS_BAR_DARK == mode) {
-                systemUiVisibility =
-                    systemUiVisibility and (View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv())
-            }
-
-            if (transparentStatusBar) {
-                systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            }
-
-            window.decorView.systemUiVisibility = systemUiVisibility
-        }
     }
-
-    open fun showToolbar() = true
-
-    @LayoutRes
-    abstract fun getLayoutId(): Int
 
     open fun initView() {
     }
@@ -82,37 +58,29 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun initData() {
     }
 
+    open fun processTitle(toolbarLayout: ToolbarLayout) {
+
+    }
+
     override fun setTitle(title: CharSequence?) {
         toolbar?.title = title
     }
 
-    /**
-     * 设置透明状态栏，耗时5ms
-     * 只在主题设置，某些机型会是半透明的
-     *
-     * @param lightStatusBar true深色文字，false浅色文字
-     */
-    fun transparentStatusBar(lightStatusBar: Boolean = true) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (lightStatusBar) {
-                var systemUiVisibility = (window.decorView.systemUiVisibility
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
-                window.decorView.systemUiVisibility = systemUiVisibility
-            } else {
-                var systemUiVisibility = (window.decorView.systemUiVisibility
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv())
-                window.decorView.systemUiVisibility = systemUiVisibility
-            }
-        }
-    }
-
-    fun toast(msg: String?) {
-        T.short(this, msg)
+    fun toast(text: String?) {
+        T.short(this, text)
     }
 
     fun toast(@StringRes resId: Int) {
         T.short(this, resId)
     }
+
+    fun to(cls: Class<out Activity>, isFinish: Boolean = false) {
+        startActivity(Intent(this, cls))
+        if (isFinish) {
+            finish()
+        }
+    }
+
+    @LayoutRes
+    abstract fun getLayoutId(): Int
 }

@@ -1,23 +1,20 @@
 package com.hao.easy.base.adapter
 
-import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseNormalAdapter<T>(
-    private val layoutId: Int,
+    private val layoutId: Int = 0,
     var data: ArrayList<T> = ArrayList()
 ) : RecyclerView.Adapter<ViewHolder>() {
 
-    lateinit var context: Context
-
-    var itemClickListener: OnItemClickListener<T>? = null
+    protected var itemClickListener: OnItemClickListener<T>? = null
+    protected var itemLongClickListener: OnItemLongClickListener<T>? = null
 
     override fun getItemCount() = data.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        context = parent.context
-        return ViewHolder(context, parent, layoutId)
+        return ViewHolder(parent.context, parent, layoutId)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -29,7 +26,17 @@ abstract class BaseNormalAdapter<T>(
         bindViewHolder(holder, data[position], position)
     }
 
-    fun resetData(data: ArrayList<T>?) {
+    protected fun getItem(position: Int) = data[position]
+
+    fun setOnItemClickListener(itemClickListener: OnItemClickListener<T>?) {
+        this.itemClickListener = itemClickListener
+    }
+
+    fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener<T>?) {
+        this.itemLongClickListener = itemLongClickListener
+    }
+
+    fun resetData(data: List<T>?) {
         this.data.clear()
         if (data != null && data.isNotEmpty()) {
             this.data.addAll(data)
@@ -37,7 +44,7 @@ abstract class BaseNormalAdapter<T>(
         notifyDataSetChanged()
     }
 
-    fun addData(data: ArrayList<T>?) {
+    fun addData(data: List<T>?) {
         if (data == null || data.isEmpty()) {
             return
         }

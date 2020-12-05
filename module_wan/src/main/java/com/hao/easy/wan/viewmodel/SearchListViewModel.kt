@@ -12,7 +12,7 @@ class SearchListViewModel : BaseArticleViewModel() {
 
     private var refresh by Delegates.observable(Config.refresh) { _, old, new ->
         if (old != new) {
-            invalidate()
+            refresh()
         }
     }
 

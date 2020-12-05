@@ -23,10 +23,6 @@ import kotlin.concurrent.thread
 @HiltAndroidApp
 class App : BaseApplication() {
 
-    companion object {
-        private const val TAG = "--App--"
-    }
-
     override fun onCreate() {
         super.onCreate()
 //        val time = SimpleDateFormat("HH_mm").format(Date())
@@ -62,5 +58,9 @@ class App : BaseApplication() {
         ARouter.openLog()
         ARouter.openDebug()
         ARouter.init(this)
+    }
+
+    companion object {
+        private const val TAG = "--App--"
     }
 }

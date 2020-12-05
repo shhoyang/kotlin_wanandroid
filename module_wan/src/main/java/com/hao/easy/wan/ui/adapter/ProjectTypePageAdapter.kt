@@ -30,7 +30,7 @@ class ProjectTypeItemAdapter(data: ArrayList<ProjectType>) :
         holder.setText(R.id.tvText, item.name)
             .setImageResource(R.id.ivIcon, Icon.icons[position % 18])
         holder.itemView.setOnClickListener {
-            ProjectArticleActivity.start(context, item)
+            ProjectArticleActivity.start(holder.context, item)
         }
     }
 }

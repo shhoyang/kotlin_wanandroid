@@ -13,7 +13,7 @@ import com.hao.easy.wan.repository.Api
  */
 class FavViewModel : BaseListViewModel<Article>() {
 
-    var deleteResult = MutableLiveData<Boolean>()
+    val deleteResult = MutableLiveData<Boolean>()
 
     override fun loadData(page: Int, onResponse: (ArrayList<Article>?) -> Unit) {
         Api.getMyFav(page - 1).subscribeBy({
@@ -26,7 +26,7 @@ class FavViewModel : BaseListViewModel<Article>() {
     fun cancelCollect(item: Article, position: Int) {
         Api.cancelCollectFromFav(item.id, item.originId).subscribeBy({
             deleteResult.value = true
-            invalidate()
+            refresh()
             Config.refresh()
         }).add()
     }

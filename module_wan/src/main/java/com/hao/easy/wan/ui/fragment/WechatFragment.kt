@@ -1,12 +1,13 @@
 package com.hao.easy.wan.ui.fragment
 
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.hao.easy.base.BaseApplication
 import com.hao.easy.base.adapter.FragmentAdapter
+import com.hao.easy.base.adapter.FragmentCreator
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.wan.R
@@ -30,8 +31,9 @@ class WechatFragment : BaseFragment() {
     private var statusBarHeight = 0
     private var maxScrollHeight = 0
 
+    private var fragmentAdapter: FragmentAdapter? = null
     private val titles = ArrayList<String>()
-    private val fragments = ArrayList<Fragment>()
+    private val fragments = ArrayList<FragmentCreator>()
     private var fragmentCount = 0
     private var currentIndex = -1
 
@@ -50,8 +52,8 @@ class WechatFragment : BaseFragment() {
 
         baseRefreshLayout.setOnRefreshListener {
             if (currentIndex in 0 until fragmentCount) {
-                val currentFragment = fragments[currentIndex]
-                if (currentFragment != null && currentFragment.isAdded && currentFragment is WechatArticleFragment) {
+                val currentFragment = fragmentAdapter?.getFragment(currentIndex)
+                if (currentFragment != null && currentFragment is WechatArticleFragment) {
                     currentFragment.refresh()
                     return@setOnRefreshListener
                 }
@@ -61,7 +63,7 @@ class WechatFragment : BaseFragment() {
             baseRefreshLayout.isRefreshing = false
         }
 
-        statusBarHeight = DisplayUtils.getStatusBarHeight(context!!)
+        statusBarHeight = DisplayUtils.getStatusBarHeight(context ?: BaseApplication.instance)
 
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
 
@@ -87,11 +89,13 @@ class WechatFragment : BaseFragment() {
                 fragments.clear()
                 it.forEach { author ->
                     titles.add(author.name)
-                    fragments.add(WechatArticleFragment.instance(author.id))
+                    fragments.add(object : FragmentCreator {
+                        override fun createFragment() = WechatArticleFragment.instance(author.id)
+                    })
                 }
                 fragmentCount = fragments.size
-                val adapter = FragmentAdapter(childFragmentManager, lifecycle, fragments)
-                viewPager.adapter = adapter
+                fragmentAdapter = FragmentAdapter(childFragmentManager, lifecycle, fragments)
+                viewPager.adapter = fragmentAdapter
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     if (position in 0 until fragmentCount) {
                         tab.text = titles[position]

@@ -1,14 +1,16 @@
 package com.hao.easy.base.ui
 
 import android.view.View
+import androidx.annotation.CallSuper
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hao.easy.base.R
 import com.hao.easy.base.adapter.BaseItem
 import com.hao.easy.base.adapter.BasePagedAdapter
 import com.hao.easy.base.adapter.OnItemClickListener
-import com.hao.easy.base.common.RefreshResult
-import com.hao.easy.base.extensions.init
+import com.hao.easy.base.common.DataListResult
 import com.hao.easy.base.view.EmptyView
 import com.hao.easy.base.view.RefreshLayout
 import com.hao.easy.base.viewmodel.BaseListViewModel
@@ -34,58 +36,72 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
 
     override fun getLayoutId() = R.layout.activity_base_list
 
+    @CallSuper
     override fun initView() {
         refreshLayout = findViewById(R.id.baseRefreshLayout)
         recyclerView = findViewById(R.id.baseRecyclerView)!!
         emptyView = findViewById(R.id.baseEmptyView)
         val adapter = adapter()
-        adapter.itemClickListener = this
-        recyclerView.init(adapter)
+        adapter.setOnItemClickListener(this)
+        processRecyclerView(recyclerView, emptyView)
+        recyclerView.adapter = adapter
         refreshLayout?.setOnRefreshListener {
-            viewModel.invalidate()
+            viewModel.refresh()
         }
     }
 
+    @CallSuper
     override fun initData() {
-        viewModel.observeDataObserver(this,
-            { adapter().submitList(it) },
-            { refreshFinished(it) },
-            { loadMoreFinished(it) })
-
-        viewModel.observeAdapterObserver(this,
-            { position, payload ->
-                adapter().notifyItemChanged(position, payload)
-            },
-            {
+        viewModel.loadLiveData.observe(this, Observer {
+            adapter().submitList(it)
+        })
+        viewModel.refreshLiveData.observe(this, Observer {
+            refreshFinished(it)
+        })
+        viewModel.loadMoreLiveData.observe(this, Observer {
+            loadMoreFinished(it)
+        })
+        if (uiParams.hasItemChange) {
+            viewModel.notifyItemLiveData.observe(this, Observer {
+                adapter().notifyItemChanged(it.first, it.second)
             })
+        }
+        if (uiParams.hasItemRemove) {
+            viewModel.removeItemLiveData.observe(this, Observer {
+                adapter().notifyItemRemoved(it)
+            })
+        }
+    }
+
+    open fun processRecyclerView(recyclerView: RecyclerView, emptyView: EmptyView?) {
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     override fun itemClicked(view: View, item: T, position: Int) {
 
     }
 
-    open fun refreshFinished(result: RefreshResult) {
+    @CallSuper
+    open fun refreshFinished(result: DataListResult) {
         refreshLayout?.isRefreshing = false
         emptyView?.apply {
-            when (result) {
-                RefreshResult.SUCCEED -> state = EmptyView.Status.DISMISS
-                RefreshResult.FAILED -> state = EmptyView.Status.LOAD_FAILED
-                RefreshResult.NO_DATA -> state = EmptyView.Status.NO_DATA
-                RefreshResult.NO_MORE -> {
-                    state = EmptyView.Status.DISMISS
-                    toast(R.string.base_t_no_more)
-                }
+            state = when (result) {
+                DataListResult.SUCCEED -> EmptyView.Status.DISMISS
+                DataListResult.FAILED -> EmptyView.Status.LOAD_FAILED
+                DataListResult.NO_DATA -> EmptyView.Status.NO_DATA
+                DataListResult.NO_MORE -> EmptyView.Status.DISMISS
             }
         }
     }
 
-    private fun loadMoreFinished(result: RefreshResult) {
+    private fun loadMoreFinished(result: DataListResult) {
         when (result) {
-            RefreshResult.SUCCEED -> {
+            DataListResult.SUCCEED -> {
             }
-            RefreshResult.FAILED -> {
+            DataListResult.FAILED -> {
             }
-            RefreshResult.NO_MORE -> toast(R.string.base_t_no_more)
+            DataListResult.NO_MORE -> {
+            }
         }
     }
 

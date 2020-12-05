@@ -3,6 +3,7 @@ package com.hao.easy.user.ui.fragment
 import android.text.TextUtils
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.hao.easy.base.extensions.addTextChangedListener
 import com.hao.easy.base.extensions.hideSoftInput
 import com.hao.easy.base.extensions.showError
@@ -52,7 +53,7 @@ class RegisterFragment : BaseFragment() {
             hideSoftInput()
         }
         textLogin.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            Navigation.findNavController(fragmentRootView).popBackStack()
         }
     }
 

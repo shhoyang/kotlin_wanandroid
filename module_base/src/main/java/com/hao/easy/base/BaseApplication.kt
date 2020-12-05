@@ -1,6 +1,6 @@
 package com.hao.easy.base
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.hao.easy.base.extensions.notNullSingleValue
 import com.hao.easy.base.hilt.HttpManager
 import javax.inject.Inject
@@ -10,17 +10,17 @@ import javax.inject.Inject
 @date 2018/11/18
  */
 
-open class BaseApplication : Application() {
+open class BaseApplication : MultiDexApplication() {
 
     @Inject
     lateinit var httpManager: HttpManager
 
-    companion object {
-        var instance by notNullSingleValue<BaseApplication>()
-    }
-
     override fun onCreate() {
         super.onCreate()
         instance = this
+    }
+
+    companion object {
+        var instance by notNullSingleValue<BaseApplication>()
     }
 }

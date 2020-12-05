@@ -1,7 +1,9 @@
 package com.hao.easy.wan.ui.fragment
 
+import android.os.Bundle
 import android.view.View
 import com.hao.easy.base.ui.BaseListFragment
+import com.hao.easy.base.ui.UIParams
 import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.wan.R
 import com.hao.easy.wan.model.Knowledge
@@ -24,11 +26,11 @@ class KnowledgeFragment : BaseListFragment<Knowledge, KnowledgeViewModel>() {
 
     override fun getLayoutId() = R.layout.wan_fragment_knowledge
 
-    override fun adapter() = adapter
-
-    override fun prepare() {
-        lazyLoad()
+    override fun prepare(uiParams: UIParams, bundle: Bundle?) {
+        uiParams.isLazy = true
     }
+
+    override fun adapter() = adapter
 
     override fun initView() {
         DisplayUtils.setStatusBarHolder(baseToolbar)
@@ -36,7 +38,6 @@ class KnowledgeFragment : BaseListFragment<Knowledge, KnowledgeViewModel>() {
     }
 
     override fun itemClicked(view: View, item: Knowledge, position: Int) {
-        super.itemClicked(view, item, position)
-        context?.apply { KnowledgeArticleActivity.start(this, item) }
+        act { KnowledgeArticleActivity.start(it, item) }
     }
 }

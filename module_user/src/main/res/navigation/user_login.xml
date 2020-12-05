@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_login"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.hao.easy.user.ui.fragment.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/user_fragment_login">
+
+        <action
+            android:id="@+id/toRegisterFragment"
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/user_fragment_right_in"
+            app:exitAnim="@anim/user_fragment_left_out"
+            app:popEnterAnim="@anim/user_fragment_left_in"
+            app:popExitAnim="@anim/user_fragment_right_out" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.hao.easy.user.ui.fragment.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/user_fragment_register" />
+
+</navigation>

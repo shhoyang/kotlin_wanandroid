@@ -7,18 +7,6 @@ class AppManager private constructor() {
 
     private val list = ArrayList<Activity>()
 
-    companion object {
-        private var instance: AppManager? = null
-
-        @Synchronized
-        fun instance(): AppManager {
-            if (instance == null) {
-                instance = AppManager()
-            }
-            return instance!!
-        }
-    }
-
     fun pushActivity(activity: Activity) {
         list.add(activity)
     }
@@ -48,7 +36,20 @@ class AppManager private constructor() {
                 if (!next.isFinishing) {
                     next.finish()
                 }
+                iterator.remove()
             }
+        }
+    }
+
+    companion object {
+        private var instance: AppManager? = null
+
+        @Synchronized
+        fun instance(): AppManager {
+            if (instance == null) {
+                instance = AppManager()
+            }
+            return instance!!
         }
     }
 }

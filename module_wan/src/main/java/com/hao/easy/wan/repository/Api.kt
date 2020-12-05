@@ -23,7 +23,7 @@ interface Service {
     fun getAuthors(): Observable<HttpResult<ArrayList<Author>>>
 
     @GET("wxarticle/list/{authorId}/{page}/json")
-    fun getWechatArticles(@Path("authorId") authorId: Int = 409, @Path("page") page: Int): Observable<HttpResult<ListPaged<Article>>>
+    fun getWechatArticles(@Path("authorId") authorId: Int = 408, @Path("page") page: Int): Observable<HttpResult<ListPaged<Article>>>
 
     @GET("project/tree/json")
     fun getProjectType(): Observable<HttpResult<ArrayList<ProjectType>>>

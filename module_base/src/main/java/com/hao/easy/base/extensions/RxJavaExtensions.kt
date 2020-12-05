@@ -5,6 +5,7 @@ import com.hao.easy.base.BaseApplication
 import com.hao.easy.base.Router
 import com.hao.easy.base.model.HttpResult
 import com.hao.easy.base.utils.T
+import com.socks.library.KLog
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -17,6 +18,7 @@ fun <D, T : HttpResult<D>> Observable<T>.subscribeBy(
     toastWhenFailed: Boolean = true
 ): Disposable {
     return subscribeOn(Schedulers.io())
+        .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread()).subscribe({
             when (it.errorCode) {
                 HttpCode.SUCCESS -> {
@@ -34,6 +36,8 @@ fun <D, T : HttpResult<D>> Observable<T>.subscribeBy(
                 }
             }
         }, {
+            it.printStackTrace()
+            KLog.d("subscribeBy--", "subscribeBy :${it.message}")
             errorHandle(HttpCode.HTTP_EXCEPTION, "网络不给力", toastWhenFailed, onFailure)
         })
 }

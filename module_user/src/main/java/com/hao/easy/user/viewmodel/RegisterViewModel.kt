@@ -11,7 +11,7 @@ import com.hao.easy.user.repository.Api
  */
 class RegisterViewModel : BaseViewModel() {
 
-    var registerLiveData = MutableLiveData<String?>()
+    val registerLiveData = MutableLiveData<String?>()
 
     fun register(username: String, password: String) {
         Api.register(username, password, password).subscribeBy({
