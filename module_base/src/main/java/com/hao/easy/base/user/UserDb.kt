@@ -9,7 +9,7 @@ import com.hao.easy.base.BaseApplication
  * @author Yang Shihao
  * @date 2018/9/26
  */
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [User::class], version = 2)
 abstract class UserDb : RoomDatabase() {
 
     abstract fun userDao(): UserDao

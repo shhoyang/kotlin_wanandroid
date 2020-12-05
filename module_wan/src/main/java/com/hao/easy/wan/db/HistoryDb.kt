@@ -10,7 +10,7 @@ import com.hao.easy.wan.model.HotWord
  * @author Yang Shihao
  * @date 2018/9/26
  */
-@Database(entities = [HotWord::class], version = 1, exportSchema = false)
+@Database(entities = [HotWord::class], version = 1)
 abstract class HistoryDb : RoomDatabase() {
 
     abstract fun historyDao(): HistoryDao
@@ -25,7 +25,7 @@ abstract class HistoryDb : RoomDatabase() {
                 instance = Room.databaseBuilder(
                     BaseApplication.instance,
                     HistoryDb::class.java,
-                    "WanAndroid"
+                    "WanAndroidHistory"
                 ).build()
             }
 

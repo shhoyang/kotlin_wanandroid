@@ -55,6 +55,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    aspectjx { exclude 'versions.9' }
 }
 
 kapt {

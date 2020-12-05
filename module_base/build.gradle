@@ -12,6 +12,15 @@ android {
         targetSdkVersion versions.targetSdk
         versionCode versions.versionCode
         versionName versions.versionName
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [
+                        "room.schemaLocation":"$projectDir/schemas".toString(),
+                        "room.incremental":"true",
+                        "room.expandProjection":"true"]
+            }
+        }
     }
 
     compileOptions {
@@ -25,7 +34,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 kapt {
@@ -60,7 +68,7 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     api "com.squareup.retrofit2:converter-gson:$versions.retrofit"
     api "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
-    api 'com.squareup.okhttp3:logging-interceptor:4.8.0'
+    api 'com.squareup.okhttp3:logging-interceptor:4.9.0'
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
     api 'io.reactivex.rxjava2:rxkotlin:2.4.0'
     api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'

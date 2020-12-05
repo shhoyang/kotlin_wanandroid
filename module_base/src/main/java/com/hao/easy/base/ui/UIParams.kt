@@ -7,6 +7,6 @@ package com.hao.easy.base.ui
 data class UIParams(
     var showToolbar: Boolean = true,
     var isLazy: Boolean = false,
-    var hasItemChange: Boolean = false,
-    var hasItemRemove: Boolean = false
+    var hasItemChange: Boolean = true,
+    var hasItemRemove: Boolean = true
 )

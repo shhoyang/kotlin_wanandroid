@@ -1,11 +1,11 @@
 package com.hao.easy.activity
 
 import android.content.Intent
-import android.view.View
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.core.view.GravityCompat
 import com.hao.easy.R
 import com.hao.easy.base.adapter.FragmentAdapter
 import com.hao.easy.base.adapter.FragmentCreator
+import com.hao.easy.base.common.AppManager
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.base.ui.UIParams
 import com.hao.easy.user.ui.fragment.UserFragment
@@ -20,10 +20,9 @@ import kotlin.properties.Delegates
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 
-    private var drawerOpened: Boolean = false
     private var backPressedTime by Delegates.observable(0L) { _, old, new ->
         if (new - old < 2000) {
-            finish()
+            AppManager.instance().exit()
         } else {
             toast("再按返回键退出")
         }
@@ -55,23 +54,9 @@ class MainActivity : BaseActivity() {
             offscreenPageLimit = 3
             adapter = FragmentAdapter(supportFragmentManager, lifecycle, fragments)
         }
-        initDrawerLayout()
         initLeftNavigation()
         initBottomNavigation()
 //        Debug.stopMethodTracing()
-    }
-
-    private fun initDrawerLayout() {
-        drawerLayout.addDrawerListener(object : DrawerLayout.SimpleDrawerListener() {
-
-            override fun onDrawerClosed(p0: View) {
-                drawerOpened = false
-            }
-
-            override fun onDrawerOpened(p0: View) {
-                drawerOpened = true
-            }
-        })
     }
 
     private fun initLeftNavigation() {
@@ -96,8 +81,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        if (drawerOpened) {
-            drawerLayout.closeDrawers()
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             backPressedTime = System.currentTimeMillis()
         }

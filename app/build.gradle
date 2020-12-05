@@ -75,6 +75,8 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
+
+    aspectjx { exclude 'versions.9' }
 }
 
 kapt {
