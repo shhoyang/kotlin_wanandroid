@@ -11,7 +11,6 @@ object Config {
     private const val KEY_USERNAME = "loginUserName"
     private const val KEY_TOKEN = "token_pass"
 
-
     var user: User? = null
     val username: String?
         get() {

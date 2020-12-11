@@ -26,8 +26,8 @@ android {
         multiDexEnabled true
     }
 
-    dexOptions {
-        incremental true
+    buildFeatures {
+        viewBinding true
     }
 
     sourceSets {

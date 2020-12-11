@@ -3,6 +3,7 @@ package com.hao.easy.wan.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
@@ -33,7 +34,7 @@ class SearchListActivity : BaseListActivity<Article, SearchListViewModel>() {
         lifecycle.addObserver(viewModel)
     }
 
-    override fun itemClicked(view: View, item: Article, position: Int) {
+    override fun itemClicked(holder: ViewHolder, view: View, item: Article, position: Int) {
         when (view.id) {
             R.id.tvLink -> WebActivity.start(this, item.title, item.projectLink)
             R.id.ivFav -> viewModel.collect(item, position)

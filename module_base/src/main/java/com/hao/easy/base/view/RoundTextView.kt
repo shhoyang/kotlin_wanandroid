@@ -21,9 +21,7 @@ class RoundTextView : AppCompatTextView {
     private var borderColor = COLOR_NO
     private var bgColor = COLOR_NO
 
-    constructor(context: Context) : super(context) {
-        initUI(context, null)
-    }
+    constructor(context: Context) : this(context, null)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initUI(context, attrs)

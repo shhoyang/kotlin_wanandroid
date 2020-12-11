@@ -23,10 +23,10 @@ fun ImageView.load(url: Any) {
     Glide.with(this).load(url).into(this)
 }
 
-fun ImageView.load(url: Any, holder: Int) {
+fun ImageView.load(url: Any, placeholder: Int) {
     val options = RequestOptions()
-        .placeholder(holder)
-        .error(holder)
+        .placeholder(placeholder)
+        .error(placeholder)
     Glide.with(this).load(url).apply(options).into(this)
 }
 
@@ -44,7 +44,7 @@ fun ImageView.loadRounded(url: Any, radius: Int) {
  * @param relW 实际的宽
  * @param relH 实际的高
  */
-fun ImageView.loadWithHolder(url: Any?, @DrawableRes holder: Int, w: Int, relW: Int, relH: Int) {
+fun ImageView.loadWithHolder(url: Any?, @DrawableRes placeholder: Int, w: Int, relW: Int, relH: Int) {
     layoutParams?.let {
         layoutParams = with(it) {
             val h = if (relW == 0 || relH == 0) {
@@ -59,12 +59,12 @@ fun ImageView.loadWithHolder(url: Any?, @DrawableRes holder: Int, w: Int, relW: 
         }
     }
     if (url == null) {
-        Glide.with(this).load(holder).into(this)
+        Glide.with(this).load(placeholder).into(this)
         return
     }
     val options = RequestOptions()
-        .placeholder(holder)
-        .error(holder)
+        .placeholder(placeholder)
+        .error(placeholder)
         .encodeQuality(100)
         .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
@@ -74,14 +74,14 @@ fun ImageView.loadWithHolder(url: Any?, @DrawableRes holder: Int, w: Int, relW: 
 /**
  * @param w 显示的宽，根据w重设图片的高度
  */
-fun ImageView.loadWithHolder(url: Any?, @DrawableRes holder: Int, w: Int) {
+fun ImageView.loadWithHolder(url: Any?, @DrawableRes placeholder: Int, w: Int) {
     if (url == null) {
-        Glide.with(this).load(holder).into(this)
+        Glide.with(this).load(placeholder).into(this)
         return
     }
     val options = RequestOptions()
-        .placeholder(holder)
-        .error(holder)
+        .placeholder(placeholder)
+        .error(placeholder)
         .encodeQuality(100)
         .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)

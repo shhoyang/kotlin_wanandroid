@@ -2,6 +2,8 @@ package com.hao.easy.base.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.hao.easy.base.adapter.listener.OnItemClickListener
+import com.hao.easy.base.adapter.listener.OnItemLongClickListener
 
 abstract class BaseNormalAdapter<T>(
     private val layoutId: Int = 0,
@@ -20,7 +22,7 @@ abstract class BaseNormalAdapter<T>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         itemClickListener?.apply {
             holder.itemView.setOnClickListener {
-                itemClicked(it, data[position], position)
+                itemClicked(holder, it, data[position], position)
             }
         }
         bindViewHolder(holder, data[position], position)

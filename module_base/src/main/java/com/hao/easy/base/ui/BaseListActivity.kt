@@ -2,14 +2,14 @@ package com.hao.easy.base.ui
 
 import android.view.View
 import androidx.annotation.CallSuper
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hao.easy.base.R
 import com.hao.easy.base.adapter.BaseItem
 import com.hao.easy.base.adapter.BasePagedAdapter
-import com.hao.easy.base.adapter.OnItemClickListener
+import com.hao.easy.base.adapter.ViewHolder
+import com.hao.easy.base.adapter.listener.OnItemClickListener
 import com.hao.easy.base.common.DataListResult
 import com.hao.easy.base.view.EmptyView
 import com.hao.easy.base.view.RefreshLayout
@@ -52,24 +52,24 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
 
     @CallSuper
     override fun initData() {
-        viewModel.loadLiveData.observe(this, Observer {
+        viewModel.loadLiveData.observe(this) {
             adapter().submitList(it)
-        })
-        viewModel.refreshLiveData.observe(this, Observer {
+        }
+        viewModel.refreshLiveData.observe(this) {
             refreshFinished(it)
-        })
-        viewModel.loadMoreLiveData.observe(this, Observer {
+        }
+        viewModel.loadMoreLiveData.observe(this) {
             loadMoreFinished(it)
-        })
+        }
         if (uiParams.hasItemChange) {
-            viewModel.notifyItemLiveData.observe(this, Observer {
+            viewModel.notifyItemLiveData.observe(this) {
                 adapter().notifyItemChanged(it.first, it.second)
-            })
+            }
         }
         if (uiParams.hasItemRemove) {
-            viewModel.removeItemLiveData.observe(this, Observer {
+            viewModel.removeItemLiveData.observe(this) {
                 adapter().notifyItemRemoved(it)
-            })
+            }
         }
     }
 
@@ -77,7 +77,7 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
-    override fun itemClicked(view: View, item: T, position: Int) {
+    override fun itemClicked(holder: ViewHolder, view: View, item: T, position: Int) {
 
     }
 
@@ -85,24 +85,17 @@ abstract class BaseListActivity<T : BaseItem, VM : BaseListViewModel<T>> : BaseA
     open fun refreshFinished(result: DataListResult) {
         refreshLayout?.isRefreshing = false
         emptyView?.apply {
-            state = when (result) {
-                DataListResult.SUCCEED -> EmptyView.Status.DISMISS
-                DataListResult.FAILED -> EmptyView.Status.LOAD_FAILED
-                DataListResult.NO_DATA -> EmptyView.Status.NO_DATA
-                DataListResult.NO_MORE -> EmptyView.Status.DISMISS
+            when (result) {
+                DataListResult.SUCCEED -> dismiss()
+                DataListResult.FAILED -> loadFailed()
+                DataListResult.NO_DATA -> noData()
+                DataListResult.NO_MORE -> dismiss()
             }
         }
     }
 
     private fun loadMoreFinished(result: DataListResult) {
-        when (result) {
-            DataListResult.SUCCEED -> {
-            }
-            DataListResult.FAILED -> {
-            }
-            DataListResult.NO_MORE -> {
-            }
-        }
+
     }
 
     abstract fun adapter(): BasePagedAdapter<T>

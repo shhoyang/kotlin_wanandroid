@@ -4,28 +4,31 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.hao.easy.base.BaseApplication
+import com.hao.easy.wan.model.Author
 import com.hao.easy.wan.model.HotWord
 
 /**
  * @author Yang Shihao
  * @date 2018/9/26
  */
-@Database(entities = [HotWord::class], version = 1)
-abstract class HistoryDb : RoomDatabase() {
+@Database(entities = [Author::class, HotWord::class], version = 1)
+abstract class Db : RoomDatabase() {
+
+    abstract fun authorDao(): AuthorDao
 
     abstract fun historyDao(): HistoryDao
 
     companion object {
 
-        private var instance: HistoryDb? = null
+        private var instance: Db? = null
 
         @Synchronized
-        fun instance(): HistoryDb {
+        fun instance(): Db {
             if (instance == null) {
                 instance = Room.databaseBuilder(
                     BaseApplication.instance,
-                    HistoryDb::class.java,
-                    "WanAndroidHistory"
+                    Db::class.java,
+                    "WanAndroidDB"
                 ).build()
             }
 

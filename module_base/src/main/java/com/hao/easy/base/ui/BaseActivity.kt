@@ -2,6 +2,7 @@ package com.hao.easy.base.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
@@ -9,6 +10,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.hao.easy.base.R
 import com.hao.easy.base.common.AppManager
+import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.base.utils.T
 import com.hao.easy.base.view.ToolbarLayout
 import kotlinx.android.synthetic.main.activity_base.*
@@ -26,6 +28,9 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         AppManager.instance().pushActivity(this)
         prepare(uiParams, intent)
+        if (uiParams.isTransparentStatusBar) {
+            DisplayUtils.setTransparentStatusBar(this)
+        }
         if (uiParams.showToolbar) {
             setContentView(R.layout.activity_base)
             View.inflate(this, getLayoutId(), activityRootView)

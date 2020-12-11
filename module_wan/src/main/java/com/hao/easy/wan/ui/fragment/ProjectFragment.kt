@@ -2,14 +2,13 @@ package com.hao.easy.wan.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import com.google.android.material.appbar.AppBarLayout
+import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.base.extensions.visibility
 import com.hao.easy.base.extensions.visible
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.UIParams
 import com.hao.easy.base.ui.WebActivity
-import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.wan.R
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.ui.adapter.ProjectArticleAdapter
@@ -42,7 +41,6 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
 
     override fun initView() {
         super.initView()
-        DisplayUtils.setStatusBarHolder(baseToolbar)
         vpType.adapter = typeAdapter
         indicator.setViewPager(vpType)
         typeAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
@@ -53,16 +51,16 @@ class ProjectFragment : BaseListFragment<Article, ProjectViewModel>() {
     }
 
     override fun initData() {
-        viewModel.typeLiveData.observe(this, Observer {
+        viewModel.typeLiveData.observe(this) {
             typeAdapter.resetData(it)
             line.visible()
             indicator.visibility(it?.size ?: 0 > 1)
-        })
+        }
         super.initData()
         lifecycle.addObserver(viewModel)
     }
 
-    override fun itemClicked(view: View, item: Article, position: Int) {
+    override fun itemClicked(holder: ViewHolder, view: View, item: Article, position: Int) {
         when (view.id) {
             R.id.tvLink -> act {
                 WebActivity.start(it, item.title, item.projectLink)

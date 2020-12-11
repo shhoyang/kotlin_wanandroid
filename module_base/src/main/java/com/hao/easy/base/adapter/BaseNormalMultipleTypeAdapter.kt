@@ -37,9 +37,6 @@ abstract class BaseNormalMultipleTypeAdapter<T>(data: ArrayList<T> = ArrayList()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.setOnClickListener {
-            itemClickListener?.itemClicked(holder.itemView, getItem(position), position)
-        }
         delegates.get(holder.itemViewType)?.bindViewHolder(holder, getItem(position), position)
     }
 }

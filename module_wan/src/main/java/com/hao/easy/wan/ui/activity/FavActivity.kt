@@ -1,8 +1,8 @@
 package com.hao.easy.wan.ui.activity
 
 import android.view.View
-import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.base.view.dialog.ConfirmDialog
@@ -32,14 +32,14 @@ class FavActivity : BaseListActivity<Article, FavViewModel>() {
 
     override fun initData() {
         super.initData()
-        viewModel.deleteResult.observe(this, Observer {
+        viewModel.deleteResult.observe(this) {
             toast("刪除成功")
-        })
+        }
     }
 
     override fun adapter() = adapter
 
-    override fun itemClicked(view: View, item: Article, position: Int) {
+    override fun itemClicked(holder: ViewHolder, view: View, item: Article, position: Int) {
         if (view.id == R.id.ivFav) {
             ConfirmDialog(this)
                 .setMsg("是否刪除该条目吗？")

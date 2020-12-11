@@ -22,11 +22,9 @@ class ProgressWebView : WebView {
     private var userSonic = false
     private var pageLoadListener: PageLoadListener? = null
 
-    constructor(context: Context) : super(context) {
-        init()
-    }
+    constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init()
     }
 
@@ -71,7 +69,7 @@ class ProgressWebView : WebView {
 
         override fun onReceivedError(p0: WebView?, p1: WebResourceRequest, p2: WebResourceError?) {
             super.onReceivedError(p0, p1, p2)
-            if (p1.isForMainFrame){ // 或者： if(request.getUrl().toString() .equals(getUrl()))
+            if (p1.isForMainFrame) { // 或者： if(request.getUrl().toString() .equals(getUrl()))
                 pageLoadListener?.pageLoadError()
             }
         }
@@ -91,7 +89,7 @@ class ProgressWebView : WebView {
             return if (userSonic) {
                 sonicSession?.sessionClient?.requestResource(url)
                 null
-            }else {
+            } else {
                 super.shouldInterceptRequest(webView, url)
             }
 

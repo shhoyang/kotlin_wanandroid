@@ -66,13 +66,9 @@ class HostSonicRuntime(context: Context) : SonicRuntime(context) {
         data: InputStream?,
         headers: MutableMap<String, String>?
     ): Any {
-        val resourceResponse =
-            WebResourceResponse(mimeType, encoding, data)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            resourceResponse.responseHeaders = headers
-        }
+        val resourceResponse = WebResourceResponse(mimeType, encoding, data)
+        resourceResponse.responseHeaders = headers
         return resourceResponse
-
     }
 
     override fun getCurrentUserAccount(): String {

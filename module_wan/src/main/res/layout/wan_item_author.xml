@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_margin="6dp">
+
+    <com.hao.easy.base.view.RoundButton
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:singleLine="true"
+        android:textSize="12sp"
+        app:disableColor="@color/light_grey"
+        app:disableTextColor="@color/text_subtitle"
+        app:normalColor="@color/light_grey"
+        app:normalTextColor="@color/text_black"
+        app:radius="4dp"
+        app:selectedColor="@color/colorPrimary"
+        app:selectedTextColor="@color/text_white" />
+
+    <ImageView
+        android:id="@+id/ivAction"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_gravity="right"
+        android:src="@drawable/wan_ic_add_black" />
+
+</FrameLayout>

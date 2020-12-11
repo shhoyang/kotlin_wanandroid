@@ -50,11 +50,9 @@ class ToolbarLayout : FrameLayout {
             toolbarLine?.visibility(value)
         }
 
-    constructor(context: Context) : super(context) {
-        init(null)
-    }
+    constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init(attrs)
     }
 

@@ -10,7 +10,6 @@
     </style>
 
     <style name="WanStatusBarTransparentTheme" parent="WanAppTheme">
-        <item name="android:windowTranslucentStatus">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 

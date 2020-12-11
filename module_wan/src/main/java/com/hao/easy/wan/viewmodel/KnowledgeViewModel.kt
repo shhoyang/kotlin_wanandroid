@@ -1,19 +1,22 @@
 package com.hao.easy.wan.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.base.viewmodel.BaseListViewModel
+import com.hao.easy.base.viewmodel.BaseViewModel
 import com.hao.easy.wan.model.Knowledge
 import com.hao.easy.wan.repository.Api
 
-class KnowledgeViewModel : BaseListViewModel<Knowledge>() {
+class KnowledgeViewModel : BaseViewModel() {
 
-    override fun pageSize() = Int.MAX_VALUE
+    val liveData = MutableLiveData<List<Knowledge>>()
 
-    override fun loadData(page: Int, onResponse: (ArrayList<Knowledge>?) -> Unit) {
+    fun loadData() {
         Api.getKnowledge().subscribeBy({
-            onResponse(it)
+            liveData.value =
+                it?.filter { c -> c?.children != null && c?.children?.isNotEmpty() == true }
         }, {
-            onResponse(null)
+            liveData.value = null
         }).add()
     }
 }

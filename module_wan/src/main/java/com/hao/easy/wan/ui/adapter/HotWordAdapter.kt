@@ -1,5 +1,6 @@
 package com.hao.easy.wan.ui.adapter
 
+import android.widget.TextView
 import com.hao.easy.base.adapter.BaseNormalAdapter
 import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.wan.R
@@ -13,6 +14,6 @@ import javax.inject.Inject
 class HotWordAdapter @Inject constructor() : BaseNormalAdapter<HotWord>(R.layout.wan_item_hot_word) {
 
     override fun bindViewHolder(holder: ViewHolder, item: HotWord, position: Int) {
-        holder.setText(R.id.tvName, item.name)
+        (holder.itemView as TextView).text = item.name
     }
 }

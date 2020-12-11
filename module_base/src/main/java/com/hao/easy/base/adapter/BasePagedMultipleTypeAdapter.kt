@@ -38,7 +38,7 @@ abstract class BasePagedMultipleTypeAdapter<T : BaseItem>(data: ArrayList<T> = A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            itemClickListener?.itemClicked(holder.itemView, getItem(position)!!, position)
+            itemClickListener?.itemClicked(holder, it, getItem(position)!!, position)
         }
         delegates.get(holder.itemViewType)?.bindViewHolder(holder, getItem(position)!!, position)
     }

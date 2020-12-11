@@ -14,7 +14,7 @@ class ProjectArticleAdapter @Inject constructor() :
 
         val click: (View) -> Unit = {
             itemClickListener?.apply {
-                itemClicked(it, item, position)
+                itemClicked(holder, it, item, position)
             }
         }
         holder.setText(R.id.tvTitle, item.title)

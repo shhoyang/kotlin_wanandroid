@@ -29,24 +29,19 @@ class RoundButton : AppCompatTextView {
     private var disableTextColor = COLOR_NO
     private var selectedTextColor = COLOR_NO
 
-    constructor(context: Context) : super(context) {
-        initUI(context, null)
-    }
+    constructor(context: Context) : this(context, null)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         initUI(context, attrs)
     }
 
     private fun initUI(context: Context, attrs: AttributeSet?) {
-        isClickable = true
-        paint.isFakeBoldText = true
-        gravity = Gravity.CENTER
         context.obtainStyledAttributes(attrs, R.styleable.RoundButton).apply {
             radius = getDimension(R.styleable.RoundButton_radius, 0F)
             borderWidth = getDimensionPixelSize(R.styleable.RoundButton_borderWidth, 0)
             borderColor = getColor(R.styleable.RoundButton_borderColor, COLOR_NO)
             normalColor = getColor(R.styleable.RoundButton_normalColor, COLOR_NO)
-            pressedColor = getColor(R.styleable.RoundButton_pressedColor, COLOR_NO)
+            pressedColor = getColor(R.styleable.RoundButton_pressedColor, normalColor)
             disableColor = getColor(R.styleable.RoundButton_disableColor, COLOR_NO)
             selectedColor = getColor(R.styleable.RoundButton_selectedColor, COLOR_NO)
             normalTextColor = getColor(R.styleable.RoundButton_normalTextColor, COLOR_NO)
@@ -70,10 +65,16 @@ class RoundButton : AppCompatTextView {
 
     private fun buildDrawableState() {
         val stateListDrawable = StateListDrawable()
-        stateListDrawable.addState(NORMAL_STATE, createDrawable(normalColor, borderColor, borderWidth, radius))
+        stateListDrawable.addState(
+            NORMAL_STATE,
+            createDrawable(normalColor, borderColor, borderWidth, radius)
+        )
         stateListDrawable.addState(PRESSED_STATE, createDrawable(pressedColor, COLOR_NO, 0, radius))
         stateListDrawable.addState(DISABLE_STATE, createDrawable(disableColor, COLOR_NO, 0, radius))
-        stateListDrawable.addState(SELECTED_STATE, createDrawable(selectedColor, COLOR_NO, 0, radius))
+        stateListDrawable.addState(
+            SELECTED_STATE,
+            createDrawable(selectedColor, COLOR_NO, 0, radius)
+        )
         background = stateListDrawable
     }
 

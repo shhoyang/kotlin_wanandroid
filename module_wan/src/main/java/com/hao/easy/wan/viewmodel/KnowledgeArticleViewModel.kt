@@ -3,6 +3,7 @@ package com.hao.easy.wan.viewmodel
 import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.wan.model.Article
+import com.hao.easy.wan.model.Author
 import com.hao.easy.wan.repository.Api
 import kotlin.properties.Delegates
 
@@ -10,7 +11,7 @@ class KnowledgeArticleViewModel : BaseArticleViewModel() {
 
     override fun pageSize() = 6
 
-    var typeId: Int = 408
+    var typeId: Int = Author.ID_HONGYANG
 
     private var refresh by Delegates.observable(Config.refresh) { _, old, new ->
         if (old != new) {

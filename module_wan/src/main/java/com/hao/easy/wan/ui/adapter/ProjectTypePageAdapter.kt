@@ -3,7 +3,6 @@ package com.hao.easy.wan.ui.adapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hao.easy.base.adapter.BaseNormalAdapter
 import com.hao.easy.base.adapter.ViewHolder
-import com.hao.easy.base.common.Icon
 import com.hao.easy.base.extensions.init
 import com.hao.easy.wan.R
 import com.hao.easy.wan.model.ProjectType
@@ -28,7 +27,7 @@ class ProjectTypeItemAdapter(data: ArrayList<ProjectType>) :
 
     override fun bindViewHolder(holder: ViewHolder, item: ProjectType, position: Int) {
         holder.setText(R.id.tvText, item.name)
-            .setImageResource(R.id.ivIcon, Icon.icons[position % 18])
+            .setImageResource(R.id.ivIcon, R.mipmap.ic_launcher_round)
         holder.itemView.setOnClickListener {
             ProjectArticleActivity.start(holder.context, item)
         }

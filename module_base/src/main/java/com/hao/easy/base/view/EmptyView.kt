@@ -16,41 +16,41 @@ import kotlin.properties.Delegates
  */
 class EmptyView : FrameLayout {
 
-    private var contentView: View? = null
+    private var contentViews: ArrayList<View>? = null
 
-    var state: Status by Delegates.observable(Status.DISMISS) { _, old, new ->
+    private var state: Status by Delegates.observable(Status.DISMISS) { _, old, new ->
         if (old != new) {
             when (new) {
                 Status.DISMISS -> {
-                    contentView?.visible()
+                    handleContent(VISIBLE)
                     emptyViewLoading.gone()
                     emptyViewNoData.gone()
                     emptyViewLoadFailed.gone()
                     emptyViewNetworkUnavailable.gone()
                 }
                 Status.LOADING -> {
-                    contentView?.gone()
+                    handleContent(GONE)
                     emptyViewLoading.visible()
                     emptyViewNoData.gone()
                     emptyViewLoadFailed.gone()
                     emptyViewNetworkUnavailable.gone()
                 }
                 Status.NO_DATA -> {
-                    contentView?.gone()
+                    handleContent(GONE)
                     emptyViewLoading.gone()
                     emptyViewNoData.visible()
                     emptyViewLoadFailed.gone()
                     emptyViewNetworkUnavailable.gone()
                 }
                 Status.LOAD_FAILED -> {
-                    contentView?.gone()
+                    handleContent(GONE)
                     emptyViewLoading.gone()
                     emptyViewNoData.gone()
                     emptyViewLoadFailed.visible()
                     emptyViewNetworkUnavailable.gone()
                 }
                 Status.NETWORK_UNAVAILABLE -> {
-                    contentView?.gone()
+                    handleContent(GONE)
                     emptyViewLoading.gone()
                     emptyViewNoData.gone()
                     emptyViewLoadFailed.gone()
@@ -60,28 +60,53 @@ class EmptyView : FrameLayout {
         }
     }
 
-    constructor(context: Context) : super(context) {
-        init()
-    }
+    constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init()
     }
 
     private fun init() {
         View.inflate(context, R.layout.empty_view, this)
+    }
 
+    private fun handleContent(visibility: Int) {
+        contentViews?.forEach { it.visibility = visibility }
+    }
+
+    fun dismiss() {
+        state = Status.DISMISS
+    }
+
+    fun loading() {
+        state = Status.LOADING
+    }
+
+    fun noData() {
+        state = Status.NO_DATA
+    }
+
+    fun loadFailed() {
+        state = Status.LOAD_FAILED
+    }
+
+    fun networkUnavailable() {
+        state = Status.NETWORK_UNAVAILABLE
     }
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        if (childCount > 5) {
-            throw IllegalStateException("EmptyView can only have one child view")
+//        if (childCount > 5) {
+//            throw IllegalStateException("EmptyView can only have one child view")
+//        }
+        if (childCount > 4) {
+            contentViews = ArrayList()
+            for (i in 4 until childCount) {
+                contentViews!!.add(getChildAt(i))
+            }
         }
-        if (childCount == 5) {
-            contentView = getChildAt(4)
-        }
-        state = Status.LOADING
+
+        loading()
     }
 
     enum class Status {

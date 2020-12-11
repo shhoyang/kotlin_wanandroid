@@ -4,11 +4,13 @@ import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.base.viewmodel.BaseViewModel
-import com.hao.easy.wan.db.HistoryDb
+import com.hao.easy.wan.db.Db
 import com.hao.easy.wan.model.HotWord
 import com.hao.easy.wan.repository.Api
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SearchViewModel : BaseViewModel() {
 
@@ -20,19 +22,22 @@ class SearchViewModel : BaseViewModel() {
         }).add()
     }
 
-    fun search(content: String?) {
+    fun insert(content: String?) {
         GlobalScope.launch {
-            val dao = HistoryDb.instance().historyDao()
+            val dao = Db.instance().historyDao()
             if (!TextUtils.isEmpty(content)) {
                 dao.deleteByName(content!!)
                 dao.insert(HotWord(null, content))
             }
+//            withContext(Dispatchers.Main) {
+//
+//            }
         }
     }
 
     fun deleteAll() {
         GlobalScope.launch {
-            HistoryDb.instance().historyDao().deleteAll()
+            Db.instance().historyDao().deleteAll()
         }
     }
 }

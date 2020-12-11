@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.hao.easy.base.view.StatusBarPlaceholderView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <com.hao.easy.base.view.ToolbarLayout
         android:id="@id/baseToolbar"
         android:layout_width="match_parent"
@@ -22,9 +26,9 @@
             android:id="@+id/etContent"
             android:layout_width="0dp"
             android:layout_height="32dp"
+            android:background="@null"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
-            android:background="@drawable/wan_shape_search"
             android:gravity="center_vertical"
             android:hint="@string/hint_search"
             android:inputType="text"

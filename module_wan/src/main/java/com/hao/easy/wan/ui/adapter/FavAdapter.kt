@@ -16,7 +16,7 @@ class FavAdapter @Inject constructor() : BasePagedAdapter<Article>(R.layout.wan_
         holder.setText(R.id.tvTitle, item.title)
             .setClickListener(R.id.ivFav) {
                 itemClickListener?.apply {
-                    itemClicked(it, item, position)
+                    itemClicked(holder, it, item, position)
                 }
             }
     }

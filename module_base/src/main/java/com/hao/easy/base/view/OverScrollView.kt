@@ -23,11 +23,9 @@ class OverScrollView : ScrollView {
 
     private var isMove = false
 
-    constructor(context: Context) : super(context) {
-        init()
-    }
+    constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init()
     }
 

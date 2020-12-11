@@ -1,9 +1,9 @@
 package com.hao.easy.wan.ui.fragment
 
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hao.easy.base.BaseApplication
 import com.hao.easy.base.adapter.FragmentAdapter
@@ -11,6 +11,9 @@ import com.hao.easy.base.adapter.FragmentCreator
 import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.wan.R
+import com.hao.easy.wan.db.Db
+import com.hao.easy.wan.model.Author
+import com.hao.easy.wan.ui.activity.AuthorActivity
 import com.hao.easy.wan.ui.adapter.BannerAdapter
 import com.hao.easy.wan.viewmodel.WechatViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,16 +54,7 @@ class WechatFragment : BaseFragment() {
         })
 
         baseRefreshLayout.setOnRefreshListener {
-            if (currentIndex in 0 until fragmentCount) {
-                val currentFragment = fragmentAdapter?.getFragment(currentIndex)
-                if (currentFragment != null && currentFragment is WechatArticleFragment) {
-                    currentFragment.refresh()
-                    return@setOnRefreshListener
-                }
-            }
-
-            viewModel.initData()
-            baseRefreshLayout.isRefreshing = false
+            doRefresh()
         }
 
         statusBarHeight = DisplayUtils.getStatusBarHeight(context ?: BaseApplication.instance)
@@ -80,10 +74,28 @@ class WechatFragment : BaseFragment() {
         banner.adapter = bannerAdapter
         indicator.setViewPager(banner)
         bannerAdapter.registerAdapterDataObserver(indicator.adapterDataObserver)
+
+        ivAdd.setOnClickListener {
+            to(AuthorActivity::class.java)
+        }
+    }
+
+    private fun doRefresh(){
+        if (currentIndex in 0 until fragmentCount) {
+            val currentFragment = fragmentAdapter?.getFragment(currentIndex)
+            if (currentFragment != null && currentFragment is WechatArticleFragment) {
+                currentFragment.refresh()
+            }
+        }
+
+       if(bannerAdapter.data.isEmpty()){
+           viewModel.initData()
+           baseRefreshLayout.isRefreshing = false
+       }
     }
 
     override fun initData() {
-        viewModel.authorsLiveData.observe(this, Observer {
+        Db.instance().authorDao().queryByVisible(Author.VISIBLE).observe(this) {
             if (it.isNotEmpty()) {
                 titles.clear()
                 fragments.clear()
@@ -96,17 +108,19 @@ class WechatFragment : BaseFragment() {
                 fragmentCount = fragments.size
                 fragmentAdapter = FragmentAdapter(childFragmentManager, lifecycle, fragments)
                 viewPager.adapter = fragmentAdapter
+                tabLayout.tabMode =
+                    if (it.size > 4) TabLayout.MODE_SCROLLABLE else TabLayout.MODE_FIXED
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     if (position in 0 until fragmentCount) {
                         tab.text = titles[position]
                     }
                 }.attach()
             }
-        })
+        }
 
-        viewModel.adLiveData.observe(this, Observer {
+        viewModel.adLiveData.observe(this) {
             bannerAdapter.resetData(it)
-        })
+        }
 
         viewModel.initData()
     }

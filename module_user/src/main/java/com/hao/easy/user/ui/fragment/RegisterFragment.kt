@@ -1,7 +1,6 @@
 package com.hao.easy.user.ui.fragment
 
 import android.text.TextUtils
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.hao.easy.base.extensions.addTextChangedListener
@@ -58,8 +57,8 @@ class RegisterFragment : BaseFragment() {
     }
 
     override fun initData() {
-        viewModel.registerLiveData.observe(this, Observer {
+        viewModel.registerLiveData.observe(this) {
             parentFragmentManager.popBackStack()
-        })
+        }
     }
 }

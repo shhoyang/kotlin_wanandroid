@@ -2,33 +2,32 @@ package com.hao.easy.wan.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.hao.easy.base.adapter.BaseItem
 
-data class Knowledge(
-    var name: String,
-    var children: ArrayList<Knowledge>
-) : BaseItem(), Parcelable {
+class Knowledge(
+    var id: Int,
+    var name: String?,
+    var children: ArrayList<Knowledge>?
+) : Parcelable {
 
-    constructor(parcel: Parcel) : this(parcel.readString() ?: "", ArrayList()) {
-        id = parcel.readInt()
+    constructor(source: Parcel) : this(
+        source.readInt(),
+        source.readString(),
+        source.createTypedArrayList(CREATOR)
+    )
+
+    override fun describeContents() = 0
+
+    override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+        writeInt(id)
+        writeString(name)
+        writeTypedList(children)
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(name)
-        parcel.writeInt(id)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Knowledge> {
-        override fun createFromParcel(parcel: Parcel): Knowledge {
-            return Knowledge(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Knowledge?> {
-            return arrayOfNulls(size)
+    companion object {
+        @JvmField
+        val CREATOR: Parcelable.Creator<Knowledge> = object : Parcelable.Creator<Knowledge> {
+            override fun createFromParcel(source: Parcel): Knowledge = Knowledge(source)
+            override fun newArray(size: Int): Array<Knowledge?> = arrayOfNulls(size)
         }
     }
 }

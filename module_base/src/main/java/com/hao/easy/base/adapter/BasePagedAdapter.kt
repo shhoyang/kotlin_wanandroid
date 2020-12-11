@@ -3,6 +3,8 @@ package com.hao.easy.base.adapter
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import com.hao.easy.base.adapter.listener.OnItemClickListener
+import com.hao.easy.base.adapter.listener.OnItemLongClickListener
 
 abstract class BasePagedAdapter<T : BaseItem>(
     private val layoutId: Int,
@@ -24,13 +26,13 @@ abstract class BasePagedAdapter<T : BaseItem>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
         itemClickListener?.apply {
             holder.itemView.setOnClickListener {
-                itemClicked(it, getItem(position)!!, position)
+                itemClicked(holder, it, getItem(position)!!, position)
             }
         }
         bindViewHolder(holder, getItem(position)!!, position, payloads)
     }
 
-    fun setOnItemClickListener(itemClickListener: OnItemClickListener<T>?) {
+    fun setOnItemClickListener(itemClickListener: OnItemClickListener<T>) {
         this.itemClickListener = itemClickListener
     }
 

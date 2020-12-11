@@ -19,7 +19,8 @@ fun <D, T : HttpResult<D>> Observable<T>.subscribeBy(
 ): Disposable {
     return subscribeOn(Schedulers.io())
         .subscribeOn(Schedulers.newThread())
-        .observeOn(AndroidSchedulers.mainThread()).subscribe({
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe({
             when (it.errorCode) {
                 HttpCode.SUCCESS -> {
                     if (toastWhenSucceed) {

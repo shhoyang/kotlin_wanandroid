@@ -1,7 +1,6 @@
 package com.hao.easy.user.ui.fragment
 
 import android.text.TextUtils
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.hao.easy.base.extensions.addTextChangedListener
@@ -48,8 +47,8 @@ class LoginFragment : BaseFragment() {
     }
 
     override fun initData() {
-        viewModel.loginLiveData.observe(this, Observer {
+        viewModel.loginLiveData.observe(this) {
             activity?.finish()
-        })
+        }
     }
 }

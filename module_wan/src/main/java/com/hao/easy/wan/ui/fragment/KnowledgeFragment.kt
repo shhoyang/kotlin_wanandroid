@@ -2,13 +2,17 @@ package com.hao.easy.wan.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import com.hao.easy.base.ui.BaseListFragment
+import androidx.lifecycle.ViewModelProvider
+import com.hao.easy.base.adapter.ViewHolder
+import com.hao.easy.base.adapter.listener.OnItemClickListener
+import com.hao.easy.base.extensions.init
+import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.base.ui.UIParams
-import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.wan.R
 import com.hao.easy.wan.model.Knowledge
 import com.hao.easy.wan.ui.activity.KnowledgeArticleActivity
-import com.hao.easy.wan.ui.adapter.KnowledgeAdapter
+import com.hao.easy.wan.ui.adapter.KnowledgeLeftAdapter
+import com.hao.easy.wan.ui.adapter.KnowledgeRightAdapter
 import com.hao.easy.wan.viewmodel.KnowledgeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.wan_fragment_knowledge.*
@@ -19,25 +23,61 @@ import javax.inject.Inject
  * @Date 2020/7/20
  */
 @AndroidEntryPoint
-class KnowledgeFragment : BaseListFragment<Knowledge, KnowledgeViewModel>() {
+class KnowledgeFragment : BaseFragment() {
 
     @Inject
-    lateinit var adapter: KnowledgeAdapter
+    lateinit var leftAdapter: KnowledgeLeftAdapter
 
-    override fun getLayoutId() = R.layout.wan_fragment_knowledge
+    @Inject
+    lateinit var rightAdapter: KnowledgeRightAdapter
+
+    private val viewModel by lazy {
+        ViewModelProvider(this).get(KnowledgeViewModel::class.java)
+    }
 
     override fun prepare(uiParams: UIParams, bundle: Bundle?) {
         uiParams.isLazy = true
     }
 
-    override fun adapter() = adapter
+    override fun getLayoutId() = R.layout.wan_fragment_knowledge
 
     override fun initView() {
-        DisplayUtils.setStatusBarHolder(baseToolbar)
-        super.initView()
+        leftAdapter.setOnItemClickListener(object : OnItemClickListener<Knowledge> {
+            override fun itemClicked(
+                holder: ViewHolder,
+                view: View,
+                item: Knowledge,
+                position: Int
+            ) {
+                rightAdapter.resetData(item.children)
+                rvRight.smoothScrollToPosition(0)
+            }
+        })
+        rvLeft.init(leftAdapter)
+
+        rightAdapter.setOnItemClickListener(object : OnItemClickListener<Knowledge> {
+            override fun itemClicked(
+                holder: ViewHolder,
+                view: View,
+                item: Knowledge,
+                position: Int
+            ) {
+                act { KnowledgeArticleActivity.start(it, item) }
+            }
+        })
+        rvRight.init(rightAdapter)
     }
 
-    override fun itemClicked(view: View, item: Knowledge, position: Int) {
-        act { KnowledgeArticleActivity.start(it, item) }
+    override fun initData() {
+        viewModel.liveData.observe(this) {
+            if (it == null || it.isEmpty()) {
+                baseEmptyView.noData()
+            } else {
+                baseEmptyView.dismiss()
+                leftAdapter.resetData(it)
+                rightAdapter.resetData(it[0].children)
+            }
+        }
+        viewModel.loadData()
     }
 }

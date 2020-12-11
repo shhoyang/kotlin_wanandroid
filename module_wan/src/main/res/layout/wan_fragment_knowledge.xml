@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.hao.easy.base.view.StatusBarPlaceholderView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <com.hao.easy.base.view.ToolbarLayout
         android:id="@id/baseToolbar"
         android:layout_width="match_parent"
@@ -12,6 +16,24 @@
         app:showBack="false"
         app:title="@string/wan_title_knowledge" />
 
-    <include layout="@layout/activity_base_list" />
+    <com.hao.easy.base.view.EmptyView
+        android:id="@+id/baseEmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLeft"
+            android:layout_width="128dp"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="128dp"
+            android:overScrollMode="never" />
+
+    </com.hao.easy.base.view.EmptyView>
 
 </LinearLayout>

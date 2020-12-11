@@ -1,24 +1,20 @@
 package com.hao.easy.base.viewmodel
 
 import androidx.annotation.CallSuper
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PageKeyedDataSource
+import androidx.paging.PagedList
 import com.hao.easy.base.common.DataListResult
 import com.hao.easy.base.datasource.DataSourceFactory
 import com.hao.easy.base.datasource.PagedDataLoader
 
 abstract class BaseListViewModel<T> : BaseViewModel(), PagedDataLoader<T> {
 
-    open fun pageSize(): Int {
-        return 10
-    }
+    private val dataSourceFactory: DataSourceFactory<T> by lazy { DataSourceFactory(this) }
 
-    private val dataSourceFactory: DataSourceFactory<T> by lazy {
-        DataSourceFactory(this)
-    }
-
-    val loadLiveData = LivePagedListBuilder(dataSourceFactory, pageSize()).build()
+    val loadLiveData: LiveData<PagedList<T>>
 
     val refreshLiveData: MutableLiveData<DataListResult> = MutableLiveData()
 
@@ -28,8 +24,16 @@ abstract class BaseListViewModel<T> : BaseViewModel(), PagedDataLoader<T> {
 
     val removeItemLiveData: MutableLiveData<Int> by lazy { MutableLiveData<Int>() }
 
+    init {
+        loadLiveData = LivePagedListBuilder(dataSourceFactory, pageSize()).build()
+    }
+
+    open fun pageSize(): Int {
+        return 10
+    }
+
     fun refresh() {
-        dataSourceFactory.sourceLiveData.value?.invalidate()
+        dataSourceFactory.invalidate()
     }
 
     @CallSuper

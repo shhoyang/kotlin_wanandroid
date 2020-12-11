@@ -1,71 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.hao.easy.base.view.RefreshLayout2 xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@id/baseRefreshLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/baseRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:id="@+id/coordinatorLayout"
-            android:layout_height="match_parent">
-
         <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:orientation="vertical"
-                app:elevation="0dp">
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:orientation="vertical"
+            app:elevation="0dp">
 
             <com.hao.easy.wan.view.MinimumHeightConstraintLayout
-                    android:id="@+id/clTop"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+                android:id="@+id/clTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
                 <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/banner"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:overScrollMode="never"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="16:9"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    android:id="@+id/banner"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:overScrollMode="never"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="16:9"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <me.relex.circleindicator.CircleIndicator3
-                        android:id="@+id/indicator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        app:ci_drawable="@drawable/wan_indicator_1"
-                        app:ci_drawable_unselected="@drawable/wan_indicator_0"
-                        app:ci_gravity="center"
-                        app:layout_constraintBottom_toBottomOf="@id/banner"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                    android:id="@+id/indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    app:ci_drawable="@drawable/wan_indicator_1"
+                    app:ci_drawable_unselected="@drawable/wan_indicator_0"
+                    app:ci_gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@id/banner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
             </com.hao.easy.wan.view.MinimumHeightConstraintLayout>
 
-            <com.google.android.material.tabs.TabLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:overScrollMode="always"
                     app:tabIndicatorColor="@color/colorPrimary"
                     app:tabInlineLabel="true"
-                    app:tabMode="scrollable"
+                    app:tabMode="fixed"
                     app:tabSelectedTextColor="@color/colorPrimary"
                     app:tabTextColor="@color/dark_grey" />
+
+                <ImageView
+                    android:id="@+id/ivAdd"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/wan_ic_add" />
+            </LinearLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:overScrollMode="never"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </com.hao.easy.base.view.RefreshLayout2>

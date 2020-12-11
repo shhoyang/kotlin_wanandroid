@@ -20,7 +20,7 @@ class AboutAdapter @Inject constructor() : BaseNormalAdapter<Menu>(R.layout.user
 
         itemLongClickListener?.apply {
             holder.itemView.setOnLongClickListener {
-                itemLongClicked(it, item, position)
+                itemLongClicked(holder, it, item, position)
                 true
             }
         }

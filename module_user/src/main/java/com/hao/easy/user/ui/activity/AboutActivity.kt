@@ -6,8 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.view.View
-import com.hao.easy.base.adapter.OnItemClickListener
-import com.hao.easy.base.adapter.OnItemLongClickListener
+import com.hao.easy.base.adapter.listener.OnItemClickListener
+import com.hao.easy.base.adapter.listener.OnItemLongClickListener
+import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.base.extensions.init
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.base.ui.WebActivity
@@ -50,7 +51,7 @@ class AboutActivity : BaseActivity(), OnItemClickListener<Menu>, OnItemLongClick
         toast("已复制到剪粘板")
     }
 
-    override fun itemClicked(view: View, item: Menu, position: Int) {
+    override fun itemClicked(holder: ViewHolder, view: View, item: Menu, position: Int) {
         if (item.link == DOWNLOAD_LINK) {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(DOWNLOAD_LINK)
@@ -61,7 +62,7 @@ class AboutActivity : BaseActivity(), OnItemClickListener<Menu>, OnItemLongClick
         }
     }
 
-    override fun itemLongClicked(view: View, item: Menu, position: Int) {
+    override fun itemLongClicked(holder: ViewHolder, view: View, item: Menu, position: Int) {
         copy(item.link)
     }
 

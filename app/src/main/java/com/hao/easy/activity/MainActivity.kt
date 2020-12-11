@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
 
     override fun prepare(uiParams: UIParams, intent: Intent?) {
         uiParams.showToolbar = false
+        uiParams.isTransparentStatusBar = true
     }
 
     override fun getLayoutId() = R.layout.app_activity_main

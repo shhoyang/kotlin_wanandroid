@@ -1,73 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hao.easy.base.view.StatusBarPlaceholderView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content" />
 
     <com.hao.easy.base.view.ToolbarLayout
-            android:id="@id/baseToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/title_height"
-            app:showBack="false"
-            app:title="@string/wan_title_project" />
+        android:id="@id/baseToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        app:showBack="false"
+        app:title="@string/wan_title_project" />
 
     <com.hao.easy.base.view.RefreshLayout2
-            android:id="@id/baseRefreshLayout"
+        android:id="@id/baseRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
             <com.google.android.material.appbar.AppBarLayout
-                    android:id="@+id/appBarLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    app:elevation="0dp">
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:elevation="0dp">
 
                 <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/vpType"
-                        android:layout_width="match_parent"
-                        android:layout_height="160dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:overScrollMode="never"
-                        app:layout_scrollFlags="scroll" />
+                    android:id="@+id/vpType"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:overScrollMode="never"
+                    app:layout_scrollFlags="scroll" />
 
                 <me.relex.circleindicator.CircleIndicator3
-                        android:id="@+id/indicator"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:visibility="gone"
-                        app:ci_drawable="@drawable/wan_indicator_1"
-                        app:ci_drawable_unselected="@drawable/wan_indicator_0"
-                        app:ci_gravity="center"
-                        app:layout_scrollFlags="scroll" />
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:visibility="gone"
+                    app:ci_drawable="@drawable/wan_indicator_1"
+                    app:ci_drawable_unselected="@drawable/wan_indicator_0"
+                    app:ci_gravity="center"
+                    app:layout_scrollFlags="scroll" />
 
                 <View
-                        android:id="@+id/line"
-                        android:layout_width="match_parent"
-                        android:layout_height="8dp"
-                        android:background="#F2F2F2"
-                        android:visibility="gone"
-                        app:layout_scrollFlags="scroll" />
+                    android:id="@+id/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/gray_white"
+                    android:visibility="gone"
+                    app:layout_scrollFlags="scroll" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
             <com.hao.easy.base.view.EmptyView
-                    android:id="@id/baseEmptyView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                android:id="@id/baseEmptyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <androidx.recyclerview.widget.RecyclerView
-                        android:id="@id/baseRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:overScrollMode="never" />
+                    android:id="@id/baseRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never" />
             </com.hao.easy.base.view.EmptyView>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -19,7 +19,7 @@ class CommonArticleAdapter @Inject constructor() :
 
         val click: (View) -> Unit = {
             itemClickListener?.apply {
-                itemClicked(it, item, position)
+                itemClicked(holder, it, item, position)
             }
         }
 

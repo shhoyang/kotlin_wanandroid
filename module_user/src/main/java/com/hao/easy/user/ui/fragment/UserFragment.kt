@@ -2,7 +2,6 @@ package com.hao.easy.user.ui.fragment
 
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hao.easy.base.Config
 import com.hao.easy.base.extensions.loadCircle
@@ -59,9 +58,9 @@ class UserFragment : BaseFragment() {
     }
 
     override fun initData() {
-        viewModel.logoutLiveData.observe(this, Observer {
+        viewModel.logoutLiveData.observe(this) {
             startLogin()
-        })
+        }
     }
 
     private fun setUser(user: User?) {

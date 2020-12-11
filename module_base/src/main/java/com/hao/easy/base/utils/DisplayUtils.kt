@@ -93,6 +93,15 @@ object DisplayUtils {
         view.layoutParams = layoutParams
     }
 
+    fun setTransparentStatusBar(activity: Activity) {
+        val window = activity.window
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val systemUiVisibility = window.decorView.systemUiVisibility
+            window.decorView.systemUiVisibility =
+                systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
+    }
+
     fun getDecorViewHeight(activity: Activity?): Int {
         return if (activity == null) {
             0

@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:background="@drawable/wan_shape_search_tag"
-        android:gravity="center"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:singleLine="true"
-        android:textColor="@color/text_link"
-        android:textSize="12sp"
-        tools:text="TAG" />
+<com.hao.easy.base.view.RoundButton xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvName"
+    android:layout_width="wrap_content"
+    android:layout_height="28dp"
+    android:gravity="center"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:singleLine="true"
+    android:textSize="12sp"
+    app:borderColor="@color/text_link"
+    app:borderWidth="0.5dp"
+    app:normalTextColor="@color/text_link"
+    app:pressedColor="@color/light_grey"
+    app:radius="32dp"
+    tools:text="TAG" />
 
 
