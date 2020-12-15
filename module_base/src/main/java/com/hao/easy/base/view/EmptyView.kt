@@ -2,12 +2,12 @@ package com.hao.easy.base.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-import com.hao.easy.base.R
+import com.hao.easy.base.databinding.EmptyViewBinding
 import com.hao.easy.base.extensions.gone
 import com.hao.easy.base.extensions.visible
-import kotlinx.android.synthetic.main.empty_view.view.*
 import kotlin.properties.Delegates
 
 /**
@@ -16,45 +16,49 @@ import kotlin.properties.Delegates
  */
 class EmptyView : FrameLayout {
 
+    private lateinit var viewBinding: EmptyViewBinding
+
     private var contentViews: ArrayList<View>? = null
 
     private var state: Status by Delegates.observable(Status.DISMISS) { _, old, new ->
         if (old != new) {
-            when (new) {
-                Status.DISMISS -> {
-                    handleContent(VISIBLE)
-                    emptyViewLoading.gone()
-                    emptyViewNoData.gone()
-                    emptyViewLoadFailed.gone()
-                    emptyViewNetworkUnavailable.gone()
-                }
-                Status.LOADING -> {
-                    handleContent(GONE)
-                    emptyViewLoading.visible()
-                    emptyViewNoData.gone()
-                    emptyViewLoadFailed.gone()
-                    emptyViewNetworkUnavailable.gone()
-                }
-                Status.NO_DATA -> {
-                    handleContent(GONE)
-                    emptyViewLoading.gone()
-                    emptyViewNoData.visible()
-                    emptyViewLoadFailed.gone()
-                    emptyViewNetworkUnavailable.gone()
-                }
-                Status.LOAD_FAILED -> {
-                    handleContent(GONE)
-                    emptyViewLoading.gone()
-                    emptyViewNoData.gone()
-                    emptyViewLoadFailed.visible()
-                    emptyViewNetworkUnavailable.gone()
-                }
-                Status.NETWORK_UNAVAILABLE -> {
-                    handleContent(GONE)
-                    emptyViewLoading.gone()
-                    emptyViewNoData.gone()
-                    emptyViewLoadFailed.gone()
-                    emptyViewNetworkUnavailable.visible()
+            viewBinding.apply {
+                when (new) {
+                    Status.DISMISS -> {
+                        handleContent(VISIBLE)
+                        emptyViewLoading.gone()
+                        emptyViewNoData.gone()
+                        emptyViewLoadFailed.gone()
+                        emptyViewNetworkUnavailable.gone()
+                    }
+                    Status.LOADING -> {
+                        handleContent(GONE)
+                        emptyViewLoading.visible()
+                        emptyViewNoData.gone()
+                        emptyViewLoadFailed.gone()
+                        emptyViewNetworkUnavailable.gone()
+                    }
+                    Status.NO_DATA -> {
+                        handleContent(GONE)
+                        emptyViewLoading.gone()
+                        emptyViewNoData.visible()
+                        emptyViewLoadFailed.gone()
+                        emptyViewNetworkUnavailable.gone()
+                    }
+                    Status.LOAD_FAILED -> {
+                        handleContent(GONE)
+                        emptyViewLoading.gone()
+                        emptyViewNoData.gone()
+                        emptyViewLoadFailed.visible()
+                        emptyViewNetworkUnavailable.gone()
+                    }
+                    Status.NETWORK_UNAVAILABLE -> {
+                        handleContent(GONE)
+                        emptyViewLoading.gone()
+                        emptyViewNoData.gone()
+                        emptyViewLoadFailed.gone()
+                        emptyViewNetworkUnavailable.visible()
+                    }
                 }
             }
         }
@@ -67,7 +71,8 @@ class EmptyView : FrameLayout {
     }
 
     private fun init() {
-        View.inflate(context, R.layout.empty_view, this)
+//        inflate(context, R.layout.empty_view, this)
+        viewBinding = EmptyViewBinding.inflate(LayoutInflater.from(context),this)
     }
 
     private fun handleContent(visibility: Int) {

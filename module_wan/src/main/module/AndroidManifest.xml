@@ -44,6 +44,9 @@
         <activity
             android:name=".ui.activity.FavActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.AuthorActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

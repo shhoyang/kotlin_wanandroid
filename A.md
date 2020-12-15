@@ -1,3 +1,5 @@
+标题之所以没有使用优秀、优质等华丽的辞藻修饰，是因为这个项目是本人在学习Kotlin过程中用来练手的，不敢在各位前辈和大神面前班门弄斧，自取其辱，况且Github上的玩Android客户端已经有很多个版本了，我也很难望其项背
+
 自Google在2017的I/O大会上宣布Android支持Kotlin，到现在Kotlin语言已受到大批Android开发者的追捧，许多大厂已经使用纯Kotlin进行Android开发
 
 2018的I/O大会又发布可跨平台的UI框架Flutter ，支持在Android和iOS平台运行
@@ -8,9 +10,10 @@
 
 # 项目简介
 
-**上图**，把四张拼一起了
+**上图**，把5张拼一起了
 
-![](https://upload-images.jianshu.io/upload_images/12337722-8eaa05d62245f065.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![app截图](https://upload-images.jianshu.io/upload_images/12337722-8eaa05d62245f065.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 - 基于Jetpack(包含livedata、lifecycle、paging、room、navigation)组件采用 MVVM架构，Jetpack组件的使用方法在这里不做说明
 - 组件化开发，module之间跳转使用阿里的ARouter路由框架
@@ -72,7 +75,6 @@ sourceSets {
 ## app
 
 它是app的壳，里面只有一个MainActivity，它负责整合所需要的业务模块
-
 ![](https://upload-images.jianshu.io/upload_images/12337722-12cfd686a8aa63fb.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ```
@@ -91,7 +93,6 @@ dependencies {
 ## module_base
 
 作为公共库，存放base和公用代码，其它的module都要依赖它
-
 ![](https://upload-images.jianshu.io/upload_images/12337722-94f4b61d6793d549.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## module_wan和module_user
@@ -122,7 +123,7 @@ imageView.load(url)
 ## 空判断
 
 ```
-override fun setTitle(title: CharSequence?) {  //这个？表示该变量可以为null
+override fun setTitle(title: CharSequence?) {  //这个？表示该参数可以为null
   //? 表示如果toolbar不为空才执行后面的代码，给其属性title赋值
   toolbar?.title = title
 }
@@ -193,7 +194,7 @@ Api.getKnowledgeArticle(page - 1, typeId).io_main().subscribeBy(
 是不是很懵逼，因为你可能不懂lambda表达式的使用
 
 ---
-关于Kotlin的特性还用很多，例如when表达式、属性委托、字符串模板、类型自动转换等等，这里就不一一讲解了，讲不完的，现在不熬夜
+关于Kotlin的特性还用很多，例如when表达式、属性委托、字符串模板、类型自动转换、协程等等，这里就不一一讲解了，讲不完的，现在不熬夜
 
 # 进阶之路
 
@@ -204,6 +205,8 @@ Api.getKnowledgeArticle(page - 1, typeId).io_main().subscribeBy(
 大神们的代码也会让你有很多意想不到的收获，起码告诉你，你的代码Low爆了，会让你有种从此回家带孩子吧的冲动
 
 **项目中使用到了鸿洋的玩Android开放Api和很多开源库，在此向所有对开源做出过贡献的各位大神表示感谢，正是有你们的开源共享，我们这些菜鸟的技术才能有所提升，也是你们用最美的语言，推动了科技的进步**
+
+**附上本项目地址** [Github传送门](https://github.com/haoshiy/kotlin_wanandroid)
 
 **Apk玩Android下载地址** [http://fir.highstreet.top/kandroid](http://fir.highstreet.top/kandroid)
 

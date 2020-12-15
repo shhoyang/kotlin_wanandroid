@@ -7,8 +7,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.TextView
-import com.hao.easy.base.R
+import com.hao.easy.base.databinding.DialogConfirmBinding
 import com.hao.easy.base.extensions.gone
 import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.base.utils.DrawableUtils
@@ -17,18 +16,15 @@ import com.hao.easy.base.utils.DrawableUtils
  * @author Yang Shihao
  */
 
-class ConfirmDialog(activity: Activity) : CommonDialog(activity = activity), View.OnClickListener,
+class ConfirmDialog(activity: Activity) : BaseDialog<DialogConfirmBinding>(activity),
+    View.OnClickListener,
     DialogInterface.OnCancelListener {
-
-    private var tvMsg: TextView? = null
-    private var tvCancel: TextView? = null
-    private var tvConfirm: TextView? = null
-    private var line: View? = null
 
     private var confirmDialogListener: ConfirmDialogListener? = null
 
-    override fun setParams(window: Window) {
-        initView()
+    override fun getVB() = DialogConfirmBinding.inflate(layoutInflater)
+
+    override fun setWindowParams(window: Window) {
         val attributes = window.attributes
         val w = DisplayUtils.getScreenWidth(activity)
         attributes.width = w / 10 * 8
@@ -44,30 +40,22 @@ class ConfirmDialog(activity: Activity) : CommonDialog(activity = activity), Vie
             )
         )
         setCancelable(false)
-    }
-
-    fun initView() {
-        val view = View.inflate(activity, R.layout.dialog_confirm, null)
-        setContentView(view)
-        tvMsg = view.findViewById(R.id.tvMsg)
-        tvCancel = view.findViewById(R.id.tvCancel)
-        tvConfirm = view.findViewById(R.id.tvConfirm)
-        line = view.findViewById(R.id.line)
-
-        tvCancel?.setOnClickListener(this)
-        tvConfirm?.setOnClickListener(this)
-
         setOnCancelListener(this)
     }
 
+    override fun initView() {
+        viewBinding.tvCancel.setOnClickListener(this)
+        viewBinding.tvConfirm.setOnClickListener(this)
+    }
+
     fun setMsg(msg: String): ConfirmDialog {
-        tvMsg?.text = msg
+        viewBinding.tvMsg.text = msg
         return this
     }
 
     fun hideCancel(): ConfirmDialog {
-        tvCancel?.gone()
-        line?.gone()
+        viewBinding.tvCancel.gone()
+        viewBinding.line.gone()
         return this
     }
 
@@ -77,12 +65,11 @@ class ConfirmDialog(activity: Activity) : CommonDialog(activity = activity), Vie
     }
 
     override fun onClick(v: View?) {
-        if (v == tvCancel) {
+        if (v == viewBinding.tvCancel) {
             confirmDialogListener?.cancel()
-        } else if (v == tvConfirm) {
+        } else if (v == viewBinding.tvConfirm) {
             confirmDialogListener?.confirm()
         }
-
         dismiss()
     }
 

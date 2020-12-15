@@ -9,5 +9,5 @@ interface ItemViewDelegate<T> {
 
     fun isViewType(item: T, position: Int): Boolean
 
-    fun bindViewHolder(holder: ViewHolder, item: T, position: Int)
+//    fun bindViewHolder(holder: ViewHolder, item: T, position: Int)
 }

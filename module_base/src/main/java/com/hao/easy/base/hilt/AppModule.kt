@@ -57,13 +57,11 @@ class AppModule {
     @Provides
     @Singleton
     internal fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
-        val httpLoggingInterceptor = HttpLoggingInterceptor { message ->
-            KLog.json(
-                "json__",
-                message
-            )
-        }
-
+        val httpLoggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+            override fun log(message: String) {
+                KLog.json("json__", message)
+            }
+        })
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         return httpLoggingInterceptor
     }

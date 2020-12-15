@@ -3,7 +3,9 @@ package com.hao.easy.wan.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.view.View
-import com.hao.easy.base.adapter.ViewHolder
+import androidx.lifecycle.ViewModelProvider
+import com.hao.easy.base.common.ExtraKey
+import com.hao.easy.base.databinding.ActivityBaseListBinding
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
@@ -18,35 +20,41 @@ import javax.inject.Inject
  * @date 2018/12/3
  */
 @AndroidEntryPoint
-class SearchListActivity : BaseListActivity<Article, SearchListViewModel>() {
+class SearchListActivity :
+    BaseListActivity<ActivityBaseListBinding, Article, SearchListViewModel, CommonArticleAdapter>() {
 
     @Inject
     lateinit var adapter: CommonArticleAdapter
 
+    override fun getVB() = ActivityBaseListBinding.inflate(layoutInflater)
+
+    override fun getVM() = ViewModelProvider(this).get(SearchListViewModel::class.java)
+
     override fun adapter() = adapter
 
     override fun initData() {
-        intent.getStringExtra(CONTENT)?.let {
-            title = it
-            viewModel.hotWord = it
+        viewModel {
+            lifecycle.addObserver(this)
+            intent.getStringExtra(ExtraKey.STRING)?.let {
+                title = it
+                viewModel { hotWord = it }
+            }
         }
         super.initData()
-        lifecycle.addObserver(viewModel)
     }
 
-    override fun itemClicked(holder: ViewHolder, view: View, item: Article, position: Int) {
+    override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
             R.id.tvLink -> WebActivity.start(this, item.title, item.projectLink)
-            R.id.ivFav -> viewModel.collect(item, position)
+            R.id.ivFav -> viewModel { collect(item, position) }
             else -> WebActivity.start(this, item.title, item.link)
         }
     }
 
     companion object {
-        private const val CONTENT = "CONTENT"
         fun start(context: Context, content: String) {
             val intent = Intent(context, SearchListActivity::class.java)
-            intent.putExtra(CONTENT, content)
+            intent.putExtra(ExtraKey.STRING, content)
             context.startActivity(intent)
         }
     }

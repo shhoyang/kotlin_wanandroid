@@ -15,12 +15,12 @@
         app:navGraph="@navigation/user_login" />
 
     <com.hao.easy.base.view.ToolbarLayout
-        android:id="@id/baseToolbar"
+        android:id="@+id/baseToolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
         app:iconTint="@color/white"
         app:showLine="false"
         app:textColor="@color/white"
-        app:title="@string/user_login" />
+        app:title="登录" />
 
 </FrameLayout>

@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hao.easy.base.view.RefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/baseRefreshLayout"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:overScrollMode="never">
+    tools:context=".ui.BaseListActivity">
 
-    <com.hao.easy.base.view.EmptyView
-        android:id="@+id/baseEmptyView"
+    <include layout="@layout/include_toolbar" />
+
+    <com.hao.easy.base.view.RefreshLayout
+        android:id="@+id/baseRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/title_height">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/baseRecyclerView"
+        <com.hao.easy.base.view.EmptyView
+            android:id="@+id/baseEmptyView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
+            android:layout_height="match_parent">
 
-    </com.hao.easy.base.view.EmptyView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/baseRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-</com.hao.easy.base.view.RefreshLayout>
+        </com.hao.easy.base.view.EmptyView>
+
+    </com.hao.easy.base.view.RefreshLayout>
+
+</FrameLayout>

@@ -1,7 +1,6 @@
 package com.hao.easy.base.view.web
 
 import android.content.Context
-import android.os.Build
 import android.os.Environment
 import android.text.TextUtils
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse

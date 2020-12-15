@@ -7,10 +7,8 @@ import com.hao.easy.base.viewmodel.BaseViewModel
 import com.hao.easy.wan.db.Db
 import com.hao.easy.wan.model.HotWord
 import com.hao.easy.wan.repository.Api
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class SearchViewModel : BaseViewModel() {
 

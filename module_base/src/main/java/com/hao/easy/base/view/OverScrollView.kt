@@ -30,7 +30,6 @@ class OverScrollView : ScrollView {
     }
 
     private fun init() {
-        overScrollMode = OVER_SCROLL_NEVER
         isVerticalFadingEdgeEnabled = false
     }
 

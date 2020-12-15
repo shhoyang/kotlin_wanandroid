@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.StateListDrawable
 import android.util.AttributeSet
-import android.view.Gravity
 import androidx.appcompat.widget.AppCompatTextView
 import com.hao.easy.base.R
 
@@ -75,7 +74,9 @@ class RoundButton : AppCompatTextView {
             SELECTED_STATE,
             createDrawable(selectedColor, COLOR_NO, 0, radius)
         )
+
         background = stateListDrawable
+//        foreground = ContextCompat.getDrawable(context, R.drawable.ripple_foreground)
     }
 
     private fun createDrawable(

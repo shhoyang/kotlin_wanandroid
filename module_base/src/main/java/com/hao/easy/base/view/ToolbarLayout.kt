@@ -3,14 +3,14 @@ package com.hao.easy.base.view
 import android.content.Context
 import android.content.res.ColorStateList
 import android.util.AttributeSet
-import android.view.View
+import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.hao.easy.base.R
+import com.hao.easy.base.databinding.ToolbarBinding
 import com.hao.easy.base.extensions.visibility
-import kotlinx.android.synthetic.main.toolbar.view.*
 
 
 /**
@@ -19,35 +19,37 @@ import kotlinx.android.synthetic.main.toolbar.view.*
  */
 class ToolbarLayout : FrameLayout {
 
+    private lateinit var viewBinding: ToolbarBinding
+
     var title: CharSequence? = ""
         set(value) {
             field = value
-            toolbarTitle?.text = title
+            viewBinding.toolbarTitle.text = title
         }
 
     var textColor = 0x333333
         set(value) {
             field = value
-            toolbarTitle?.setTextColor(value)
+            viewBinding.toolbarTitle.setTextColor(value)
         }
 
     var iconTintColor: Int = 0x333333
         set(value) {
             field = value
-            toolbarBack?.apply { tintIcon(this, value) }
+            viewBinding.toolbarBack.apply { tintIcon(this, value) }
         }
 
     var showBack: Boolean = true
         set(value) {
             field = value
-            toolbarBack?.visibility(value)
+            viewBinding.toolbarBack.visibility(value)
         }
 
 
     var showLine: Boolean = true
         set(value) {
             field = value
-            toolbarLine?.visibility(value)
+            viewBinding.toolbarLine.visibility(value)
         }
 
     constructor(context: Context) : this(context, null)
@@ -57,7 +59,7 @@ class ToolbarLayout : FrameLayout {
     }
 
     private fun init(attrs: AttributeSet?) {
-        View.inflate(context, R.layout.toolbar, this)
+        viewBinding = ToolbarBinding.inflate(LayoutInflater.from(context), this)
         attrs?.let {
             val typedArray = context.obtainStyledAttributes(it, R.styleable.ToolbarLayout)
             typedArray.apply {
@@ -80,7 +82,7 @@ class ToolbarLayout : FrameLayout {
     }
 
     fun setBackClickListener(f: () -> Unit) {
-        toolbarBack.setOnClickListener { f() }
+        viewBinding.toolbarBack.setOnClickListener { f() }
     }
 
     private fun tintIcon(imageView: ImageView, colors: Int) {
@@ -93,17 +95,19 @@ class ToolbarLayout : FrameLayout {
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        toolbarBack.apply {
-            visibility(showBack)
-            if (showBack) {
-                tintIcon(this, iconTintColor)
+        viewBinding.apply {
+            toolbarBack.apply {
+                visibility(showBack)
+                if (showBack) {
+                    tintIcon(this, iconTintColor)
+                }
             }
-        }
-        toolbarTitle.apply {
-            text = title
-            textColor = this@ToolbarLayout.textColor
-        }
+            toolbarTitle.apply {
+                text = title
+                textColor = this@ToolbarLayout.textColor
+            }
 
-        toolbarLine.visibility(showLine)
+            toolbarLine.visibility(showLine)
+        }
     }
 }

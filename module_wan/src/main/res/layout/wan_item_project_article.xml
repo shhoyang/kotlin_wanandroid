@@ -18,8 +18,8 @@
         android:maxLines="2"
         android:textColor="@color/text_title"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题" />
 
@@ -31,7 +31,7 @@
         android:contentDescription="@null"
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="10:7"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintWidth_percent="0.4"
         tools:src="@mipmap/scenery" />
@@ -47,8 +47,8 @@
         android:textColor="@color/text_subtitle"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@id/ivFav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivThumbnail"
+        app:layout_constraintLeft_toRightOf="@id/ivThumbnail"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/ivThumbnail"
         tools:text="标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题" />
 
@@ -61,7 +61,7 @@
         android:paddingRight="20dp"
         android:textColor="@color/text_desc"
         android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@id/tvTime"
+        app:layout_constraintRight_toLeftOf="@id/tvTime"
         app:layout_constraintTop_toBottomOf="@id/ivThumbnail"
         tools:text="author" />
 
@@ -72,7 +72,7 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/text_desc"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@id/tvAuthor"
+        app:layout_constraintLeft_toRightOf="@id/tvAuthor"
         app:layout_constraintTop_toBottomOf="@id/ivThumbnail"
         tools:text="2018-11-24" />
 
@@ -95,6 +95,6 @@
         android:textColor="@color/text_link"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/ivFav"
-        app:layout_constraintEnd_toStartOf="@id/ivFav" />
+        app:layout_constraintRight_toLeftOf="@id/ivFav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

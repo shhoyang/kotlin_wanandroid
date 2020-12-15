@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.navigation.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/leftNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:headerLayout="@layout/user_navigation_header"
-        app:insetForeground="@color/transparent"
-        app:menu="@menu/user_navigation" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/leftNavigationView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:headerLayout="@layout/user_navigation_header"
+    app:insetForeground="@color/transparent"
+    app:menu="@menu/user_navigation" />

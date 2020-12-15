@@ -13,4 +13,9 @@
     <string name="hot">大家都在搜</string>
     <string name="search_history">搜索历史</string>
     <string name="clear_history">清除历史</string>
+    <string name="edit">编辑</string>
+    <string name="subscribed">已订阅</string>
+    <string name="not_subscribed">未订阅</string>
+    <string name="click_add">点击添加</string>
+    <string name="click_delete">点击删除，拖拽排序</string>
 </resources>

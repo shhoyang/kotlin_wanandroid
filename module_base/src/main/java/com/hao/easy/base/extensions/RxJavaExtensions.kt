@@ -37,9 +37,9 @@ fun <D, T : HttpResult<D>> Observable<T>.subscribeBy(
                 }
             }
         }, {
-            it.printStackTrace()
             KLog.d("subscribeBy--", "subscribeBy :${it.message}")
             errorHandle(HttpCode.HTTP_EXCEPTION, "网络不给力", toastWhenFailed, onFailure)
+            it.printStackTrace()
         })
 }
 

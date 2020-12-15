@@ -27,6 +27,7 @@
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_gravity="right"
+        android:contentDescription="@null"
         android:src="@drawable/wan_ic_add_black" />
 
 </FrameLayout>

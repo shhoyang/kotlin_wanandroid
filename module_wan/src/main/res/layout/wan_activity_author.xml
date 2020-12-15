@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:gravity="center"
-            android:text="编辑"
+            android:text="@string/edit"
             android:textColor="@color/text_primary"
             android:textSize="14sp" />
 
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已订阅"
+            android:text="@string/subscribed"
             android:textColor="@color/text_black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="点击删除，拖拽排序"
+            android:text="@string/click_delete"
             android:textColor="@color/text_subtitle"
             android:textSize="12sp"
             android:visibility="gone" />
@@ -71,7 +71,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="未订阅"
+            android:text="@string/not_subscribed"
             android:textColor="@color/text_black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="点击添加"
+            android:text="@string/click_add"
             android:textColor="@color/text_subtitle"
             android:textSize="12sp"
             android:visibility="gone" />

@@ -14,7 +14,7 @@ import com.hao.easy.base.R
  */
 class RoundTextView : AppCompatTextView {
 
-    private var COLOR_NO = -1
+    private var COLOR_NO = -2
 
     private var radius = 0F
     private var borderWidth = 0

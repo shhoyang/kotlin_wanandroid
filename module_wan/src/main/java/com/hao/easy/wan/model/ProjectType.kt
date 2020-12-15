@@ -2,6 +2,7 @@ package com.hao.easy.wan.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.hao.easy.base.extensions.removeSymbol
 
 /**
  * @author Yang Shihao
@@ -14,7 +15,7 @@ data class ProjectType(var id: Int) : Parcelable {
             return if (null == field || "" == field) {
                 ""
             } else {
-                field.replace("amp;", "")
+                field.removeSymbol()
             }
         }
 

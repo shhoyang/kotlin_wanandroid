@@ -13,7 +13,7 @@ data class User(
     @PrimaryKey var id: Int,
     var username: String,
     var token: String,
-    var icon: String,
-    var email: String,
-    var subscribe: String,
+    var icon: String?,
+    var email: String?,
+    var extension: String?
 )

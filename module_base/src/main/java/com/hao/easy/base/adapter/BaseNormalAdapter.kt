@@ -1,44 +1,45 @@
 package com.hao.easy.base.adapter
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.hao.easy.base.adapter.listener.OnItemClickListener
 import com.hao.easy.base.adapter.listener.OnItemLongClickListener
 
-abstract class BaseNormalAdapter<T>(
-    private val layoutId: Int = 0,
-    var data: ArrayList<T> = ArrayList()
-) : RecyclerView.Adapter<ViewHolder>() {
+abstract class BaseNormalAdapter<VB : ViewBinding, D>(
+    var data: ArrayList<D> = ArrayList()
+) : RecyclerView.Adapter<ViewHolder<VB>>() {
 
-    protected var itemClickListener: OnItemClickListener<T>? = null
-    protected var itemLongClickListener: OnItemLongClickListener<T>? = null
+    protected var itemClickListener: OnItemClickListener<D>? = null
+    protected var itemLongClickListener: OnItemLongClickListener<D>? = null
 
     override fun getItemCount() = data.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(parent.context, parent, layoutId)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<VB> {
+        return ViewHolder(getViewBinding(LayoutInflater.from(parent.context), parent))
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holderHolder: ViewHolder<VB>, position: Int) {
         itemClickListener?.apply {
-            holder.itemView.setOnClickListener {
-                itemClicked(holder, it, data[position], position)
+            holderHolder.itemView.setOnClickListener {
+                itemClicked(it, data[position], position)
             }
         }
-        bindViewHolder(holder, data[position], position)
+        bindViewHolder(holderHolder, data[position], position)
     }
 
     protected fun getItem(position: Int) = data[position]
 
-    fun setOnItemClickListener(itemClickListener: OnItemClickListener<T>?) {
+    fun setOnItemClickListener(itemClickListener: OnItemClickListener<D>?) {
         this.itemClickListener = itemClickListener
     }
 
-    fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener<T>?) {
+    fun setOnItemLongClickListener(itemLongClickListener: OnItemLongClickListener<D>?) {
         this.itemLongClickListener = itemLongClickListener
     }
 
-    fun resetData(data: List<T>?) {
+    fun resetData(data: List<D>?) {
         this.data.clear()
         if (data != null && data.isNotEmpty()) {
             this.data.addAll(data)
@@ -46,7 +47,7 @@ abstract class BaseNormalAdapter<T>(
         notifyDataSetChanged()
     }
 
-    fun addData(data: List<T>?) {
+    fun addData(data: List<D>?) {
         if (data == null || data.isEmpty()) {
             return
         }
@@ -56,7 +57,7 @@ abstract class BaseNormalAdapter<T>(
         notifyItemRangeInserted(size, data.size)
     }
 
-    fun addItem(data: T) {
+    fun addItem(data: D) {
         val size = this.data.size
         this.data.add(data)
         notifyItemInserted(size)
@@ -66,5 +67,7 @@ abstract class BaseNormalAdapter<T>(
         this.data.clear()
     }
 
-    abstract fun bindViewHolder(holder: ViewHolder, item: T, position: Int)
+    abstract fun getViewBinding(layoutInflater: LayoutInflater, parent: ViewGroup): VB
+
+    abstract fun bindViewHolder(viewHolder: ViewHolder<VB>, item: D, position: Int)
 }

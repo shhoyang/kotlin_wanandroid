@@ -10,7 +10,6 @@
         android:layout_height="wrap_content" />
 
     <com.hao.easy.base.view.ToolbarLayout
-        android:id="@id/baseToolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
         app:showBack="false"
@@ -19,16 +18,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#EEEEEE"
+        android:background="@color/gray_white"
         android:gravity="center_vertical">
 
         <EditText
             android:id="@+id/etContent"
             android:layout_width="0dp"
             android:layout_height="32dp"
-            android:background="@null"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
+            android:background="@null"
             android:gravity="center_vertical"
             android:hint="@string/hint_search"
             android:inputType="text"

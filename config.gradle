@@ -5,7 +5,7 @@ ext {
     versions = [
             compileSdk : 30,
             buildTools : '30.0.2',
-            minSdk     : 23,
+            minSdk     : 24,
             targetSdk  : 30,
 
             versionCode: 11,

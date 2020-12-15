@@ -2,82 +2,74 @@ package com.hao.easy.base.ui
 
 import android.view.View
 import androidx.annotation.CallSuper
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hao.easy.base.view.RefreshLayout
+import androidx.viewbinding.ViewBinding
 import com.hao.easy.base.R
 import com.hao.easy.base.adapter.BaseItem
 import com.hao.easy.base.adapter.BasePagedAdapter
-import com.hao.easy.base.adapter.ViewHolder
 import com.hao.easy.base.adapter.listener.OnItemClickListener
 import com.hao.easy.base.common.DataListResult
 import com.hao.easy.base.view.EmptyView
+import com.hao.easy.base.view.RefreshLayout
 import com.hao.easy.base.viewmodel.BaseListViewModel
-import java.lang.reflect.ParameterizedType
 
 /**
  * @author Yang Shihao
  * @date 2018/11/18
  */
-abstract class BaseListFragment<T : BaseItem, VM : BaseListViewModel<T>> : BaseFragment(),
-    OnItemClickListener<T> {
-
-    val viewModel: VM by lazy {
-        val parameterizedType = javaClass.genericSuperclass as ParameterizedType
-        val cla = parameterizedType.actualTypeArguments[1] as Class<VM>
-        ViewModelProvider(this).get(cla)
-    }
+abstract class BaseListFragment<VB : ViewBinding, D : BaseItem, VM : BaseListViewModel<D>, A : BasePagedAdapter<*, D>> :
+    BaseFragment<VB, VM>(),
+    OnItemClickListener<D> {
 
     private var refreshLayout: RefreshLayout? = null
     private var emptyView: EmptyView? = null
 
-    private lateinit var recyclerView: RecyclerView
-
-    override fun getLayoutId() = R.layout.activity_base_list
-
     @CallSuper
     override fun initView() {
-        refreshLayout = f(R.id.baseRefreshLayout)
-        recyclerView = f(R.id.baseRecyclerView)!!
-        emptyView = f(R.id.baseEmptyView)
+        val recyclerView: RecyclerView = f(R.id.baseRecyclerView)!!
         val adapter = adapter()
         adapter.setOnItemClickListener(this)
-        processRecyclerView(recyclerView, emptyView)
+        recyclerView.layoutManager = getLayoutManager()
         recyclerView.adapter = adapter
-        refreshLayout?.setOnRefreshListener {
-            viewModel.refresh()
+        this.refreshLayout = f(R.id.baseRefreshLayout)
+        this.emptyView = f(R.id.baseEmptyView)
+        this.refreshLayout?.setOnRefreshListener {
+            viewModel { refresh() }
         }
     }
 
     @CallSuper
     override fun initData() {
-        viewModel.loadLiveData.observe(this) {
-            adapter().submitList(it)
-        }
-        viewModel.refreshLiveData.observe(this) {
-            refreshFinished(it)
-        }
-        viewModel.loadMoreLiveData.observe(this) {
-            loadMoreFinished(it)
-        }
-        if (uiParams.hasItemChange) {
-            viewModel.notifyItemLiveData.observe(this) {
-                adapter().notifyItemChanged(it.first, it.second)
+        viewModel {
+            loadLiveData.observe(this@BaseListFragment, Observer {
+                adapter().submitList(it)
+            })
+            refreshLiveData.observe(this@BaseListFragment, Observer {
+                refreshFinished(it)
+            })
+            loadMoreLiveData.observe(this@BaseListFragment, Observer {
+                loadMoreFinished(it)
+            })
+            if (uiParams.hasItemChange) {
+                notifyItemLiveData.observe(this@BaseListFragment, Observer {
+                    adapter().notifyItemChanged(it.first, it.second)
+                })
             }
-        }
-        if (uiParams.hasItemRemove) {
-            viewModel.removeItemLiveData.observe(this) {
-                adapter().notifyItemRemoved(it)
+            if (uiParams.hasItemRemove) {
+                removeItemLiveData.observe(this@BaseListFragment, Observer {
+                    adapter().notifyItemRemoved(it)
+                })
             }
         }
     }
 
-    open fun processRecyclerView(recyclerView: RecyclerView, emptyView: EmptyView?) {
-        recyclerView.layoutManager = LinearLayoutManager(recyclerView.context)
+    open fun getLayoutManager(): RecyclerView.LayoutManager {
+        return LinearLayoutManager(requireContext())
     }
 
-    override fun itemClicked(holder: ViewHolder, view: View, item: T, position: Int) {
+    override fun itemClicked(view: View, item: D, position: Int) {
 
     }
 
@@ -95,8 +87,7 @@ abstract class BaseListFragment<T : BaseItem, VM : BaseListViewModel<T>> : BaseF
     }
 
     open fun loadMoreFinished(result: DataListResult) {
-
     }
 
-    abstract fun adapter(): BasePagedAdapter<T>
+    abstract fun adapter(): A
 }

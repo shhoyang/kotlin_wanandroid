@@ -2,11 +2,13 @@ package com.hao.easy.wan.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import com.hao.easy.base.adapter.ViewHolder
+import androidx.lifecycle.ViewModelProvider
 import com.hao.easy.base.common.DataListResult
+import com.hao.easy.base.common.ExtraKey
 import com.hao.easy.base.ui.BaseListFragment
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
+import com.hao.easy.wan.databinding.WanFragmentWechatArticleBinding
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.model.Author
 import com.hao.easy.wan.ui.adapter.CommonArticleAdapter
@@ -19,12 +21,15 @@ import javax.inject.Inject
  * @date 2018/11/18
  */
 @AndroidEntryPoint
-class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>() {
+class WechatArticleFragment :
+    BaseListFragment<WanFragmentWechatArticleBinding, Article, WechatArticleViewModel, CommonArticleAdapter>() {
 
     @Inject
     lateinit var adapter: CommonArticleAdapter
 
-    override fun getLayoutId() = R.layout.wan_fragment_wechat_article
+    override fun getVB() = WanFragmentWechatArticleBinding.inflate(layoutInflater)
+
+    override fun getVM() = ViewModelProvider(this).get(WechatArticleViewModel::class.java)
 
     override fun adapter() = adapter
 
@@ -34,19 +39,21 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
     }
 
     override fun initData() {
-        arguments?.apply {
-            viewModel.authorId = getInt(AUTHOR_ID, Author.ID_HONGYANG)
+        viewModel {
+            lifecycle.addObserver(this)
+            arguments?.apply {
+                authorId = getInt(ExtraKey.INT, Author.ID_HONGYANG)
+            }
         }
         super.initData()
-        lifecycle.addObserver(viewModel)
     }
 
-    override fun itemClicked(holder: ViewHolder, view: View, item: Article, position: Int) {
+    override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
             R.id.tvLink -> act {
                 WebActivity.start(it, item.title, item.projectLink)
             }
-            R.id.ivFav -> viewModel.collect(item, position)
+            R.id.ivFav -> viewModel { collect(item, position) }
             else -> act {
                 WebActivity.start(it, item.title, item.link)
             }
@@ -60,16 +67,14 @@ class WechatArticleFragment : BaseListFragment<Article, WechatArticleViewModel>(
     }
 
     fun refresh() {
-        viewModel.refresh()
+        viewModel { refresh() }
     }
 
     companion object {
-        private const val AUTHOR_ID = "AUTHOR_ID"
-
         fun instance(authorId: Int): WechatArticleFragment {
             val fragment = WechatArticleFragment()
             val bundle = Bundle()
-            bundle.putInt(AUTHOR_ID, authorId)
+            bundle.putInt(ExtraKey.INT, authorId)
             fragment.arguments = bundle
             return fragment
         }

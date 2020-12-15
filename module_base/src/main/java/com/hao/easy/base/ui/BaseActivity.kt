@@ -2,73 +2,75 @@ package com.hao.easy.base.ui
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.LayoutRes
+import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 import com.hao.easy.base.R
 import com.hao.easy.base.common.AppManager
 import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.base.utils.T
 import com.hao.easy.base.view.ToolbarLayout
-import kotlinx.android.synthetic.main.activity_base.*
 
 /**
  * @author Yang Shihao
  * @date 2018/11/18
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity() {
+
+    private var viewBinding: VB? = null
+
+    private val viewModel: VM? by lazy {
+        getVM()
+    }
+
+    private var toolbarLayout: ToolbarLayout? = null
 
     protected val uiParams = UIParams()
-    private var toolbar: ToolbarLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppManager.instance().pushActivity(this)
-        prepare(uiParams, intent)
-        if (uiParams.isTransparentStatusBar) {
-            DisplayUtils.setTransparentStatusBar(this)
-        }
-        if (uiParams.showToolbar) {
-            setContentView(R.layout.activity_base)
-            View.inflate(this, getLayoutId(), activityRootView)
-        } else {
-            setContentView(getLayoutId())
-        }
-        toolbar = findViewById(R.id.baseToolbar)
-        toolbar?.let {
-            it.setBackClickListener {
-                onBackPressed()
-            }
-            processTitle(it)
-        }
+        init()
         initView()
         initData()
     }
 
+    private fun init() {
+        prepare(uiParams, intent)
+        if (uiParams.isTransparentStatusBar) {
+            DisplayUtils.setTransparentStatusBar(this)
+        }
+        viewBinding = getVB()
+        setContentView(viewBinding?.root)
+        toolbarLayout = f(R.id.baseToolbar)
+        toolbarLayout?.setBackClickListener {
+            onBackPressed()
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        viewBinding = null
         AppManager.instance().popActivity(this)
     }
 
-    open fun prepare(uiParams: UIParams, intent: Intent?) {
-
-    }
-
-    open fun initView() {
-    }
-
-    open fun initData() {
-    }
-
-    open fun processTitle(toolbarLayout: ToolbarLayout) {
-
-    }
-
     override fun setTitle(title: CharSequence?) {
-        toolbar?.title = title
+        toolbarLayout?.title = title
+    }
+
+    open fun prepare(uiParams: UIParams, intent: Intent?) {
+    }
+
+    fun viewBinding(block: VB.() -> Unit) {
+        viewBinding?.let(block)
+    }
+
+    fun viewModel(block: VM.() -> Unit) {
+        viewModel?.let(block)
     }
 
     fun toast(text: String?) {
@@ -79,13 +81,24 @@ abstract class BaseActivity : AppCompatActivity() {
         T.short(this, resId)
     }
 
-    fun to(cls: Class<out Activity>, isFinish: Boolean = false) {
+    fun toA(cls: Class<out Activity>, isFinish: Boolean = false) {
         startActivity(Intent(this, cls))
         if (isFinish) {
             finish()
         }
     }
 
-    @LayoutRes
-    abstract fun getLayoutId(): Int
+    fun <T : View> f(id: Int): T? {
+        return viewBinding?.root?.findViewById(id)
+    }
+
+    fun contentView(): ViewGroup = window.decorView.findViewById(android.R.id.content)
+
+    abstract fun getVB(): VB
+
+    abstract fun getVM(): VM?
+
+    abstract fun initView()
+
+    abstract fun initData()
 }

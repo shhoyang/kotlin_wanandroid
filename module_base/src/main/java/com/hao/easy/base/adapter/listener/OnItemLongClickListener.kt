@@ -1,7 +1,6 @@
 package com.hao.easy.base.adapter.listener
 
 import android.view.View
-import com.hao.easy.base.adapter.ViewHolder
 
 /**
  * @author Yang Shihao
@@ -9,5 +8,5 @@ import com.hao.easy.base.adapter.ViewHolder
  */
 
 interface OnItemLongClickListener<T> {
-    fun itemLongClicked(holder: ViewHolder, view: View, item: T, position: Int)
+    fun itemLongClicked(view: View, item: T, position: Int)
 }

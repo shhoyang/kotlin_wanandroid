@@ -8,7 +8,7 @@ import com.hao.easy.user.ui.fragment.UserFragment
 class MainActivity : ContainerActivity() {
 
     override fun prepare(uiParams: UIParams, intent: Intent?) {
-        uiParams.showToolbar = false
+        uiParams.isTransparentStatusBar = true
     }
 
     override fun getFragment() = UserFragment()

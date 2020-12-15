@@ -1,19 +1,18 @@
 package com.hao.easy.activity
 
-import android.content.Intent
-import com.hao.easy.R
 import com.hao.easy.base.ui.BaseActivity
-import com.hao.easy.base.ui.UIParams
+import com.hao.easy.databinding.AppActivityWelcomeBinding
 
-class WelcomeActivity : BaseActivity() {
+class WelcomeActivity : BaseActivity<AppActivityWelcomeBinding, Nothing>() {
 
-    override fun prepare(uiParams: UIParams, intent: Intent?) {
-        uiParams.showToolbar = false
+    override fun getVB() = AppActivityWelcomeBinding.inflate(layoutInflater)
+
+    override fun getVM(): Nothing? = null
+
+    override fun initView() {
+        toA(MainActivity::class.java, true)
     }
 
-    override fun getLayoutId() = R.layout.app_activity_welcome
-
     override fun initData() {
-        to(MainActivity::class.java, true)
     }
 }

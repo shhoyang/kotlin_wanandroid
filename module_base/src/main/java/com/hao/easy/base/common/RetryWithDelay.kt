@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import io.reactivex.functions.Function
 
 import java.util.concurrent.TimeUnit
+import kotlin.jvm.Throws
 
 /**
  * @author Yang Shihao

@@ -1,6 +1,7 @@
 package com.hao.easy.wan.model
 
 import com.hao.easy.base.adapter.BaseItem
+import com.hao.easy.base.extensions.removeHtml
 import com.hao.easy.base.extensions.removeSymbol
 
 class Article(
@@ -18,7 +19,7 @@ class Article(
             return if (null == field || "" == field) {
                 ""
             } else {
-                field.removeSymbol()
+                field.removeSymbol().removeHtml()
             }
         }
 

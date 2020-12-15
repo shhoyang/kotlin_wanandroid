@@ -8,11 +8,11 @@ import com.socks.library.KLog
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-abstract class BaseViewModel : ViewModel(), LifecycleObserver {
+open class BaseViewModel : ViewModel(), LifecycleObserver {
 
     private var tag = "BaseViewModel_${javaClass.simpleName}"
 
-    var compositeDisposable: CompositeDisposable? = null
+    private var compositeDisposable: CompositeDisposable? = null
 
     open fun Disposable.add() {
         if (compositeDisposable == null || compositeDisposable!!.isDisposed) {

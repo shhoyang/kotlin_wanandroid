@@ -3,7 +3,9 @@ package com.hao.easy.wan.ui.activity
 import android.content.Context
 import android.content.Intent
 import android.view.View
-import com.hao.easy.base.adapter.ViewHolder
+import androidx.lifecycle.ViewModelProvider
+import com.hao.easy.base.common.ExtraKey
+import com.hao.easy.base.databinding.ActivityBaseListBinding
 import com.hao.easy.base.ui.BaseListActivity
 import com.hao.easy.base.ui.WebActivity
 import com.hao.easy.wan.R
@@ -15,36 +17,41 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ProjectArticleActivity : BaseListActivity<Article, ProjectArticleViewModel>() {
+class ProjectArticleActivity :
+    BaseListActivity<ActivityBaseListBinding, Article, ProjectArticleViewModel, ProjectArticleAdapter>() {
 
     @Inject
     lateinit var adapter: ProjectArticleAdapter
 
+    override fun getVB() = ActivityBaseListBinding.inflate(layoutInflater)
+
+    override fun getVM() = ViewModelProvider(this).get(ProjectArticleViewModel::class.java)
+
     override fun adapter() = adapter
 
     override fun initData() {
-        intent.getParcelableExtra<ProjectType>(TYPE)?.apply {
-            title = name.replace("&amp;", "")
-            viewModel.typeId = id
+        viewModel {
+            lifecycle.addObserver(this)
+            intent.getParcelableExtra<ProjectType>(ExtraKey.PARCELABLE)?.apply {
+                title = name
+                viewModel { typeId = id }
+            }
         }
-
         super.initData()
-        lifecycle.addObserver(viewModel)
     }
 
-    override fun itemClicked(holder: ViewHolder, view: View, item: Article, position: Int) {
+    override fun itemClicked(view: View, item: Article, position: Int) {
         when (view.id) {
             R.id.tvLink -> WebActivity.start(this, item.title, item.projectLink)
-            R.id.ivFav -> viewModel.collect(item, position)
+            R.id.ivFav -> viewModel { collect(item, position) }
             else -> WebActivity.start(this, item.title, item.link)
         }
     }
 
     companion object {
-        private const val TYPE = "TYPE"
         fun start(context: Context, projectType: ProjectType) {
             val intent = Intent(context, ProjectArticleActivity::class.java)
-            intent.putExtra(TYPE, projectType)
+            intent.putExtra(ExtraKey.PARCELABLE, projectType)
             context.startActivity(intent)
         }
     }

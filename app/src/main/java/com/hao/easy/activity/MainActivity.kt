@@ -8,17 +8,17 @@ import com.hao.easy.base.adapter.FragmentCreator
 import com.hao.easy.base.common.AppManager
 import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.base.ui.UIParams
+import com.hao.easy.databinding.AppActivityMainBinding
 import com.hao.easy.user.ui.fragment.UserFragment
 import com.hao.easy.wan.ui.fragment.KnowledgeFragment
 import com.hao.easy.wan.ui.fragment.ProjectFragment
 import com.hao.easy.wan.ui.fragment.SearchFragment
 import com.hao.easy.wan.ui.fragment.WechatFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.app_activity_main.*
 import kotlin.properties.Delegates
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<AppActivityMainBinding, Nothing>() {
 
     private var backPressedTime by Delegates.observable(0L) { _, old, new ->
         if (new - old < 2000) {
@@ -29,11 +29,12 @@ class MainActivity : BaseActivity() {
     }
 
     override fun prepare(uiParams: UIParams, intent: Intent?) {
-        uiParams.showToolbar = false
         uiParams.isTransparentStatusBar = true
     }
 
-    override fun getLayoutId() = R.layout.app_activity_main
+    override fun getVB() = AppActivityMainBinding.inflate(layoutInflater)
+
+    override fun getVM(): Nothing? = null
 
     override fun initView() {
         val fragments = listOf(
@@ -50,42 +51,41 @@ class MainActivity : BaseActivity() {
                 override fun createFragment() = SearchFragment()
             }
         )
-        viewPager.apply {
-            isUserInputEnabled = false
-            offscreenPageLimit = 3
-            adapter = FragmentAdapter(supportFragmentManager, lifecycle, fragments)
+        viewBinding {
+            viewPager.apply {
+                isUserInputEnabled = false
+                offscreenPageLimit = 3
+                adapter = FragmentAdapter(supportFragmentManager, lifecycle, fragments)
+            }
+            supportFragmentManager.beginTransaction()
+                .add(R.id.leftNavigationView, UserFragment())
+                .commit()
+            bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+                viewPager.setCurrentItem(
+                    when (item.itemId) {
+                        R.id.tab_hot -> 0
+                        R.id.tab_project -> 1
+                        R.id.tab_knowledge -> 2
+                        else -> 3
+                    }, false
+                )
+
+                true
+            }
         }
-        initLeftNavigation()
-        initBottomNavigation()
-//        Debug.stopMethodTracing()
     }
 
-    private fun initLeftNavigation() {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.leftNavigationView, UserFragment())
-            .commit()
-    }
+    override fun initData() {
 
-    private fun initBottomNavigation() {
-        bottomNavigationView.setOnNavigationItemSelectedListener { item ->
-            viewPager.setCurrentItem(
-                when (item.itemId) {
-                    R.id.tab_hot -> 0
-                    R.id.tab_project -> 1
-                    R.id.tab_knowledge -> 2
-                    else -> 3
-                }, false
-            )
-
-            true
-        }
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            backPressedTime = System.currentTimeMillis()
+        viewBinding {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                backPressedTime = System.currentTimeMillis()
+            }
         }
     }
 }

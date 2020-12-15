@@ -5,7 +5,7 @@ package com.hao.easy.base.ui
  * @Date 12/3/20
  */
 data class UIParams(
-    var showToolbar: Boolean = true,
+//    var showToolbar: Boolean = true,
     // 从状态栏布局
     var isTransparentStatusBar:Boolean = false,
     var isLazy: Boolean = false,

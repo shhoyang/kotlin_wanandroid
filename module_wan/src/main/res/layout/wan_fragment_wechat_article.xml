@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.hao.easy.base.view.EmptyView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/baseEmptyView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    android:id="@+id/baseEmptyView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/baseRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
+        android:id="@+id/baseRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </com.hao.easy.base.view.EmptyView>
 

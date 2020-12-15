@@ -10,7 +10,6 @@
         android:layout_height="wrap_content" />
 
     <com.hao.easy.base.view.ToolbarLayout
-        android:id="@id/baseToolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
         app:showBack="false"
@@ -24,15 +23,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvLeft"
             android:layout_width="128dp"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
+            android:layout_height="match_parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRight"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="128dp"
-            android:overScrollMode="never" />
+            android:layout_marginLeft="128dp" />
 
     </com.hao.easy.base.view.EmptyView>
 

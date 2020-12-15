@@ -1,10 +1,10 @@
 package com.hao.easy.wan.ui.adapter
 
-import android.widget.TextView
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.hao.easy.base.adapter.BaseNormalAdapter
-import com.hao.easy.base.adapter.BasePagedAdapter
 import com.hao.easy.base.adapter.ViewHolder
-import com.hao.easy.wan.R
+import com.hao.easy.wan.databinding.WanItemKnowledgeRightBinding
 import com.hao.easy.wan.model.Knowledge
 import javax.inject.Inject
 
@@ -13,12 +13,23 @@ import javax.inject.Inject
  * @date 2018/12/3
  */
 class KnowledgeRightAdapter @Inject constructor() :
-    BaseNormalAdapter<Knowledge>(R.layout.wan_item_knowledge_right) {
+    BaseNormalAdapter<WanItemKnowledgeRightBinding, Knowledge>() {
 
-    override fun bindViewHolder(holder: ViewHolder, item: Knowledge, position: Int) {
-        (holder.itemView as TextView).text = item.name
-        holder.itemView.setOnClickListener {
-            itemClickListener?.itemClicked(holder, it, item, position)
+    override fun getViewBinding(
+        layoutInflater: LayoutInflater,
+        parent: ViewGroup
+    ) = WanItemKnowledgeRightBinding.inflate(layoutInflater, parent, false)
+
+    override fun bindViewHolder(
+        viewHolder: ViewHolder<WanItemKnowledgeRightBinding>,
+        item: Knowledge,
+        position: Int
+    ) {
+        viewHolder.viewBinding {
+            root.text = item.name
+            root.setOnClickListener {
+                itemClickListener?.itemClicked(it, item, position)
+            }
         }
     }
 }
