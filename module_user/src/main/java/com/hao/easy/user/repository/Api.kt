@@ -4,10 +4,7 @@ import com.hao.easy.base.BaseApplication
 import com.hao.easy.base.model.HttpResult
 import com.hao.easy.base.user.User
 import io.reactivex.Observable
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * @author Yang Shihao
@@ -20,14 +17,11 @@ interface Service {
 
     @FormUrlEncoded
     @POST("user/register")
-    fun register(@Field("username") username: String,
-                 @Field("password") password: String,
-                 @Field("repassword") confirmPassword: String): Observable<HttpResult<User>>
+    fun register(@FieldMap params: HashMap<String, Any>): Observable<HttpResult<User>>
 
     @FormUrlEncoded
     @POST("user/login")
-    fun login(@Field("username") username: String,
-              @Field("password") password: String): Observable<HttpResult<User>>
+    fun login(@FieldMap params: HashMap<String, Any>): Observable<HttpResult<User>>
 
     @GET("user/logout/json")
     fun logout(): Observable<HttpResult<User>>

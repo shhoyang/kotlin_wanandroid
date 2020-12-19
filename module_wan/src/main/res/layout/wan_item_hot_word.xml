@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hao.easy.base.view.RoundButton xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hao.easy.base.view.RoundTextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tvName"
     android:layout_width="wrap_content"
     android:layout_height="28dp"
     android:gravity="center"
@@ -14,7 +12,6 @@
     app:borderWidth="0.5dp"
     app:normalTextColor="@color/text_link"
     app:pressedColor="@color/light_grey"
-    app:radius="32dp"
-    tools:text="TAG" />
+    app:radius="32dp" />
 
 

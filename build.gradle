@@ -1,8 +1,14 @@
 buildscript {
     apply from: "config.gradle"
+    ext {
+        versions.kotlin = '1.4.21'
+    }
     repositories {
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        mavenLocal()
+        mavenCentral()
         google()
         jcenter()
     }

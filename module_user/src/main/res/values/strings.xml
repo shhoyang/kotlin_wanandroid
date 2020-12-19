@@ -2,6 +2,7 @@
     <string name="app_name">User</string>
     <string name="user_menu_fav">我的收藏</string>
     <string name="user_menu_clear_cache">清理缓存</string>
+    <string name="user_menu_upgrade">版本检查</string>
     <string name="user_menu_about">关于项目</string>
     <string name="user_menu_logout">退出登录</string>
     <string name="user_copy_tip">提示: 长按连接复制到剪粘板</string>

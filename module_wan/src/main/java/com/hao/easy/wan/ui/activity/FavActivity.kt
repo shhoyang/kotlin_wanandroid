@@ -42,15 +42,15 @@ class FavActivity : BaseListActivity<ActivityBaseListBinding, Article, FavViewMo
         super.initData()
         viewModel {
             deleteResult.observe(this@FavActivity, Observer {
-                toast("刪除成功")
+                toast("取消成功")
             })
         }
     }
 
     override fun itemClicked(view: View, item: Article, position: Int) {
         if (view.id == R.id.ivFav) {
-            ConfirmDialog(this)
-                .setMsg("确定刪除该收藏吗？")
+            ConfirmDialog.Builder(this)
+                .setMessage("确定取消收藏吗？")
                 .setListener(object : ConfirmDialogListener {
                     override fun confirm() {
                         viewModel { cancelCollect(item, position) }
@@ -59,7 +59,7 @@ class FavActivity : BaseListActivity<ActivityBaseListBinding, Article, FavViewMo
                     override fun cancel() {
                     }
 
-                }).show()
+                }).build().show()
         } else {
             WebActivity.start(this, item.title, item.link)
         }

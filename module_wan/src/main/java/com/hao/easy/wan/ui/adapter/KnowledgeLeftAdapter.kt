@@ -32,12 +32,14 @@ class KnowledgeLeftAdapter @Inject constructor() :
             root.isSelected = position == selectedPosition
             root.text = item.name ?: ""
             root.setOnClickListener {
-                preSelectedPosition = selectedPosition
-                selectedPosition = position
-                notifyItemChanged(preSelectedPosition)
-                notifyItemChanged(selectedPosition)
-                itemClickListener?.itemClicked(it, item, position)
-            }
+                if(position != selectedPosition){
+                    preSelectedPosition = selectedPosition
+                    selectedPosition = position
+                    notifyItemChanged(preSelectedPosition)
+                    notifyItemChanged(selectedPosition)
+                    itemClickListener?.itemClicked(it, item, position)
+
+                }            }
         }
     }
 }

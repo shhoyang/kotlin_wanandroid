@@ -52,10 +52,10 @@ class MainActivity : BaseActivity<WanActivityMainBinding, Nothing>() {
             bottomNavigationView.setOnNavigationItemSelectedListener { item ->
                 viewPager.setCurrentItem(
                     when (item.itemId) {
-                        R.id.tab_hot -> 0
                         R.id.tab_project -> 1
                         R.id.tab_knowledge -> 2
-                        else -> 3
+                        R.id.tab_search -> 3
+                        else -> 0
                     }, false
                 )
                 true

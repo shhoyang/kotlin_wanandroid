@@ -1,26 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
+    android:background="@drawable/dialog_bg_white"
     android:gravity="center"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvMsg"
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="32dp"
+        android:layout_margin="16dp"
         android:gravity="center"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        tools:text="你确定吗" />
+        android:textColor="@color/text_black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/lineTitle"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.4"
+        android:minHeight="48dp"
+        android:textColor="@color/text_black"
+        android:textSize="16sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#D1D1D1" />
+        android:background="@color/line" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,14 +50,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/cancel"
-            android:textColor="#606266"
+            android:textColor="@color/text_subtitle"
             android:textSize="14sp" />
 
         <View
-            android:id="@+id/line"
+            android:id="@+id/lineCancel"
             android:layout_width="1px"
             android:layout_height="match_parent"
-            android:background="#D1D1D1" />
+            android:background="@color/line" />
 
         <TextView
             android:id="@+id/tvConfirm"
@@ -50,7 +66,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/confirm"
-            android:textColor="#409EFF"
+            android:textColor="@color/text_primary"
             android:textSize="14sp" />
 
     </LinearLayout>

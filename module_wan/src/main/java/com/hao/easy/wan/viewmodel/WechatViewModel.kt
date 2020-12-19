@@ -18,4 +18,5 @@ class WechatViewModel : AuthorViewModel() {
 
         getAuthors()
     }
+
 }

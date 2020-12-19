@@ -18,7 +18,11 @@
         <service
             android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
             android:label="dexopt"
-            android:process=":dexopt" />
+            android:process=":h5" />
+        <service
+            android:name=".InitX5Service"
+            android:label="dexopt"
+            android:process=":h5" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

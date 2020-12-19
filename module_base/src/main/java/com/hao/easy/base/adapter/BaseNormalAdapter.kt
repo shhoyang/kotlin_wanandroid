@@ -20,13 +20,13 @@ abstract class BaseNormalAdapter<VB : ViewBinding, D>(
         return ViewHolder(getViewBinding(LayoutInflater.from(parent.context), parent))
     }
 
-    override fun onBindViewHolder(holderHolder: ViewHolder<VB>, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder<VB>, position: Int) {
         itemClickListener?.apply {
-            holderHolder.itemView.setOnClickListener {
+            viewHolder.itemView.setOnClickListener {
                 itemClicked(it, data[position], position)
             }
         }
-        bindViewHolder(holderHolder, data[position], position)
+        bindViewHolder(viewHolder, data[position], position)
     }
 
     protected fun getItem(position: Int) = data[position]

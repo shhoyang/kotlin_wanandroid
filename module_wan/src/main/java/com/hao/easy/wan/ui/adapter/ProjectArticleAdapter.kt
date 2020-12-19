@@ -44,16 +44,14 @@ class ProjectArticleAdapter @Inject constructor() :
                 }
             }
 
-
             tvTitle.text = item.title
             tvDesc.text = item.desc
             tvAuthor.text = item.author
             tvTime.text = item.niceDate
             ivFav.setImageResource(if (item.collect) R.drawable.ic_fav_1 else R.drawable.ic_fav_0)
             ivThumbnail.load(item.envelopePic)
-
-            tvLink.setOnClickListener { click }
-            ivFav.setOnClickListener { click }
+            tvLink.setOnClickListener(click)
+            ivFav.setOnClickListener(click)
         }
     }
 }

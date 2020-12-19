@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#448AFF</color>
-    <!--    <color name="colorPrimary">#64B5F6</color>-->
-    <!--    <color name="colorPrimaryDark">#00574B</color>-->
-    <!--<color name="colorAccent">#D81B60</color>-->
     <color name="colorPrimaryDark">@color/window_bg</color>
     <color name="colorAccent">@color/colorPrimary</color>
     <color name="ic_launcher_background">#FAFAFA</color>
@@ -13,9 +10,9 @@
     <color name="white">#FFFFFF</color>
     <color name="gray_white">#F0F0F0</color>
     <color name="black">#000000</color>
-    <color name="line">@color/light_grey</color>
+    <color name="line">#D3D3D3</color>
     <color name="light_grey">#E0E0E0</color>
-    <color name="dark_grey">#757575</color>
+    <color name="dark_gray">#757575</color>
 
     <color name="text_primary">@color/colorPrimary</color>
     <color name="text_black">#333333</color>
@@ -25,6 +22,5 @@
     <color name="text_desc">#B2B2B2</color>
     <color name="text_link">#576B95</color>
     <color name="text_red">#E64340</color>
-
 
 </resources>

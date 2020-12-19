@@ -61,7 +61,7 @@
                     app:tabInlineLabel="true"
                     app:tabMode="fixed"
                     app:tabSelectedTextColor="@color/colorPrimary"
-                    app:tabTextColor="@color/dark_grey" />
+                    app:tabTextColor="@color/dark_gray" />
 
                 <ImageView
                     android:id="@+id/ivAdd"

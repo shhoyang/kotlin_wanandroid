@@ -14,6 +14,7 @@ import com.hao.easy.base.common.AppManager
 import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.base.utils.T
 import com.hao.easy.base.view.ToolbarLayout
+import com.socks.library.KLog
 
 /**
  * @author Yang Shihao
@@ -34,6 +35,7 @@ abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivit
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppManager.instance().pushActivity(this)
+        KLog.d("ActivityName", javaClass.simpleName)
         init()
         initView()
         initData()

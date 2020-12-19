@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:gravity="center">
+
+    <View
+        android:layout_width="32dp"
+        android:layout_height="1dp"
+        android:background="@color/line" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="我是有底线的"
+        android:textColor="@color/text_subtitle"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="32dp"
+        android:layout_height="1dp"
+        android:background="@color/line" />
+
+</LinearLayout>

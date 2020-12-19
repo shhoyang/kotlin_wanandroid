@@ -88,7 +88,7 @@
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.hao.easy.base.view.RoundButton
+    <com.hao.easy.base.view.RoundTextView
         android:id="@+id/buttonRegister"
         android:layout_width="0dp"
         android:layout_height="40dp"

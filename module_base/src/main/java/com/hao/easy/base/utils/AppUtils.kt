@@ -6,11 +6,6 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.PackageManager.NameNotFoundException
 import android.telephony.TelephonyManager
-import android.text.TextUtils
-import java.io.BufferedReader
-import java.io.FileReader
-import java.io.IOException
-
 
 /**
  * @author Yang Shihao
@@ -20,19 +15,17 @@ object AppUtils {
     /**
      * 获取应用程序名称
      */
-    fun getAppName(context: Context): String? {
+    fun getAppName(context: Context): String {
         return try {
-            val packageManager = context.packageManager
-            val packageInfo = packageManager.getPackageInfo(
-                context.packageName, 0
+            context.resources.getString(
+                context.packageManager.getPackageInfo(
+                    context.packageName,
+                    0
+                ).applicationInfo.labelRes
             )
-            val labelRes = packageInfo.applicationInfo.labelRes
-            context.resources.getString(labelRes)
         } catch (e: NameNotFoundException) {
             ""
         }
-
-        return null
     }
 
     /**
@@ -40,9 +33,7 @@ object AppUtils {
      */
     fun getVersionName(context: Context): String {
         return try {
-            val packageManager = context.packageManager
-            val packageInfo = packageManager.getPackageInfo(context.packageName, 0)
-            packageInfo.versionName
+            context.packageManager.getPackageInfo(context.packageName, 0).versionName
         } catch (e: NameNotFoundException) {
             ""
         }
@@ -53,9 +44,12 @@ object AppUtils {
      */
     fun getVersionCode(context: Context): Int {
         return try {
-            val packageManager = context.packageManager
-            val packageInfo = packageManager.getPackageInfo(context.packageName, 0)
-            packageInfo.versionCode
+            val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+                packageInfo.longVersionCode.toInt()
+            } else {
+                packageInfo.versionCode
+            }
         } catch (e: NameNotFoundException) {
             0
         }
@@ -88,8 +82,12 @@ object AppUtils {
     @SuppressLint("MissingPermission")
     fun getIMEI(context: Context): String {
         return try {
-            val tm = context.getSystemService(Activity.TELEPHONY_SERVICE) as TelephonyManager?
-            tm?.deviceId ?: ""
+            val tm = context.getSystemService(Activity.TELEPHONY_SERVICE) as TelephonyManager
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                tm.imei
+            } else {
+                tm.deviceId
+            }
         } catch (e: Exception) {
             ""
         }
@@ -99,103 +97,49 @@ object AppUtils {
      * 获取手机号
      */
     @SuppressLint("MissingPermission")
-    fun getPhoneNum(context: Context): String? {
-
-        var phone: String? = null
-
-        try {
-            val tm = context.getSystemService(Activity.TELEPHONY_SERVICE) as TelephonyManager?
-            phone = tm?.line1Number
+    fun getPhoneNum(context: Context): String {
+        return try {
+            val tm = context.getSystemService(Activity.TELEPHONY_SERVICE) as TelephonyManager
+            tm.line1Number
         } catch (e: Exception) {
-
+            ""
         }
-        return phone
     }
 
     /**
-     * 获取进程名字
+     * 进程名字
      */
-    fun getProcessName(pid: Int): String? {
-        var reader: BufferedReader? = null
-        try {
-            reader = BufferedReader(FileReader("/proc/$pid/cmdline"))
-            var processName = reader.readLine()
-            if (!TextUtils.isEmpty(processName)) {
-                processName = processName.trim()
+    fun getProcessName(context: Context, pid: Int): String? {
+        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        am.runningAppProcesses.forEach {
+            if (it.pid == pid) {
+                return it.processName
             }
-            return processName
-        } catch (throwable: Throwable) {
-
-        } finally {
-            try {
-                reader?.close()
-            } catch (e: IOException) {
-            }
-
         }
         return null
     }
 
     /**
-     * app是否正在运行
+     * 是否是主进程
      */
-    fun getAppState(context: Context, packageName: String): Boolean {
+    fun isMainProcess(context: Context, pid: Int): Boolean {
+        context.packageName
         val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val list = am.getRunningTasks(100)
-        for (info in list) {
-            if (info.topActivity?.packageName == packageName || info.baseActivity?.packageName == packageName) {
-                return true
-            }
-        }
-
-        return false
-    }
-
-    fun isForeground(context: Context?, className: String): Boolean {
-        if (context == null || TextUtils.isEmpty(className)) {
-            return false
-        }
-
-        val am = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val list = am.getRunningTasks(1)
-        if (list != null && list.size > 0) {
-            val cpn = list[0].topActivity
-            if (className == cpn?.className) {
-                return true
-            }
-        }
-
-        return false
-
-    }
-
-    /**
-     * 获取服务是否开启
-     *
-     * @param className 完整包名的服务类名
-     */
-    fun isRunningService(context: Context, className: String): Boolean {
-
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val runningServices = activityManager.getRunningServices(100)
-        for (runningServiceInfo in runningServices) {
-            val service = runningServiceInfo.service
-            if (className == service.className) {
-                return true
+        am.runningAppProcesses.forEach {
+            if (it.pid == pid) {
+                return context.packageName == it.processName
             }
         }
         return false
     }
 
     /**
-     * 判断相对应的APP是否存在
+     * APP是否安装
      */
     fun appInstalled(context: Context, packageName: String): Boolean {
-        val packageManager = context.packageManager
-        //获取手机系统的所有APP包名，然后进行一一比较
-        val packageInfos = packageManager.getInstalledPackages(0)
-        for (i in packageInfos.indices) {
-            if (packageInfos[i].packageName.equals(packageName, ignoreCase = true)) {
+        val packages = context.packageManager.getInstalledPackages(0)
+        packages.forEach {
+            if (it.packageName.equals(packageName, true)) {
                 return true
             }
         }

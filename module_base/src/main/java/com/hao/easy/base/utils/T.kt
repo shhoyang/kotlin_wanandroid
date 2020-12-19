@@ -15,8 +15,8 @@ object T {
         if (null == context || TextUtils.isEmpty(msg)) {
             return
         }
-        val toast = Toast.makeText(context, null, Toast.LENGTH_SHORT)
-        toast.setText(msg)
+        val toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT)
+//        toast.setText(msg)
         toast.show()
     }
 
@@ -24,8 +24,8 @@ object T {
         if (null == context) {
             return
         }
-        val toast = Toast.makeText(context, null, Toast.LENGTH_SHORT)
-        toast.setText(resId)
+        val toast = Toast.makeText(context, resId, Toast.LENGTH_SHORT)
+//        toast.setText(resId)
         toast.show()
     }
 }

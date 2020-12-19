@@ -54,8 +54,7 @@ class CommonArticleAdapter @Inject constructor() :
             tvTitle.text = item.title
             tvTime.text = item.niceDate
             ivFav.setImageResource(if (item.collect) R.drawable.ic_fav_1 else R.drawable.ic_fav_0)
-            ivFav.setOnClickListener { click }
-
+            ivFav.setOnClickListener(click)
             if (showAuthor && !TextUtils.isEmpty(item.author)) {
                 tvAuthor.visible()
                 tvAuthor.text = item.author

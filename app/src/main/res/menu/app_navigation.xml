@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/tab_hot"
-            android:icon="@drawable/app_ic_hot"
-            android:title="@string/app_tab_hot" />
+        android:id="@+id/tab_wechat"
+        android:icon="@drawable/app_ic_wechat"
+        android:title="@string/app_tab_wechat" />
     <item
-            android:id="@+id/tab_project"
-            android:icon="@drawable/app_ic_android"
-            android:title="@string/app_tab_project" />
+        android:id="@+id/tab_project"
+        android:icon="@drawable/app_ic_android"
+        android:title="@string/app_tab_project" />
     <item
-            android:id="@+id/tab_knowledge"
-            android:icon="@drawable/app_ic_guide"
-            android:title="@string/app_tab_knowledge" />
+        android:id="@+id/tab_knowledge"
+        android:icon="@drawable/app_ic_guide"
+        android:title="@string/app_tab_knowledge" />
     <item
-            android:icon="@drawable/app_ic_search"
-            android:title="@string/app_tab_search" />
+        android:id="@+id/tab_search"
+        android:icon="@drawable/app_ic_search"
+        android:title="@string/app_tab_search" />
 </menu>

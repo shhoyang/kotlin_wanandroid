@@ -19,7 +19,7 @@ abstract class BaseDialog<VB : ViewBinding>(
     themeResId
 ) {
 
-    var viewBinding: VB
+    private var viewBinding: VB
 
     init {
         viewBinding = getVB()
@@ -47,6 +47,10 @@ abstract class BaseDialog<VB : ViewBinding>(
 
     open fun initView() {
 
+    }
+
+    fun viewBinding(block: VB.() -> Unit) {
+        block(viewBinding)
     }
 
     abstract fun getVB(): VB

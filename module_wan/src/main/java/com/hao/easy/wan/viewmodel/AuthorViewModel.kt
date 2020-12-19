@@ -1,17 +1,16 @@
 package com.hao.easy.wan.viewmodel
 
 import com.hao.easy.base.extensions.subscribeBy
+import com.hao.easy.base.utils.CoroutineUtils
 import com.hao.easy.base.viewmodel.BaseViewModel
 import com.hao.easy.wan.db.Db
 import com.hao.easy.wan.model.Author
 import com.hao.easy.wan.repository.Api
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 open class AuthorViewModel : BaseViewModel() {
 
     fun getAuthors() {
-        GlobalScope.launch {
+        CoroutineUtils.io {
             val list = Db.instance().authorDao().queryAll()
             if (list.isEmpty()) {
                 Api.getAuthors().subscribeBy({
@@ -49,27 +48,27 @@ open class AuthorViewModel : BaseViewModel() {
             }
         }
 
-        GlobalScope.launch {
+        CoroutineUtils.io {
             Db.instance().authorDao().insert(data)
         }
     }
 
     fun subscribe(author: Author) {
         author.visible = Author.VISIBLE
-        GlobalScope.launch {
+        CoroutineUtils.io {
             Db.instance().authorDao().update(author)
         }
     }
 
     fun cancelSubscribe(author: Author) {
         author.visible = Author.INVISIBLE
-        GlobalScope.launch {
+        CoroutineUtils.io {
             Db.instance().authorDao().update(author)
         }
     }
 
     fun update(authors: List<Author>) {
-        GlobalScope.launch {
+        CoroutineUtils.io {
             Db.instance().authorDao().updateAll(authors)
         }
     }

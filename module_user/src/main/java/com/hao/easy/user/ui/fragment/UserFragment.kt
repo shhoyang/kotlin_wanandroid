@@ -13,6 +13,7 @@ import com.hao.easy.user.databinding.UserNavigationHeaderBinding
 import com.hao.easy.user.ui.activity.AboutActivity
 import com.hao.easy.user.ui.activity.LoginActivity
 import com.hao.easy.user.viewmodel.UserViewModel
+import com.tencent.bugly.beta.Beta
 
 /**
  * @author Yang Shihao
@@ -41,6 +42,7 @@ class UserFragment : BaseFragment<UserFragmentUserBinding, UserViewModel>() {
                         }
                     }
                     R.id.menu_clear -> toast("清理完成")
+                    R.id.menu_upgrade -> Beta.checkUpgrade()
                     R.id.menu_about -> toA(AboutActivity::class.java)
                     R.id.menu_logout -> logout()
                 }

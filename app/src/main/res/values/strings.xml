@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">玩Android</string>
     <string name="app_tab_hot">热门</string>
+    <string name="app_tab_wechat">公众号</string>
     <string name="app_tab_project">项目</string>
     <string name="app_tab_knowledge">体系</string>
     <string name="app_tab_search">搜索</string>

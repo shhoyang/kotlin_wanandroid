@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.hao.easy.base.R
 import com.hao.easy.base.databinding.ToolbarBinding
@@ -27,13 +26,13 @@ class ToolbarLayout : FrameLayout {
             viewBinding.toolbarTitle.text = title
         }
 
-    var textColor = 0x333333
+    var textColor = 0xFF333333.toInt()
         set(value) {
             field = value
             viewBinding.toolbarTitle.setTextColor(value)
         }
 
-    var iconTintColor: Int = 0x333333
+    var iconTintColor: Int = 0xFF333333.toInt()
         set(value) {
             field = value
             viewBinding.toolbarBack.apply { tintIcon(this, value) }
@@ -60,24 +59,13 @@ class ToolbarLayout : FrameLayout {
 
     private fun init(attrs: AttributeSet?) {
         viewBinding = ToolbarBinding.inflate(LayoutInflater.from(context), this)
-        attrs?.let {
-            val typedArray = context.obtainStyledAttributes(it, R.styleable.ToolbarLayout)
-            typedArray.apply {
-                title = getString(R.styleable.ToolbarLayout_title)
-                showBack = getBoolean(R.styleable.ToolbarLayout_showBack, true)
-                showLine = getBoolean(R.styleable.ToolbarLayout_showLine, true)
-                textColor =
-                    getColor(
-                        R.styleable.ToolbarLayout_textColor,
-                        ContextCompat.getColor(context, R.color.text_black)
-                    )
-                iconTintColor =
-                    getColor(
-                        R.styleable.ToolbarLayout_iconTint,
-                        ContextCompat.getColor(context, R.color.text_black)
-                    )
-                recycle()
-            }
+        context.obtainStyledAttributes(attrs, R.styleable.ToolbarLayout).apply {
+            title = getString(R.styleable.ToolbarLayout_title)
+            showBack = getBoolean(R.styleable.ToolbarLayout_showBack, true)
+            showLine = getBoolean(R.styleable.ToolbarLayout_showLine, true)
+            textColor = getColor(R.styleable.ToolbarLayout_textColor, textColor)
+            iconTintColor = getColor(R.styleable.ToolbarLayout_iconTint, iconTintColor)
+            recycle()
         }
     }
 

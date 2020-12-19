@@ -24,7 +24,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="1px"
-            android:background="@color/light_grey"
+            android:background="@color/line"
             app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:background="@color/window_bg"
             app:itemHorizontalTranslationEnabled="false"
+            app:itemIconTint="@color/app_nav_text"
             app:itemTextColor="@color/app_nav_text"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -14,8 +14,6 @@ import com.hao.easy.base.ui.BaseFragment
 import com.hao.easy.base.ui.UIParams
 import com.hao.easy.base.utils.DisplayUtils
 import com.hao.easy.base.utils.DrawableUtils
-import com.hao.easy.base.view.dialog.ConfirmDialog
-import com.hao.easy.base.view.dialog.LoadingDialog
 import com.hao.easy.wan.databinding.WanFragmentSearchBinding
 import com.hao.easy.wan.db.Db
 import com.hao.easy.wan.model.HotWord
