@@ -2,11 +2,10 @@ package com.hao.easy.wan.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.hao.easy.base.extensions.removeSymbol
+import com.hao.library.extensions.removeSymbol
 
 /**
  * @author Yang Shihao
- * @date 2018/12/2
  */
 data class ProjectType(var id: Int) : Parcelable {
 

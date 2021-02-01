@@ -4,18 +4,14 @@ import android.content.Intent
 import com.alibaba.android.arouter.launcher.ARouter
 import com.hao.easy.base.BaseApplication
 import com.hao.easy.base.Config
-import com.hao.easy.base.utils.AppUtils
-import com.hao.easy.base.utils.CoroutineUtils
+import com.hao.library.utils.AppUtils
+import com.hao.library.utils.CoroutineUtils
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
-import dagger.hilt.android.HiltAndroidApp
 
 /**
  * @author Yang Shihao
- * @Date 2020/7/18
  */
-
-@HiltAndroidApp
 class App : BaseApplication() {
 
     override fun onCreate() {

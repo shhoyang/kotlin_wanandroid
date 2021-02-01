@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.LoginActivity">
+    tools:context=".activity.LoginActivity">
 
     <fragment
         android:id="@+id/navHostFragment"
@@ -14,13 +14,13 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/user_login" />
 
-    <com.hao.easy.base.view.ToolbarLayout
+    <com.hao.library.view.ToolbarLayout
         android:id="@+id/baseToolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        app:iconTint="@color/white"
-        app:showLine="false"
-        app:textColor="@color/white"
-        app:title="登录" />
+        android:layout_height="@dimen/toolbarHeight"
+        app:toolbarIconColor="@color/white"
+        app:toolbarShowLine="false"
+        app:toolbarTitleText="@string/user_login"
+        app:toolbarTitleTextColor="@color/white" />
 
 </FrameLayout>

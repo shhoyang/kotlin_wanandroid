@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">HaoLibrary</string>
+
+    <string name="emptyViewLoadingText">玩命加载中…</string>
+    <string name="emptyViewNoDataText">暂无数据</string>
+    <string name="emptyViewLoadFailedText">加载失败</string>
+    <string name="emptyViewNetworkUnavailableText">网络异常</string>
+
+    <string name="confirmDialogCancelBtnText">取消</string>
+    <string name="confirmDialogConfirmBtnText">确定</string>
+
+    <string name="loadingDialogLoadingText">玩命加载中…</string>
+</resources>

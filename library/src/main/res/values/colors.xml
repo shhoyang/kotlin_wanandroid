@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="toolbarBackgroundColor">#00000000</color>
+    <color name="toolbarIconColor">#333333</color>
+    <color name="toolbarTitleTextColor">#333333</color>
+    <color name="toolbarLineColor">#D3D3D3</color>
+
+    <color name="emptyViewIconColor">@color/colorPrimary</color>
+    <color name="emptyViewTextColor">@color/colorPrimary</color>
+
+    <color name="confirmDialogTitleTextColor">#000000</color>
+    <color name="confirmDialogMessageTextColor">#333333</color>
+    <color name="confirmDialogCancelBtnTextColor">#888888</color>
+    <color name="confirmDialogConfirmBtnTextColor">@color/colorPrimary</color>
+    <color name="confirmDialogLineColor">#D3D3D3</color>
+
+
+    <color name="loadingDialogIconColor">@color/colorPrimary</color>
+    <color name="loadingDialogMessageTextColor">@color/colorPrimary</color>
+
+</resources>

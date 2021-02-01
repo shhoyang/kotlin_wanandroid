@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg_white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:textColor="?attr/confirmDialogTitleTextColor"
+        android:textSize="?attr/confirmDialogTitleTextSize"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/lineTitle"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="?attr/confirmDialogLineColor" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.4"
+        android:minHeight="48dp"
+        android:textColor="?attr/confirmDialogMessageTextColor"
+        android:textSize="?attr/confirmDialogMessageTextSize" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="?attr/confirmDialogLineColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvCancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="?attr/confirmDialogCancelBtnText"
+            android:textColor="?attr/confirmDialogCancelBtnTextColor"
+            android:textSize="?attr/confirmDialogBtnTextSize" />
+
+        <View
+            android:id="@+id/lineCancel"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="?attr/confirmDialogLineColor" />
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="?attr/confirmDialogConfirmBtnText"
+            android:textColor="?attr/confirmDialogConfirmBtnTextColor"
+            android:textSize="?attr/confirmDialogBtnTextSize" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+

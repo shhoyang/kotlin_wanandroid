@@ -19,7 +19,7 @@
     <color name="text_white">#FFFFFF</color>
     <color name="text_title">#353535</color>
     <color name="text_subtitle">#888888</color>
-    <color name="text_desc">#B2B2B2</color>
+    <color name="text_extra">#B2B2B2</color>
     <color name="text_link">#576B95</color>
     <color name="text_red">#E64340</color>
 

@@ -9,7 +9,6 @@ import com.hao.easy.wan.model.HotWord
 
 /**
  * @author Yang Shihao
- * @date 2018/9/26
  */
 @Dao
 interface HistoryDao {

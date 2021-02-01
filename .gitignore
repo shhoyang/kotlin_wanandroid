@@ -2,7 +2,10 @@
 .gradle
 /local.properties
 /build
+/build/
 /.idea/
 /gradle/
 .DS_Store
 */.DS_Store
+key.properties
+haoshi.jks

@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 /**
  * @author Yang Shihao
- * @date 2018/11/25
  */
 @Entity
 data class User(

@@ -1,21 +1,25 @@
 package com.hao.easy.wan.viewmodel
 
-import com.hao.easy.base.extensions.subscribeBy
-import com.hao.easy.base.utils.CoroutineUtils
-import com.hao.easy.base.viewmodel.BaseViewModel
 import com.hao.easy.wan.db.Db
 import com.hao.easy.wan.model.Author
 import com.hao.easy.wan.repository.Api
+import com.hao.library.http.subscribeBy
+import com.hao.library.utils.CoroutineUtils
+import com.hao.library.viewmodel.BaseViewModel
 
 open class AuthorViewModel : BaseViewModel() {
 
+    private var intIds = ""
+
     fun getAuthors() {
         CoroutineUtils.io {
-            val list = Db.instance().authorDao().queryAll()
+            val list = Db.instance().authorDao().queryByVisible(Author.VISIBLE)
             if (list.isEmpty()) {
                 Api.getAuthors().subscribeBy({
                     processData(it)
                 }).add()
+            }else {
+                intIds = list.joinToString(separator = ",") { it.id.toString() }
             }
         }
     }
@@ -69,7 +73,11 @@ open class AuthorViewModel : BaseViewModel() {
 
     fun update(authors: List<Author>) {
         CoroutineUtils.io {
-            Db.instance().authorDao().updateAll(authors)
+            val ids = authors.joinToString(separator = ",") { it.id.toString() }
+            if (intIds != ids) {
+                Db.instance().authorDao().updateAll(authors)
+                intIds = ids
+            }
         }
     }
 

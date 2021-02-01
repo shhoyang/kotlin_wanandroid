@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.hao.easy.user.ui.fragment.LoginFragment"
+        android:name="com.hao.easy.user.fragment.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/user_fragment_login">
 
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.hao.easy.user.ui.fragment.RegisterFragment"
+        android:name="com.hao.easy.user.fragment.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/user_fragment_register" />
 

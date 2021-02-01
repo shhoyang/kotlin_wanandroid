@@ -1,8 +1,7 @@
 package com.hao.easy.wan.model
 
-import com.hao.easy.base.adapter.BaseItem
-import com.hao.easy.base.extensions.removeHtml
-import com.hao.easy.base.extensions.removeSymbol
+import com.hao.library.adapter.PagedAdapterItem
+import com.hao.library.extensions.removeSymbol
 
 class Article(
     var id: Int,
@@ -13,13 +12,13 @@ class Article(
     var envelopePic: String,
     var collect: Boolean,
     var originId: Int
-) : BaseItem {
+) : PagedAdapterItem {
     var title: String = ""
         get() {
             return if (null == field || "" == field) {
                 ""
             } else {
-                field.removeSymbol().removeHtml()
+                field.removeSymbol()
             }
         }
 

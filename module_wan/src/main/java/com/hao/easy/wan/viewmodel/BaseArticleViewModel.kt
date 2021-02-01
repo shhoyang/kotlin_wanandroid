@@ -1,10 +1,10 @@
 package com.hao.easy.wan.viewmodel
 
-import com.hao.easy.base.aop.CheckLogin
-import com.hao.easy.base.extensions.subscribeBy
-import com.hao.easy.base.viewmodel.BaseListViewModel
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.repository.Api
+import com.hao.library.aop.CheckLogin
+import com.hao.library.http.subscribeBy
+import com.hao.library.viewmodel.BaseListViewModel
 
 abstract class BaseArticleViewModel : BaseListViewModel<Article>() {
 

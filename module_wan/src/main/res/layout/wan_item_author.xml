@@ -5,7 +5,7 @@
     android:layout_height="40dp"
     android:layout_margin="6dp">
 
-    <com.hao.easy.base.view.RoundTextView
+    <com.hao.library.view.RoundTextView
         android:id="@+id/tvName"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,13 +14,13 @@
         android:paddingRight="4dp"
         android:singleLine="true"
         android:textSize="12sp"
-        app:disableColor="@color/light_grey"
-        app:disableTextColor="@color/text_subtitle"
-        app:normalColor="@color/light_grey"
-        app:normalTextColor="@color/text_black"
-        app:radius="4dp"
-        app:selectedColor="@color/colorPrimary"
-        app:selectedTextColor="@color/text_white" />
+        app:roundTextViewDisableColor="@color/light_grey"
+        app:roundTextViewDisableTextColor="@color/text_subtitle"
+        app:roundTextViewNormalColor="@color/light_grey"
+        app:roundTextViewNormalTextColor="@color/text_black"
+        app:roundTextViewRadius="4dp"
+        app:roundTextViewSelectedColor="@color/colorPrimary"
+        app:roundTextViewSelectedTextColor="@color/text_white" />
 
     <ImageView
         android:id="@+id/ivAction"

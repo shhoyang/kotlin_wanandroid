@@ -5,10 +5,4 @@
     android:layout_height="match_parent"
     tools:context=".activity.WelcomeActivity">
 
-    <ImageView
-        android:src="@drawable/app_ic_wechat"
-        android:background="@color/white"
-        android:layout_width="80dp"
-        android:layout_height="80dp"/>
-
 </FrameLayout>

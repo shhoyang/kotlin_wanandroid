@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.AuthorActivity">
+    tools:context=".activity.AuthorActivity">
 
-    <com.hao.easy.base.view.ToolbarLayout
+    <com.hao.library.view.ToolbarLayout
         android:id="@+id/baseToolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height">
+        android:layout_height="@dimen/toolbarHeight">
 
         <TextView
             android:id="@+id/tvEdit"
@@ -17,11 +17,11 @@
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:gravity="center"
-            android:text="@string/edit"
+            android:text="@string/wan_edit"
             android:textColor="@color/text_primary"
             android:textSize="14sp" />
 
-    </com.hao.easy.base.view.ToolbarLayout>
+    </com.hao.library.view.ToolbarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/subscribed"
+            android:text="@string/wan_subscribed"
             android:textColor="@color/text_black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="@string/click_delete"
+            android:text="@string/wan_click_delete"
             android:textColor="@color/text_subtitle"
             android:textSize="12sp"
             android:visibility="gone" />
@@ -71,7 +71,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/not_subscribed"
+            android:text="@string/wan_not_subscribed"
             android:textColor="@color/text_black"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -81,7 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="@string/click_add"
+            android:text="@string/wan_click_add"
             android:textColor="@color/text_subtitle"
             android:textSize="12sp"
             android:visibility="gone" />

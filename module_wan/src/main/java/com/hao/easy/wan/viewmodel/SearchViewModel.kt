@@ -2,12 +2,12 @@ package com.hao.easy.wan.viewmodel
 
 import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
-import com.hao.easy.base.extensions.subscribeBy
-import com.hao.easy.base.utils.CoroutineUtils
-import com.hao.easy.base.viewmodel.BaseViewModel
 import com.hao.easy.wan.db.Db
 import com.hao.easy.wan.model.HotWord
 import com.hao.easy.wan.repository.Api
+import com.hao.library.http.subscribeBy
+import com.hao.library.utils.CoroutineUtils
+import com.hao.library.viewmodel.BaseViewModel
 
 class SearchViewModel : BaseViewModel() {
 

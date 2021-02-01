@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@mipmap/scenery"
+    android:background="@mipmap/user_scenery"
     android:gravity="center"
     android:orientation="vertical">
 

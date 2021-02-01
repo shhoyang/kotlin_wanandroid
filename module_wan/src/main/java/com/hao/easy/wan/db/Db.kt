@@ -9,7 +9,6 @@ import com.hao.easy.wan.model.HotWord
 
 /**
  * @author Yang Shihao
- * @date 2018/9/26
  */
 @Database(entities = [Author::class, HotWord::class], version = 1)
 abstract class Db : RoomDatabase() {
@@ -24,6 +23,7 @@ abstract class Db : RoomDatabase() {
 
         @Synchronized
         fun instance(): Db {
+            @Synchronized
             if (instance == null) {
                 instance = Room.databaseBuilder(
                     BaseApplication.instance,

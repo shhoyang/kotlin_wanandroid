@@ -1,0 +1,66 @@
+<resources>
+
+    <!--主题中属性少一个就会在创建View的时候找不到这个属性导致崩溃-->
+    <style name="ToolbarLayout" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="toolbarHeight">@dimen/toolbarHeight</item>
+        <item name="toolbarBackgroundColor">@android:color/transparent</item>
+        <item name="toolbarTitleTextSize">@dimen/toolbarTitleTextSize</item>
+        <item name="toolbarTitleTextColor">@color/toolbarTitleTextColor</item>
+        <item name="toolbarIconColor">@color/toolbarTitleTextColor</item>
+        <item name="toolbarShowLine">true</item>
+        <item name="toolbarLineColor">@color/toolbarLineColor</item>
+    </style>
+
+    <style name="EmptyView">
+        <item name="emptyViewIconColor">@color/emptyViewIconColor</item>
+        <item name="emptyViewTextSize">@dimen/emptyViewTextSize</item>
+        <item name="emptyViewTextColor">@color/emptyViewTextColor</item>
+        <item name="emptyViewLoadingText">@string/emptyViewLoadingText</item>
+        <item name="emptyViewNoDataText">@string/emptyViewNoDataText</item>
+        <item name="emptyViewLoadFailedText">@string/emptyViewLoadFailedText</item>
+        <item name="emptyViewNetworkUnavailableText">@string/emptyViewNetworkUnavailableText</item>
+        <item name="emptyViewLoadingLayoutId">@null</item>
+        <item name="emptyViewNoDataLayoutId">@null</item>
+        <item name="emptyViewLoadFailedLayoutId">@null</item>
+        <item name="emptyViewNetworkUnavailableLayoutId">@null</item>
+    </style>
+
+    <style name="Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="Dialog2" parent="Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="ConfirmDialog" parent="Dialog">
+        <item name="android:windowBackground">@drawable/dialog_bg_white</item>
+        <item name="confirmDialogWidthRate">0.8</item>
+        <item name="confirmDialogTitleTextSize">@dimen/confirmDialogTitleTextSize</item>
+        <item name="confirmDialogTitleTextColor">@color/confirmDialogTitleTextColor</item>
+        <item name="confirmDialogMessageTextSize">@dimen/confirmDialogMessageTextSize</item>
+        <item name="confirmDialogMessageTextColor">@color/confirmDialogMessageTextColor</item>
+        <item name="confirmDialogBtnTextSize">@dimen/confirmDialogBtnTextSize</item>
+        <item name="confirmDialogCancelBtnText">@string/confirmDialogCancelBtnText</item>
+        <item name="confirmDialogCancelBtnTextColor">@color/confirmDialogCancelBtnTextColor</item>
+        <item name="confirmDialogConfirmBtnText">@string/confirmDialogConfirmBtnText</item>
+        <item name="confirmDialogConfirmBtnTextColor">@color/confirmDialogConfirmBtnTextColor</item>
+        <item name="confirmDialogLineColor">@color/confirmDialogLineColor</item>
+    </style>
+
+    <style name="LoadingDialog" parent="Dialog">
+        <item name="android:windowBackground">@drawable/dialog_bg_white</item>
+        <item name="loadingDialogWidthRate">0.33</item>
+        <item name="loadingDialogLoadingLayoutId">@null</item>
+        <item name="loadingDialogIconColor">@color/loadingDialogIconColor</item>
+        <item name="loadingDialogMessageText">@string/loadingDialogLoadingText</item>
+        <item name="loadingDialogMessageTextSize">@dimen/loadingDialogMessageTextSize</item>
+        <item name="loadingDialogMessageTextColor">@color/loadingDialogMessageTextColor</item>
+    </style>
+
+</resources>

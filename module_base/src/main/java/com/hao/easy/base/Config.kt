@@ -2,7 +2,8 @@ package com.hao.easy.base
 
 import com.hao.easy.base.user.User
 import com.hao.easy.base.user.UserDb
-import com.hao.easy.base.utils.CoroutineUtils
+import com.hao.library.http.HttpManager
+import com.hao.library.utils.CoroutineUtils
 
 object Config {
 
@@ -26,8 +27,7 @@ object Config {
     fun init() {
         var username: String? = null
         var token: String? = null
-        val cookies = BaseApplication.instance.httpManager.getCookies()
-        cookies.forEach {
+        HttpManager.COOKIE_CACHE.forEach {
             if (it.name == KEY_USERNAME) {
                 val value = it.value
                 if ("\"\"" != value) {
@@ -59,15 +59,13 @@ object Config {
     }
 
     fun logout() {
-        user?.let {
-            CoroutineUtils.io {
-                UserDb.instance().userDao().delete(it)
-            }
+        CoroutineUtils.io {
+            UserDb.instance().userDao().deleteAll()
         }
         user = null
         isLogin = false
         refresh()
-        BaseApplication.instance.httpManager.cancelAllRequest()
+        HttpManager.cancelAllRequest()
     }
 
     fun refresh() {

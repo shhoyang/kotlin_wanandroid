@@ -10,11 +10,4 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
-    <application>
-        <activity
-            android:name=".ui.WebActivity"
-            android:process=":h5"
-            android:screenOrientation="portrait" />
-    </application>
-
 </manifest>

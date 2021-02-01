@@ -5,17 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.hao.easy.base.view.StatusBarPlaceholderView
+    <com.hao.library.view.StatusBarPlaceholderView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.hao.easy.base.view.ToolbarLayout
+    <com.hao.library.view.ToolbarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        app:showBack="false"
-        app:title="@string/wan_title_knowledge" />
+        android:layout_height="@dimen/toolbarHeight"
+        app:toolbarShowBack="false"
+        app:toolbarTitleText="@string/wan_title_knowledge" />
 
-    <com.hao.easy.base.view.EmptyView
+    <com.hao.library.view.EmptyView
         android:id="@+id/baseEmptyView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -31,6 +31,6 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="128dp" />
 
-    </com.hao.easy.base.view.EmptyView>
+    </com.hao.library.view.EmptyView>
 
 </LinearLayout>

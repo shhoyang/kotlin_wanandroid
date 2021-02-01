@@ -1,22 +1,35 @@
 <resources>
-    <string name="app_name">Wan</string>
-    <string name="wan_tab_hot">热门</string>
+    <string name="wan_app_name">玩Android</string>
+    <string name="wan_english_name">wan android</string>
+    <string name="wan_motto">早成者未必有成  晚达者未必不达</string>
+
     <string name="wan_tab_wechat">公众号</string>
     <string name="wan_tab_project">项目</string>
     <string name="wan_tab_knowledge">体系</string>
     <string name="wan_tab_search">搜索</string>
+
     <string name="wan_title_project">项目</string>
     <string name="wan_title_knowledge">体系</string>
+
     <string name="wan_title_search">搜索</string>
-    <string name="link_github"><u>项目链接</u></string>
-    <string name="search">搜索</string>
-    <string name="hint_search">请输入搜索内容</string>
-    <string name="hot">大家都在搜</string>
-    <string name="search_history">搜索历史</string>
-    <string name="clear_history">清除历史</string>
-    <string name="edit">编辑</string>
-    <string name="subscribed">已订阅</string>
-    <string name="not_subscribed">未订阅</string>
-    <string name="click_add">点击添加</string>
-    <string name="click_delete">点击删除，拖拽排序</string>
+    <string name="wan_search">搜索</string>
+    <string name="wan_hint_search">请输入搜索内容</string>
+    <string name="wan_hot">大家都在搜</string>
+    <string name="wan_search_history">搜索历史</string>
+    <string name="wan_clear_history">清除历史</string>
+
+    <string name="wan_title_subscribe">选择订阅</string>
+    <string name="wan_edit">编辑</string>
+    <string name="wan_completed">完成</string>
+    <string name="wan_subscribed">已订阅</string>
+    <string name="wan_not_subscribed">未订阅</string>
+    <string name="wan_click_add">点击添加</string>
+    <string name="wan_click_delete">点击删除，拖拽排序</string>
+
+    <string name="wan_title_fav">我的收藏</string>
+    <string name="wan_cancel_fav">取消收藏成功</string>
+    <string name="wan_confirm_cancel_fav">确定取消收藏吗？</string>
+
+    <string name="wan_link_github"><u>项目链接</u></string>
+
 </resources>

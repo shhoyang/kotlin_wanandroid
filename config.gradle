@@ -1,15 +1,15 @@
 ext {
-    //true 集成模式 false 组件模式
-    isModule = true
+    //true 集成模式 false组件模式
+    isModule = false
 
     versions = [
             compileSdk : 30,
-            buildTools : '30.0.2',
+            buildTools : '30.0.3',
             minSdk     : 24,
             targetSdk  : 30,
 
-            versionCode: 13,
-            versionName: '1.0.13',
+            versionCode: 14,
+            versionName: '1.0.14',
 
             kotlin     : '1.4.21',
             paging     : '2.1.2',
@@ -23,13 +23,12 @@ ext {
             hilt       : '2.30.1-alpha'
     ]
 
-    compiler = [
-            'lifecycleCompiler': "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
-            'roomCompiler'     : "androidx.room:room-compiler:$versions.room",
-            'hiltCompiler'     : "com.google.dagger:hilt-android-compiler:$versions.hilt",
-            'glideCompiler'    : "com.github.bumptech.glide:compiler:$versions.glide",
-            'arouterCompiler'  : 'com.alibaba:arouter-compiler:1.2.2'
+    compilers = [
+            'lifecycle': "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle",
+            'room'     : "androidx.room:room-compiler:$versions.room",
+            'glide'    : "com.github.bumptech.glide:compiler:$versions.glide",
+            'arouter'  : 'com.alibaba:arouter-compiler:1.2.2'
     ]
 
-    compilerDependencies = compiler.values()
+    compilerDependencies = compilers.values()
 }

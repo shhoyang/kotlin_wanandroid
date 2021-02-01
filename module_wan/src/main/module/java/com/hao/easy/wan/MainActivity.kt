@@ -1,31 +1,27 @@
 package com.hao.easy.wan
 
 import android.content.Intent
-import com.hao.easy.base.adapter.FragmentAdapter
-import com.hao.easy.base.adapter.FragmentCreator
-import com.hao.easy.base.ui.BaseActivity
-import com.hao.easy.base.ui.UIParams
 import com.hao.easy.wan.databinding.WanActivityMainBinding
-import com.hao.easy.wan.ui.fragment.KnowledgeFragment
-import com.hao.easy.wan.ui.fragment.ProjectFragment
-import com.hao.easy.wan.ui.fragment.SearchFragment
-import com.hao.easy.wan.ui.fragment.WechatFragment
-import dagger.hilt.android.AndroidEntryPoint
+import com.hao.easy.wan.fragment.KnowledgeFragment
+import com.hao.easy.wan.fragment.ProjectFragment
+import com.hao.easy.wan.fragment.SearchFragment
+import com.hao.easy.wan.fragment.WechatFragment
+import com.hao.library.adapter.FragmentAdapter
+import com.hao.library.adapter.FragmentCreator
+import com.hao.library.annotation.AndroidEntryPoint
+import com.hao.library.ui.BaseActivity
+import com.hao.library.ui.UIParams
+import com.hao.library.viewmodel.PlaceholderViewModel
 
 /**
  * @author Yang Shihao
- * @date 2018/11/26
  */
-@AndroidEntryPoint
-class MainActivity : BaseActivity<WanActivityMainBinding, Nothing>() {
+@AndroidEntryPoint(injectViewModel = false)
+class MainActivity : BaseActivity<WanActivityMainBinding, PlaceholderViewModel>() {
 
     override fun prepare(uiParams: UIParams, intent: Intent?) {
         uiParams.isTransparentStatusBar = true
     }
-
-    override fun getVB() = WanActivityMainBinding.inflate(layoutInflater)
-
-    override fun getVM(): Nothing? = null
 
     override fun initView() {
         val fragments = listOf(

@@ -1,13 +1,12 @@
 package com.hao.easy.user.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.hao.easy.base.extensions.subscribeBy
-import com.hao.easy.base.viewmodel.BaseViewModel
+import com.hao.library.viewmodel.BaseViewModel
 import com.hao.easy.user.repository.Api
+import com.hao.library.http.subscribeBy
 
 /**
  * @author Yang Shihao
- * @date 2018/11/25
  */
 class UserViewModel : BaseViewModel() {
 

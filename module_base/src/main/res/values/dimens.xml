@@ -1,6 +1,6 @@
 <resources>
 
     <dimen name="activity_padding">16dp</dimen>
-    <dimen name="title_height">48dp</dimen>
+    <dimen name="toolbarHeight">48dp</dimen>
 
 </resources>

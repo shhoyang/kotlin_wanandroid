@@ -4,19 +4,19 @@
 
     <application>
         <activity
-            android:name=".ui.activity.ProjectArticleActivity"
+            android:name=".activity.ProjectArticleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.KnowledgeArticleActivity"
+            android:name=".activity.KnowledgeArticleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.SearchListActivity"
+            android:name=".activity.SearchResultActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.FavActivity"
+            android:name=".activity.FavoritesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.AuthorActivity"
+            android:name=".activity.AuthorActivity"
             android:screenOrientation="portrait" />
     </application>
 

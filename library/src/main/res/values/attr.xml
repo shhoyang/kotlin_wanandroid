@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ToolbarLayout">
+        <attr name="toolbarHeight" format="dimension" />
+        <attr name="toolbarBackgroundColor" format="color" />
+        <attr name="toolbarShowBack" format="boolean"/>
+        <attr name="toolbarTitleText" format="string" />
+        <attr name="toolbarTitleTextSize" format="dimension" />
+        <attr name="toolbarTitleTextColor" format="color" />
+        <attr name="toolbarIconColor" format="color" />
+        <attr name="toolbarShowLine" format="boolean"/>
+        <attr name="toolbarLineColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundTextView">
+        <attr name="roundTextViewRadius" format="dimension" />
+        <attr name="roundTextViewBorderWidth" format="dimension" />
+        <attr name="roundTextViewBorderColor" format="color" />
+        <attr name="roundTextViewNormalColor" format="color" />
+        <attr name="roundTextViewNormalTextColor" format="color" />
+        <attr name="roundTextViewPressedColor" format="color" />
+        <attr name="roundTextViewPressedTextColor" format="color" />
+        <attr name="roundTextViewSelectedColor" format="color" />
+        <attr name="roundTextViewSelectedTextColor" format="color" />
+        <attr name="roundTextViewDisableColor" format="color" />
+        <attr name="roundTextViewDisableTextColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="EmptyView">
+        <attr name="emptyViewIconColor" format="color" />
+        <attr name="emptyViewTextSize" format="dimension" />
+        <attr name="emptyViewTextColor" format="color" />
+        <attr name="emptyViewLoadingText" format="string" />
+        <attr name="emptyViewNoDataText" format="string" />
+        <attr name="emptyViewLoadFailedText" format="string" />
+        <attr name="emptyViewNetworkUnavailableText" format="string" />
+        <attr name="emptyViewLoadingLayoutId" format="reference" />
+        <attr name="emptyViewNoDataLayoutId" format="reference" />
+        <attr name="emptyViewLoadFailedLayoutId" format="reference" />
+        <attr name="emptyViewNetworkUnavailableLayoutId" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ConfirmDialog">
+        <attr name="confirmDialogWidthRate" format="float" />
+        <attr name="confirmDialogTitleTextSize" format="dimension" />
+        <attr name="confirmDialogTitleTextColor" format="color" />
+        <attr name="confirmDialogMessageTextSize" format="dimension" />
+        <attr name="confirmDialogMessageTextColor" format="color" />
+        <attr name="confirmDialogBtnTextSize" format="dimension" />
+        <attr name="confirmDialogCancelBtnText" format="string" />
+        <attr name="confirmDialogCancelBtnTextColor" format="color" />
+        <attr name="confirmDialogConfirmBtnText" format="string" />
+        <attr name="confirmDialogConfirmBtnTextColor" format="color" />
+        <attr name="confirmDialogLineColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="LoadingDialog">
+        <attr name="loadingDialogWidthRate" format="float" />
+        <attr name="loadingDialogLoadingLayoutId" format="reference" />
+        <attr name="loadingDialogIconColor" format="color" />
+        <attr name="loadingDialogMessageText" format="string" />
+        <attr name="loadingDialogMessageTextSize" format="dimension" />
+        <attr name="loadingDialogMessageTextColor" format="color" />
+    </declare-styleable>
+
+</resources>

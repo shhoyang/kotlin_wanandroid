@@ -1,3 +1,6 @@
+include ':library-compiler'
+include ':library-annotation'
+include ':library'
 include ':app'
 include ':module_base'
 include ':module_user'

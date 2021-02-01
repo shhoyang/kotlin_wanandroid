@@ -1,10 +1,10 @@
 package com.hao.easy.wan.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.hao.easy.base.extensions.subscribeBy
-import com.hao.easy.base.viewmodel.BaseViewModel
+import com.hao.library.viewmodel.BaseViewModel
 import com.hao.easy.wan.model.Knowledge
 import com.hao.easy.wan.repository.Api
+import com.hao.library.http.subscribeBy
 
 class KnowledgeViewModel : BaseViewModel() {
 

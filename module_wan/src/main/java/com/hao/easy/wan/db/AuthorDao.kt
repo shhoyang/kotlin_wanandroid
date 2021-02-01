@@ -9,7 +9,6 @@ import com.hao.easy.wan.model.Author
 
 /**
  * @author Yang Shihao
- * @date 2018/9/26
  */
 @Dao
 interface AuthorDao {
@@ -24,7 +23,10 @@ interface AuthorDao {
     fun updateAll(authors: List<Author>)
 
     @Query("SELECT * FROM Author WHERE visible in (:visible) ORDER BY sort ASC")
-    fun queryByVisible(visible: Int): LiveData<List<Author>>
+    fun queryByVisible(visible: Int): List<Author>
+
+    @Query("SELECT * FROM Author WHERE visible in (:visible) ORDER BY sort ASC")
+    fun queryLiveDataByVisible(visible: Int): LiveData<List<Author>>
 
     @Query("SELECT * FROM Author")
     fun queryAll(): List<Author>

@@ -2,12 +2,12 @@
     <string name="app_name">mvvm_base</string>
     <string name="digits">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
 
-    <string name="empty_loading">玩命加载中…</string>
-    <string name="empty_no_data">暂无数据</string>
-    <string name="empty_load_failed">加载失败</string>
-    <string name="empty_network_unavailable">网络异常</string>
+    <string name="emptyViewLoadingText">玩命加载中…</string>
+    <string name="emptyViewNoDataText">暂无数据</string>
+    <string name="emptyViewLoadFailedText">加载失败</string>
+    <string name="emptyNetworkUnavailableText">网络异常</string>
     <string name="base_t_no_more">全部加载完成</string>
-    <string name="cancel">取消</string>
-    <string name="confirm">确定</string>
-    <string name="loading">加载中…</string>
+    <string name="confirmDialogCancelBtnText">取消</string>
+    <string name="confirmDialogConfirmBtnText">确定</string>
+    <string name="loadingDialogLoadingText">加载中…</string>
 </resources>

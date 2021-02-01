@@ -9,8 +9,8 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.MutableLiveData
 import com.hao.easy.base.BaseApplication
-import com.hao.easy.base.viewmodel.BaseViewModel
 import com.hao.easy.wan.R
+import com.hao.library.viewmodel.BaseViewModel
 import com.tencent.bugly.beta.Beta
 import com.tencent.bugly.beta.UpgradeInfo
 import com.tencent.bugly.beta.download.DownloadListener
@@ -115,18 +115,18 @@ class UpgradeViewModel : BaseViewModel() {
     private fun downloading(max: Int, process: Int) {
         notificationBuilder.setProgress(max, process, false)
         notificationBuilder.setContentText(numberFormat.format(process.toFloat() / max))
-        notificationManager!!.notify(NOTIFICATION_ID, notificationBuilder.build())
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
 
     private fun success() {
         notificationBuilder.setContentText("下载成功")
-        notificationManager!!.notify(NOTIFICATION_ID, notificationBuilder.build())
-        notificationManager!!.cancel(NOTIFICATION_ID)
+        notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
+        notificationManager.cancel(NOTIFICATION_ID)
     }
 
     private fun failed() {
         notificationBuilder.setAutoCancel(true)
-        notificationManager!!.cancel(NOTIFICATION_ID)
+        notificationManager.cancel(NOTIFICATION_ID)
     }
 
     companion object {

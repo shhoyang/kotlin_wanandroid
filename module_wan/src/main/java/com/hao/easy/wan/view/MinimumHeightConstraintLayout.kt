@@ -3,11 +3,11 @@ package com.hao.easy.wan.view
 import android.content.Context
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.hao.easy.base.utils.DisplayUtils
+import com.hao.easy.wan.activity.AuthorActivity
+import com.hao.library.utils.DisplayUtils
 
 /**
  * @author Yang Shihao
- * @Date 2020/9/9
  *
  * 最小高为状态栏高度的ConstraintLayout
  */
@@ -29,6 +29,9 @@ class MinimumHeightConstraintLayout : ConstraintLayout {
         defStyleAttr
     ) {
         init()
+
+        val authorActivity = AuthorActivity()
+        authorActivity.vm
     }
 
     private fun init() {

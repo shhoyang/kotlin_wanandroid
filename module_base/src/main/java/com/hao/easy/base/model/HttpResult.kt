@@ -1,9 +1,30 @@
 package com.hao.easy.base.model
 
+import com.hao.library.http.HttpResponseModel
+
 /**
  * @author Yang Shihao
- * @date 2018/11/19
  */
-data class HttpResult<T>(var errorCode: Int,
-                         var errorMsg: String,
-                         var data: T)
+data class HttpResult<D>(
+    var errorCode: Int,
+    var errorMsg: String,
+    @JvmField
+    var data: D?
+) : HttpResponseModel<D> {
+
+    override fun getData(): D? {
+        return data
+    }
+
+    override fun getCode(): String {
+        return errorCode.toString()
+    }
+
+    override fun getMessage(): String {
+        return errorMsg
+    }
+
+    override fun isSucceed(): Boolean {
+        return 0 == errorCode
+    }
+}

@@ -4,11 +4,11 @@
 
     <application>
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name="com.hao.easy.user.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme" />
         <activity
-            android:name=".ui.activity.AboutActivity"
+            android:name="com.hao.easy.user.activity.AboutActivity"
             android:screenOrientation="portrait" />
     </application>
 

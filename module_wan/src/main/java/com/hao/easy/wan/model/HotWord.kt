@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 
 /**
  * @author Yang Shihao
- * @Date 2020/7/20
  */
 @Entity
 data class HotWord(

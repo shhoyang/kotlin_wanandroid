@@ -88,7 +88,7 @@
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.hao.easy.base.view.RoundTextView
+    <com.hao.library.view.RoundTextView
         android:id="@+id/buttonRegister"
         android:layout_width="0dp"
         android:layout_height="40dp"
@@ -100,10 +100,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputConfirmPassword"
-        app:normalColor="#20FFFFFF"
-        app:normalTextColor="@color/white"
-        app:pressedColor="#40FFFFFF"
-        app:radius="4dp" />
+        app:roundTextViewNormalColor="#20FFFFFF"
+        app:roundTextViewNormalTextColor="@color/white"
+        app:roundTextViewPressedColor="#40FFFFFF"
+        app:roundTextViewRadius="4dp" />
 
     <TextView
         android:id="@+id/textLogin"

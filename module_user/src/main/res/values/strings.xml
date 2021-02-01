@@ -1,15 +1,30 @@
 <resources>
-    <string name="app_name">User</string>
-    <string name="user_menu_fav">我的收藏</string>
+    <string name="user_app_name">User</string>
+
+    <string name="user_menu_favorite">我的收藏</string>
     <string name="user_menu_clear_cache">清理缓存</string>
     <string name="user_menu_upgrade">版本检查</string>
     <string name="user_menu_about">关于项目</string>
     <string name="user_menu_logout">退出登录</string>
+
+    <string name="user_title_about">关于项目</string>
     <string name="user_copy_tip">提示: 长按连接复制到剪粘板</string>
+    <string name="user_copy_succeed">已复制到剪粘板</string>
+
+    <string name="user_not_login">未登录</string>
+    <string name="user_clear_completed">清理完成</string>
+
+    <string name="user_login">登录</string>
     <string name="user_username">username</string>
     <string name="user_password">password</string>
-    <string name="user_login">登录</string>
+    <string name="user_to_register">没有账号,去注册</string>
+    <string name="user_username_is_empty">用户名不能为空</string>
+    <string name="user_password_is_empty">密码不能为空</string>
+
     <string name="user_register">注册</string>
     <string name="user_to_login">已有账号,去登录</string>
-    <string name="user_to_register">没有账号,去注册</string>
+    <string name="user_username_rule">用户名6-16数字、字母</string>
+    <string name="user_password_rule">密码6-16数字、字母</string>
+    <string name="user_confirm_password_rule">确认密码6-16数字、字母</string>
+    <string name="user_password_not_equals">密码不一致</string>
 </resources>

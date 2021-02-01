@@ -1,17 +1,16 @@
 package com.hao.easy.user.repository
 
-import com.hao.easy.base.BaseApplication
 import com.hao.easy.base.model.HttpResult
 import com.hao.easy.base.user.User
+import com.hao.library.http.HttpManager
 import io.reactivex.Observable
 import retrofit2.http.*
 
 /**
  * @author Yang Shihao
- * @date 2018/11/19
  */
 
-object Api : Service by BaseApplication.instance.httpManager.retrofit.create(Service::class.java)
+object Api : Service by HttpManager.RETROFIT.create(Service::class.java)
 
 interface Service {
 

@@ -1,13 +1,12 @@
 package com.hao.easy.activity
 
-import com.hao.easy.base.ui.BaseActivity
 import com.hao.easy.databinding.AppActivityWelcomeBinding
+import com.hao.library.annotation.AndroidEntryPoint
+import com.hao.library.ui.BaseActivity
+import com.hao.library.viewmodel.PlaceholderViewModel
 
-class WelcomeActivity : BaseActivity<AppActivityWelcomeBinding, Nothing>() {
-
-    override fun getVB() = AppActivityWelcomeBinding.inflate(layoutInflater)
-
-    override fun getVM(): Nothing? = null
+@AndroidEntryPoint(injectViewModel = false)
+class WelcomeActivity : BaseActivity<AppActivityWelcomeBinding, PlaceholderViewModel>() {
 
     override fun initView() {
         toA(MainActivity::class.java, true)

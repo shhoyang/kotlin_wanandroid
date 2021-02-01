@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.AboutActivity">
+    tools:context=".activity.AboutActivity">
 
     <include layout="@layout/include_toolbar" />
 
-    <com.hao.easy.base.view.OverScrollView
+    <com.hao.library.view.OverScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/title_height"
+        android:layout_marginTop="@dimen/toolbarHeight"
         android:fillViewport="true"
         android:scrollbars="none">
 
@@ -67,6 +67,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.hao.easy.base.view.OverScrollView>
+    </com.hao.library.view.OverScrollView>
 
 </FrameLayout>

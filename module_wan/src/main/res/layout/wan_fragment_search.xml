@@ -5,15 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.hao.easy.base.view.StatusBarPlaceholderView
+    <com.hao.library.view.StatusBarPlaceholderView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.hao.easy.base.view.ToolbarLayout
+    <com.hao.library.view.ToolbarLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_height"
-        app:showBack="false"
-        app:title="@string/wan_title_search" />
+        android:layout_height="@dimen/toolbarHeight"
+        app:toolbarShowBack="false"
+        app:toolbarTitleText="@string/wan_title_search" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,9 +29,9 @@
             android:layout_weight="1"
             android:background="@null"
             android:gravity="center_vertical"
-            android:hint="@string/hint_search"
+            android:hint="@string/wan_hint_search"
             android:inputType="text"
-            android:maxLength="8"
+            android:maxLength="16"
             android:paddingLeft="12dp"
             android:paddingRight="12dp"
             android:singleLine="true"
@@ -39,10 +39,10 @@
 
         <TextView
             android:id="@+id/tvSearch"
-            android:layout_width="60dp"
+            android:layout_width="64dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/search"
+            android:text="@string/wan_search"
             android:textColor="@color/text_primary"
             android:textSize="14sp" />
     </LinearLayout>
@@ -54,7 +54,7 @@
         android:layout_marginLeft="@dimen/activity_padding"
         android:layout_marginTop="8dp"
         android:gravity="center_vertical"
-        android:text="@string/hot"
+        android:text="@string/wan_hot"
         android:textColor="@color/text_title"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -84,7 +84,7 @@
             android:layout_height="32dp"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:text="@string/search_history"
+            android:text="@string/wan_search_history"
             android:textColor="@color/text_title"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -95,7 +95,7 @@
             android:layout_height="32dp"
             android:layout_gravity="right|center_vertical"
             android:gravity="center"
-            android:text="@string/clear_history"
+            android:text="@string/wan_clear_history"
             android:textColor="@color/text_red"
             android:textSize="12sp" />
 

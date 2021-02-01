@@ -1,0 +1,14 @@
+<resources>
+
+    <dimen name="toolbarHeight">48dp</dimen>
+    <dimen name="toolbarTitleTextSize">16sp</dimen>
+
+    <dimen name="emptyViewTextSize">12sp</dimen>
+
+    <dimen name="confirmDialogTitleTextSize">18sp</dimen>
+    <dimen name="confirmDialogMessageTextSize">16sp</dimen>
+    <dimen name="confirmDialogBtnTextSize">14sp</dimen>
+
+    <dimen name="loadingDialogMessageTextSize">14sp</dimen>
+
+</resources>

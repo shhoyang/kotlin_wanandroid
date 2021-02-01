@@ -3,10 +3,10 @@ package com.hao.easy.wan.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.hao.easy.base.Config
-import com.hao.easy.base.extensions.subscribeBy
 import com.hao.easy.wan.model.Article
 import com.hao.easy.wan.model.ProjectType
 import com.hao.easy.wan.repository.Api
+import com.hao.library.http.subscribeBy
 import kotlin.properties.Delegates
 
 class ProjectViewModel : BaseArticleViewModel() {

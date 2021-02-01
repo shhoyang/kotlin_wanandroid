@@ -5,11 +5,9 @@ if (isModule) {
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'com.hujiang.android-aspectjx'
 
 android {
-
     compileSdkVersion versions.compileSdk
     buildToolsVersion versions.buildTools
 
@@ -61,12 +59,15 @@ android {
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
+        arg("DAGGER_VIEW_BINDING_FEATURE", "databinding")
+        arg("DAGGER_VIEW_MODEL_FEATURE", "viewmodel")
+        arg("DAGGER_ADAPTER_FEATURE", "adapter")
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':module_base')
-    implementation "com.google.dagger:hilt-android:$versions.hilt"
+    kapt project(':library-compiler')
     kapt compilerDependencies
 }
