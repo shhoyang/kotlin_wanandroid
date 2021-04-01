@@ -14,9 +14,9 @@ import com.hao.easy.wan.fragment.WechatFragment
 import com.hao.easy.wan.viewmodel.UpgradeViewModel
 import com.hao.library.AppManager
 import com.hao.library.adapter.FragmentAdapter
-import com.hao.library.adapter.FragmentCreator
 import com.hao.library.annotation.AndroidEntryPoint
 import com.hao.library.ui.BaseActivity
+import com.hao.library.ui.FragmentCreator
 import com.hao.library.ui.UIParams
 import com.hao.library.view.dialog.ConfirmDialog
 import com.hao.library.view.dialog.ConfirmDialogListener

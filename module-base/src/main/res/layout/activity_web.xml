@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.WebActivity">
+
+    <com.hao.library.view.ToolbarLayout
+        android:id="@+id/baseToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbarHeight" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hao.library.view.web.ProgressWebView
+            android:id="@+id/baseWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/baseProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:max="100"
+            android:progressDrawable="@drawable/web_view_progress_bar" />
+    </FrameLayout>
+
+</LinearLayout>

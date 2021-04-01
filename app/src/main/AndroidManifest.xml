@@ -16,16 +16,6 @@
         <meta-data
             android:name="android.notch_support"
             android:value="true" />
-
-        <service
-            android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
-            android:label="dexopt"
-            android:process=":h5" />
-        <service
-            android:name=".InitX5Service"
-            android:label="dexopt"
-            android:process=":h5" />
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

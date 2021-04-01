@@ -1,9 +1,9 @@
 package com.hao.easy
 
-import android.content.Intent
 import com.alibaba.android.arouter.launcher.ARouter
 import com.hao.easy.base.BaseApplication
 import com.hao.easy.base.Config
+import com.hao.library.service.InitX5Service
 import com.hao.library.utils.AppUtils
 import com.hao.library.utils.CoroutineUtils
 import com.tencent.bugly.Bugly
@@ -21,7 +21,7 @@ class App : BaseApplication() {
                 Config.init()
                 initARouter()
                 // 此处很生猛
-                startService(Intent(instance, InitX5Service::class.java))
+                InitX5Service.start(instance)
             }
             initBugly()
         }
