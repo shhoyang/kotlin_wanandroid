@@ -18,7 +18,7 @@ import com.hao.library.ui.BaseFragment
 class RegisterFragment : BaseFragment<UserFragmentRegisterBinding, RegisterViewModel>() {
 
     override fun initView() {
-        activity?.title = getString(R.string.user_register)
+        activity?.setTitle(R.string.user_register)
         viewBinding {
             editTextUsername.addTextChangedListener(textInputUsername)
             editTextPassword.addTextChangedListener(textInputPassword)

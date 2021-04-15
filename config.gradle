@@ -11,7 +11,7 @@ ext {
             versionCode: 14,
             versionName: '1.0.14',
 
-            haolibrary : '0.0.16',
+            haolibrary : '0.0.20',
             kotlin     : '1.4.30'
     ]
 

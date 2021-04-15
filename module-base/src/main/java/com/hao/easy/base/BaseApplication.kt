@@ -2,7 +2,6 @@ package com.hao.easy.base
 
 import android.app.Application
 import com.hao.easy.base.constant.Constant
-import com.hao.library.HaoLibrary
 import com.hao.library.HaoLibraryConfig
 import com.hao.library.HttpConfig
 import com.hao.library.extensions.notNullSingleValue
@@ -17,12 +16,12 @@ open class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        HaoLibrary.init(HaoLibraryConfig.Builder(this)
+        HaoLibraryConfig.Builder(this)
             .setHttpConfig(MyHttpConfig())
-            .build())
+            .apply()
     }
 
-    class MyHttpConfig :HttpConfig{
+    class MyHttpConfig : HttpConfig {
         override fun isLogin(): Boolean {
             return Config.isLogin
         }
